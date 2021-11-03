@@ -6,7 +6,8 @@ import { Badge } from "@material-ui/core";
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  font-size: 12px;
+  font-size: 0.7rem;
+  font-weight: 400;
 `;
 
 const Wrapper = styled.div`
@@ -40,6 +41,7 @@ const Center = styled.div`
 `;
 const Logo = styled.h1`
   font-weight: bold;
+  font-family: "Unna", serif;
 `;
 const Right = styled.div`
   flex: 1;
