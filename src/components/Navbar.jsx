@@ -19,7 +19,7 @@ const Wrapper = styled.div`
   align-items: center;
 `;
 const SearchContainer = styled.div`
-  border-bottom: 0.5px solid lightgray;
+  border-bottom: 0.5px solid gray;
   padding: 4px;
   font-size: 0.7rem;
   display: flex;

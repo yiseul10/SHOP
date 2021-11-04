@@ -22,7 +22,7 @@ const Info = styled.span`
 `;
 const Copyright = styled.div`
   color: dimgrey;
-  margin-top: 0.2rem;
+  margin-top: 0.3rem;
 `;
 
 function Footer() {

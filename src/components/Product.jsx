@@ -5,14 +5,14 @@ const Container = styled.div`
   position: relative;
 `;
 const ImgView = styled.div`
-  flex: 1;
-  margin: 5px;
+  /* flex: 1; */
   min-width: 275px;
   height: 350px;
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 3;
+  background-color: mintcream;
   &:hover {
     opacity: 70%;
     transition: all 0.5s ease;
@@ -21,7 +21,9 @@ const ImgView = styled.div`
 
 const Image = styled.img`
   height: 75%;
+  width: 100%;
   display: flex;
+  padding: 0;
 `;
 
 const Icon = styled.div`

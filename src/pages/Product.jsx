@@ -2,7 +2,7 @@ import styled from "styled-components";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import Notice from "../components/Notice";
-import { Add, Description, Remove } from "@material-ui/icons";
+import { Add, Error, Remove } from "@material-ui/icons";
 import StyledButton from "../components/Button/Button";
 
 const Container = styled.div``;
@@ -70,8 +70,8 @@ const FilterTitle = styled.span`
 `;
 
 const FilterColor = styled.div`
-  width: 30px;
-  height: 30px;
+  width: 20px;
+  height: 20px;
   border-radius: 50%;
   background-color: ${props => props.color};
   margin: 0px 4px;
@@ -104,7 +104,7 @@ const AmountContainer = styled.div`
 const Amount = styled.span`
   width: 30px;
   height: 30px;
-  border-radius: 8px;
+  /* border-radius: 8px; */
   border: 0.5px solid rgb(241, 239, 239);
   display: flex;
   align-items: center;
@@ -120,13 +120,15 @@ const ButtonHandle = styled.div`
   width: 100%;
   padding: 5px;
   margin: 16px 0;
-  height: 2.6rem;
+  height: 2.8rem;
   display: grid;
   grid-template-columns: 1fr 1fr;
+  /* grid-column-start: 2; */
 `;
 const Info = styled.div`
   font-size: 11px;
   margin-top: 10px;
+  line-height: 20px;
 `;
 
 const Product = () => {
@@ -170,7 +172,7 @@ const Product = () => {
               style={{
                 backgroundColor: "white",
                 color: "black",
-                fontWeight: 500
+                fontWeight: 600
               }}
             >
               ADD TO CART
@@ -185,9 +187,9 @@ const Product = () => {
             <Details>Etc</Details>
 
             <Info>
-              자수/패치만 가능 가볍지만 따뜻한 소재의 가디건 입니다. 코트안에
-              착용하거나 환절기 시즌에 단독으로 착용하기 좋습니다. 소재: 아크릴
-              90%, 레이온 10% 제조국: 한국
+              자수/패치만 가능. 가볍지만 따뜻한 소재의 가디건입니다. 코트안에
+              착용하거나 환절기 시즌에 단독으로 착용하기 좋습니다. 소재:
+              아크릴90%, 레이온 10% 제조국: 한국
             </Info>
           </Desc>
         </InfoContainer>
