@@ -7,8 +7,8 @@ import { Badge } from "@material-ui/core";
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  font-size: 0.7rem;
-  font-weight: 400;
+  font-size: 11px;
+  font-weight: 500;
   border-bottom: 0.5px solid gray;
 `;
 

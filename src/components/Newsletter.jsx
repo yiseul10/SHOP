@@ -36,6 +36,7 @@ const Input = styled.input`
   margin: 10px;
   font-size: 1rem;
 `;
+
 const Button = styled.button`
   font-size: 0.9rem;
   width: 6.5rem;
