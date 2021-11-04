@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+
 import { MenuRounded, Search, ShoppingCartOutlined } from "@material-ui/icons";
 import { Badge } from "@material-ui/core";
 
@@ -8,6 +9,7 @@ const Container = styled.div`
   flex-direction: column;
   font-size: 0.7rem;
   font-weight: 400;
+  border-bottom: 0.5px solid gray;
 `;
 
 const Wrapper = styled.div`
@@ -42,6 +44,7 @@ const Center = styled.div`
 const Logo = styled.h1`
   font-weight: bold;
   font-family: "Unna", serif;
+  font-size: 36px;
 `;
 const Right = styled.div`
   flex: 1;
@@ -79,7 +82,7 @@ function Navbar() {
           <MenuItem>JOIN</MenuItem>
           <MenuItem>LOGIN</MenuItem>
           <MenuItem>
-            <Badge badgeContent={3} color="primary">
+            <Badge badgeContent={3} color="error">
               <ShoppingCartOutlined />
             </Badge>
           </MenuItem>

@@ -7,11 +7,16 @@ const Container = styled.div`
 const ImgView = styled.div`
   flex: 1;
   margin: 5px;
-  min-width: 280px;
+  min-width: 275px;
   height: 350px;
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 3;
+  &:hover {
+    opacity: 70%;
+    transition: all 0.5s ease;
+  }
 `;
 
 const Image = styled.img`
@@ -25,6 +30,10 @@ const Icon = styled.div`
   cursor: pointer;
   top: 1rem;
   right: 1rem;
+  &:hover {
+    transform: scale(1.1);
+    transition: all 0.5s ease;
+  }
 `;
 
 const Detail = styled.div`
@@ -55,9 +64,8 @@ const Product = ({ item }) => {
   return (
     <Container>
       <ImgView>
-        <Image src={item.img} />
+        <Image src={item.img} to="/" />
       </ImgView>
-
       <Icon>
         <FavoriteBorderOutlined />
       </Icon>
@@ -65,7 +73,7 @@ const Product = ({ item }) => {
         <ProductTitle>{item.title}</ProductTitle>
         <PriceView>
           <ProductPrice>{item.price}</ProductPrice>
-          <Currency> {item.currency} </Currency>
+          <Currency>원</Currency>
         </PriceView>
       </Detail>
     </Container>
