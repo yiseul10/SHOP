@@ -4,7 +4,7 @@ import Product from "./Product";
 import { media } from "../responsive";
 
 const Container = styled.div`
-  padding: 0 20px;
+  padding: 30px 50px;
   flex-wrap: wrap;
   display: flex;
   justify-content: space-between;

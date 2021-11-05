@@ -79,3 +79,58 @@ export const popularProducts = [
     kr: "KRW"
   }
 ];
+
+export const NavMenu = [
+  {
+    title: "OUTER",
+    path: "/coat",
+    cName: "dropdown-link"
+  },
+  {
+    title: "TOP",
+    path: "/top",
+    cName: "dropdown-link"
+  },
+  {
+    title: "SHIRTS",
+    path: "/pants",
+    cName: "dropdown-link"
+  },
+
+  {
+    title: "KNIT",
+    path: "/top",
+    cName: "dropdown-link"
+  },
+  {
+    title: "PANTS",
+    path: "/pants",
+    cName: "dropdown-link"
+  },
+  {
+    title: "JEANS",
+    path: "/pants",
+    cName: "dropdown-link"
+  },
+
+  {
+    title: "SHOES",
+    path: "/top",
+    cName: "dropdown-link"
+  },
+  {
+    title: "BAG",
+    path: "/pants",
+    cName: "dropdown-link"
+  },
+  {
+    title: "ACC",
+    path: "/pants",
+    cName: "dropdown-link"
+  },
+  {
+    title: "SALE",
+    path: "/outer",
+    cName: "dropdown-link"
+  }
+];

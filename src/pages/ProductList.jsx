@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import styled from "styled-components";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
@@ -21,6 +22,7 @@ const FilterContainer = styled.div`
   display: flex;
   flex-direction: column;
   letter-spacing: -0.5px;
+
   ${media({
     flexDirection: "row",
     borderBottom: "0.5px solid grey"
@@ -32,6 +34,7 @@ const Filter = styled.div`
   width: 100%;
   font-size: 11px;
   font-weight: 600;
+  margin-top: 40px;
   ${media({
     padding: "20px",
     flexDirection: "space-between"
@@ -60,7 +63,8 @@ const Category = styled.div`
   height: 20vh;
   font-size: 25px;
   font-family: "Unna", serif;
-  padding: 50px;
+  padding: 40px;
+
   ${media({
     borderBottom: "0.5px solid grey",
     textAlign: "center",
@@ -71,6 +75,20 @@ const Category = styled.div`
 `;
 
 const ProductList = () => {
+  // const location = useLocation();
+  // console.log(location);
+  const [filters, setFilters] = useState({});
+  const [sort, setSort] = useState("featured");
+
+  const handleFilters = e => {
+    const value = e.target.value;
+    setFilters({
+      ...filters,
+      [e.target.name]: value
+    });
+  };
+  console.log(filters);
+
   return (
     <Container>
       <Notice />
@@ -79,48 +97,41 @@ const ProductList = () => {
       <Wrapper>
         <FilterContainer>
           <Filter>
-            <FilterText>
-              정렬
-              <Select style={{ marginBottom: 20 }}>
-                <Option disabled selected>
-                  Featured
-                </Option>
-                <Option>신상품</Option>
-                <Option>인기 상품</Option>
-                <Option>낮은 가격순</Option>
-                <Option>높은 가격순</Option>
-              </Select>
-            </FilterText>
+            <FilterText>정렬</FilterText>
+            <Select
+              onChange={e => setSort(e.target.value)}
+              style={{ marginBottom: 20 }}
+            >
+              <Option>Featured</Option>
+              <Option value="newest">신상품</Option>
+              <Option value="popular">인기 상품</Option>
+              <Option value="lowest">낮은 가격순</Option>
+              <Option value="highest">높은 가격순</Option>
+            </Select>
           </Filter>
           <VerticalLine></VerticalLine>
           <Filter>
-            <FilterText>
-              전체 카테고리
-              <Select>
-                <Option disabled selected>
-                  Color
-                </Option>
-                <Option>White</Option>
-                <Option>Black</Option>
-                <Option>Red</Option>
-                <Option>Blue</Option>
-                <Option>Yellow</Option>
-                <Option>Green</Option>
-              </Select>
-              <Select>
-                <Option disabled selected>
-                  Size
-                </Option>
-                <Option>XS</Option>
-                <Option>S</Option>
-                <Option>M</Option>
-                <Option>L</Option>
-                <Option>XL</Option>
-              </Select>
-            </FilterText>
+            <FilterText>전체 카테고리</FilterText>
+            <Select name="color" onChange={handleFilters}>
+              <Option>Color</Option>
+              <Option>White</Option>
+              <Option>Black</Option>
+              <Option>Red</Option>
+              <Option>Blue</Option>
+              <Option>Yellow</Option>
+              <Option>Green</Option>
+            </Select>
+            <Select name="size" onChange={handleFilters}>
+              <Option>Size</Option>
+              <Option>XS</Option>
+              <Option>S</Option>
+              <Option>M</Option>
+              <Option>L</Option>
+              <Option>XL</Option>
+            </Select>
           </Filter>
         </FilterContainer>
-        <Products />
+        <Products filters={filters} sort={sort} />
       </Wrapper>
       <Footer />
     </Container>

@@ -4,7 +4,7 @@ import { media } from "../responsive";
 
 const Container = styled.div`
   position: relative;
-  ${media({ padding: "0px" })}
+  ${media({ padding: "0px" })};
 `;
 const ImgView = styled.div`
   min-width: 275px;
@@ -13,7 +13,7 @@ const ImgView = styled.div`
   align-items: center;
   justify-content: center;
   z-index: 3;
-  background-color: mintcream;
+  /* background-color: mintcream; */
   &:hover {
     opacity: 70%;
     transition: all 0.5s ease;

@@ -10,7 +10,7 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  ${media({ display: "none" })}
+  /* ${media({ display: "none" })} */
 `;
 const Title = styled.h1`
   font-weight: 300;
