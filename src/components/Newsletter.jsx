@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { media } from "../responsive";
 
 const Container = styled.div`
   height: 60vh;
@@ -9,6 +10,7 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  ${media({ display: "none" })}
 `;
 const Title = styled.h1`
   font-weight: 300;

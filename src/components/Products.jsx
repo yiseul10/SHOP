@@ -11,7 +11,7 @@ const Container = styled.div`
   ${media({
     justifyContent: "center",
     flexDirection: "column",
-    padding: "20px"
+    padding: "50px 30px"
   })}
 `;
 

@@ -12,6 +12,7 @@ const Container = styled.div``;
 const Wrapper = styled.div`
   padding: 75px 150px;
   display: flex;
+  ${media({ padding: "0px", flexDirection: "column" })}
 `;
 const ImgContainer = styled.div`
   flex: 1;
@@ -19,11 +20,13 @@ const ImgContainer = styled.div`
 const Image = styled.img`
   height: 100vh;
   object-fit: cover;
+  ${media({ width: "100%" })}
 `;
 
 const InfoContainer = styled.div`
   flex: 1;
   padding: 0 60px;
+  ${media({ padding: "30px" })}
 `;
 
 const Title = styled.p`
