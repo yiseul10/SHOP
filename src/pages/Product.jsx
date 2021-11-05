@@ -2,7 +2,9 @@ import styled from "styled-components";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import Notice from "../components/Notice";
-import { Add, Error, Remove } from "@material-ui/icons";
+import { media } from "../responsive";
+
+import { Add, Remove } from "@material-ui/icons";
 import StyledButton from "../components/Button/Button";
 
 const Container = styled.div``;

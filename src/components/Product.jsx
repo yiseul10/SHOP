@@ -1,11 +1,12 @@
 import { FavoriteBorderOutlined } from "@material-ui/icons";
 import styled from "styled-components";
+import { media } from "../responsive";
 
 const Container = styled.div`
   position: relative;
+  ${media({ padding: "0px" })}
 `;
 const ImgView = styled.div`
-  /* flex: 1; */
   min-width: 275px;
   height: 350px;
   display: flex;
@@ -17,6 +18,7 @@ const ImgView = styled.div`
     opacity: 70%;
     transition: all 0.5s ease;
   }
+  ${media({ height: "100%" })}
 `;
 
 const Image = styled.img`

@@ -1,12 +1,18 @@
 import styled from "styled-components";
 import { popularProducts } from "../data";
 import Product from "./Product";
+import { media } from "../responsive";
 
 const Container = styled.div`
   padding: 0 20px;
   flex-wrap: wrap;
   display: flex;
   justify-content: space-between;
+  ${media({
+    justifyContent: "center",
+    flexDirection: "column",
+    padding: "20px"
+  })}
 `;
 
 const Products = () => {

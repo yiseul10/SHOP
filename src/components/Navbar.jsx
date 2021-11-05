@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { media } from "../responsive";
 
 import { MenuRounded, Search, ShoppingCartOutlined } from "@material-ui/icons";
 import { Badge } from "@material-ui/core";
@@ -24,6 +25,7 @@ const SearchContainer = styled.div`
   font-size: 0.7rem;
   display: flex;
   align-items: center;
+  ${media({ display: "none" })}
 `;
 const Input = styled.input`
   border: none;
@@ -40,23 +42,31 @@ const Left = styled.div`
 const Center = styled.div`
   flex: 2;
   text-align: center;
+  /* position: static; */
 `;
 const Logo = styled.h1`
   font-weight: bold;
   font-family: "Unna", serif;
-  font-size: 36px;
+  font-size: 34px;
+  ${media({ flex: 1 })}
 `;
 const Right = styled.div`
   flex: 1;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  ${media({ justifyContent: "flex-end" })}
 `;
 const LeftMenu = styled.span`
   cursor: pointer;
+  ${media({ display: "none" })}
 `;
 const MenuItem = styled.div`
   cursor: pointer;
+`;
+const MenuHandle = styled.div`
+  cursor: pointer;
+  ${media({ display: "none" })}
 `;
 
 function Navbar() {
@@ -64,9 +74,8 @@ function Navbar() {
     <Container>
       <Wrapper>
         <Left>
-          <LeftMenu>
-            <MenuRounded />
-          </LeftMenu>
+          <MenuRounded />
+
           <LeftMenu>MEN</LeftMenu>
           <LeftMenu>WOMEN</LeftMenu>
           <LeftMenu>CUSTOM</LeftMenu>
@@ -79,8 +88,8 @@ function Navbar() {
             <Input placeholder="검색" />
             <Search style={{ color: "gray", fontSize: 15, width: 15 }} />
           </SearchContainer>
-          <MenuItem>JOIN</MenuItem>
-          <MenuItem>LOGIN</MenuItem>
+          <MenuHandle>JOIN</MenuHandle>
+          <MenuHandle>LOGIN</MenuHandle>
           <MenuItem>
             <Badge badgeContent={3} color="error">
               <ShoppingCartOutlined />

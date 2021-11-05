@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import { media } from "../responsive";
 import { sliderItems } from "../data";
 import {
   KeyboardArrowLeftRounded,
@@ -12,6 +13,7 @@ const Container = styled.div`
   display: flex;
   position: relative;
   overflow: hidden;
+  ${media({ display: "none" })}
 `;
 
 const Arrow = styled.div`

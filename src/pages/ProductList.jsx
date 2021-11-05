@@ -38,7 +38,6 @@ const Category = styled.div`
   height: 20vh;
   font-size: 25px;
   font-family: "Unna", serif;
-  /* border-bottom: 0.5px solid gray; */
   padding: 50px;
 `;
 
