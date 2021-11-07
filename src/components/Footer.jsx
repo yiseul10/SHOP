@@ -5,7 +5,7 @@ const Container = styled.div`
   width: 100%;
   /* bottom: 0; */
   /* left: 0; */
-  height: 16vh;
+  height: 100px;
   position: absolute;
   font-size: 0.7rem;
   font-weight: 500;

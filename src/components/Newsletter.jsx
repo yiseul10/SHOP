@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { media } from "../responsive";
+import StyledButton from "../components/Button/Button";
 
 const Container = styled.div`
   height: 60vh;
@@ -39,19 +40,6 @@ const Input = styled.input`
   font-size: 1rem;
 `;
 
-const Button = styled.button`
-  font-size: 0.9rem;
-  width: 6.5rem;
-  height: 2.3rem;
-  text-align: center;
-  background-color: black;
-  color: white;
-  border-radius: 1rem;
-  border: none;
-  cursor: pointer;
-  margin-left: 0.8rem;
-`;
-
 const Newsletter = () => {
   return (
     <Container>
@@ -60,7 +48,9 @@ const Newsletter = () => {
       <Desc>이메일을 등록하고 할인을 놓치지 마세요.</Desc>
       <InputContainer>
         <Input placeholder="" />
-        <Button>구독하기</Button>
+        <StyledButton style={{ width: "7.5rem", height: "2.2rem" }}>
+          구독하기
+        </StyledButton>
       </InputContainer>
     </Container>
   );

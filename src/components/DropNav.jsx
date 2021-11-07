@@ -6,18 +6,20 @@ import { NavMenu } from "../data";
 const DropMenu = styled.ul`
   width: 100%;
   left: 0;
-  top: 95px;
-  height: 20%;
+  top: 90px;
+  height: 90px;
   position: absolute;
   list-style: none;
   text-align: start;
-  padding: 10px 55px;
+  padding: 09px 60px;
   display: grid;
   grid-template-columns: 150px 150px 1fr;
   background-color: white;
   opacity: 100%;
-  border-bottom: 0.5px solid gray;
-  transition: all 2s ease;
+  transition: all 3s ease;
+  z-index: 1;
+  box-shadow: 0px 1rem 0.3rem -1rem rgba(0, 0, 0, 0.1);
+
   &.clicked {
     display: none;
   }
@@ -25,7 +27,6 @@ const DropMenu = styled.ul`
 
 const Drop = styled(Link)`
   font-weight: 400;
-
   &:hover {
     text-decoration: underline;
   }

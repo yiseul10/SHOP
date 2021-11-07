@@ -98,17 +98,7 @@ export const NavMenu = [
   },
 
   {
-    title: "KNIT",
-    path: "/top",
-    cName: "dropdown-link"
-  },
-  {
     title: "PANTS",
-    path: "/pants",
-    cName: "dropdown-link"
-  },
-  {
-    title: "JEANS",
     path: "/pants",
     cName: "dropdown-link"
   },
@@ -118,11 +108,7 @@ export const NavMenu = [
     path: "/top",
     cName: "dropdown-link"
   },
-  {
-    title: "BAG",
-    path: "/pants",
-    cName: "dropdown-link"
-  },
+
   {
     title: "ACC",
     path: "/pants",

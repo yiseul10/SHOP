@@ -1,7 +1,5 @@
 import styled from "styled-components";
-import Footer from "../components/Footer";
-import Navbar from "../components/Navbar";
-import Notice from "../components/Notice";
+
 import { media } from "../responsive";
 
 import { Add, Remove } from "@material-ui/icons";
@@ -10,7 +8,7 @@ import StyledButton from "../components/Button/Button";
 const Container = styled.div``;
 
 const Wrapper = styled.div`
-  padding: 75px 150px;
+  padding: 150px;
   display: flex;
   ${media({ padding: "0px", flexDirection: "column" })}
 `;
@@ -139,8 +137,6 @@ const Info = styled.div`
 const Product = () => {
   return (
     <Container>
-      <Notice />
-      <Navbar />
       <Wrapper>
         <ImgContainer>
           <Image src="https://i.ibb.co/S6qMxwr/jean.jpg" />
@@ -199,7 +195,6 @@ const Product = () => {
           </Desc>
         </InfoContainer>
       </Wrapper>
-      <Footer />
     </Container>
   );
 };

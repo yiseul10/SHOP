@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import Footer from "../components/Footer";
-import Navbar from "../components/Navbar";
-import Notice from "../components/Notice";
+
 import Products from "../components/Products";
 import { media } from "../responsive";
 
@@ -37,7 +35,8 @@ const Filter = styled.div`
   margin-top: 40px;
   ${media({
     padding: "20px",
-    flexDirection: "space-between"
+    flexDirection: "space-between",
+    marginTop: "0"
   })}
 `;
 const VerticalLine = styled.div`
@@ -49,7 +48,6 @@ const VerticalLine = styled.div`
 `;
 
 const FilterText = styled.span``;
-
 const Select = styled.select`
   display: block;
   width: 100%;
@@ -60,10 +58,9 @@ const Select = styled.select`
 `;
 const Option = styled.option``;
 const Category = styled.div`
-  height: 20vh;
   font-size: 25px;
   font-family: "Unna", serif;
-  padding: 40px;
+  padding: 100px 30px 50px 50px;
 
   ${media({
     borderBottom: "0.5px solid grey",
@@ -91,9 +88,7 @@ const ProductList = () => {
 
   return (
     <Container>
-      <Notice />
-      <Navbar />
-      <Category>Coat</Category>
+      <Category>Men</Category>
       <Wrapper>
         <FilterContainer>
           <Filter>
@@ -133,7 +128,6 @@ const ProductList = () => {
         </FilterContainer>
         <Products filters={filters} sort={sort} />
       </Wrapper>
-      <Footer />
     </Container>
   );
 };

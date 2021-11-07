@@ -22,6 +22,7 @@ a:hover {
 html {
   box-sizing: border-box;
 }
+textarea:focus,
 input:focus {
   outline: none;
 }

@@ -13,7 +13,7 @@ const Container = styled.div`
   display: flex;
   position: relative;
   overflow: hidden;
-  ${media({ display: "none" })}
+  ${media({ display: "none" })};
 `;
 
 const Arrow = styled.div`
