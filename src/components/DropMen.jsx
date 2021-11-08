@@ -1,12 +1,15 @@
+import { Hidden } from "@material-ui/core";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { media } from "../responsive";
 
 const LeftMenu = styled.div`
   padding: 0px;
   font-size: 11px;
   border: none;
   cursor: pointer;
+  ${media({ display: "none" })}
 `;
 const DropDown = styled.div`
   position: absoulte;
@@ -26,11 +29,13 @@ const DropDownContent = styled.div`
   box-shadow: 0px 1rem 0.3rem -1rem rgba(0, 0, 0, 0.1);
   transition: all 10s ease-in-out;
   z-index: 1;
+  ${media({ display: "inline", marginTop: "-30px", boxShadow: "none" })}
 `;
 const GridContainer = styled.div`
   width: 60%;
   margin-left: 60px;
   text-align: start;
+  ${media({ width: "100%", margin: "30px" })}
 `;
 
 const DownContentLink = styled(Link)`
@@ -42,11 +47,17 @@ const DownContentLink = styled(Link)`
   text-align: start;
   text-decoration: none;
   display: inline-grid;
+  ${media({
+    display: "flex",
+    flexDirection: "column",
+    padding: "0.5rem"
+  })}
 `;
 const LineDiv = styled.div`
   transform: translate(1px, 15px);
   width: 23px;
   border-bottom: 1px solid black;
+  ${media({ display: "none" })}
 `;
 const DropMen = () => {
   return (

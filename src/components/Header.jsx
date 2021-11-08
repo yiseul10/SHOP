@@ -3,11 +3,18 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { media } from "../responsive";
 
-import { MenuRounded, ShoppingCartOutlined } from "@material-ui/icons";
+import { ShoppingCartOutlined } from "@material-ui/icons";
+import {
+  IoSearchOutline,
+  IoMenuOutline,
+  IoClose,
+  IoCloseOutline
+} from "react-icons/io5";
 import { Badge } from "@material-ui/core";
 import Searchbar from "./Searchbar";
 import DropWomen from "./DropWomen";
 import DropMen from "./DropMen";
+import SlideNav from "./SlideNav";
 
 const Container = styled.div`
   display: flex;
@@ -15,6 +22,11 @@ const Container = styled.div`
   font-size: 11px;
   font-weight: 500;
   box-shadow: 0px 1rem 0.3rem -1rem rgba(0, 0, 0, 0.1);
+  position: fixed;
+  width: 100vw;
+  z-index: 1;
+  padding-top: 1.7rem;
+  background-color: white;
 `;
 
 const Wrapper = styled.div`
@@ -71,6 +83,7 @@ const MenuHandle = styled(Link)`
 const Invisible = styled.div`
   display: none;
   cursor: pointer;
+  font-size: 27px;
   ${media({ display: "inline" })}
 `;
 const Search = styled.div`
@@ -78,18 +91,22 @@ const Search = styled.div`
   &:hover {
     text-decoration: underline;
   }
+  ${media({ display: "none" })}
 `;
-function Navbar() {
+function Header() {
   const [click, setClick] = useState(false);
   const handleClick = () => setClick(!click);
+  const [showSlide, setShowSlide] = useState(false);
+  const handleSlide = () => setShowSlide(!showSlide);
 
   return (
     <Container>
       <Wrapper>
-        <Invisible>
-          <MenuRounded />
-        </Invisible>
         <Left>
+          <Invisible>
+            <IoMenuOutline onClick={handleSlide} />
+            {showSlide ? <SlideNav /> : null}
+          </Invisible>
           <LeftMenu to="/men">
             <DropMen />
           </LeftMenu>
@@ -97,10 +114,15 @@ function Navbar() {
             <DropWomen />
           </LeftMenu>
           <LeftMenu to="/">CUSTOM</LeftMenu>
-          <Search onClick={handleClick} style={{ cursor: "pointer" }}>
-            검색
-          </Search>
+          <Search onClick={handleClick}>검색</Search>
           {click ? <Searchbar /> : null}
+          <Invisible>
+            <IoSearchOutline
+              onClick={handleClick}
+              style={{ fontSize: " 21px", marginLeft: "22px" }}
+            />
+            {click ? <Searchbar /> : null}
+          </Invisible>
         </Left>
         <Center>
           <Logo to="/">SHOP</Logo>
@@ -120,4 +142,4 @@ function Navbar() {
   );
 }
 
-export default Navbar;
+export default Header;

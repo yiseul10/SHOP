@@ -1,4 +1,3 @@
-import { Close } from "@material-ui/icons";
 import styled from "styled-components";
 
 const Container = styled.div`
@@ -10,6 +9,9 @@ const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  position: fixed;
+  width: 100%;
+  z-index: 100;
 `;
 
 const Notice = () => {

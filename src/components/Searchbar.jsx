@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { Search } from "@material-ui/icons";
 import { Input } from "@material-ui/core";
+import { BsArrowRight } from "react-icons/bs";
 
 const Container = styled.div`
   width: 100%;
@@ -53,7 +53,7 @@ const Searchbar = () => {
           required
         ></SearchInput>
         <SearchIcon>
-          <Search />
+          <BsArrowRight />
         </SearchIcon>
       </InputHandle>
     </Container>

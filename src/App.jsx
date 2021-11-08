@@ -6,8 +6,9 @@ import Home from "./pages/Home";
 import Cart from "./pages/Cart";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-import Navbar from "./components/Navbar";
+
 import Notice from "./components/Notice";
+import Header from "./components/Header";
 import Footer from "./components/Footer";
 
 const App = () => {
@@ -15,7 +16,7 @@ const App = () => {
   return (
     <BrowserRouter>
       <Notice />
-      <Navbar />
+      <Header />
       <Routes>
         <Route exact path="/" element={<Home />} />
         <Route path="/men" element={<ProductList />} />

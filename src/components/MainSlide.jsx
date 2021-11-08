@@ -40,8 +40,9 @@ const Wrapper = styled.div`
 `;
 
 const Slide = styled.div`
+  padding-top: 3.4rem;
   width: 100vw;
-  height: 100vh;
+  /* height: 100vh; */
   display: flex;
   align-items: center;
   background-color: ${props => props.bg};

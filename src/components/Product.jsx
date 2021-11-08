@@ -30,7 +30,7 @@ const Image = styled.img`
 
 const Icon = styled.div`
   position: absolute;
-  z-index: 1;
+  /* z-index: 1; */
   cursor: pointer;
   top: 1rem;
   right: 1rem;
