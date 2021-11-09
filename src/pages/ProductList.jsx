@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useLocation } from "react-router";
 import styled from "styled-components";
 
 import Products from "../components/Products";
@@ -72,8 +73,9 @@ const Category = styled.div`
 `;
 
 const ProductList = () => {
-  // const location = useLocation();
-  // console.log(location);
+  const location = useLocation();
+  const kind = location.pathname.split("/")[2];
+
   const [filters, setFilters] = useState({});
   const [sort, setSort] = useState("featured");
 
@@ -98,7 +100,6 @@ const ProductList = () => {
               style={{ marginBottom: 20 }}
             >
               <Option>Featured</Option>
-              <Option value="newest">신상품</Option>
               <Option value="popular">인기 상품</Option>
               <Option value="lowest">낮은 가격순</Option>
               <Option value="highest">높은 가격순</Option>
@@ -122,11 +123,11 @@ const ProductList = () => {
               <Option>S</Option>
               <Option>M</Option>
               <Option>L</Option>
-              <Option>XL</Option>
+              <Option>XL~</Option>
             </Select>
           </Filter>
         </FilterContainer>
-        <Products filters={filters} sort={sort} />
+        <Products kind={kind} filters={filters} sort={sort} />
       </Wrapper>
     </Container>
   );

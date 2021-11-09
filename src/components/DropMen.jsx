@@ -1,5 +1,4 @@
-import { Hidden } from "@material-ui/core";
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { media } from "../responsive";
@@ -66,7 +65,7 @@ const DropMen = () => {
       <DropDownContent className="dropdown-content">
         <GridContainer>
           <LineDiv></LineDiv>
-          <DownContentLink style={{ marginTop: "30px" }} to="/coat">
+          <DownContentLink style={{ marginTop: "30px" }} to="/product/:index">
             Outer
           </DownContentLink>
           <DownContentLink to="/">Top</DownContentLink>

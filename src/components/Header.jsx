@@ -4,12 +4,7 @@ import { Link } from "react-router-dom";
 import { media } from "../responsive";
 
 import { ShoppingCartOutlined } from "@material-ui/icons";
-import {
-  IoSearchOutline,
-  IoMenuOutline,
-  IoClose,
-  IoCloseOutline
-} from "react-icons/io5";
+import { IoSearchOutline, IoMenuOutline } from "react-icons/io5";
 import { Badge } from "@material-ui/core";
 import Searchbar from "./Searchbar";
 import DropWomen from "./DropWomen";
@@ -107,7 +102,7 @@ function Header() {
             <IoMenuOutline onClick={handleSlide} />
             {showSlide ? <SlideNav /> : null}
           </Invisible>
-          <LeftMenu to="/men">
+          <LeftMenu to="/products/men">
             <DropMen />
           </LeftMenu>
           <LeftMenu to="/">

@@ -9,6 +9,7 @@ const Container = styled.div`
 const ImgView = styled.div`
   min-width: 275px;
   height: 350px;
+
   display: flex;
   align-items: center;
   justify-content: center;
@@ -22,7 +23,7 @@ const ImgView = styled.div`
 `;
 
 const Image = styled.img`
-  height: 75%;
+  height: 100%;
   width: 100%;
   display: flex;
   padding: 0;
@@ -46,9 +47,12 @@ const Detail = styled.div`
   justify-content: space-between;
   line-height: normal;
   margin-bottom: 1rem;
-  padding: 0 0.5rem;
+  padding: 0.5rem 0.5rem;
 `;
-const ProductTitle = styled.span``;
+const ProductTitle = styled.span`
+  letter-spacing: -1px;
+  font-size: 12px;
+`;
 
 const PriceView = styled.div`
   display: flex;
@@ -68,13 +72,13 @@ const Product = ({ item }) => {
   return (
     <Container>
       <ImgView>
-        <Image src={item.img} to="/" />
+        <Image src={item.image} to="/" />
       </ImgView>
       <Icon>
         <FavoriteBorderOutlined />
       </Icon>
       <Detail>
-        <ProductTitle>{item.title}</ProductTitle>
+        <ProductTitle>{item.product}</ProductTitle>
         <PriceView>
           <ProductPrice>{item.price}</ProductPrice>
           <Currency>원</Currency>
