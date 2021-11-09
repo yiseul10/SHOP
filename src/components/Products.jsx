@@ -47,18 +47,18 @@ const Products = ({ kind, filters, sort }) => {
   }, [kind]);
   useEffect(async () => {
     kind &&
-      (await setFilteredProducts(
-        products.filter(item =>
+      setFilteredProducts(
+        await products.products.filter(item =>
           Object.entries(filters).every(([key, value]) =>
             item[key].includes(value)
           )
         )
-      ));
+      );
   }, [products, kind, filters]);
   if (!products) return null;
   return (
     <Container>
-      {filteredProducts.map(item => (
+      {products.products.map(item => (
         <Product item={item} key={[item.index]} />
       ))}
     </Container>
