@@ -4,6 +4,9 @@ import { media } from "../responsive";
 
 import { Add, Remove } from "@material-ui/icons";
 import StyledButton from "../components/Button/Button";
+import { useParams } from "react-router";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 const Container = styled.div``;
 
@@ -135,41 +138,77 @@ const Info = styled.div`
 `;
 
 const Product = () => {
+  const { id } = useParams();
+
+  const [products, setProduct] = useState("");
+  const [quantity, setQuantity] = useState(1);
+  const [color, setColor] = useState("");
+  const [size, setSize] = useState("");
+
+  useEffect(() => {
+    const getProduct = async () => {
+      try {
+        const response = await axios.get(
+          `http://pvpvpvpvp.gonetis.com:8080/sample/products/${id}`
+        );
+        setProduct(response.data);
+        console.log(response.data);
+      } catch (e) {}
+    };
+    getProduct();
+  }, []);
+  if (!products) return null;
+
+  console.log(products.id);
+  const handleQuantity = type => {
+    if (type === "dec") {
+      quantity > 1 && setQuantity(quantity - 1);
+    } else {
+      setQuantity(quantity + 1);
+    }
+  };
+  const handleClick = () => {
+    // update cart (redux)
+  };
   return (
     <Container>
       <Wrapper>
         <ImgContainer>
-          <Image src="https://i.ibb.co/S6qMxwr/jean.jpg" />
+          <Image src={products.image} />
         </ImgContainer>
         <InfoContainer>
-          <Title>테이퍼드 진</Title>
-          <Price>2000원</Price>
+          <Title>{products.product}</Title>
+          <Price>{products.price}</Price>
           <FilterContainer>
             <Filter>
               <FilterTitle>색상</FilterTitle>
-              <FilterColor color="black" />
-              <FilterColor color="darkblue" />
-              <FilterColor color="gray" />
+              {products.colors.color.map(c => (
+                <FilterColor color={c} key={c} onClick={() => setColor(c)} />
+              ))}
             </Filter>
           </FilterContainer>
           <AddContainer>
             <AmountContainer>
-              <Remove style={{ fontSize: 15 }} />
-              <Amount>1</Amount>
-              <Add style={{ fontSize: 15 }} />
+              <Remove
+                style={{ fontSize: 15 }}
+                onClick={() => handleQuantity("dec")}
+              />
+              <Amount>{quantity}</Amount>
+              <Add
+                style={{ fontSize: 15 }}
+                onClick={() => handleQuantity("inc")}
+              />
             </AmountContainer>
-            <FilterSize>
+            <FilterSize onChange={e => setSize(e.target.value)}>
               <FilterSizeOption selected>사이즈 선택</FilterSizeOption>
-              <FilterSizeOption>S(85)</FilterSizeOption>
-              <FilterSizeOption>M(90)</FilterSizeOption>
-              <FilterSizeOption>L(95)</FilterSizeOption>
-              <FilterSizeOption>XL(100)</FilterSizeOption>
-              <FilterSizeOption>2XL(105)</FilterSizeOption>
-              <FilterSizeOption>3XL(110)</FilterSizeOption>
+              {products.sizes.size.map(s => (
+                <FilterSizeOption key={s}>{s}</FilterSizeOption>
+              ))}
             </FilterSize>
           </AddContainer>
           <ButtonHandle>
             <StyledButton
+              onClick={handleClick}
               style={{
                 backgroundColor: "white",
                 color: "black",

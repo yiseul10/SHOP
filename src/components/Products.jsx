@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 
 import styled from "styled-components";
 import Product from "./Product";
-// import { popularProducts } from "../data";
 import { media } from "../responsive";
 
 const Container = styled.div`
@@ -18,10 +17,7 @@ const Container = styled.div`
   })}
 `;
 
-const Products = ({ kind, filters, sort }) => {
-  // const [fproducts, setFproducts] = useState([]);
-  const [filteredProducts, setFilteredProducts] = useState([]);
-
+const Products = () => {
   const [products, setProduct] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -32,9 +28,7 @@ const Products = ({ kind, filters, sort }) => {
         setError(null);
         setLoading(true);
         const response = await axios.get(
-          kind
-            ? `http://pvpvpvpvp.gonetis.com:8080/sample/products/?kind=${kind}`
-            : "http://pvpvpvpvp.gonetis.com:8080/sample/products/"
+          `http://pvpvpvpvp.gonetis.com:8080/sample/products/`
         );
         setProduct(response.data);
         console.log(response.data);
@@ -44,18 +38,9 @@ const Products = ({ kind, filters, sort }) => {
       setLoading(false);
     };
     fetchUsers();
-  }, [kind]);
-  useEffect(async () => {
-    kind &&
-      setFilteredProducts(
-        await products.products.filter(item =>
-          Object.entries(filters).every(([key, value]) =>
-            item[key].includes(value)
-          )
-        )
-      );
-  }, [products, kind, filters]);
+  }, []);
   if (!products) return null;
+
   return (
     <Container>
       {products.products.map(item => (
@@ -64,5 +49,4 @@ const Products = ({ kind, filters, sort }) => {
     </Container>
   );
 };
-
 export default Products;

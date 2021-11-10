@@ -72,7 +72,7 @@ const Product = ({ item }) => {
   return (
     <Container>
       <ImgView>
-        <Image src={item.image} to="/" />
+        <Image src={item.image} to={`/products/${item.id}`} />
       </ImgView>
       <Icon>
         <FavoriteBorderOutlined />

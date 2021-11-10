@@ -74,7 +74,7 @@ const Category = styled.div`
 
 const ProductList = () => {
   const location = useLocation();
-  const kind = location.pathname.split("/")[2];
+  const cat = location.pathname.split("/")[2];
 
   const [filters, setFilters] = useState({});
   const [sort, setSort] = useState("featured");
@@ -90,7 +90,7 @@ const ProductList = () => {
 
   return (
     <Container>
-      <Category>Men</Category>
+      <Category>{cat}</Category>
       <Wrapper>
         <FilterContainer>
           <Filter>
@@ -127,7 +127,7 @@ const ProductList = () => {
             </Select>
           </Filter>
         </FilterContainer>
-        <Products kind={kind} filters={filters} sort={sort} />
+        <Products cat={cat} filters={filters} sort={sort} />
       </Wrapper>
     </Container>
   );

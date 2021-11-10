@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { media } from "../responsive";
+import { useParams } from "react-router";
 
 const LeftMenu = styled.div`
   padding: 0px;
@@ -59,13 +60,14 @@ const LineDiv = styled.div`
   ${media({ display: "none" })}
 `;
 const DropMen = () => {
+  const { id } = useParams();
   return (
     <DropDown>
       <LeftMenu>MEN</LeftMenu>
       <DropDownContent className="dropdown-content">
         <GridContainer>
           <LineDiv></LineDiv>
-          <DownContentLink style={{ marginTop: "30px" }} to="/product/:index">
+          <DownContentLink style={{ marginTop: "30px" }} to={`/products/${id}`}>
             Outer
           </DownContentLink>
           <DownContentLink to="/">Top</DownContentLink>
