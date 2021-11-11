@@ -88,7 +88,7 @@ const Search = styled.div`
   }
   ${media({ display: "none" })}
 `;
-function Header({ item }) {
+function Header() {
   const [click, setClick] = useState(false);
   const handleClick = () => setClick(!click);
   const [showSlide, setShowSlide] = useState(false);
@@ -105,7 +105,7 @@ function Header({ item }) {
           <LeftMenu to="/products/men">
             <DropMen />
           </LeftMenu>
-          <LeftMenu to="/products/women">
+          <LeftMenu to="/">
             <DropWomen />
           </LeftMenu>
           <LeftMenu to="/">CUSTOM</LeftMenu>

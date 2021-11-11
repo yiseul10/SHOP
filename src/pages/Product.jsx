@@ -129,7 +129,6 @@ const ButtonHandle = styled.div`
   height: 2.8rem;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  /* grid-column-start: 2; */
 `;
 const Info = styled.div`
   font-size: 11px;
@@ -138,7 +137,8 @@ const Info = styled.div`
 `;
 
 const Product = () => {
-  const { id } = useParams();
+  const params = useParams();
+  console.log(params);
 
   const [products, setProduct] = useState("");
   const [quantity, setQuantity] = useState(1);
@@ -149,7 +149,7 @@ const Product = () => {
     const getProduct = async () => {
       try {
         const response = await axios.get(
-          `http://pvpvpvpvp.gonetis.com:8080/sample/products/${id}`
+          `http://pvpvpvpvp.gonetis.com:8080/sample/products/${params.id}`
         );
         setProduct(response.data);
         console.log(response.data);
@@ -159,7 +159,6 @@ const Product = () => {
   }, []);
   if (!products) return null;
 
-  console.log(products.id);
   const handleQuantity = type => {
     if (type === "dec") {
       quantity > 1 && setQuantity(quantity - 1);
@@ -167,9 +166,7 @@ const Product = () => {
       setQuantity(quantity + 1);
     }
   };
-  const handleClick = () => {
-    // update cart (redux)
-  };
+
   return (
     <Container>
       <Wrapper>
@@ -208,7 +205,6 @@ const Product = () => {
           </AddContainer>
           <ButtonHandle>
             <StyledButton
-              onClick={handleClick}
               style={{
                 backgroundColor: "white",
                 color: "black",

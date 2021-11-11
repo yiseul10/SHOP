@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useLocation } from "react-router";
+import { useLocation, useParams } from "react-router";
 import styled from "styled-components";
 
 import Products from "../components/Products";
@@ -99,10 +99,10 @@ const ProductList = () => {
               onChange={e => setSort(e.target.value)}
               style={{ marginBottom: 20 }}
             >
-              <Option>Featured</Option>
+              <Option value="featured">Featured</Option>
               <Option value="popular">인기 상품</Option>
-              <Option value="lowest">낮은 가격순</Option>
-              <Option value="highest">높은 가격순</Option>
+              <Option value="popular">높은 가격순</Option>
+              <Option value="popular">낮은 가격순</Option>
             </Select>
           </Filter>
           <VerticalLine></VerticalLine>
@@ -127,7 +127,7 @@ const ProductList = () => {
             </Select>
           </Filter>
         </FilterContainer>
-        <Products cat={cat} filters={filters} sort={sort} />
+        <Products filters={filters} sort={sort} />
       </Wrapper>
     </Container>
   );

@@ -21,7 +21,6 @@ const Products = () => {
   const [products, setProduct] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-
   useEffect(() => {
     const fetchUsers = async () => {
       try {
@@ -44,7 +43,7 @@ const Products = () => {
   return (
     <Container>
       {products.products.map(item => (
-        <Product item={item} key={[item.index]} />
+        <Product item={item} key={[item.index]} id={item.id} />
       ))}
     </Container>
   );

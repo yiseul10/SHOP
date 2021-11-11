@@ -2,14 +2,15 @@ import { FavoriteBorderOutlined } from "@material-ui/icons";
 import styled from "styled-components";
 import { media } from "../responsive";
 
+import { Link } from "react-router-dom";
+
 const Container = styled.div`
   position: relative;
   ${media({ padding: "0px" })};
 `;
-const ImgView = styled.div`
+const ImgView = styled(Link)`
   min-width: 275px;
   height: 350px;
-
   display: flex;
   align-items: center;
   justify-content: center;
@@ -18,6 +19,7 @@ const ImgView = styled.div`
   &:hover {
     opacity: 70%;
     transition: all 0.5s ease;
+    cursor: pointer;
   }
   ${media({ height: "100%" })}
 `;
@@ -71,8 +73,8 @@ const Currency = styled.span`
 const Product = ({ item }) => {
   return (
     <Container>
-      <ImgView>
-        <Image src={item.image} to={`/products/${item.id}`} />
+      <ImgView to={`/products/${item.productNumber}`}>
+        <Image src={item.image} />
       </ImgView>
       <Icon>
         <FavoriteBorderOutlined />

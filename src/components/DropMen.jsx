@@ -60,14 +60,18 @@ const LineDiv = styled.div`
   ${media({ display: "none" })}
 `;
 const DropMen = () => {
-  const { id } = useParams();
+  const params = useParams();
+  console.log(params);
   return (
     <DropDown>
       <LeftMenu>MEN</LeftMenu>
       <DropDownContent className="dropdown-content">
         <GridContainer>
           <LineDiv></LineDiv>
-          <DownContentLink style={{ marginTop: "30px" }} to={`/products/${id}`}>
+          <DownContentLink
+            style={{ marginTop: "30px" }}
+            to={`/products/${params.id}`}
+          >
             Outer
           </DownContentLink>
           <DownContentLink to="/">Top</DownContentLink>
