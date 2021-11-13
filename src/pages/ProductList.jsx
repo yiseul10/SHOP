@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useLocation, useParams } from "react-router";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 import Products from "../components/Products";
 import { media } from "../responsive";
@@ -91,6 +92,7 @@ const ProductList = () => {
   return (
     <Container>
       <Category>{cat}</Category>
+      <Link to="/">pants</Link>
       <Wrapper>
         <FilterContainer>
           <Filter>
@@ -100,9 +102,8 @@ const ProductList = () => {
               style={{ marginBottom: 20 }}
             >
               <Option value="featured">Featured</Option>
-              <Option value="popular">인기 상품</Option>
-              <Option value="popular">높은 가격순</Option>
-              <Option value="popular">낮은 가격순</Option>
+              <Option value="asc">높은 가격순</Option>
+              <Option value="desc">낮은 가격순</Option>
             </Select>
           </Filter>
           <VerticalLine></VerticalLine>
@@ -127,7 +128,7 @@ const ProductList = () => {
             </Select>
           </Filter>
         </FilterContainer>
-        <Products filters={filters} sort={sort} />
+        <Products cat={cat} filters={filters} sort={sort} />
       </Wrapper>
     </Container>
   );

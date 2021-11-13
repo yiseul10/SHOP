@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Switch, Route, NavLink } from "react-router-dom";
 
 import Product from "./pages/Product";
 import ProductList from "./pages/ProductList";
@@ -17,16 +17,16 @@ const App = () => {
     <BrowserRouter>
       <Notice />
       <Header />
-      <Routes>
+      <Switch>
         <Route exact path="/" element={<Home />} />
-        <Route path="/products/men" element={<ProductList />} />
+        <Route path="/products" element={<ProductList />} />
         <Route path="/products/:id" element={<Product />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/login" element={<Login />} />
-        {user ? <Navigate to="/" /> : <Login />}
+        {user ? <NavLink to="/" /> : <Login />}
         <Route path="/register" element={<Register />} />
-        {user ? <Navigate to="/" /> : <Register />}
-      </Routes>
+        {user ? <NavLink to="/" /> : <Register />}
+      </Switch>
       <Footer />
     </BrowserRouter>
   );

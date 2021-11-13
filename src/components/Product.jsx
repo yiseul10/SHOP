@@ -1,7 +1,7 @@
 import { FavoriteBorderOutlined } from "@material-ui/icons";
 import styled from "styled-components";
 import { media } from "../responsive";
-
+import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
 const Container = styled.div`
@@ -33,7 +33,6 @@ const Image = styled.img`
 
 const Icon = styled.div`
   position: absolute;
-  /* z-index: 1; */
   cursor: pointer;
   top: 1rem;
   right: 1rem;
@@ -70,24 +69,31 @@ const Currency = styled.span`
   padding: 0.1rem;
 `;
 
-const Product = ({ item }) => {
+const Product = ({ image, title, price, id }) => {
   return (
     <Container>
-      <ImgView to={`/products/${item.productNumber}`}>
-        <Image src={item.image} />
+      <ImgView to={`/products/${id}`}>
+        <Image src={image} alt={title} />
       </ImgView>
       <Icon>
         <FavoriteBorderOutlined />
       </Icon>
       <Detail>
-        <ProductTitle>{item.product}</ProductTitle>
+        <ProductTitle>{title}</ProductTitle>
         <PriceView>
-          <ProductPrice>{item.price}</ProductPrice>
+          <ProductPrice>{price}</ProductPrice>
           <Currency>원</Currency>
         </PriceView>
       </Detail>
     </Container>
   );
+};
+
+Product.propTypes = {
+  id: PropTypes.number.isRequired,
+  image: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  price: PropTypes.string.isRequired
 };
 
 export default Product;

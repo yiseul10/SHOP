@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { BsArrowRight } from "react-icons/bs";
 
@@ -42,13 +42,22 @@ const SearchIcon = styled.button`
   border: none;
 `;
 const Searchbar = () => {
+  //TODO 데이터랑 연결
+  const [keyword, setKeyword] = useState("");
+  const onChange = e => setKeyword(e.target.value);
+  useEffect(() => {
+    if (keyword !== "") {
+    }
+  }, [keyword]);
+
   return (
     <Container>
       <InputHandle>
         <SearchInput
+          onChange={onChange}
+          value={keyword}
           type="search"
           placeholder="search store..."
-          required
         ></SearchInput>
         <SearchIcon>
           <BsArrowRight />

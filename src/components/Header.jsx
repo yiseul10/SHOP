@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { media } from "../responsive";
@@ -102,7 +102,7 @@ function Header() {
             <IoMenuOutline onClick={handleSlide} />
             {showSlide ? <SlideNav /> : null}
           </Invisible>
-          <LeftMenu to="/products/men">
+          <LeftMenu to="/products">
             <DropMen />
           </LeftMenu>
           <LeftMenu to="/">

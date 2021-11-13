@@ -1,4 +1,3 @@
-import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { media } from "../responsive";
@@ -60,8 +59,8 @@ const LineDiv = styled.div`
   ${media({ display: "none" })}
 `;
 const DropMen = () => {
-  const params = useParams();
-  console.log(params);
+  // const { id } = useParams();
+  // 필터링해서 값을 각각 링크로 전달한다? 밸류?
   return (
     <DropDown>
       <LeftMenu>MEN</LeftMenu>
@@ -70,7 +69,7 @@ const DropMen = () => {
           <LineDiv></LineDiv>
           <DownContentLink
             style={{ marginTop: "30px" }}
-            to={`/products/${params.id}`}
+            to={`/products?kind=아우터`}
           >
             Outer
           </DownContentLink>

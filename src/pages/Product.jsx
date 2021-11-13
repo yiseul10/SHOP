@@ -129,6 +129,7 @@ const ButtonHandle = styled.div`
   height: 2.8rem;
   display: grid;
   grid-template-columns: 1fr 1fr;
+  /* grid-column-start: 2; */
 `;
 const Info = styled.div`
   font-size: 11px;
