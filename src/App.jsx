@@ -5,7 +5,7 @@ import ProductList from "./pages/ProductList";
 import Home from "./pages/Home";
 import Cart from "./pages/Cart";
 import Login from "./pages/Login";
-import Register from "./pages/Register";
+import Review from "./pages/Review";
 
 import Notice from "./components/Notice";
 import Header from "./components/Header";
@@ -32,9 +32,7 @@ const App = () => {
           <Login />
         </Route>
         <Route path="/login"> {user ? <NavLink to="/" /> : <Login />}</Route>
-        <Route path="/register">
-          {user ? <NavLink to="/" /> : <Register />}
-        </Route>
+        <Route path="/review">{user ? <NavLink to="/" /> : <Review />}</Route>
       </Switch>
       <Footer />
     </BrowserRouter>
