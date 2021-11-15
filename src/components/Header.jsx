@@ -125,6 +125,7 @@ function Header() {
         <Right>
           <MenuHandle to="/login">LOGIN</MenuHandle>
           <MenuHandle to="/review">REVIEW</MenuHandle>
+          <MenuHandle to="/customerService">고객센터</MenuHandle>
           <MenuHandle to="/">위시리스트</MenuHandle>
           <MenuItem to="/cart">
             <Badge badgeContent={3} color="error">
