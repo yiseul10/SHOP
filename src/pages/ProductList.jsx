@@ -1,7 +1,5 @@
 import React, { useState } from "react";
-import { useLocation, useParams } from "react-router";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
 
 import Products from "../components/Products";
 import { media } from "../responsive";
@@ -74,9 +72,6 @@ const Category = styled.div`
 `;
 
 const ProductList = () => {
-  const location = useLocation();
-  const cat = location.pathname.split("/")[2];
-
   const [filters, setFilters] = useState({});
   const [sort, setSort] = useState("featured");
 
@@ -91,8 +86,7 @@ const ProductList = () => {
 
   return (
     <Container>
-      <Category>{cat}</Category>
-      <Link to="/">pants</Link>
+      <Category>men</Category>
       <Wrapper>
         <FilterContainer>
           <Filter>
@@ -128,7 +122,7 @@ const ProductList = () => {
             </Select>
           </Filter>
         </FilterContainer>
-        <Products cat={cat} filters={filters} sort={sort} />
+        <Products filters={filters} sort={sort} />
       </Wrapper>
     </Container>
   );

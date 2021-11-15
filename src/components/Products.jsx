@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 import styled from "styled-components";
 import Product from "./Product";
 import { media } from "../responsive";
-import { TodayOutlined } from "@material-ui/icons";
 
 const Container = styled.div`
   padding: 30px 50px;
@@ -18,74 +17,79 @@ const Container = styled.div`
   })}
 `;
 
-const Products = ({ cat, filters, sort }) => {
-  console.log(filters, sort, cat);
+const Products = ({ filters, sort }) => {
+  console.log(filters, sort);
   //   // TODO
-  //   const [products, setProduct] = useState("");
-  //   // const [filteredProducts, setFilteredProducts] = useState([]);
-  //   const [loading, setLoading] = useState(false);
-  //   const [error, setError] = useState(null);
-  //   useEffect(() => {
-  //     const fetchUsers = async () => {
-  //       try {
-  //         setError(null);
-  //         setLoading(true);
-  //         const response = await axios.get(
-  //           `http://pvpvpvpvp.gonetis.com:8080/sample/products/`
-  //           // `http://pvpvpvpvp.gonetis.com:8080/sample/products?kind=${kind}`
-  //         );
-
-  //         setProduct(response.data);
-  //         console.log(response.data);
-  //       } catch (error) {
-  //         setError(error);
-  //       }
-  //       setLoading(false);
-  //     };
-  //     fetchUsers();
-  //   }, []);
-  //   if (!products) return null;
-
-  //   return (
-  //     <Container>
-  //       {products.products.map(item => (
-  //         <Product item={item} key={[item.index]} id={item.id} cat={item.kind} />
-  //       ))}
-  //     </Container>
-  //   );
-  // };
-  const [loading, setLoading] = useState(true);
-  const [products, setProducts] = useState([]);
-
-  const getProducts = async () => {
-    const json = await (
-      await fetch(`http://pvpvpvpvp.gonetis.com:8080/sample/products/`)
-    ).json();
-    setProducts(json.data.products);
-    setLoading(false);
-  };
+  const [products, setProduct] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
   useEffect(() => {
-    getProducts();
-  }, []);
-  console.log(products);
+    const fetchUsers = async () => {
+      try {
+        setError(null);
+        setLoading(true);
+        const response = await axios.get(
+          `http://pvpvpvpvp.gonetis.com:8080/sample/products/`
+        );
 
+        console.log("데이터", response.data.products);
+        setProduct(response.data.products);
+        // console.log(response.data.products);
+      } catch (error) {
+        console.error(error);
+        setError(error);
+      }
+      setLoading(false);
+    };
+    fetchUsers();
+  }, []);
+  if (!products) return null;
+
+  console.log(products);
   return (
     <Container>
-      {loading ? (
-        <h1>loading...</h1>
-      ) : (
-        products.map(product => (
-          <Product
-            image={products.image}
-            title={products.product}
-            price={products.price}
-            key={products.productNumber}
-            id={products.productNumber}
-          />
-        ))
-      )}
+      {products.map(product => (
+        <Product
+          image={product.image}
+          key={product.productNumber}
+          id={product.productNumber}
+          title={product.product}
+          price={product.price}
+          cat={product.kind}
+        />
+      ))}
     </Container>
   );
 };
+//   const [loading, setLoading] = useState(true);
+//   const [products, setProducts] = useState([]);
+
+//   const getProducts = async () => {
+//     const json = await (
+//       await fetch(`http://pvpvpvpvp.gonetis.com:8080/sample/products/`)
+//     ).json();
+//     setProducts(json.data.products);
+//     setLoading(false);
+//   };
+//   useEffect(() => {
+//     getProducts();
+//   }, []);
+//   console.log(products);
+
+//   return (
+//     <Container>
+//       {products.products.map(product => (
+//         <Product
+//           image={product.image}
+//           key={product.productNumber}
+//           id={product.productNumber}
+//           title={product.product}
+//           price={product.price}
+//           cat={product.kind}
+//         />
+//       ))}
+//     </Container>
+//   );
+// };
 
 export default Products;

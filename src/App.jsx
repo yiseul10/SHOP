@@ -18,14 +18,23 @@ const App = () => {
       <Notice />
       <Header />
       <Switch>
-        <Route exact path="/" element={<Home />} />
-        <Route path="/products" element={<ProductList />} />
-        <Route path="/products/:id" element={<Product />} />
-        <Route path="/cart" element={<Cart />} />
-        <Route path="/login" element={<Login />} />
-        {user ? <NavLink to="/" /> : <Login />}
-        <Route path="/register" element={<Register />} />
-        {user ? <NavLink to="/" /> : <Register />}
+        <Route exact path="/">
+          <Home />
+        </Route>
+        <Route path="/products">
+          <ProductList />
+        </Route>
+        <Route path="/products/:id">
+          <Product />
+        </Route>
+        <Route path="/cart">
+          <Cart />
+          <Login />
+        </Route>
+        <Route path="/login"> {user ? <NavLink to="/" /> : <Login />}</Route>
+        <Route path="/register">
+          {user ? <NavLink to="/" /> : <Register />}
+        </Route>
       </Switch>
       <Footer />
     </BrowserRouter>
