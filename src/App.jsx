@@ -21,15 +21,14 @@ const App = () => {
         <Route exact path="/">
           <Home />
         </Route>
-        <Route path="/products">
-          <ProductList />
-        </Route>
         <Route path="/products/:id">
           <Product />
         </Route>
+        <Route exact path="/products/">
+          <ProductList />
+        </Route>
         <Route path="/cart">
           <Cart />
-          <Login />
         </Route>
         <Route path="/login"> {user ? <NavLink to="/" /> : <Login />}</Route>
         <Route path="/review">{user ? <NavLink to="/" /> : <Review />}</Route>

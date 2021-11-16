@@ -1,11 +1,12 @@
 import React, { useState } from "react";
+
+import { useParams } from "react-router";
 import styled from "styled-components";
 
 import Products from "../components/Products";
 import { media } from "../responsive";
 
 const Container = styled.div``;
-
 const Wrapper = styled.div`
   display: grid;
   width: 100%;
@@ -58,10 +59,9 @@ const Select = styled.select`
 `;
 const Option = styled.option``;
 const Category = styled.div`
-  font-size: 25px;
-  font-family: "Unna", serif;
-  padding: 100px 30px 50px 50px;
-
+  font-size: 11px;
+  text-decoration: underline;
+  padding: 150px 30px 50px 50px;
   ${media({
     borderBottom: "0.5px solid grey",
     textAlign: "center",
@@ -72,6 +72,8 @@ const Category = styled.div`
 `;
 
 const ProductList = () => {
+  const { cat } = useParams();
+
   const [filters, setFilters] = useState({});
   const [sort, setSort] = useState("featured");
 
@@ -86,7 +88,7 @@ const ProductList = () => {
 
   return (
     <Container>
-      <Category>men</Category>
+      <Category>전체상품</Category>
       <Wrapper>
         <FilterContainer>
           <Filter>
@@ -122,7 +124,7 @@ const ProductList = () => {
             </Select>
           </Filter>
         </FilterContainer>
-        <Products filters={filters} sort={sort} />
+        <Products cat={cat} filters={filters} sort={sort} />
       </Wrapper>
     </Container>
   );

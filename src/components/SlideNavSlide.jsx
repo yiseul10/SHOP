@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { BsArrowLeft } from "react-icons/bs";
-import DropMen from "./DropMen";
+import DropMenu from "./DropMenu";
 
 const Overlay = styled.div`
   width: 100%;
@@ -37,8 +37,7 @@ const SlideNavSlide = () => {
         <Content>
           <BsArrowLeft onClick={handleClick} />
           {click ? <SlideNavSlide /> : null}
-          <DropMen />
-          {/* <DropWomen /> */}
+          <DropMenu />
         </Content>
       </OverlayContent>
     </Overlay>
