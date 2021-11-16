@@ -9,6 +9,8 @@ import Review from "./pages/Review";
 import Notice from "./components/Notice";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import CustomerCenter from "./pages/CustomerCenter";
+
 
 const App = () => {
   const user = true;
@@ -42,6 +44,9 @@ const App = () => {
         <Review />
         </Route>
 
+        <Route exact path="/customerService">
+        <CustomerCenter />
+        </Route>
 
         <Route path="/review">{user ? <NavLink to="/" /> : <Review />}</Route>
 
