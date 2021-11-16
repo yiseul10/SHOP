@@ -13,6 +13,7 @@ import CustomerCenter from "./pages/CustomerCenter";
 import EventNotice from "./pages/EventNotice";
 import QuestionOne from "./pages/QuestionOne";
 import FAQ from "./pages/FAQ";
+import ReviewInsert from "./pages/ReviewInsert";
 
 
 const App = () => {
@@ -62,6 +63,12 @@ const App = () => {
         <Route exact path="/customerService/QuestionOne">
         <QuestionOne />
         </Route>
+
+        <Route exact path="/review/ReviewInsert">
+        <ReviewInsert />
+        </Route>
+
+
 
 
         <Route path="/review">{user ? <NavLink to="/" /> : <Review />}</Route>

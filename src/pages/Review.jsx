@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from "react";
 import styled from 'styled-components'
 import axios from 'axios';
+import { Link, Route } from "react-router-dom";
 
 const ReviewItem = styled.div `
 padding: 10rem`
@@ -13,7 +14,7 @@ const Review = () => {
 
     useEffect(() => {
         const fetchUsers = async () => {
-            try {
+            try {     
                 // 요청이 시작 할 때에는 error 와 users 를 초기화하고
                 setError(null);
                 setUsers(null);
@@ -78,8 +79,14 @@ const Review = () => {
             </div>
             <hr/>
             <br/>
+
+
+                <Route>
+                <Link to="/review/reviewInsert">
             <button>
-                등록하기</button>
+                상품평 등록하기</button> </Link>
+            </Route>
+
         </ReviewItem>
 
     );
