@@ -10,6 +10,9 @@ import Notice from "./components/Notice";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import CustomerCenter from "./pages/CustomerCenter";
+import EventNotice from "./pages/EventNotice";
+import QuestionOne from "./pages/QuestionOne";
+import FAQ from "./pages/FAQ";
 
 
 const App = () => {
@@ -47,6 +50,19 @@ const App = () => {
         <Route exact path="/customerService">
         <CustomerCenter />
         </Route>
+
+        <Route exact path="/customerService/FAQ">
+        <FAQ />
+        </Route>
+
+        <Route exact path="/customerService/EventNotice">
+        <EventNotice />
+        </Route>
+
+        <Route exact path="/customerService/QuestionOne">
+        <QuestionOne />
+        </Route>
+
 
         <Route path="/review">{user ? <NavLink to="/" /> : <Review />}</Route>
 
