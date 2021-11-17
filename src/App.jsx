@@ -16,6 +16,7 @@ import FAQ from "./pages/FAQ";
 import ReviewInsert from "./pages/ReviewInsert";
 
 
+
 const App = () => {
   const user = true;
   return (
@@ -25,6 +26,7 @@ const App = () => {
       
       <Header />
       
+
       <Switch>
       
         <Route exact path="/">
@@ -39,6 +41,7 @@ const App = () => {
           <Product />
         </Route>
       
+
         <Route path="/cart">
           <Cart />
           <Login />
@@ -75,6 +78,7 @@ const App = () => {
 
       </Switch>
       
+
       <Footer />
     
     </BrowserRouter>
