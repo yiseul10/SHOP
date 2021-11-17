@@ -14,43 +14,37 @@ import customerService from "./pages/customerService";
 const App = () => {
   const user = true;
   return (
-   
-   <BrowserRouter>
-   
+    <BrowserRouter>
       <Notice />
 
       <Header />
-   
+
       <Switch>
         <Route exact path="/">
           <Home />
         </Route>
-   
-        <Route path="/products">
-          <ProductList />
-        </Route>
-   
         <Route path="/products/:id">
           <Product />
         </Route>
-   
+        <Route exact path="/products/">
+          <ProductList />
+        </Route>
+
         <Route path="/cart">
           <Cart />
-          <Login />
         </Route>
-        
+
         <Route exact path="/review">
-        <Review />
+          <Review />
         </Route>
-       
+
         <Route exact path="/customerService">
-        <customerService />
+          <customerService />
         </Route>
-       
 
         <Route path="/login"> {user ? <NavLink to="/" /> : <Login />}</Route>
       </Switch>
-   
+
       <Footer />
     </BrowserRouter>
   );

@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { media } from "../responsive";
-import { useParams } from "react-router";
 
 const LeftMenu = styled.div`
   padding: 0px;
@@ -13,7 +12,6 @@ const LeftMenu = styled.div`
 const DropDown = styled.div`
   position: absoulte;
   display: inline-block;
-
   &:hover .dropdown-content {
     display: block;
   }
@@ -23,11 +21,11 @@ const DropDownContent = styled.div`
   position: absolute;
   background-color: white;
   left: 0rem;
+  top: 4.4rem;
   min-width: 100%;
   height: 120px;
   box-shadow: 0px 1rem 0.3rem -1rem rgba(0, 0, 0, 0.1);
   transition: all 10s ease-in-out;
-  z-index: 1;
   ${media({ display: "inline", marginTop: "-30px", boxShadow: "none" })}
 `;
 const GridContainer = styled.div`
@@ -42,7 +40,7 @@ const DownContentLink = styled(Link)`
   font-weight: 400;
   text-transform: uppercase;
   grid-template-columns: 65px 140px 1fr;
-  padding: 0.15rem;
+  padding: 0.15rem 0rem;
   text-align: start;
   text-decoration: none;
   display: inline-grid;
@@ -53,17 +51,15 @@ const DownContentLink = styled(Link)`
   })}
 `;
 const LineDiv = styled.div`
-  transform: translate(1px, 15px);
-  width: 23px;
-  border-bottom: 1px solid black;
+  transform: translate(0px, 15px);
+  width: 60px;
+  border-bottom: 3px solid black;
   ${media({ display: "none" })}
 `;
-const DropMen = () => {
-  // const { id } = useParams();
-  // 필터링해서 값을 각각 링크로 전달한다? 밸류?
+const DropMenu = () => {
   return (
     <DropDown>
-      <LeftMenu>MEN</LeftMenu>
+      <LeftMenu>COLLECTION</LeftMenu>
       <DropDownContent className="dropdown-content">
         <GridContainer>
           <LineDiv></LineDiv>
@@ -85,4 +81,4 @@ const DropMen = () => {
   );
 };
 
-export default DropMen;
+export default DropMenu;

@@ -1,15 +1,13 @@
 import styled from "styled-components";
-
 import { media } from "../responsive";
-
 import { Add, Remove } from "@material-ui/icons";
 import StyledButton from "../components/Button/Button";
-import { useParams } from "react-router";
+
+import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
 const Container = styled.div``;
-
 const Wrapper = styled.div`
   padding: 150px;
   display: flex;
@@ -123,13 +121,9 @@ const Details = styled.span`
 `;
 
 const ButtonHandle = styled.div`
-  width: 100%;
-  padding: 5px;
-  margin: 16px 0;
-  height: 2.8rem;
+  margin: 20px 0;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  /* grid-column-start: 2; */
 `;
 const Info = styled.div`
   font-size: 11px;
@@ -138,27 +132,12 @@ const Info = styled.div`
 `;
 
 const Product = () => {
-  const params = useParams();
-  console.log(params);
-
-  const [products, setProduct] = useState("");
   const [quantity, setQuantity] = useState(1);
   const [color, setColor] = useState("");
   const [size, setSize] = useState("");
 
-  useEffect(() => {
-    const getProduct = async () => {
-      try {
-        const response = await axios.get(
-          `http://pvpvpvpvp.gonetis.com:8080/sample/products/${params.id}`
-        );
-        setProduct(response.data);
-        console.log(response.data);
-      } catch (e) {}
-    };
-    getProduct();
-  }, []);
-  if (!products) return null;
+  const { id } = useParams();
+  console.log(id);
 
   const handleQuantity = type => {
     if (type === "dec") {
@@ -167,6 +146,30 @@ const Product = () => {
       setQuantity(quantity + 1);
     }
   };
+
+  const [products, setProduct] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const getProduct = async () => {
+      try {
+        setError(null);
+        setLoading(true);
+        const response = await axios.get(
+          `http://pvpvpvpvp.gonetis.com:8080/sample/products/${id}`
+        );
+
+        setProduct(response.data);
+      } catch (error) {
+        setError(error);
+      }
+      setLoading(false);
+    };
+    getProduct();
+  }, []);
+  if (!products) return null;
+  console.log(products);
 
   return (
     <Container>
