@@ -7,8 +7,8 @@ import { ShoppingCartOutlined } from "@material-ui/icons";
 import { IoSearchOutline, IoMenuOutline } from "react-icons/io5";
 import { Badge } from "@material-ui/core";
 import Searchbar from "./Searchbar";
-import DropWomen from "./DropWomen";
-import DropMen from "./DropMen";
+
+import DropMenu from "./DropMenu";
 import SlideNav from "./SlideNav";
 
 const Container = styled.div`
@@ -55,7 +55,7 @@ const Logo = styled(Link)`
   }
   ${media({ flex: 1 })}
 `;
-const Right = styled.div`
+const Right = styled.ul`
   flex: 1;
   display: flex;
   align-items: center;
@@ -93,6 +93,7 @@ function Header() {
   const handleClick = () => setClick(!click);
   const [showSlide, setShowSlide] = useState(false);
   const handleSlide = () => setShowSlide(!showSlide);
+  const [dropdown, setDropdown] = useState(false);
 
   return (
     <Container>
@@ -102,13 +103,12 @@ function Header() {
             <IoMenuOutline onClick={handleSlide} />
             {showSlide ? <SlideNav /> : null}
           </Invisible>
+          {/* TODO: A링크이슈 warning */}
           <LeftMenu to="/products">
-            <DropMen />
-          </LeftMenu>
-          <LeftMenu to="/">
-            <DropWomen />
+            <DropMenu />
           </LeftMenu>
           <LeftMenu to="/">CUSTOM</LeftMenu>
+          <LeftMenu to="/review">REVIEW</LeftMenu>
           <Search onClick={handleClick}>검색</Search>
           {click ? <Searchbar /> : null}
           <Invisible>
@@ -124,7 +124,6 @@ function Header() {
         </Center>
         <Right>
           <MenuHandle to="/login">LOGIN</MenuHandle>
-          <MenuHandle to="/review">REVIEW</MenuHandle>
           <MenuHandle to="/customerService">고객센터</MenuHandle>
           <MenuHandle to="/">위시리스트</MenuHandle>
           <MenuItem to="/cart">

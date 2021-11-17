@@ -48,9 +48,7 @@ const Newsletter = () => {
       <Desc>이메일을 등록하고 할인을 놓치지 마세요.</Desc>
       <InputContainer>
         <Input placeholder="" />
-        <StyledButton style={{ width: "7.5rem", height: "2.2rem" }}>
-          구독하기
-        </StyledButton>
+        <StyledButton style={{ width: "7.5rem" }}>구독하기</StyledButton>
       </InputContainer>
     </Container>
   );

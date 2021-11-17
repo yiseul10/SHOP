@@ -3,12 +3,13 @@ import styled from "styled-components";
 import { media } from "../responsive";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+import { useLocation, useParams } from "react-router";
 
 const Container = styled.div`
   position: relative;
   ${media({ padding: "0px" })};
 `;
-const ImgView = styled(Link)`
+const ImgView = styled.div`
   min-width: 275px;
   height: 350px;
   display: flex;
@@ -72,9 +73,11 @@ const Currency = styled.span`
 const Product = ({ image, title, price, id }) => {
   return (
     <Container>
-      <ImgView to={`/products/${id}`}>
-        <Image src={image} alt={title} />
-      </ImgView>
+      <Link to={`/products/${id}`}>
+        <ImgView>
+          <Image src={image} alt={title} />
+        </ImgView>
+      </Link>
       <Icon>
         <FavoriteBorderOutlined />
       </Icon>
