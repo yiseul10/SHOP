@@ -13,10 +13,6 @@ padding: 10rem`
 
 const ReviewInsert = () => {
     
-   //https://www.youtube.com/watch?v=t12a6z090AU
-   const [editorState, setEditorState] = React.useState(
-    () => EditorState.createEmpty(),
-  );
 
 
     return (
@@ -27,7 +23,6 @@ const ReviewInsert = () => {
         </div>
             <hr/>
 
-            <Editor editorState={editorState} onChange={setEditorState} />
 
 
 
