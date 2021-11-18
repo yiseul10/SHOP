@@ -11,7 +11,7 @@ const baseURL = "http://pvpvpvpvp.gonetis.com:8080/sample/reviews";
 
 export default function ReviewInsert() {
    
-    const [post, setPost] = React.useState("");
+    const [post, setPost] = React.useState(null);
 
   
   
@@ -36,8 +36,14 @@ export default function ReviewInsert() {
    if(!post)
     return (
        <ReviewI>
+<form>
+  <input placeholder="title" type="text"/>
+  <textarea  cols="50" rows="10" placeholder="content" type="text"/>
+  <input placeholder="productNumber" type="text"/>
+  <button onClick={createPost}>Create Post</button>
 
-      <button onClick={createPost}>Create Post</button>
+</form>
+
 
     </ReviewI>
     )
