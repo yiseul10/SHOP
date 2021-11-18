@@ -16,7 +16,6 @@ import FAQ from "./pages/FAQ";
 import ReviewInsert from "./pages/ReviewInsert";
 
 
-
 const App = () => {
   const user = true;
   return (
@@ -67,10 +66,10 @@ const App = () => {
         <QuestionOne />
         </Route>
 
+       
         <Route exact path="/review/ReviewInsert">
         <ReviewInsert />
         </Route>
-
 
 
 

@@ -3,8 +3,14 @@ import styled from 'styled-components'
 import axios from 'axios';
 import { Link, Route } from "react-router-dom";
 
+
+
+
 const ReviewItem = styled.div `
 padding: 10rem`
+
+
+
 
 const Review = () => {
 
@@ -14,7 +20,7 @@ const Review = () => {
 
     useEffect(() => {
         const fetchUsers = async () => {
-            try {     
+            try {
                 // 요청이 시작 할 때에는 error 와 users 를 초기화하고
                 setError(null);
                 setUsers(null);
@@ -42,8 +48,17 @@ const Review = () => {
     
     console.log(users);
 
+
+
+
+ 
+
+
+
+
     return (
 
+        
         <ReviewItem>
 
             <h1>
@@ -56,38 +71,46 @@ const Review = () => {
                 {
                     users
                         .reviews
-                        .map(user => (<> 
-                        < table border = "1px" > 
-                        <th>테이블</th>
-                 
-                        <tr>
-                            <td>번호 : {user.index}  ,  상품명 : {user.product}    </td>
-                        </tr>
-                        <tr>
-                            <td>{user.content}</td>
-                        </tr>
-                        <tr>
-                            <td> <img src={user.images.image}/></td>
-                        </tr>
+                        .map(user => (
+                            <> 
+                          
+                                
+                                    <span>번호 : {user.index}
+                                    </span>
+                                    \\\
+                                    <span>
+                                        상품명 : {user.product}
+                                    </span>
+                          
+                             
+                                    <img src={user.images.image}/>
 
-                    </table>
+                            
+                                {user.content}
+                           
+                            <br/><br/><br/>
+                       
+                            
+                    </>
 
-                </>
-                ))
-                        
+         
+
+                        ))
+
                 }
             </div>
-            <hr/>
-            <br/>
-
-
-                <Route>
-                <Link to="/review/reviewInsert">
+ 
+            <Route>
+                <Link to="/review/ReviewInsert">
             <button>
                 상품평 등록하기</button> </Link>
             </Route>
 
+
+
         </ReviewItem>
+
+
 
 
     );
