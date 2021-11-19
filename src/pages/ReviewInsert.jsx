@@ -1,52 +1,162 @@
 import React from 'react'
-import axios from 'axios'
-import styled from 'styled-components'
+import {post} from 'axios'
+import styled from "styled-components";
 
-
-
-const ReviewI = styled.div `
+const Review = styled
+    .div `
 padding: 10rem`
 
-const baseURL = "http://pvpvpvpvp.gonetis.com:8080/sample/reviews";
+    class ReviewInsert extends React
+    .Component {
 
-export default function ReviewInsert() {
-   
-    const [post, setPost] = React.useState(null);
+        constructor(props) {
 
-  
-  
-    function createPost() {
+            super(props);
 
+            this.state = {
 
-        console.log("작동함");
-        const form = new FormData();
-        form.append('title',"qwe");
-        form.append('content','qweaaaa');
-        form.append('productNumber','100');
-    
-    
-        axios({
-          method:'POST',
-          url:baseURL,
-          data:form,
-      }).then((response) => {
-          setPost(response.data);
-        });
+                file: '',
+                fileName: '',
+
+                productNumber: '',
+
+                title: '',
+
+                content: ''
+
+            }
+
+            this.handleFormSubmit = this
+                .handleFormSubmit
+                .bind(this)
+
+            this.handleFileChange = this
+                .handleFileChange
+                .bind(this)
+
+            this.handleValueChange = this
+                .handleValueChange
+                .bind(this)
+
+            this.addCustomer = this
+                .addCustomer
+                .bind(this)
+        }
+
+        handleFormSubmit(e) {
+
+            e.preventDefault()
+
+            this
+                .addCustomer()
+                .then((response) => {
+
+                    console.log(response.data);
+
+                })
+
+        }
+
+        handleFileChange(e) {
+
+            this.setState({
+
+                file: e
+                    .target
+                    .files[0],
+
+                fileName: e.target.value
+
+            });
+
+        }
+
+        handleValueChange(e) {
+
+            let nextState = {};
+
+            nextState[e.target.name] = e.target.value;
+
+            this.setState(nextState);
+
+        }
+
+        addCustomer() {
+
+            const url = 'http://pvpvpvpvp.gonetis.com:8080/sample/reviews';
+
+            const formData = new FormData();
+
+            formData.append('image', this.state.file)
+
+            formData.append('title', this.state.title)
+
+            formData.append('content', this.state.content)
+
+            formData.append('productNumber', this.state.productNumber)
+
+            const config = {
+
+                headers: {
+
+                    'content-type': 'multipart/form-data'
+
+                }
+
+            }
+
+            return post(url, formData, config)
+
+        }
+
+        render() {
+
+            return (<Review>
+
+                <form onSubmit={this.handleFormSubmit}>
+
+                    <h1>리뷰 등록</h1>
+
+                        이미지:
+                    <input
+                        type="file"
+                        name="image"
+                        file={this.state.file}
+                        value={this.state.fileName}
+                        onChange={this.handleFileChange}/>
+                      
+                        이름:
+                        <input
+                        type="text"
+                        name="title"
+                        value={this.state.title}
+                        onChange={this.handleValueChange}/><br/>
+
+                    내용:
+                    <textarea
+                        cols="50"
+                        rows="10"
+                        type="text"
+                        name="content"
+                        value={this.state.content}
+                        onChange={this.handleValueChange}/><br/>
+
+                    상품넘버:
+                    <input
+                        type="text"
+                        name="productNumber"
+                        value={this.state.productNumber}
+                        onChange={this.handleValueChange}/><br/>
+
+                    <button type="submit">추가하기</button>
+
+                </form>
+
+            </Review>
+            )
+
+        }
+
     }
-   if(!post)
-    return (
-       <ReviewI>
-<form>
-  <input placeholder="title" type="text"/>
-  <textarea  cols="50" rows="10" placeholder="content" type="text"/>
-  <input placeholder="productNumber" type="text"/>
-  <button onClick={createPost}>Create Post</button>
 
-</form>
-
-
-    </ReviewI>
-    )
-
-    return(<ReviewI><p>성공{post.result}</p></ReviewI>)
-}
+    export default ReviewInsert
