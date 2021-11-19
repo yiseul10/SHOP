@@ -73,22 +73,23 @@ const Review = () => {
                         .reviews
                         .map(user => (
                             <> 
-                          
-                                
-                                    <span>번호 : {user.index}
+                                <table>
+                                    <tr>
+                                    <span> <p>번호 : {user.index}</p> , <p> 상품명 : {user.product} </p>
                                     </span>
-                                    \\\
-                                    <span>
-                                        상품명 : {user.product}
-                                    </span>
-                          
-                             
-                                    <img src={user.images.image}/>
+                                    </tr>
 
-                            
-                                {user.content}
-                           
-                            <br/><br/><br/>
+                                   
+                             
+                             <td>
+                                  <p>  <img src={user.images.image}/> </p>
+                            </td>
+
+                            <td>
+                                <p>    {user.content} </p>
+                                </td>
+                            </table>
+                          <hr/><br/>
                        
                             
                     </>
