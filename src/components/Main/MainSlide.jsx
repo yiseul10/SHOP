@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { media } from "../responsive";
-import { sliderItems } from "../data";
+import { media } from "../../responsive";
+import { sliderItems } from "../../data";
 import {
   KeyboardArrowLeftRounded,
   KeyboardArrowRightRounded

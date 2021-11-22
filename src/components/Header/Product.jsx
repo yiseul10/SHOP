@@ -1,6 +1,6 @@
 import { FavoriteBorderOutlined } from "@material-ui/icons";
 import styled from "styled-components";
-import { media } from "../responsive";
+import { media } from "../../responsive";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { useLocation, useParams } from "react-router";

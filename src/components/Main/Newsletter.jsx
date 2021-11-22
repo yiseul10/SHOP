@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import { media } from "../responsive";
-import StyledButton from "../components/Button/Button";
+import { media } from "../../responsive";
+import StyledButton from "../Button/Button";
 
 const Container = styled.div`
   height: 60vh;

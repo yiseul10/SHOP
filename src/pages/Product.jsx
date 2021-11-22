@@ -3,9 +3,12 @@ import { media } from "../responsive";
 import { Add, Remove } from "@material-ui/icons";
 import StyledButton from "../components/Button/Button";
 
-import { useParams } from "react-router-dom";
-import { useState, useEffect } from "react";
 import axios from "axios";
+
+import { useParams, Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { addProducts } from "../store/cart-slice";
 
 const Container = styled.div``;
 const Wrapper = styled.div`
@@ -28,7 +31,7 @@ const InfoContainer = styled.div`
   ${media({ padding: "30px" })}
 `;
 
-const Title = styled.p`
+const Title = styled.div`
   font-weight: 400;
   font-size: 21px;
   margin-bottom: 4px;
@@ -39,13 +42,13 @@ const Price = styled.span`
   font-size: 18px;
 `;
 
-const Underline = styled.p`
+const Underline = styled.div`
   margin: 20px 0;
   border-top: 0.5px solid rgb(241, 239, 239);
   width: 100%;
 `;
 
-const Desc = styled.p`
+const Desc = styled.div`
   font-size: 11px;
   font-weight: 500;
   justify-content: flex-start;
@@ -91,7 +94,6 @@ const FilterSize = styled.select`
 `;
 
 const FilterSizeOption = styled.option``;
-
 const AddContainer = styled.div`
   width: 100%;
   display: flex;
@@ -108,7 +110,6 @@ const AmountContainer = styled.div`
 const Amount = styled.span`
   width: 30px;
   height: 30px;
-  /* border-radius: 8px; */
   border: 0.5px solid rgb(241, 239, 239);
   display: flex;
   align-items: center;
@@ -132,12 +133,32 @@ const Info = styled.div`
 `;
 
 const Product = () => {
+  const dispatch = useDispatch();
+  const [product, setProduct] = useState({});
+
   const [quantity, setQuantity] = useState(1);
   const [color, setColor] = useState("");
   const [size, setSize] = useState("");
 
   const { id } = useParams();
-  console.log(id);
+
+  useEffect(() => {
+    const getProduct = async () => {
+      try {
+        const response = await axios.get(
+          `http://pvpvpvpvp.gonetis.com:8080/sample/products/${id}`
+        );
+        console.log("데이터", response.data);
+        setProduct(response.data);
+        // FIXME 가격은 왜 null인가요?
+        // console.log("product", product.colors.color);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    getProduct();
+  }, [id]);
+  //THINK: if (!product) return null;
 
   const handleQuantity = type => {
     if (type === "dec") {
@@ -147,43 +168,24 @@ const Product = () => {
     }
   };
 
-  const [products, setProduct] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const handleClick = () => {
+    dispatch(addProducts({ product, quantity }));
+  };
 
-  useEffect(() => {
-    const getProduct = async () => {
-      try {
-        setError(null);
-        setLoading(true);
-        const response = await axios.get(
-          `http://pvpvpvpvp.gonetis.com:8080/sample/products/${id}`
-        );
-
-        setProduct(response.data);
-      } catch (error) {
-        setError(error);
-      }
-      setLoading(false);
-    };
-    getProduct();
-  }, []);
-  if (!products) return null;
-  console.log(products);
-
-  return (
+  return product.colors === undefined ? null : (
+    // <></>
     <Container>
       <Wrapper>
         <ImgContainer>
-          <Image src={products.image} />
+          <Image src={product.image} />
         </ImgContainer>
         <InfoContainer>
-          <Title>{products.product}</Title>
-          <Price>{products.price}</Price>
+          <Title>{product.product}</Title>
+          <Price>{product.price}</Price>
           <FilterContainer>
             <Filter>
               <FilterTitle>색상</FilterTitle>
-              {products.colors.color.map(c => (
+              {product.colors.color.map(c => (
                 <FilterColor color={c} key={c} onClick={() => setColor(c)} />
               ))}
             </Filter>
@@ -201,14 +203,17 @@ const Product = () => {
               />
             </AmountContainer>
             <FilterSize onChange={e => setSize(e.target.value)}>
-              <FilterSizeOption selected>사이즈 선택</FilterSizeOption>
-              {products.sizes.size.map(s => (
+              <FilterSizeOption defaultValue="default">
+                사이즈 선택
+              </FilterSizeOption>
+              {product.sizes.size.map(s => (
                 <FilterSizeOption key={s}>{s}</FilterSizeOption>
               ))}
             </FilterSize>
           </AddContainer>
           <ButtonHandle>
             <StyledButton
+              onClick={handleClick}
               style={{
                 backgroundColor: "white",
                 color: "black",
@@ -217,7 +222,9 @@ const Product = () => {
             >
               ADD TO CART
             </StyledButton>
-            <StyledButton>바로 구매하기</StyledButton>
+            <Link to="/cart">
+              <StyledButton>바로 구매하기</StyledButton>
+            </Link>
           </ButtonHandle>
           <Underline />
           <Desc>

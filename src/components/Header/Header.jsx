@@ -1,15 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { media } from "../responsive";
+import { media } from "../../responsive";
 
 import { ShoppingCartOutlined } from "@material-ui/icons";
 import { IoSearchOutline, IoMenuOutline } from "react-icons/io5";
 import { Badge } from "@material-ui/core";
-import Searchbar from "./Searchbar";
 
+import Searchbar from "./Searchbar";
 import DropMenu from "./DropMenu";
 import SlideNav from "./SlideNav";
+import { useSelector } from "react-redux";
 
 const Container = styled.div`
   display: flex;
@@ -93,7 +94,8 @@ function Header() {
   const handleClick = () => setClick(!click);
   const [showSlide, setShowSlide] = useState(false);
   const handleSlide = () => setShowSlide(!showSlide);
-  const [dropdown, setDropdown] = useState(false);
+
+  const quantity = useSelector(state => state.cart.quantity);
 
   return (
     <Container>
@@ -103,10 +105,12 @@ function Header() {
             <IoMenuOutline onClick={handleSlide} />
             {showSlide ? <SlideNav /> : null}
           </Invisible>
-          {/* TODO: A링크이슈 warning */}
+
           <LeftMenu to="/products">
+            {" "}
             <DropMenu />
           </LeftMenu>
+
           <LeftMenu to="/">CUSTOM</LeftMenu>
           <LeftMenu to="/review">REVIEW</LeftMenu>
           <Search onClick={handleClick}>검색</Search>
@@ -127,7 +131,7 @@ function Header() {
           <MenuHandle to="/customerService">고객센터</MenuHandle>
           <MenuHandle to="/">위시리스트</MenuHandle>
           <MenuItem to="/cart">
-            <Badge badgeContent={3} color="error">
+            <Badge badgeContent={quantity} color="error">
               <ShoppingCartOutlined />
             </Badge>
           </MenuItem>

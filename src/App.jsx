@@ -6,10 +6,10 @@ import Home from "./pages/Home";
 import Cart from "./pages/Cart";
 import Login from "./pages/Login";
 import Review from "./pages/Review";
-import Notice from "./components/Notice";
-import Header from "./components/Header";
-import Footer from "./components/Footer";
-import customerService from "./pages/customerService";
+import Notice from "./components/Header/Notice";
+import Header from "./components/Header/Header";
+import Footer from "./components/Footer/Footer";
+import customerService from "./pages/customerService.js";
 
 const App = () => {
   const user = true;
@@ -26,22 +26,18 @@ const App = () => {
         <Route path="/products/:id">
           <Product />
         </Route>
-        <Route exact path="/products/">
+        <Route path="/products">
           <ProductList />
         </Route>
-
         <Route path="/cart">
           <Cart />
         </Route>
-
         <Route exact path="/review">
           <Review />
         </Route>
-
         <Route exact path="/customerService">
           <customerService />
         </Route>
-
         <Route path="/login"> {user ? <NavLink to="/" /> : <Login />}</Route>
       </Switch>
 
