@@ -141,6 +141,7 @@ const Product = () => {
   const [size, setSize] = useState("");
 
   const { id } = useParams();
+  console.log(id);
 
   useEffect(() => {
     const getProduct = async () => {
