@@ -9,43 +9,77 @@ import Review from "./pages/Review";
 import Notice from "./components/Notice";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import customerService from "./pages/customerService";
+import CustomerCenter from "./pages/CustomerCenter";
+import EventNotice from "./pages/EventNotice";
+import QuestionOne from "./pages/QuestionOne";
+import FAQ from "./pages/FAQ";
+import ReviewInsert from "./pages/ReviewInsert";
+
 
 const App = () => {
   const user = true;
   return (
     <BrowserRouter>
+      
       <Notice />
-
+      
       <Header />
+      
 
       <Switch>
+      
         <Route exact path="/">
           <Home />
         </Route>
+      
+        <Route path="/products">
+          <ProductList />
+        </Route>
+      
         <Route path="/products/:id">
           <Product />
         </Route>
-        <Route exact path="/products/">
-          <ProductList />
-        </Route>
+      
 
         <Route path="/cart">
           <Cart />
+          <Login />
         </Route>
 
         <Route exact path="/review">
-          <Review />
+        <Review />
         </Route>
 
         <Route exact path="/customerService">
-          <customerService />
+        <CustomerCenter />
         </Route>
 
-        <Route path="/login"> {user ? <NavLink to="/" /> : <Login />}</Route>
+        <Route exact path="/customerService/FAQ">
+        <FAQ />
+        </Route>
+
+        <Route exact path="/customerService/EventNotice">
+        <EventNotice />
+        </Route>
+
+        <Route exact path="/customerService/QuestionOne">
+        <QuestionOne />
+        </Route>
+
+       
+        <Route exact path="/review/ReviewInsert">
+        <ReviewInsert />
+        </Route>
+
+
+
+        <Route path="/review">{user ? <NavLink to="/" /> : <Review />}</Route>
+
       </Switch>
+      
 
       <Footer />
+    
     </BrowserRouter>
   );
 };
