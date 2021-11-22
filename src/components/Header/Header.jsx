@@ -106,10 +106,8 @@ function Header() {
             {showSlide ? <SlideNav /> : null}
           </Invisible>
 
-          <LeftMenu to="/products">
-            {" "}
-            <DropMenu />
-          </LeftMenu>
+          <LeftMenu to="/products"></LeftMenu>
+          <DropMenu />
 
           <LeftMenu to="/">CUSTOM</LeftMenu>
           <LeftMenu to="/review">REVIEW</LeftMenu>

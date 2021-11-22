@@ -141,7 +141,6 @@ const Product = () => {
   const [size, setSize] = useState("");
 
   const { id } = useParams();
-  console.log(id);
 
   useEffect(() => {
     const getProduct = async () => {
@@ -149,10 +148,10 @@ const Product = () => {
         const response = await axios.get(
           `http://pvpvpvpvp.gonetis.com:8080/sample/products/${id}`
         );
-        console.log("데이터", response.data);
+        console.log("데이터", response.data.price);
         setProduct(response.data);
-        // FIXME 가격은 왜 null인가요?
-        // console.log("product", product.colors.color);
+        // FIXME 가격, kind는 왜 null이지?
+        console.log("product", product.price);
       } catch (error) {
         console.error(error);
       }
@@ -170,11 +169,10 @@ const Product = () => {
   };
 
   const handleClick = () => {
-    dispatch(addProducts({ product, quantity }));
+    dispatch(addProducts({ ...product, quantity, color, size }));
   };
 
   return product.colors === undefined ? null : (
-    // <></>
     <Container>
       <Wrapper>
         <ImgContainer>
