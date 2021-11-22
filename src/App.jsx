@@ -6,80 +6,66 @@ import Home from "./pages/Home";
 import Cart from "./pages/Cart";
 import Login from "./pages/Login";
 import Review from "./pages/Review";
-import Notice from "./components/Notice";
-import Header from "./components/Header";
-import Footer from "./components/Footer";
+
+import Notice from "./components/Header/Notice";
+import Header from "./components/Header/Header";
+import Footer from "./components/Footer/Footer";
+import customerService from "./pages/customerService.js";
 import CustomerCenter from "./pages/CustomerCenter";
 import EventNotice from "./pages/EventNotice";
 import QuestionOne from "./pages/QuestionOne";
 import FAQ from "./pages/FAQ";
 import ReviewInsert from "./pages/ReviewInsert";
 
-
 const App = () => {
   const user = true;
   return (
     <BrowserRouter>
-      
       <Notice />
-      
+
       <Header />
-      
 
       <Switch>
-      
         <Route exact path="/">
           <Home />
         </Route>
-      
-        <Route path="/products">
-          <ProductList />
-        </Route>
-      
+
         <Route path="/products/:id">
           <Product />
         </Route>
-      
+
+        <Route path="/products">
+          <ProductList />
+        </Route>
 
         <Route path="/cart">
           <Cart />
-          <Login />
         </Route>
 
         <Route exact path="/review">
-        <Review />
+          <Review />
         </Route>
 
         <Route exact path="/customerService">
-        <CustomerCenter />
+          <CustomerCenter />
         </Route>
-
         <Route exact path="/customerService/FAQ">
-        <FAQ />
+          <FAQ />
         </Route>
-
+        <Route path="/login"> {user ? <NavLink to="/" /> : <Login />}</Route>
         <Route exact path="/customerService/EventNotice">
-        <EventNotice />
+          <EventNotice />
         </Route>
-
         <Route exact path="/customerService/QuestionOne">
-        <QuestionOne />
+          <QuestionOne />
         </Route>
-
-       
         <Route exact path="/review/ReviewInsert">
-        <ReviewInsert />
+          <ReviewInsert />
         </Route>
-
-
-
         <Route path="/review">{user ? <NavLink to="/" /> : <Review />}</Route>
-
       </Switch>
-      
 
       <Footer />
-    
     </BrowserRouter>
   );
 };

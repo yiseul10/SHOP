@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { media } from "../responsive";
+import { media } from "../../responsive";
+import { useParams } from "react-router";
 
 const LeftMenu = styled.div`
   padding: 0px;
@@ -57,6 +58,32 @@ const LineDiv = styled.div`
   ${media({ display: "none" })}
 `;
 const DropMenu = () => {
+  const { id } = useParams();
+  console.log(id);
+  // const [cats, setCats] = useState([]);
+  // const [loading, setLoading] = useState(false);
+  // const [error, setError] = useState(null);
+
+  // useEffect(() => {
+  //   const fetchUsers = async () => {
+  //     try {
+  //       setError(null);
+  //       setLoading(true);
+  //       const response = await axios.get(
+  //         `http://pvpvpvpvp.gonetis.com:8080/sample/products?kind=${id}`
+  //       );
+  //       console.log("데이터", response.data.products);
+  //       setProduct(response.data.products);
+  //     } catch (error) {
+  //       setError(error);
+  //     }
+  //     setLoading(false);
+  //   };
+  //   fetchUsers();
+  // }, []);
+
+  // if (!products) return null;
+
   return (
     <DropDown>
       <LeftMenu>COLLECTION</LeftMenu>

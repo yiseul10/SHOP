@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 
 import styled from "styled-components";
 import Product from "./Product";
-import { media } from "../responsive";
+import { media } from "../../responsive";
 
 const Container = styled.div`
   padding: 30px 50px;
@@ -21,6 +21,7 @@ const Products = ({ cat, filters, sort }) => {
   console.log(cat, filters, sort);
   // TODO
   const [products, setProduct] = useState([]);
+
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -32,7 +33,8 @@ const Products = ({ cat, filters, sort }) => {
         const response = await axios.get(
           `http://pvpvpvpvp.gonetis.com:8080/sample/products`
         );
-        // console.log("데이터", response.data.products);
+        console.log("데이터", response.data.products);
+        console.log(response.data.products[1].kind);
         setProduct(response.data.products);
       } catch (error) {
         setError(error);
@@ -40,7 +42,7 @@ const Products = ({ cat, filters, sort }) => {
       setLoading(false);
     };
     fetchUsers();
-  }, []);
+  }, [cat]);
 
   if (!products) return null;
 

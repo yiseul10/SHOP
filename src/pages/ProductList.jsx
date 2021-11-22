@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { useParams } from "react-router";
 import styled from "styled-components";
 
-import Products from "../components/Products";
+import Products from "../components/Header/Products";
 import { media } from "../responsive";
 
 const Container = styled.div``;

@@ -1,6 +1,5 @@
-import MainSlide from "../components/MainSlide";
-
-import Newsletter from "../components/Newsletter";
+import MainSlide from "../components/Main/MainSlide";
+import Newsletter from "../components/Main/Newsletter";
 
 const Home = () => {
   return (
