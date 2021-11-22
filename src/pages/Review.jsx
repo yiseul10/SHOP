@@ -6,11 +6,11 @@ import { Link, Route } from "react-router-dom";
 
 
 
-const ReviewItem = styled.div `
+const ReviewItem = styled.div `                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
 padding: 10rem`
 
 
-
+  
 
 const Review = () => {
 
@@ -84,7 +84,7 @@ const Review = () => {
                              <td>
                                   <p>  <img src={user.images.image}/> </p>
                             </td>
-
+                            
                             <td>
                                 <p>    {user.content} </p>
                                 </td>
