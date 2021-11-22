@@ -80,7 +80,7 @@ const FilterColor = styled.div`
   width: 20px;
   height: 20px;
   border-radius: 50%;
-  background-color: ${props => props.color};
+  background-color: ${(props) => props.color};
   margin: 0px 4px;
   cursor: pointer;
 `;
@@ -132,7 +132,7 @@ const Info = styled.div`
   line-height: 20px;
 `;
 
-const Product = () => {
+export const Product = () => {
   const dispatch = useDispatch();
   const [product, setProduct] = useState({});
 
@@ -147,7 +147,7 @@ const Product = () => {
     const getProduct = async () => {
       try {
         const response = await axios.get(
-          `http://pvpvpvpvp.gonetis.com:8080/sample/products/${id}`
+          `http://pvpvpvpvp.gonetis.com:8080/sample/products/${id}`,
         );
         console.log("데이터", response.data);
         setProduct(response.data);
@@ -161,7 +161,7 @@ const Product = () => {
   }, [id]);
   //THINK: if (!product) return null;
 
-  const handleQuantity = type => {
+  const handleQuantity = (type) => {
     if (type === "dec") {
       quantity > 1 && setQuantity(quantity - 1);
     } else {
@@ -186,7 +186,7 @@ const Product = () => {
           <FilterContainer>
             <Filter>
               <FilterTitle>색상</FilterTitle>
-              {product.colors.color.map(c => (
+              {product.colors.color.map((c) => (
                 <FilterColor color={c} key={c} onClick={() => setColor(c)} />
               ))}
             </Filter>
@@ -203,11 +203,11 @@ const Product = () => {
                 onClick={() => handleQuantity("inc")}
               />
             </AmountContainer>
-            <FilterSize onChange={e => setSize(e.target.value)}>
+            <FilterSize onChange={(e) => setSize(e.target.value)}>
               <FilterSizeOption defaultValue="default">
                 사이즈 선택
               </FilterSizeOption>
-              {product.sizes.size.map(s => (
+              {product.sizes.size.map((s) => (
                 <FilterSizeOption key={s}>{s}</FilterSizeOption>
               ))}
             </FilterSize>
@@ -218,7 +218,7 @@ const Product = () => {
               style={{
                 backgroundColor: "white",
                 color: "black",
-                fontWeight: 600
+                fontWeight: 600,
               }}
             >
               ADD TO CART
@@ -245,4 +245,3 @@ const Product = () => {
     </Container>
   );
 };
-export default Product;

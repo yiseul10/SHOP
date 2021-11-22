@@ -1,7 +1,7 @@
 import MainSlide from "../components/Main/MainSlide";
 import Newsletter from "../components/Main/Newsletter";
 
-const Home = () => {
+export const Home = () => {
   return (
     <div>
       <MainSlide />
@@ -9,5 +9,3 @@ const Home = () => {
     </div>
   );
 };
-
-export default Home;

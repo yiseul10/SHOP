@@ -13,7 +13,7 @@ const Wrapper = styled.div`
   grid-template-columns: 250px 1fr 50px;
   ${media({
     display: "block",
-    flexDirection: "space-between"
+    flexDirection: "space-between",
   })}
 `;
 
@@ -24,7 +24,7 @@ const FilterContainer = styled.div`
 
   ${media({
     flexDirection: "row",
-    borderBottom: "0.5px solid grey"
+    borderBottom: "0.5px solid grey",
   })}
 `;
 const Filter = styled.div`
@@ -37,14 +37,14 @@ const Filter = styled.div`
   ${media({
     padding: "20px",
     flexDirection: "space-between",
-    marginTop: "0"
+    marginTop: "0",
   })}
 `;
 const VerticalLine = styled.div`
   ${media({
     borderRight: "0.1px solid grey",
     width: "0.1px",
-    height: "110px"
+    height: "110px",
   })}
 `;
 
@@ -67,21 +67,21 @@ const Category = styled.div`
     textAlign: "center",
     height: "100%",
     padding: "10px",
-    fontSize: "18px"
+    fontSize: "18px",
   })}
 `;
 
-const ProductList = () => {
+export const ProductList = () => {
   const { cat } = useParams();
 
   const [filters, setFilters] = useState({});
   const [sort, setSort] = useState("featured");
 
-  const handleFilters = e => {
+  const handleFilters = (e) => {
     const value = e.target.value;
     setFilters({
       ...filters,
-      [e.target.name]: value
+      [e.target.name]: value,
     });
   };
   console.log(filters);
@@ -94,7 +94,7 @@ const ProductList = () => {
           <Filter>
             <FilterText>정렬</FilterText>
             <Select
-              onChange={e => setSort(e.target.value)}
+              onChange={(e) => setSort(e.target.value)}
               style={{ marginBottom: 20 }}
             >
               <Option value="featured">Featured</Option>
@@ -129,5 +129,3 @@ const ProductList = () => {
     </Container>
   );
 };
-
-export default ProductList;

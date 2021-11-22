@@ -38,7 +38,7 @@ const ProductColor = styled.div`
   width: 15px;
   height: 15px;
   border-radius: 50%;
-  background-color: ${props => props.color};
+  background-color: ${(props) => props.color};
 `;
 const PriceDetail = styled.div`
   padding: 1rem 0rem;
@@ -70,8 +70,8 @@ const SummaryItem = styled.div`
   display: flex;
   justify-content: space-between;
   line-height: 1.5rem;
-  font-weight: ${props => props.type === "total" && "500"};
-  margin-top: ${props => props.type === "total" && "10px"};
+  font-weight: ${(props) => props.type === "total" && "500"};
+  margin-top: ${(props) => props.type === "total" && "10px"};
 `;
 const SummaryItemText = styled.div`
   padding: 1rem 0rem;
@@ -86,14 +86,14 @@ const Total = styled.div`
   height: 10vh;
 `;
 
-const Cart = () => {
-  const cart = useSelector(state => state.cart);
+export const Cart = () => {
+  const cart = useSelector((state) => state.cart);
   return (
     <Container>
       <Wrapper>
         <Left>
           <Title>쇼핑백(2)</Title>
-          {cart.products.map(product => (
+          {cart.products.map((product) => (
             <Product>
               <ProductDetail>
                 <Image src={product.image} />
@@ -171,5 +171,3 @@ const Cart = () => {
     </Container>
   );
 };
-
-export default Cart;

@@ -18,7 +18,7 @@ const Container = styled.div`
   font-size: 11px;
   font-weight: 500;
   box-shadow: 0px 1rem 0.3rem -1rem rgba(0, 0, 0, 0.1);
-  position: fixed;
+  position: fixed; // fixed는 부유 객체라 다른 컴포넌트들이 밑으로 깔림. app.js에 pages 컴포넌트 보다 위에 선언되어 화면 가장 위에 보여짐.
   width: 100vw;
   z-index: 1;
   padding-top: 1.7rem;
@@ -95,7 +95,7 @@ function Header() {
   const [showSlide, setShowSlide] = useState(false);
   const handleSlide = () => setShowSlide(!showSlide);
 
-  const quantity = useSelector(state => state.cart.quantity);
+  const quantity = useSelector((state) => state.cart.quantity);
 
   return (
     <Container>
