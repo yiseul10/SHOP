@@ -1,22 +1,51 @@
 import React, {useState, useEffect} from "react";
-import styled from 'styled-components'
 import axios from 'axios';
-import { Link, Route } from "react-router-dom";
+import {Link, Route} from "react-router-dom";
+import styled from "styled-components";
 
+const TableStyle = styled.div `
+	font-size: 1rem;
+    background-color: whitesmoke;
+    font-weight: 100;
+    font-style: italic;
+    width: 70;
+    height: 130;
+    border-radius: box-sizing;
+    text-align: center;
+    height: 100vh;
+    line-height: 100vh;
+`;
 
-
-
-const ReviewItem = styled.div `                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
-padding: 10rem`
-
-
+const Images = styled.td `
   
+`;
+
+
+
+const ButtonStyle = styled.div `
+padding: 6px 12px;
+ color: white; 
+ font-size: 16px;
+  border: none; 
+  border-radius: 4px;
+   background-color: #74b9ff; 
+   :hover { background-color: #99c6f5; }
+   text-align: center;
+    height: 100vh;
+    line-height: 100vh;
+
+`;
+
+const RedButton = styled.div `
+ background-color: #f53e3e; 
+ :hover { background-color: #ff7268; } 
+ `;
 
 const Review = () => {
 
     const [users, setUsers] = useState(""); // axios를 통해 json에서 데이터를 끄집어 내기 위한 곳
     const [loading, setLoading] = useState(false); //  로딩을 위한 변수와 함수 설정
-    const [error, setError] = useState(null); // 에러를 위한 변수와 함수 설정   ////1111111
+    const [error, setError] = useState(null); // 에러를 위한 변수와 함수 설정   1111111
 
     useEffect(() => {
         const fetchUsers = async () => {
@@ -48,72 +77,85 @@ const Review = () => {
     
     console.log(users);
 
-
-
-
- 
-
-
-
-
     return (
 
-        
-        <ReviewItem>
-
-            <h1>
-                상품평
-            </h1>
-
-            <hr/>
-
+        <TableStyle>
             <div>
-                {
-                    users
-                        .reviews
-                        .map(user => (
-                            <> 
-                                <table>
-                                    <tr>
-                                    <span> <p>번호 : {user.index}</p> , <p> 상품명 : {user.product} </p>
-                                    </span>
-                                    </tr>
 
-                                   
-                             
-                             <td>
-                                  <p>  <img src={user.images.image}/> </p>
-                            </td>
-                            
-                            <td>
-                                <p>    {user.content} </p>
+                <h1>
+                    상품평
+                </h1>
+
+                <hr/>
+
+                <div>
+                    {
+                        users
+                            .reviews
+                            .map(user => (
+                                <> < table > <tr>
+
+                                    <p>번호 : {user.index}</p>
+                                </tr>
+                                <tr>
+                                    <p>
+                                        상품명 : {user.product}
+                                    </p>
+
+                                </tr>
+
+                                <Images>
+                                <td>
+                                
+                                    <p> 
+                                        <img src={user.images.image}/>
+                                      
+                                    </p>
                                 </td>
+                                </Images>
+                                <td>
+                                    <p>
+                                        {user.content}
+                                    </p>
+                                </td>
+                                <input type="checkbox" id="cbd"></input>
                             </table>
-                          <hr/><br/>
-                       
-                            
-                    </>
 
-         
+                            <hr/><br/>
 
-                        ))
+                        </>
 
-                }
+                            ))
+
+                    }
+                </div>
+
+
+                <Route>
+                    <Link to="/review/ReviewInsert">
+
+                        <ButtonStyle>
+                            <button>
+                                상품평 등록하기</button>
+                        </ButtonStyle>
+
+                    </Link>
+
+                    <Link to="/review/ReviewUpdate">
+
+                        <RedButton>
+                            <button>
+                                상품평 수정하기</button>
+                        </RedButton>
+
+                    </Link>
+
+                </Route>
+
             </div>
- 
-            <Route>
-                <Link to="/review/ReviewInsert">
-            <button>
-                상품평 등록하기</button> </Link>
-            </Route>
 
-
-
-        </ReviewItem>
-
-
-
-
+        </TableStyle>
+        
     );
 };
 
