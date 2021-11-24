@@ -4,6 +4,7 @@ import Product from "./pages/Product";
 import ProductList from "./pages/ProductList";
 import Home from "./pages/Home";
 import Cart from "./pages/Cart";
+import WishList from "./pages/WishList";
 import Login from "./pages/Login";
 import Review from "./pages/Review";
 
@@ -19,27 +20,26 @@ import ReviewInsert from "./pages/ReviewInsert";
 
 const App = () => {
   const user = true;
+
   return (
     <BrowserRouter>
       <Notice />
-
       <Header />
-
       <Switch>
         <Route exact path="/">
           <Home />
         </Route>
-
         <Route path="/products/:id">
           <Product />
         </Route>
-
-        <Route path="/products">
+        <Route path="/products/">
           <ProductList />
         </Route>
-
         <Route path="/cart">
           <Cart />
+        </Route>
+        <Route path="/wish">
+          <WishList />
         </Route>
 
         <Route exact path="/review">

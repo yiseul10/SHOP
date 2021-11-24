@@ -33,8 +33,7 @@ const Products = ({ cat, filters, sort }) => {
         const response = await axios.get(
           `http://pvpvpvpvp.gonetis.com:8080/sample/products`
         );
-        console.log("데이터", response.data.products);
-        console.log(response.data.products[1].kind);
+        // console.log("데이터", response.data.products);
         setProduct(response.data.products);
       } catch (error) {
         setError(error);
@@ -44,12 +43,13 @@ const Products = ({ cat, filters, sort }) => {
     fetchUsers();
   }, [cat]);
 
-  if (!products) return null;
+  // if (!products) return null;
 
   return (
     <Container>
       {products.map(product => (
         <Product
+          product={product}
           image={product.image}
           key={product.index}
           id={product.productNumber}

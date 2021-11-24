@@ -1,9 +1,11 @@
-import { FavoriteBorderOutlined } from "@material-ui/icons";
+import React, { useState, useEffect } from "react";
+import { Favorite, FavoriteBorderOutlined } from "@material-ui/icons";
 import styled from "styled-components";
 import { media } from "../../responsive";
-import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-import { useLocation, useParams } from "react-router";
+
+import { useDispatch } from "react-redux";
+import { addWish } from "../../store/wish-slice";
 
 const Container = styled.div`
   position: relative;
@@ -70,33 +72,33 @@ const Currency = styled.span`
   padding: 0.1rem;
 `;
 
-const Product = ({ image, title, price, id }) => {
+const Product = ({ product, id }) => {
+  const [click, setClick] = useState(false);
+
+  const dispatch = useDispatch();
+  const handleClick = () => {
+    dispatch(addWish({ ...product }));
+    setClick(!click);
+  };
   return (
     <Container>
       <Link to={`/products/${id}`}>
         <ImgView>
-          <Image src={image} alt={title} />
+          <Image src={product.image} alt={product.product} />
         </ImgView>
       </Link>
-      <Icon>
-        <FavoriteBorderOutlined />
+      <Icon onClick={handleClick}>
+        {click ? <Favorite /> : <FavoriteBorderOutlined />}
       </Icon>
       <Detail>
-        <ProductTitle>{title}</ProductTitle>
+        <ProductTitle>{product.product}</ProductTitle>
         <PriceView>
-          <ProductPrice>{price}</ProductPrice>
+          <ProductPrice>{product.price}</ProductPrice>
           <Currency>원</Currency>
         </PriceView>
       </Detail>
     </Container>
   );
-};
-
-Product.propTypes = {
-  id: PropTypes.number.isRequired,
-  image: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
-  price: PropTypes.number.isRequired
 };
 
 export default Product;

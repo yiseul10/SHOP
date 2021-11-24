@@ -9,6 +9,7 @@ import { useParams, Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { addProducts } from "../store/cart-slice";
+import { useLocation } from "react-router";
 
 const Container = styled.div``;
 const Wrapper = styled.div`
@@ -142,6 +143,8 @@ const Product = () => {
 
   const { id } = useParams();
 
+  console.log(id);
+
   useEffect(() => {
     const getProduct = async () => {
       try {
@@ -150,7 +153,6 @@ const Product = () => {
         );
         console.log("데이터", response.data.price);
         setProduct(response.data);
-        // FIXME 가격, kind는 왜 null이지?
         console.log("product", product.price);
       } catch (error) {
         console.error(error);

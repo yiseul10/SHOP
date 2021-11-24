@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-
 import { useParams } from "react-router";
 import styled from "styled-components";
 
@@ -47,7 +46,6 @@ const VerticalLine = styled.div`
     height: "110px"
   })}
 `;
-
 const FilterText = styled.span``;
 const Select = styled.select`
   display: block;
@@ -73,6 +71,7 @@ const Category = styled.div`
 
 const ProductList = () => {
   const { cat } = useParams();
+  console.log(cat);
 
   const [filters, setFilters] = useState({});
   const [sort, setSort] = useState("featured");
@@ -89,6 +88,7 @@ const ProductList = () => {
   return (
     <Container>
       <Category>전체상품</Category>
+
       <Wrapper>
         <FilterContainer>
           <Filter>
