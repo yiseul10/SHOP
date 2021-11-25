@@ -4,7 +4,7 @@ import { media } from "../../responsive";
 import { sliderItems } from "../../data";
 import {
   KeyboardArrowLeftRounded,
-  KeyboardArrowRightRounded
+  KeyboardArrowRightRounded,
 } from "@material-ui/icons";
 
 const Container = styled.div`
@@ -26,8 +26,8 @@ const Arrow = styled.div`
   position: absolute;
   top: 5rem;
   bottom: 0;
-  left: ${props => props.direction === "left" && "16px"};
-  right: ${props => props.direction === "right" && "16px"};
+  left: ${(props) => props.direction === "left" && "16px"};
+  right: ${(props) => props.direction === "right" && "16px"};
   margin: auto;
   cursor: pointer;
   z-index: 2;
@@ -36,7 +36,7 @@ const Arrow = styled.div`
 const Wrapper = styled.div`
   height: 100%;
   display: flex;
-  transform: translateX(${props => props.slideIndex * -100}vw);
+  transform: translateX(${(props) => props.slideIndex * -100}vw);
   transition: all 1.5s ease;
 `;
 
@@ -46,7 +46,7 @@ const Slide = styled.div`
   /* height: 100vh; */
   display: flex;
   align-items: center;
-  background-color: ${props => props.bg};
+  background-color: ${(props) => props.bg};
 `;
 const ImgContainer = styled.div`
   height: 100%;
@@ -64,7 +64,7 @@ const InfoContainer = styled.div`
 
 const MainSlide = () => {
   const [slideIndex, setSlideIndex] = useState(0);
-  const handleClick = direction => {
+  const handleClick = (direction) => {
     if (direction === "left") {
       setSlideIndex(slideIndex > 0 ? slideIndex - 1 : 2);
     } else {
@@ -77,7 +77,7 @@ const MainSlide = () => {
         <KeyboardArrowLeftRounded />
       </Arrow>
       <Wrapper slideIndex={slideIndex}>
-        {sliderItems.map(item => (
+        {sliderItems.map((item) => (
           <Slide bg={item.bg} key={item.id}>
             <ImgContainer>
               <Image src={item.img} />
