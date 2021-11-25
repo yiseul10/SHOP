@@ -26,13 +26,25 @@ export function LoginInput({
 }
 
 const Cover = styled.div`
+  display: flex;
+  margin-bottom: 24px;
+  justify-content: center;
+
   .errorMsg {
     display: ${({ msgDisplay }) => (msgDisplay ? "none" : "")};
     color: red;
   }
+  p {
+    height: 20px;
+    width: 20%;
+    line-height: 38px;
+  }
+  /* @media only screen and (max-width: 1000px) {
+    display: none;
+  } */
 `;
 
 const IdInput = styled(Input)`
-  width: 50%;
-  margin: 0 auto;
+  width: 70%;
+  margin-left: 16px;
 `;
