@@ -86,49 +86,51 @@ export function MyPage() {
   return (
     <Cover>
       <form onSubmit={handleSubmit}>
-        <MyPageInput
-          id="userName"
-          label="이름"
-          onChange={onUserNameChange}
-          placeholder="이름"
-        />
-        <MyPageInput
-          id="id"
-          label="아이디"
-          onChange={onIdChange}
-          placeholder="아이디(5~12자)"
-        />
-        <MyPageInput
-          id="nickname"
-          label="닉네임"
-          onChange={onNickNameChange}
-          placeholder="닉네임"
-        />
-        <MyPageInput
-          id="email"
-          label="이메일"
-          onChange={onEmailChange}
-          placeholder="이메일 형식에 맞게 작성해주세요"
-        />
-        <MyPageInput
-          id="address"
-          label="주소"
-          onChange={onAddressChange}
-          placeholder="주소"
-        />
-        <MyPageInput
-          id="phoneNum"
-          label="핸드폰"
-          onChange={onPhoneNumChange}
-          placeholder="전화번호 형식에 맞게 작성해주세요"
-        />
-        <MyPageInput
-          id="passowrd"
-          label="비밀번호"
-          type="password"
-          onChange={onPasswordChange}
-          placeholder="비밀번호(숫자, 영문을 포함한 8자리 이상)"
-        />
+        <div>
+          <MyPageInput
+            id="userName"
+            label="이름"
+            onChange={onUserNameChange}
+            placeholder="이름"
+          />
+          <MyPageInput
+            id="id"
+            label="아이디"
+            onChange={onIdChange}
+            placeholder="아이디(5~12자)"
+          />
+          <MyPageInput
+            id="nickname"
+            label="닉네임"
+            onChange={onNickNameChange}
+            placeholder="닉네임"
+          />
+          <MyPageInput
+            id="email"
+            label="이메일"
+            onChange={onEmailChange}
+            placeholder="이메일 형식에 맞게 작성해주세요"
+          />
+          <MyPageInput
+            id="address"
+            label="주소"
+            onChange={onAddressChange}
+            placeholder="주소"
+          />
+          <MyPageInput
+            id="phoneNum"
+            label="핸드폰"
+            onChange={onPhoneNumChange}
+            placeholder="전화번호 형식에 맞게 작성해주세요"
+          />
+          <MyPageInput
+            id="passowrd"
+            label="비밀번호"
+            type="password"
+            onChange={onPasswordChange}
+            placeholder="비밀번호(숫자, 영문을 포함한 8자리 이상)"
+          />
+        </div>
         <PrimaryBtn label="수정하기" onClick={userData} type="submit" />
       </form>
     </Cover>
@@ -136,6 +138,9 @@ export function MyPage() {
 }
 
 const Cover = styled.div`
+  padding: 10px;
+  text-align: center;
   div {
+    vertical-align: middle;
   }
 `;
