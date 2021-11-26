@@ -129,13 +129,17 @@ export function SignUpPage() {
         type="password"
         onChange={onPasswordChangeCheck}
       />
-      <PrimaryBtn label="회원가입" onClick={userData} type="button" />
+      <div>
+        <PrimaryBtn label="회원가입" onClick={userData} type="button" />
+      </div>
       {/* <PrimaryBtn label="회원등록" onClick={userData} type="submit" /> */}
     </Cover>
   );
 }
 
 const Cover = styled.div`
+  margin-top: 30%;
   div {
+    text-align: center;
   }
 `;
