@@ -9,9 +9,11 @@ export function LoginModal({ isVisible, isModalClose, components }) {
   return (
     <StyleModal isOpen={isVisible}>
       <Container>
-        <button onClick={isModalClose}>
-          <IoIosClose />
-        </button>
+        <div>
+          <button onClick={isModalClose}>
+            <IoIosClose />
+          </button>
+        </div>
         {components}
       </Container>
     </StyleModal>
@@ -37,6 +39,6 @@ const Container = styled.div`
   height: 80%;
   background-color: #fff;
   border-radius: 20px;
-  border: solid 10px #fff200;
+  border: solid 10px #5352ed;
   padding: 16px;
 `;

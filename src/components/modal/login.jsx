@@ -19,14 +19,14 @@ export function LoginPage({ test }) {
     setPassword(event.target.value);
   }
 
-  function handleSubmit(event) {
-    if (id.length === 0 || password.length === 0) {
-      window.alert("아이디 혹은 비밀번호를 입력해 주세요");
-    } else {
-      console.log(event);
-      history.push("/");
-    }
-  }
+  // function handleSubmit(event) {
+  //   if (id.length === 0 || password.length === 0) {
+  //     window.alert("아이디 혹은 비밀번호를 입력해 주세요");
+  //   } else {
+  //     console.log(event);
+  //     history.push("/");
+  //   }
+  // }
 
   // function onSignUpBtn(event) {
   //   history.push("/signup");
@@ -62,13 +62,17 @@ export function LoginPage({ test }) {
         type="password"
         onChange={onPasswordChange}
       />
-      <PrimaryBtn label="로그인" onClick={userData} />
-      <PrimaryBtn label="회원가입" onClick={test} type="button" />
+      <div>
+        <PrimaryBtn label="로그인" onClick={userData} />
+        <PrimaryBtn label="회원가입" onClick={test} type="button" />
+      </div>
     </Cover>
   );
 }
 
 const Cover = styled.div`
+  margin-top: 30%;
   div {
+    text-align: center;
   }
 `;
