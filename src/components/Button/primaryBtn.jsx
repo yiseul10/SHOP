@@ -12,6 +12,9 @@ export function PrimaryBtn({ label, onClick, type = "button" }) {
 const Cover = styled.button`
   border: none;
   border-radius: 10px;
-  background-color: #1bbcff;
+  background-color: #70a1ff;
+  font: bold;
   color: #fff;
+  width: 45%;
+  height: 30;
 `;
