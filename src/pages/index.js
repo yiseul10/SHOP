@@ -10,3 +10,5 @@ export { QuestionOne } from "./QuestionOne";
 export { FAQ } from "./FAQ";
 export { ReviewInsert } from "./ReviewInsert";
 export { MyPage } from "./myPage";
+export { OrderListPage } from "./ordeListPage";
+export { OrderReviewPage } from "./orderReviewPage";
