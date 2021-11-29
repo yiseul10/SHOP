@@ -2,12 +2,15 @@ import React from 'react'
 import {post} from 'axios'
 import styled from "styled-components";
 
-const Review = styled
-    .div `
-padding: 10rem`
+const Review = styled.div `
+font-size: 1rem;
+    background-color: whitesmoke;
+    font-weight: 100;
+    font-style: italic;
+    padding: 100px;
+    margin: 50px`
 
-    class ReviewInsert extends React
-    .Component {
+    class ReviewInsert extends React.Component {
 
         constructor(props) {
 
@@ -18,7 +21,7 @@ padding: 10rem`
                 file: '',
                 fileName: '',
 
-                productNumber: '',
+                productNumber: '',      
 
                 title: '',
 
@@ -54,6 +57,7 @@ padding: 10rem`
                     console.log(response.data);
 
                 })
+                alert("리뷰 등록이 완료되었습니다.")
 
         }
 

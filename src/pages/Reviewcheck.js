@@ -4,16 +4,12 @@ import {Link, Route} from "react-router-dom";
 import styled from "styled-components";
 
 const TableStyle = styled.div `
+padding: 10rem   `
 
-    background-color: whitesmoke;
-   
-    font-style: italic;
-    padding: 10rem;
-    
-`
 
-const Review = () => {
 
+export default function Reviewcheck() {
+  
     const [users, setUsers] = useState(""); // axios를 통해 json에서 데이터를 끄집어 내기 위한 곳
     const [loading, setLoading] = useState(false); //  로딩을 위한 변수와 함수 설정
     const [error, setError] = useState(null); // 에러를 위한 변수와 함수 설정   1111111
@@ -48,6 +44,21 @@ const Review = () => {
     
     console.log(users);
 
+
+    function checkOnlyOne(element) {
+  
+        const checkboxes 
+            = document.getElementsByName("animal");
+        
+        checkboxes.forEach((cb) => {
+          cb.checked = false;
+        })
+        
+        element.checked = true;
+      }
+
+
+
     return (
 
         <TableStyle>
@@ -56,17 +67,12 @@ const Review = () => {
                  <h1>
                     상품평
                 </h1>
-
-                <select name="choice">
-  <option value="">리뷰 하나만 보기</option>
-  <option value="apple">특정 제품 기준으로 보기</option>
-</select>
-
-
-
+              
+                               
+                
                <hr/>
 
-    
+              
                
                 
                     {
@@ -90,9 +96,17 @@ const Review = () => {
                                         {user.content}
                                     </span>
                             
-                               
-                         
-
+                               <div>
+                                    <span>
+                                    <input type="checkbox"
+                                            name = 'product'
+                                            onClick='checkOnlyOne(this)'
+                                    
+                                     />
+                                    </span>
+                                    
+                            
+                                </div>
                             <hr/><br/>
 
                         </>
@@ -103,16 +117,9 @@ const Review = () => {
                 
 
                 <Route>
+                
+
                     <Link to="/review/ReviewInsert">
-
-                        
-                            <button>
-                                상품평 등록하기</button>
-                       
-
-                    </Link>
-
-                    <Link to="/review/Reviewcheck">
 
                        
                             <button>
@@ -129,4 +136,3 @@ const Review = () => {
     );
 };
 
-export default Review;

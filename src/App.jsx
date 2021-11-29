@@ -16,6 +16,7 @@ import QuestionOne from "./pages/QuestionOne";
 import FAQ from "./pages/FAQ";
 import ReviewInsert from "./pages/ReviewInsert";
 import ReviewUpdate from "./pages/ReviewUpdate";
+import Reviewcheck from "./pages/Reviewcheck";
 
 const App = () => {
     const user = true;
@@ -69,6 +70,9 @@ const App = () => {
                 </Route>
                 <Route exact="exact" path="/review/ReviewUpdate">
                     <ReviewUpdate/>
+                </Route>
+                <Route exact="exact" path="/review/Reviewcheck">
+                    <Reviewcheck/>
                 </Route>
 
                 <Route path="/review">{
