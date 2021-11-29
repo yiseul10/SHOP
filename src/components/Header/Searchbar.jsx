@@ -41,14 +41,14 @@ const SearchIcon = styled.button`
   background-color: transparent;
   border: none;
 `;
-const Searchbar = () => {
-  //TODO 데이터랑 연결
+const Searchbar = ({ product }) => {
   const [keyword, setKeyword] = useState("");
   const onChange = e => setKeyword(e.target.value);
   useEffect(() => {
     if (keyword !== "") {
     }
   }, [keyword]);
+  console.log(keyword);
 
   return (
     <Container>

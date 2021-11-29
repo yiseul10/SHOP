@@ -4,6 +4,7 @@ import Product from "./pages/Product";
 import ProductList from "./pages/ProductList";
 import Home from "./pages/Home";
 import Cart from "./pages/Cart";
+import WishList from "./pages/WishList";
 import Login from "./pages/Login";
 import Review from "./pages/Review";
 import Notice from "./components/Header/Notice";
@@ -46,6 +47,7 @@ const App = () => {
                 <Route exact="exact" path="/review">
                     <Review/>
                 </Route>
+
 
                 <Route exact="exact" path="/customerService">
                     <CustomerCenter/>

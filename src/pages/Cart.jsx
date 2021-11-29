@@ -92,56 +92,35 @@ const Cart = () => {
     <Container>
       <Wrapper>
         <Left>
-          <Title>쇼핑백(2)</Title>
+          <Title>쇼핑백({cart.quantity})</Title>
           {cart.products.map(product => (
-            <Product>
-              <ProductDetail>
-                <Image src={product.image} />
-                <Details>
-                  <div>
-                    <b>{product.product}</b>
-                    <p>{product.kind}</p>
-                  </div>
-                  <div>사이즈: L</div>
-                  <ProductColor color="gray" />
-                  <Wish>위시리스트로 이동</Wish>
-                </Details>
-              </ProductDetail>
-              <PriceDetail>
-                <AmountContainer>
-                  <Add style={{ fontSize: "13px" }} />
-                  <ProductAmount>1</ProductAmount>
-                  <Remove style={{ fontSize: "13px" }} />
-                </AmountContainer>
-                <p>5000원</p>
-                <Wish>삭제</Wish>
-              </PriceDetail>
-            </Product>
+            <>
+              <Product>
+                <ProductDetail>
+                  <Image src={product.image} />
+                  <Details>
+                    <div>
+                      <b>{product.product}</b>
+                      <p>{product.kind}</p>
+                    </div>
+                    <div>사이즈: {product.size}</div>
+                    <ProductColor color={product.color} />
+                    <Wish>위시리스트로 이동</Wish>
+                  </Details>
+                </ProductDetail>
+                <PriceDetail>
+                  <AmountContainer>
+                    <Add style={{ fontSize: "13px" }} />
+                    <ProductAmount>{product.quantity}</ProductAmount>
+                    <Remove style={{ fontSize: "13px" }} />
+                  </AmountContainer>
+                  <p>{product.price * product.quantity}원</p>
+                  <Wish>삭제</Wish>
+                </PriceDetail>
+              </Product>
+              <Hr />
+            </>
           ))}
-          <Hr />
-          {/* <Product>
-            <ProductDetail>
-              <Image src="https://i.pinimg.com/originals/2d/af/f8/2daff8e0823e51dd752704a47d5b795c.png" />
-              <Details>
-                <div>
-                  <b>T-SHIRT</b>
-                  <p>Phills 면티셔츠</p>
-                </div>
-                <div>사이즈: L</div>
-                <ProductColor color="gray" />
-                <Wish>위시리스트로 이동</Wish>
-              </Details>
-            </ProductDetail>
-            <PriceDetail>
-              <AmountContainer>
-                <Add style={{ fontSize: "13px" }} />
-                <ProductAmount>1</ProductAmount>
-                <Remove style={{ fontSize: "13px" }} />
-              </AmountContainer>
-              <p>5000원</p>
-              <Wish>삭제</Wish>
-            </PriceDetail>
-          </Product> */}
         </Left>
         <Right>
           <Title>결제 </Title>
@@ -149,7 +128,7 @@ const Cart = () => {
             <SummaryItemText>
               <SummaryItem>
                 <span>가격</span>
-                <span>8000원</span>
+                <span>{cart.total}원</span>
               </SummaryItem>
               <SummaryItem>
                 <span>배송비</span>
@@ -160,7 +139,7 @@ const Cart = () => {
             <SummaryItemText>
               <SummaryItem type="total">
                 <span>합계</span>
-                <span>8000원</span>
+                <span>{cart.total}원</span>
               </SummaryItem>
             </SummaryItemText>
 

@@ -9,6 +9,7 @@ import { useParams, Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { addProducts } from "../store/cart-slice";
+import { useLocation } from "react-router";
 
 const Container = styled.div``;
 const Wrapper = styled.div`
@@ -141,6 +142,7 @@ const Product = () => {
   const [size, setSize] = useState("");
 
   const { id } = useParams();
+
   console.log(id);
 
   useEffect(() => {
@@ -149,10 +151,9 @@ const Product = () => {
         const response = await axios.get(
           `http://pvpvpvpvp.gonetis.com:8080/sample/products/${id}`
         );
-        console.log("데이터", response.data);
+        console.log("데이터", response.data.price);
         setProduct(response.data);
-        // FIXME 가격은 왜 null인가요?
-        // console.log("product", product.colors.color);
+        console.log("product", product.price);
       } catch (error) {
         console.error(error);
       }
@@ -170,11 +171,10 @@ const Product = () => {
   };
 
   const handleClick = () => {
-    dispatch(addProducts({ product, quantity }));
+    dispatch(addProducts({ ...product, quantity, color, size }));
   };
 
   return product.colors === undefined ? null : (
-    // <></>
     <Container>
       <Wrapper>
         <ImgContainer>
