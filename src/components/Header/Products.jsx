@@ -1,8 +1,10 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { listProducts } from '../../actions/productActions';
-import styled from 'styled-components';
 import Product from './Product';
+import Loader from '../loader/Loader';
+
+import styled from 'styled-components';
 import { media } from '../../responsive';
 
 const Container = styled.div`
@@ -32,7 +34,7 @@ const Products = ({ cat, filters, sort }) => {
   return (
     <>
       {loading ? (
-        <h3>loading...</h3>
+        <Loader />
       ) : error ? (
         <h3>{error}</h3>
       ) : (
