@@ -1,9 +1,31 @@
 import React, {useCallback, useEffect, useRef, useState} from 'react';
+import styled from "styled-components";
 
-const colors = ["red", "green", "yellow", "black", "blue"]
+const colors = [
+    "red",
+    "green",
+    "yellow",
+    "black",
+    "blue",
+    "pink",
+    "violet",
+    "grey"
+]
 
+const Button = styled.button `
+  padding: 6px 12px;
+  color: white;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  background-color: #74b9ff;
+  :hover {
+    background-color: #99c6f5;
+  }
+`;
 
 const QuestionOne = () => {
+
     const canvasRef = useRef(null);
     const ctx = useRef(null);
 
@@ -76,29 +98,41 @@ const QuestionOne = () => {
     }
 
     return (
-            <div>
-           
+        <div>
 
-                <canvas
-                    style={{
-                        border: "1px solid #000"
-                    }}
-                    width={400}
-                    height={400}
-                    ref={canvasRef}
-                    onMouseDown={onMouseDown}
-                    onMouseUp={onMouseUp}
-                    onMouseLeave={onMouseUp}
-                    onMouseMove={onMouseMove}/>
-                <br/>
+            <canvas
+                style={{
+                    border: "0.5px solid #000"
+                }}
+                width={400}
+                height={400}
+                ref={canvasRef}
+                onMouseDown={onMouseDown}
+                onMouseUp={onMouseUp}
+                onMouseLeave={onMouseUp}
+                onMouseMove={onMouseMove}/>
+            <br/>
+            <span>
+                &nbsp; &nbsp;
                 <select
                     value={selectedColor}
                     onChange={(e) => setSelectedColor(e.target.value)}>
                     {colors.map(color => <option key={color} value={color}>{color}</option>)}
                 </select>
-                <button onClick={clear}>Clear</button>
-                <button onClick={download}>Download</button>
-            </div>
+            </span>
+            &nbsp; &nbsp; &nbsp;
+            <span>
+                <Button onClick={clear}>지우기
+                </Button>
+            </span>
+            &nbsp; &nbsp; &nbsp; &nbsp;
+            <span>
+                <Button onClick={download}>
+                    커스텀 다운로드
+
+                </Button>
+            </span>
+        </div>
     );
 }
 
