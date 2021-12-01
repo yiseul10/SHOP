@@ -88,6 +88,10 @@ const Total = styled.div`
 
 const Cart = () => {
   const cart = useSelector(state => state.cart);
+  // const dispatch = useDispatch();
+  const handleDelete = () => {
+    //   dispatch(removeProducts(id));
+  };
   return (
     <Container>
       <Wrapper>
@@ -100,7 +104,9 @@ const Cart = () => {
                   <Image src={product.image} />
                   <Details>
                     <div>
-                      <b>{product.product}</b>
+                      <Link to={`/product/${product.id}`}>
+                        <b>{product.product}</b>
+                      </Link>
                       <p>{product.kind}</p>
                     </div>
                     <div>사이즈: {product.size}</div>
@@ -115,7 +121,7 @@ const Cart = () => {
                     <Remove style={{ fontSize: '13px' }} />
                   </AmountContainer>
                   <p>{product.price * product.quantity}원</p>
-                  <Wish>삭제</Wish>
+                  <Wish onClick={handleDelete}>삭제</Wish>
                 </PriceDetail>
               </Product>
               <Hr />

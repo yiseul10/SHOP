@@ -135,14 +135,14 @@ const Info = styled.div`
 
 const Product = () => {
   const dispatch = useDispatch();
-  const [product, setProduct] = useState({});
+  const productDetails = useSelector(state => state.productDetails);
+  const { loading, error, product } = productDetails;
 
   const [quantity, setQuantity] = useState(1);
   const [color, setColor] = useState('');
   const [size, setSize] = useState('');
 
   const { id } = useParams();
-
   console.log(id);
 
   useEffect(() => {
@@ -160,7 +160,6 @@ const Product = () => {
     };
     getProduct();
   }, [id]);
-  //THINK: if (!product) return null;
 
   const handleQuantity = type => {
     if (type === 'dec') {
@@ -170,9 +169,9 @@ const Product = () => {
     }
   };
 
-  const handleClick = () => {
-    dispatch(addProducts({ ...product, quantity, color, size }));
-  };
+  // const handleClick = () => {
+  //   dispatch(addProducts({ ...product, quantity, color, size }));
+  // };
 
   return product.colors === undefined ? null : (
     <Container>
@@ -187,7 +186,12 @@ const Product = () => {
             <Filter>
               <FilterTitle>색상</FilterTitle>
               {product.colors.color.map(c => (
-                <FilterColor color={c} key={c} onClick={() => setColor(c)} />
+                <FilterColor
+                  color={c}
+                  key={c}
+                  value={color}
+                  onClick={() => setColor(c)}
+                />
               ))}
             </Filter>
           </FilterContainer>
@@ -214,7 +218,7 @@ const Product = () => {
           </AddContainer>
           <ButtonHandle>
             <StyledButton
-              onClick={handleClick}
+              // onClick={handleClick}
               style={{
                 backgroundColor: 'white',
                 color: 'black',
@@ -245,4 +249,4 @@ const Product = () => {
     </Container>
   );
 };
-export default Product;
+export default withRouter(Product);

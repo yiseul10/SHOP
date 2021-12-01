@@ -101,9 +101,7 @@ function Header() {
   useEffect(() => {
     const getProduct = async () => {
       try {
-        const response = await axios.get(
-          `http://pvpvpvpvp.gonetis.com:8080/sample/products`
-        );
+        const response = await axios.get(`/sample/products`);
         setProduct(response.data.products);
       } catch (error) {
         console.error(error);

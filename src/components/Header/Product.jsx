@@ -72,33 +72,33 @@ const Currency = styled.span`
   padding: 0.1rem;
 `;
 
-const Product = ({ product, id }) => {
-  const [click, setClick] = useState(false);
-
-  const dispatch = useDispatch();
-  const handleClick = () => {
-    dispatch(addWish({ ...product }));
-    setClick(!click);
-  };
+const Product = ({ image, title, price, id }) => {
   return (
     <Container>
       <Link to={`/products/${id}`}>
         <ImgView>
-          <Image src={product.image} alt={product.product} />
+          <Image src={image} alt={title} />
         </ImgView>
       </Link>
-      <Icon onClick={handleClick}>
-        {click ? <Favorite /> : <FavoriteBorderOutlined />}
+      <Icon>
+        <FavoriteBorderOutlined />
       </Icon>
       <Detail>
-        <ProductTitle>{product.product}</ProductTitle>
+        <ProductTitle>{title}</ProductTitle>
         <PriceView>
-          <ProductPrice>{product.price}</ProductPrice>
+          <ProductPrice>{price}</ProductPrice>
           <Currency>원</Currency>
         </PriceView>
       </Detail>
     </Container>
   );
+};
+
+Product.propTypes = {
+  id: PropTypes.number.isRequired,
+  image: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  price: PropTypes.number.isRequired
 };
 
 export default Product;

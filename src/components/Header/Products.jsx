@@ -1,8 +1,8 @@
-import axios from 'axios';
-import { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
+
+import Product from './Product';
 
 import styled from 'styled-components';
-import Product from './Product';
 import { media } from '../../responsive';
 
 const Container = styled.div`
@@ -20,30 +20,6 @@ const Container = styled.div`
 const Products = ({ cat, filters, sort }) => {
   console.log(cat, filters, sort);
   // TODO
-  const [products, setProduct] = useState([]);
-
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    const fetchUsers = async () => {
-      try {
-        setError(null);
-        setLoading(true);
-        const response = await axios.get(
-          `http://pvpvpvpvp.gonetis.com:8080/sample/products`
-        );
-        // console.log("데이터", response.data.products);
-        setProduct(response.data.products);
-      } catch (error) {
-        setError(error);
-      }
-      setLoading(false);
-    };
-    fetchUsers();
-  }, [cat]);
-
-  // if (!products) return null;
 
   return (
     <Container>

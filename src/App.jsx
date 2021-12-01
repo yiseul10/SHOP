@@ -38,7 +38,9 @@ const App = () => {
         <Route path='/cart/:id?'>
           <Cart />
         </Route>
-
+        <Route path='/checkout'>
+          <CheckOut />
+        </Route>
         <Route path='/wish'>
           <WishList />
         </Route>
