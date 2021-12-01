@@ -1,21 +1,22 @@
-import styled from "styled-components";
-import { media } from "../responsive";
-import { Add, Remove } from "@material-ui/icons";
-import StyledButton from "../components/Button/Button";
+import styled from 'styled-components';
+import { media } from '../responsive';
+import { Add, Remove } from '@material-ui/icons';
+import StyledButton from '../components/Button/Button';
 
-import axios from "axios";
+import axios from 'axios';
+import { useParams } from 'react-router';
+import { Link, withRouter } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+// import { listProductDetails } from '../actions/productActions';
 
-import { useParams, Link } from "react-router-dom";
-import { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { addProducts } from "../store/cart-slice";
-import { useLocation } from "react-router";
+import { addProducts } from '../store/cart-slice';
 
 const Container = styled.div``;
 const Wrapper = styled.div`
   padding: 150px;
   display: flex;
-  ${media({ padding: "0px", flexDirection: "column" })}
+  ${media({ padding: '0px', flexDirection: 'column' })}
 `;
 const ImgContainer = styled.div`
   flex: 1;
@@ -23,13 +24,13 @@ const ImgContainer = styled.div`
 const Image = styled.img`
   height: 100vh;
   object-fit: cover;
-  ${media({ width: "100%" })}
+  ${media({ width: '100%' })}
 `;
 
 const InfoContainer = styled.div`
   flex: 1;
   padding: 0 60px;
-  ${media({ padding: "30px" })}
+  ${media({ padding: '30px' })}
 `;
 
 const Title = styled.div`
@@ -135,14 +136,14 @@ const Info = styled.div`
 
 const Product = () => {
   const dispatch = useDispatch();
-  const [product, setProduct] = useState({});
+  const productDetails = useSelector(state => state.productDetails);
+  const { loading, error, product } = productDetails;
 
   const [quantity, setQuantity] = useState(1);
-  const [color, setColor] = useState("");
-  const [size, setSize] = useState("");
+  const [color, setColor] = useState('');
+  const [size, setSize] = useState('');
 
   const { id } = useParams();
-
   console.log(id);
 
   useEffect(() => {
@@ -151,28 +152,26 @@ const Product = () => {
         const response = await axios.get(
           `http://pvpvpvpvp.gonetis.com:8080/sample/products/${id}`
         );
-        console.log("데이터", response.data.price);
         setProduct(response.data);
-        console.log("product", product.price);
+        console.log(response.data);
       } catch (error) {
         console.error(error);
       }
     };
     getProduct();
   }, [id]);
-  //THINK: if (!product) return null;
 
   const handleQuantity = type => {
-    if (type === "dec") {
+    if (type === 'dec') {
       quantity > 1 && setQuantity(quantity - 1);
     } else {
       setQuantity(quantity + 1);
     }
   };
 
-  const handleClick = () => {
-    dispatch(addProducts({ ...product, quantity, color, size }));
-  };
+  // const handleClick = () => {
+  //   dispatch(addProducts({ ...product, quantity, color, size }));
+  // };
 
   return product.colors === undefined ? null : (
     <Container>
@@ -187,7 +186,12 @@ const Product = () => {
             <Filter>
               <FilterTitle>색상</FilterTitle>
               {product.colors.color.map(c => (
-                <FilterColor color={c} key={c} onClick={() => setColor(c)} />
+                <FilterColor
+                  color={c}
+                  key={c}
+                  value={color}
+                  onClick={() => setColor(c)}
+                />
               ))}
             </Filter>
           </FilterContainer>
@@ -195,16 +199,16 @@ const Product = () => {
             <AmountContainer>
               <Remove
                 style={{ fontSize: 15 }}
-                onClick={() => handleQuantity("dec")}
+                onClick={() => handleQuantity('dec')}
               />
               <Amount>{quantity}</Amount>
               <Add
                 style={{ fontSize: 15 }}
-                onClick={() => handleQuantity("inc")}
+                onClick={() => handleQuantity('inc')}
               />
             </AmountContainer>
             <FilterSize onChange={e => setSize(e.target.value)}>
-              <FilterSizeOption defaultValue="default">
+              <FilterSizeOption defaultValue='default'>
                 사이즈 선택
               </FilterSizeOption>
               {product.sizes.size.map(s => (
@@ -214,16 +218,16 @@ const Product = () => {
           </AddContainer>
           <ButtonHandle>
             <StyledButton
-              onClick={handleClick}
+              // onClick={handleClick}
               style={{
-                backgroundColor: "white",
-                color: "black",
+                backgroundColor: 'white',
+                color: 'black',
                 fontWeight: 600
               }}
             >
               ADD TO CART
             </StyledButton>
-            <Link to="/cart">
+            <Link to='/cart'>
               <StyledButton>바로 구매하기</StyledButton>
             </Link>
           </ButtonHandle>
@@ -245,4 +249,4 @@ const Product = () => {
     </Container>
   );
 };
-export default Product;
+export default withRouter(Product);
