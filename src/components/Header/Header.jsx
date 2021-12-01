@@ -8,7 +8,6 @@ import { IoSearchOutline, IoMenuOutline } from 'react-icons/io5';
 import { Badge } from '@material-ui/core';
 
 import Searchbar from './Searchbar';
-import DropMenu from './DropMenu';
 import SlideNav from './SlideNav';
 import { useSelector } from 'react-redux';
 
@@ -97,15 +96,12 @@ function Header() {
   const handleClick = () => setClick(!click);
   const [showSlide, setShowSlide] = useState(false);
   const handleSlide = () => setShowSlide(!showSlide);
-  const [dropdown, setDropDown] = useState(false);
 
   const [product, setProduct] = useState([]);
   useEffect(() => {
     const getProduct = async () => {
       try {
-        const response = await axios.get(
-          `http://pvpvpvpvp.gonetis.com:8080/sample/products`
-        );
+        const response = await axios.get(`/sample/products`);
         setProduct(response.data.products);
       } catch (error) {
         console.error(error);
@@ -114,7 +110,7 @@ function Header() {
     getProduct();
   }, []);
 
-  // const quantity = useSelector(state => state.cart.quantity);
+  const quantity = useSelector(state => state.cart.quantity);
 
   return (
     <Container>
@@ -128,9 +124,6 @@ function Header() {
           <LeftMenu to='/products'>
             <p>COLLECTION</p>
           </LeftMenu>
-          {/* {product.map(product => (
-            <DropMenu key={product.index} kind={product.kind} />
-          ))} */}
 
           <LeftMenu to='/'>CUSTOM</LeftMenu>
           <LeftMenu to='/review'>REVIEW</LeftMenu>
@@ -154,7 +147,7 @@ function Header() {
             위시리스트
           </MenuHandle>
           <MenuItem to='/cart'>
-            <Badge badgeContent={0} color='error'>
+            <Badge badgeContent={quantity} color='error'>
               <ShoppingCartOutlined />
             </Badge>
           </MenuItem>

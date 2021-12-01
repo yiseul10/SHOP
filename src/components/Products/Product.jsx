@@ -72,7 +72,7 @@ const Currency = styled.span`
   padding: 0.1rem;
 `;
 
-const Product = ({ product, id }) => {
+const Product = ({ product, id, image, title, price }) => {
   const [click, setClick] = useState(false);
 
   const dispatch = useDispatch();
@@ -91,9 +91,7 @@ const Product = ({ product, id }) => {
         {click ? <Favorite /> : <FavoriteBorderOutlined />}
       </Icon>
       <Detail>
-        <Link to={`/products/${id}`}>
-          <ProductTitle>{product.product}</ProductTitle>
-        </Link>
+        <ProductTitle>{product.product}</ProductTitle>
         <PriceView>
           <ProductPrice>{product.price}</ProductPrice>
           <Currency>원</Currency>
