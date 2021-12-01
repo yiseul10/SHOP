@@ -136,7 +136,8 @@ const Info = styled.div`
 
 const Product = () => {
   const dispatch = useDispatch();
-  const [product, setProduct] = useState({});
+  const productDetails = useSelector(state => state.productDetails);
+  const { loading, error, product } = productDetails;
 
   const [quantity, setQuantity] = useState(1);
   const [color, setColor] = useState('');
@@ -168,9 +169,9 @@ const Product = () => {
     }
   };
 
-  const handleClick = () => {
-    dispatch(addProducts({ ...product, quantity, color, size }));
-  };
+  // const handleClick = () => {
+  //   dispatch(addProducts({ ...product, quantity, color, size }));
+  // };
 
   return product.colors === undefined ? null : (
     <Container>
@@ -206,7 +207,7 @@ const Product = () => {
                 onClick={() => handleQuantity('inc')}
               />
             </AmountContainer>
-            <FilterSize onChange={e => setSize(e.target.value)} value={size}>
+            <FilterSize onChange={e => setSize(e.target.value)}>
               <FilterSizeOption defaultValue='default'>
                 사이즈 선택
               </FilterSizeOption>
@@ -217,7 +218,7 @@ const Product = () => {
           </AddContainer>
           <ButtonHandle>
             <StyledButton
-              onClick={handleClick}
+              // onClick={handleClick}
               style={{
                 backgroundColor: 'white',
                 color: 'black',
@@ -226,7 +227,7 @@ const Product = () => {
             >
               ADD TO CART
             </StyledButton>
-            <Link to='/checkout'>
+            <Link to='/cart'>
               <StyledButton>바로 구매하기</StyledButton>
             </Link>
           </ButtonHandle>
