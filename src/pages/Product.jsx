@@ -1,21 +1,21 @@
-import styled from "styled-components";
-import { media } from "../responsive";
-import { Add, Remove } from "@material-ui/icons";
-import StyledButton from "../components/Button/Button";
+import styled from 'styled-components';
+import { media } from '../responsive';
+import { Add, Remove } from '@material-ui/icons';
+import StyledButton from '../components/Button/Button';
 
-import axios from "axios";
+import axios from 'axios';
 
-import { useParams, Link } from "react-router-dom";
-import { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { addProducts } from "../store/cart-slice";
-import { useLocation } from "react-router";
+import { useParams, Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { addProducts } from '../store/cart-slice';
+import { useLocation } from 'react-router';
 
 const Container = styled.div``;
 const Wrapper = styled.div`
   padding: 150px;
   display: flex;
-  ${media({ padding: "0px", flexDirection: "column" })}
+  ${media({ padding: '0px', flexDirection: 'column' })}
 `;
 const ImgContainer = styled.div`
   flex: 1;
@@ -23,13 +23,13 @@ const ImgContainer = styled.div`
 const Image = styled.img`
   height: 100vh;
   object-fit: cover;
-  ${media({ width: "100%" })}
+  ${media({ width: '100%' })}
 `;
 
 const InfoContainer = styled.div`
   flex: 1;
   padding: 0 60px;
-  ${media({ padding: "30px" })}
+  ${media({ padding: '30px' })}
 `;
 
 const Title = styled.div`
@@ -138,8 +138,8 @@ const Product = () => {
   const [product, setProduct] = useState({});
 
   const [quantity, setQuantity] = useState(1);
-  const [color, setColor] = useState("");
-  const [size, setSize] = useState("");
+  const [color, setColor] = useState('');
+  const [size, setSize] = useState('');
 
   const { id } = useParams();
 
@@ -151,9 +151,9 @@ const Product = () => {
         const response = await axios.get(
           `http://pvpvpvpvp.gonetis.com:8080/sample/products/${id}`
         );
-        console.log("데이터", response.data.price);
+        console.log('데이터', response.data.price);
         setProduct(response.data);
-        console.log("product", product.price);
+        console.log('product', product.price);
       } catch (error) {
         console.error(error);
       }
@@ -163,7 +163,7 @@ const Product = () => {
   //THINK: if (!product) return null;
 
   const handleQuantity = type => {
-    if (type === "dec") {
+    if (type === 'dec') {
       quantity > 1 && setQuantity(quantity - 1);
     } else {
       setQuantity(quantity + 1);
@@ -195,16 +195,16 @@ const Product = () => {
             <AmountContainer>
               <Remove
                 style={{ fontSize: 15 }}
-                onClick={() => handleQuantity("dec")}
+                onClick={() => handleQuantity('dec')}
               />
               <Amount>{quantity}</Amount>
               <Add
                 style={{ fontSize: 15 }}
-                onClick={() => handleQuantity("inc")}
+                onClick={() => handleQuantity('inc')}
               />
             </AmountContainer>
             <FilterSize onChange={e => setSize(e.target.value)}>
-              <FilterSizeOption defaultValue="default">
+              <FilterSizeOption defaultValue='default'>
                 사이즈 선택
               </FilterSizeOption>
               {product.sizes.size.map(s => (
@@ -216,14 +216,14 @@ const Product = () => {
             <StyledButton
               onClick={handleClick}
               style={{
-                backgroundColor: "white",
-                color: "black",
+                backgroundColor: 'white',
+                color: 'black',
                 fontWeight: 600
               }}
             >
               ADD TO CART
             </StyledButton>
-            <Link to="/cart">
+            <Link to='/cart'>
               <StyledButton>바로 구매하기</StyledButton>
             </Link>
           </ButtonHandle>

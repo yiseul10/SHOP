@@ -1,18 +1,17 @@
-import React, { useState, useEffect } from "react";
-import styled from "styled-components";
-import { Link } from "react-router-dom";
-import { media } from "../../responsive";
+import React, { useState, useEffect } from 'react';
+import styled from 'styled-components';
+import { Link } from 'react-router-dom';
+import { media } from '../../responsive';
 
-import { ShoppingCartOutlined } from "@material-ui/icons";
-import { IoSearchOutline, IoMenuOutline } from "react-icons/io5";
-import { Badge } from "@material-ui/core";
+import { ShoppingCartOutlined } from '@material-ui/icons';
+import { IoSearchOutline, IoMenuOutline } from 'react-icons/io5';
+import { Badge } from '@material-ui/core';
 
-import Searchbar from "./Searchbar";
-import DropMenu from "./DropMenu";
-import SlideNav from "./SlideNav";
-import { useSelector } from "react-redux";
+import Searchbar from './Searchbar';
+import SlideNav from './SlideNav';
+import { useSelector } from 'react-redux';
 
-import axios from "axios";
+import axios from 'axios';
 
 const Container = styled.div`
   display: flex;
@@ -32,7 +31,7 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  ${media({ padding: "10px 30px" })}
+  ${media({ padding: '10px 30px' })}
 `;
 
 const Left = styled.ul`
@@ -41,7 +40,7 @@ const Left = styled.ul`
   align-items: center;
   justify-content: space-around;
   list-style: none;
-  ${media({ justifyContent: "flex-start" })}
+  ${media({ justifyContent: 'flex-start' })}
 `;
 const Center = styled.div`
   flex: 2;
@@ -50,7 +49,7 @@ const Center = styled.div`
 `;
 const Logo = styled(Link)`
   font-weight: bold;
-  font-family: "Unna", serif;
+  font-family: 'Unna', serif;
   font-size: 33px;
   z-index: 1;
   &:hover {
@@ -63,12 +62,12 @@ const Right = styled.ul`
   display: flex;
   align-items: center;
   justify-content: space-around;
-  ${media({ justifyContent: "flex-end" })}
+  ${media({ justifyContent: 'flex-end' })}
 `;
 const LeftMenu = styled(Link)`
   cursor: pointer;
   padding: 28px 0px;
-  ${media({ display: "none" })}
+  ${media({ display: 'none' })}
 `;
 
 const MenuItem = styled(Link)`
@@ -76,20 +75,20 @@ const MenuItem = styled(Link)`
 `;
 const MenuHandle = styled(Link)`
   cursor: pointer;
-  ${media({ display: "none" })}
+  ${media({ display: 'none' })}
 `;
 const Invisible = styled.div`
   display: none;
   cursor: pointer;
   font-size: 27px;
-  ${media({ display: "inline" })}
+  ${media({ display: 'inline' })}
 `;
 const Search = styled.div`
   cursor: pointer;
   &:hover {
     text-decoration: underline;
   }
-  ${media({ display: "none" })}
+  ${media({ display: 'none' })}
 `;
 
 function Header() {
@@ -97,7 +96,6 @@ function Header() {
   const handleClick = () => setClick(!click);
   const [showSlide, setShowSlide] = useState(false);
   const handleSlide = () => setShowSlide(!showSlide);
-  const [dropdown, setDropDown] = useState(false);
 
   const [product, setProduct] = useState([]);
   useEffect(() => {
@@ -125,36 +123,33 @@ function Header() {
             {showSlide ? <SlideNav /> : null}
           </Invisible>
 
-          <LeftMenu to="/products">
+          <LeftMenu to='/products'>
             <p>COLLECTION</p>
           </LeftMenu>
-          {/* {product.map(product => (
-            <DropMenu key={product.index} kind={product.kind} />
-          ))} */}
 
-          <LeftMenu to="/">CUSTOM</LeftMenu>
-          <LeftMenu to="/review">REVIEW</LeftMenu>
+          <LeftMenu to='/'>CUSTOM</LeftMenu>
+          <LeftMenu to='/review'>REVIEW</LeftMenu>
           <Search onClick={handleClick}>검색</Search>
           {click ? <Searchbar product={product} /> : null}
           <Invisible>
             <IoSearchOutline
               onClick={handleClick}
-              style={{ fontSize: " 21px", marginLeft: "22px" }}
+              style={{ fontSize: ' 21px', marginLeft: '22px' }}
             />
             {click ? <Searchbar /> : null}
           </Invisible>
         </Left>
         <Center>
-          <Logo to="/">SHOP</Logo>
+          <Logo to='/'>SHOP</Logo>
         </Center>
         <Right>
-          <MenuHandle to="/login">LOGIN</MenuHandle>
-          <MenuHandle to="/customerService">고객센터</MenuHandle>
-          <MenuHandle to="/wish" product={product}>
+          <MenuHandle to='/login'>LOGIN</MenuHandle>
+          <MenuHandle to='/customerService'>고객센터</MenuHandle>
+          <MenuHandle to='/wish' product={product}>
             위시리스트
           </MenuHandle>
-          <MenuItem to="/cart">
-            <Badge badgeContent={quantity} color="error">
+          <MenuItem to='/cart'>
+            <Badge badgeContent={quantity} color='error'>
               <ShoppingCartOutlined />
             </Badge>
           </MenuItem>

@@ -1,8 +1,8 @@
-import styled from "styled-components";
-import { Add, Remove } from "@material-ui/icons";
-import StyledButton from "../components/Button/Button";
+import styled from 'styled-components';
+import { Add, Remove } from '@material-ui/icons';
+import StyledButton from '../components/Button/Button';
 
-import { useSelector } from "react-redux";
+import { useSelector } from 'react-redux';
 
 const Container = styled.div`
   padding: 13rem 10rem;
@@ -70,8 +70,8 @@ const SummaryItem = styled.div`
   display: flex;
   justify-content: space-between;
   line-height: 1.5rem;
-  font-weight: ${props => props.type === "total" && "500"};
-  margin-top: ${props => props.type === "total" && "10px"};
+  font-weight: ${props => props.type === 'total' && '500'};
+  margin-top: ${props => props.type === 'total' && '10px'};
 `;
 const SummaryItemText = styled.div`
   padding: 1rem 0rem;
@@ -110,9 +110,9 @@ const Cart = () => {
                 </ProductDetail>
                 <PriceDetail>
                   <AmountContainer>
-                    <Add style={{ fontSize: "13px" }} />
+                    <Add style={{ fontSize: '13px' }} />
                     <ProductAmount>{product.quantity}</ProductAmount>
-                    <Remove style={{ fontSize: "13px" }} />
+                    <Remove style={{ fontSize: '13px' }} />
                   </AmountContainer>
                   <p>{product.price * product.quantity}원</p>
                   <Wish>삭제</Wish>
@@ -137,7 +137,7 @@ const Cart = () => {
             </SummaryItemText>
             <Hr />
             <SummaryItemText>
-              <SummaryItem type="total">
+              <SummaryItem type='total'>
                 <span>합계</span>
                 <span>{cart.total}원</span>
               </SummaryItem>

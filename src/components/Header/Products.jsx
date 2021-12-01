@@ -1,9 +1,9 @@
-import axios from "axios";
-import { useState, useEffect } from "react";
+import axios from 'axios';
+import { useState, useEffect } from 'react';
 
-import styled from "styled-components";
-import Product from "./Product";
-import { media } from "../../responsive";
+import styled from 'styled-components';
+import Product from './Product';
+import { media } from '../../responsive';
 
 const Container = styled.div`
   padding: 30px 50px;
@@ -11,9 +11,9 @@ const Container = styled.div`
   display: flex;
   justify-content: space-between;
   ${media({
-    justifyContent: "center",
-    flexDirection: "column",
-    padding: "50px 30px"
+    justifyContent: 'center',
+    flexDirection: 'column',
+    padding: '50px 30px'
   })}
 `;
 
