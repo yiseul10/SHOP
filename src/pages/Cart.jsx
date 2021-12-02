@@ -1,8 +1,14 @@
 import styled from 'styled-components';
 import { Add, Remove } from '@material-ui/icons';
 import StyledButton from '../components/Button/Button';
+import { Link } from 'react-router-dom';
 
+import { useDispatch } from 'react-redux';
+import React, { useContext } from 'react';
 import { useSelector } from 'react-redux';
+import { addWish } from '../store/wish-slice';
+import ExampleContext from '../components/ExampleContext';
+import { removeProduct } from '../store/cart-slice';
 
 const Container = styled.div`
   padding: 13rem 10rem;
@@ -88,10 +94,29 @@ const Total = styled.div`
 
 const Cart = () => {
   const cart = useSelector(state => state.cart);
-  // const dispatch = useDispatch();
+  const addFlashMessage = useContext(ExampleContext);
+  const dispatch = useDispatch();
+  const [quantity, setQuantity] = useSelector(state => state.cart);
+
   const handleDelete = () => {
-    //   dispatch(removeProducts(id));
+    dispatch(removeProduct({ cart }));
   };
+
+  const handleClick = () => {
+    addFlashMessage('위시리스트에 담겼습니다!');
+    // SOLVEdispatch(addWish({장바구니안에있는 아이템을 전달해주기}));
+    // TODO카트에 있는 아이템수량을 증가하고 감소시키기
+    dispatch(addWish({ cart }));
+  };
+
+  const handleQuantity = type => {
+    if (type === 'dec') {
+      quantity > 1 && setQuantity(quantity - 1);
+    } else {
+      setQuantity(quantity + 1);
+    }
+  };
+
   return (
     <Container>
       <Wrapper>
@@ -111,14 +136,20 @@ const Cart = () => {
                     </div>
                     <div>사이즈: {product.size}</div>
                     <ProductColor color={product.color} />
-                    <Wish>위시리스트로 이동</Wish>
+                    <Wish onClick={handleClick}>위시리스트로 이동</Wish>
                   </Details>
                 </ProductDetail>
                 <PriceDetail>
                   <AmountContainer>
-                    <Add style={{ fontSize: '13px' }} />
+                    <Add
+                      style={{ fontSize: '13px' }}
+                      onClick={() => handleQuantity('inc')}
+                    />
                     <ProductAmount>{product.quantity}</ProductAmount>
-                    <Remove style={{ fontSize: '13px' }} />
+                    <Remove
+                      style={{ fontSize: '13px' }}
+                      onClick={() => handleQuantity('dec')}
+                    />
                   </AmountContainer>
                   <p>{product.price * product.quantity}원</p>
                   <Wish onClick={handleDelete}>삭제</Wish>
@@ -148,8 +179,9 @@ const Cart = () => {
                 <span>{cart.total}원</span>
               </SummaryItem>
             </SummaryItemText>
-
-            <StyledButton>주문결제로 이동</StyledButton>
+            <Link to='/checkout'>
+              <StyledButton>주문결제로 이동</StyledButton>
+            </Link>
           </Total>
         </Right>
       </Wrapper>

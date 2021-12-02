@@ -97,18 +97,20 @@ function Header() {
   const [showSlide, setShowSlide] = useState(false);
   const handleSlide = () => setShowSlide(!showSlide);
 
-  const [product, setProduct] = useState([]);
-  useEffect(() => {
-    const getProduct = async () => {
-      try {
-        const response = await axios.get(`/sample/products`);
-        setProduct(response.data.products);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    getProduct();
-  }, []);
+  // const [product, setProduct] = useState([]);
+  // useEffect(() => {
+  //   const getProduct = async () => {
+  //     try {
+  //       const response = await axios.get(
+  //         `http://pvpvpvpvp.gonetis.com:8080/sample/products`
+  //       );
+  //       setProduct(response.data.products);
+  //     } catch (error) {
+  //       console.error(error);
+  //     }
+  //   };
+  //   getProduct();
+  // }, []);
 
   const quantity = useSelector(state => state.cart.quantity);
 
@@ -128,7 +130,7 @@ function Header() {
           <LeftMenu to='/'>CUSTOM</LeftMenu>
           <LeftMenu to='/review'>REVIEW</LeftMenu>
           <Search onClick={handleClick}>검색</Search>
-          {click ? <Searchbar product={product} /> : null}
+          {click ? <Searchbar /> : null}
           <Invisible>
             <IoSearchOutline
               onClick={handleClick}
@@ -143,9 +145,7 @@ function Header() {
         <Right>
           <MenuHandle to='/login'>LOGIN</MenuHandle>
           <MenuHandle to='/customerService'>고객센터</MenuHandle>
-          <MenuHandle to='/wish' product={product}>
-            위시리스트
-          </MenuHandle>
+          <MenuHandle to='/wish'>위시리스트</MenuHandle>
           <MenuItem to='/cart'>
             <Badge badgeContent={quantity} color='error'>
               <ShoppingCartOutlined />

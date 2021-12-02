@@ -8,8 +8,7 @@ import axios from 'axios';
 import { useParams, Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { addProducts } from '../store/cart-slice';
-import { useLocation } from 'react-router';
+import { addProduct } from '../store/cart-slice';
 
 const Container = styled.div``;
 const Wrapper = styled.div`
@@ -134,16 +133,13 @@ const Info = styled.div`
 `;
 
 const Product = () => {
-  const dispatch = useDispatch();
-  const productDetails = useSelector(state => state.productDetails);
-  const { loading, error, product } = productDetails;
-
+  const { id } = useParams();
+  console.log(id);
+  const [product, setProduct] = useState({});
   const [quantity, setQuantity] = useState(1);
   const [color, setColor] = useState('');
   const [size, setSize] = useState('');
-
-  const { id } = useParams();
-  console.log(id);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const getProduct = async () => {
@@ -153,7 +149,6 @@ const Product = () => {
         );
         console.log('데이터', response.data.price);
         setProduct(response.data);
-        console.log('product', product.price);
       } catch (error) {
         console.error(error);
       }
@@ -169,9 +164,9 @@ const Product = () => {
     }
   };
 
-  // const handleClick = () => {
-  //   dispatch(addProducts({ ...product, quantity, color, size }));
-  // };
+  const handleClick = () => {
+    dispatch(addProduct({ ...product, quantity, color, size }));
+  };
 
   return product.colors === undefined ? null : (
     <Container>
@@ -186,12 +181,7 @@ const Product = () => {
             <Filter>
               <FilterTitle>색상</FilterTitle>
               {product.colors.color.map(c => (
-                <FilterColor
-                  color={c}
-                  key={c}
-                  value={color}
-                  onClick={() => setColor(c)}
-                />
+                <FilterColor color={c} key={c} onClick={() => setColor(c)} />
               ))}
             </Filter>
           </FilterContainer>
@@ -218,7 +208,7 @@ const Product = () => {
           </AddContainer>
           <ButtonHandle>
             <StyledButton
-              // onClick={handleClick}
+              onClick={handleClick}
               style={{
                 backgroundColor: 'white',
                 color: 'black',
@@ -237,7 +227,6 @@ const Product = () => {
             <Details>Details</Details>
             <Details>Care</Details>
             <Details>Etc</Details>
-
             <Info>
               자수/패치만 가능. 가볍지만 따뜻한 소재의 가디건입니다. 코트안에
               착용하거나 환절기 시즌에 단독으로 착용하기 좋습니다. 소재:
@@ -249,4 +238,4 @@ const Product = () => {
     </Container>
   );
 };
-export default withRouter(Product);
+export default Product;
