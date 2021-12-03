@@ -25,14 +25,14 @@ export function SignUpPage() {
       window.alert("모든 값을 정확히 입력해 주세요");
     } else {
       const formdata = new FormData();
-      formdata.append("id", id);
-      formdata.append("name", email);
+      formdata.append("id", email);
+      formdata.append("name", id);
       formdata.append("password", password);
 
       //비동기 통신 POST
       const send = await axios({
         method: "POST",
-        url: `http://pvpvpvpvp.gonetis.com:8080/sample/user-join	`,
+        url: `http://ec2-3-37-117-153.ap-northeast-2.compute.amazonaws.com:8080/shoppingmall/user-join	`,
         data: formdata,
       }).catch((err) => Promise.reject(err));
       console.log(send.data);
