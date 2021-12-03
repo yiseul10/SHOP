@@ -27,7 +27,6 @@ export function MyPageInput({
 }
 
 const Cover = styled.div`
-  display: flex;
   width: 100%;
   padding: 20px;
 `;

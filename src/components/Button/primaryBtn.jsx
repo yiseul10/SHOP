@@ -15,6 +15,7 @@ const Cover = styled.button`
   background-color: #70a1ff;
   font: bold;
   color: #fff;
-  width: 45%;
-  height: 30;
+  width: 50%;
+  height: 38px;
+  margin-bottom: 20px;
 `;
