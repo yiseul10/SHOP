@@ -17,6 +17,7 @@ import {
 } from "pages";
 import { OrderListPage } from "pages/ordeListPage";
 import { OrderReviewPage } from "pages/orderReviewPage";
+import { PasswordSearchPage } from "pages/passwordSearchPage";
 //  page폴더 내의 index파일에 export할 페이지들을 한꺼번에 모아놓고 이 페이지들을 import해줄 때 한줄로 편하게 사용하기위함
 
 export default function Router() {
@@ -26,6 +27,7 @@ export default function Router() {
     <Content>
       <Switch>
         <Route exact path="/" component={Home} />
+        <Route exact path="/passwordsearch" component={PasswordSearchPage} />
         <Route exact path="/products/:id" component={Product} />
         <Route exact path="/products" component={ProductList} />
         <Route exact path="/cart" component={Cart} />
