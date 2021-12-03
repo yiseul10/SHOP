@@ -5,7 +5,7 @@ import { LoginInput } from "components/input";
 import { PrimaryBtn } from "components/Button";
 import axios from "axios";
 
-export function LoginPage({ test }) {
+export function LoginPage({ signup, pwSearch }) {
   const [id, setId] = useState("");
   const [password, setPassword] = useState("");
   const history = useHistory();
@@ -43,7 +43,7 @@ export function LoginPage({ test }) {
       //비동기 통신 POST
       const send = await axios({
         method: "POST",
-        url: `http://pvpvpvpvp.gonetis.com:8080/sample/user-login	`,
+        url: `http://ec2-3-37-117-153.ap-northeast-2.compute.amazonaws.com:8080/shoppingmall/user-login	`,
         data: formdata,
       });
       console.log(send.data);
@@ -55,16 +55,25 @@ export function LoginPage({ test }) {
 
   return (
     <Cover>
-      <LoginInput id="id" label="아이디" onChange={onIdChange} />
+      <LoginInput
+        id="id"
+        onChange={onIdChange}
+        placeholder="이메일을 입력해 주세요"
+      />
       <LoginInput
         id="passowrd"
-        label="비밀번호"
         type="password"
         onChange={onPasswordChange}
+        placeholder="비밀번호를 입력해 주세요"
       />
-      <div>
+      <div className="loginBtn">
         <PrimaryBtn label="로그인" onClick={userData} />
-        <PrimaryBtn label="회원가입" onClick={test} type="button" />
+      </div>
+      <div className="signupBtn">
+        <PrimaryBtn label="회원가입" onClick={signup} type="button" />
+      </div>
+      <div className="passwordSearchBtn">
+        <PrimaryBtn label="비밀번호찾기" onClick={pwSearch} type="button" />
       </div>
     </Cover>
   );
@@ -72,7 +81,11 @@ export function LoginPage({ test }) {
 
 const Cover = styled.div`
   margin-top: 30%;
-  div {
+  width: 80%;
+  .loginBtn {
+    text-align: center;
+  }
+  .signupBtn {
     text-align: center;
   }
 `;

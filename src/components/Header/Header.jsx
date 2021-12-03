@@ -152,7 +152,7 @@ function Header() {
           isVisible={isModalUp}
           isModalClose={isModalDown}
           components={
-            isSwitch ? <SignUpPage /> : <LoginPage test={onSwitchBtn} />
+            isSwitch ? <SignUpPage /> : <LoginPage signup={onSwitchBtn} />
           }
         />
         <Right>

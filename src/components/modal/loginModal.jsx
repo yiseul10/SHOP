@@ -31,8 +31,7 @@ const StyleModal = styled(Modal)`
 `;
 
 const Container = styled.div`
-  position: absolute;
-  right: 30%;
+  position: relative;
   left: 30%;
   top: 10%;
   width: 40%;
@@ -41,4 +40,7 @@ const Container = styled.div`
   border-radius: 20px;
   border: solid 10px #5352ed;
   padding: 16px;
+  div {
+    text-align: center;
+  }
 `;
