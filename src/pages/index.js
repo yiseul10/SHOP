@@ -12,3 +12,4 @@ export { ReviewInsert } from "./ReviewInsert";
 export { MyPage } from "./myPage";
 export { OrderListPage } from "./ordeListPage";
 export { OrderReviewPage } from "./orderReviewPage";
+export { PasswordSearchPage } from "./passwordSearchPage";
