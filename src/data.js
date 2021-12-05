@@ -21,62 +21,30 @@ export const sliderItems = [
     bg: '#F2C94C'
   }
 ];
-export const popularProducts = [
+export const categories = [
   {
     id: 1,
-    img: 'https://d3o2e4jr3mxnm3.cloudfront.net/Mens-Jake-Guitar-Vintage-Crusher-Tee_68382_1_lg.png',
-    title: 'Drawing T-shirts',
-    price: '20,000',
-    currency: 'KRW'
+    img: 'https://images.unsplash.com/photo-1574201635302-388dd92a4c3f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=765&q=80',
+    title: '새로운 점퍼',
+    cat: '아우터'
   },
   {
     id: 2,
-    img: 'https://cdn.shopify.com/s/files/1/0101/4832/products/Angela_Natural_Tee.png?v=1606780388',
-    title: '따뜻한니트',
-    price: '20,000',
-    currency: 'KRW'
+    img: 'https://images.unsplash.com/photo-1619198900795-0db40afaca4e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=768&q=80',
+    title: '후드/맨투맨',
+    cat: '맨투맨/후드/집업'
   },
   {
     id: 3,
-    img: 'https://www.prada.com/content/dam/pradanux_products/U/UCS/UCS319/1YOTF010O/UCS319_1YOT_F010O_S_182_SLF.png',
-    title: '멋진셔츠',
-    price: '20,000',
-    currency: 'KRW'
+    img: 'https://images.unsplash.com/photo-1613243706336-150bf7ec02f4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
+    title: 'T-shirt',
+    cat: '티셔츠/셔츠'
   },
   {
     id: 4,
-    img: 'https://www.burdastyle.com/pub/media/catalog/product/cache/7bd3727382ce0a860b68816435d76e26/107/BUS-PAT-BURTE-1320516/1170x1470_BS_2016_05_132_front.png',
-    title: '멋진셔츠',
-    price: '20,000',
-    currency: 'KRW'
-  },
-  {
-    id: 5,
-    img: 'https://images.ctfassets.net/5gvckmvm9289/3BlDoZxSSjqAvv1jBJP7TH/65f9a95484117730ace42abf64e89572/Noissue-x-Creatsy-Tote-Bag-Mockup-Bundle-_4_-2.png',
-    title: '멋진셔츠',
-    price: '20,000',
-    currency: 'KRW'
-  },
-  {
-    id: 6,
-    img: 'https://d3o2e4jr3mxnm3.cloudfront.net/Rocket-Vintage-Chill-Cap_66374_1_lg.png',
-    title: '멋진셔츠',
-    price: '20,000',
-    currency: 'KRW'
-  },
-  {
-    id: 7,
-    img: '/',
-    title: '멋진셔츠',
-    price: '20,000',
-    kr: 'KRW'
-  },
-  {
-    id: 8,
-    img: 'https://www.pngarts.com/files/3/Women-Jacket-PNG-High-Quality-Image.png',
-    title: '멋진셔츠',
-    price: '20,000',
-    kr: 'KRW'
+    img: 'https://images.unsplash.com/photo-1619575633812-441114700fbd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=765&q=80',
+    title: '사계절 팬츠',
+    cat: '바지'
   }
 ];
 
@@ -92,28 +60,11 @@ export const NavMenu = [
     cName: 'dropdown-link'
   },
   {
-    title: 'SHIRTS',
-    path: '/pants',
-    cName: 'dropdown-link'
-  },
-
-  {
     title: 'PANTS',
     path: '/pants',
     cName: 'dropdown-link'
   },
 
-  {
-    title: 'SHOES',
-    path: '/top',
-    cName: 'dropdown-link'
-  },
-
-  {
-    title: 'ACC',
-    path: '/pants',
-    cName: 'dropdown-link'
-  },
   {
     title: 'SALE',
     path: '/outer',

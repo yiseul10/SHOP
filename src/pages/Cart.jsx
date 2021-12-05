@@ -96,7 +96,6 @@ const Cart = () => {
   const cart = useSelector(state => state.cart);
   const addFlashMessage = useContext(ExampleContext);
   const dispatch = useDispatch();
-  const [quantity, setQuantity] = useSelector(state => state.cart);
 
   const handleDelete = () => {
     dispatch(removeProduct({ cart }));
@@ -109,13 +108,13 @@ const Cart = () => {
     dispatch(addWish({ cart }));
   };
 
-  const handleQuantity = type => {
-    if (type === 'dec') {
-      quantity > 1 && setQuantity(quantity - 1);
-    } else {
-      setQuantity(quantity + 1);
-    }
-  };
+  // const handleQuantity = type => {
+  //   if (type === 'dec') {
+  //     quantity > 1 && setQuantity(quantity - 1);
+  //   } else {
+  //     setQuantity(quantity + 1);
+  //   }
+  // };
 
   return (
     <Container>
@@ -141,15 +140,9 @@ const Cart = () => {
                 </ProductDetail>
                 <PriceDetail>
                   <AmountContainer>
-                    <Add
-                      style={{ fontSize: '13px' }}
-                      onClick={() => handleQuantity('inc')}
-                    />
+                    <Add style={{ fontSize: '13px' }} />
                     <ProductAmount>{product.quantity}</ProductAmount>
-                    <Remove
-                      style={{ fontSize: '13px' }}
-                      onClick={() => handleQuantity('dec')}
-                    />
+                    <Remove style={{ fontSize: '13px' }} />
                   </AmountContainer>
                   <p>{product.price * product.quantity}원</p>
                   <Wish onClick={handleDelete}>삭제</Wish>
