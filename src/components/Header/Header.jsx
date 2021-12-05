@@ -11,8 +11,6 @@ import Searchbar from './Searchbar';
 import SlideNav from './SlideNav';
 import { useSelector } from 'react-redux';
 
-import axios from 'axios';
-
 const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -92,27 +90,12 @@ const Search = styled.div`
 `;
 
 function Header() {
+  const quantity = useSelector(state => state.cart.quantity);
+
   const [click, setClick] = useState(false);
   const handleClick = () => setClick(!click);
   const [showSlide, setShowSlide] = useState(false);
   const handleSlide = () => setShowSlide(!showSlide);
-
-  // const [product, setProduct] = useState([]);
-  // useEffect(() => {
-  //   const getProduct = async () => {
-  //     try {
-  //       const response = await axios.get(
-  //         `http://pvpvpvpvp.gonetis.com:8080/sample/products`
-  //       );
-  //       setProduct(response.data.products);
-  //     } catch (error) {
-  //       console.error(error);
-  //     }
-  //   };
-  //   getProduct();
-  // }, []);
-
-  const quantity = useSelector(state => state.cart.quantity);
 
   return (
     <Container>
@@ -123,7 +106,7 @@ function Header() {
             {showSlide ? <SlideNav /> : null}
           </Invisible>
 
-          <LeftMenu to='/products'>
+          <LeftMenu to={`/products`}>
             <p>COLLECTION</p>
           </LeftMenu>
 

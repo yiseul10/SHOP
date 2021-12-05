@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import { useParams } from 'react-router';
 import styled from 'styled-components';
 
@@ -71,7 +72,9 @@ const Category = styled.div`
 
 const ProductList = () => {
   const { cat } = useParams();
-  console.log(cat);
+  // console.log(cat);
+  // const location = useLocation();
+  // console.log(location);
 
   const [filters, setFilters] = useState({});
   const [sort, setSort] = useState('featured');

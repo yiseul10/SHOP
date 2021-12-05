@@ -16,7 +16,8 @@ const cartSlice = createSlice({
     removeProduct: (state, action) => {
       state.quantity -= 1;
       state.products.pop(action.payload);
-      state.total += action.payload.price * action.payload.quantity;
+      state.total -= action.payload.price * action.payload.quantity;
+      // BUG cart가격삭제
     }
   }
 });

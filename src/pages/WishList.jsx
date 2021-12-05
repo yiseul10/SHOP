@@ -75,12 +75,14 @@ const WishList = ({ product }) => {
         <Left>
           <Title>위시리스트({wish.quantity})</Title>
           {wish.products.map(product => (
-            <>
+            <div key={product.index}>
               <Product>
                 <ProductDetail>
                   <Image src={product.image} />
                   <Details>
-                    <ProductTitle>{product.product}</ProductTitle>
+                    <Link to={`/${product.id}`}>
+                      <ProductTitle>{product.product}</ProductTitle>
+                    </Link>
                     <p>{product.kind}</p>
                   </Details>
                 </ProductDetail>
@@ -90,7 +92,7 @@ const WishList = ({ product }) => {
                 </PriceDetail>
               </Product>
               <Hr />
-            </>
+            </div>
           ))}
         </Left>
       </Wrapper>

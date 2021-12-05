@@ -12,6 +12,7 @@ const Container = styled.div`
 `;
 
 const Categories = () => {
+  // 데이터를 보내줘야하지 않나유?
   return (
     <Container>
       {categories.map(item => (

@@ -4,7 +4,12 @@ import { makeStyles } from '@material-ui/core';
 
 const useStyles = makeStyles(them => ({
   root: {
-    position: 'fixed',
+    // position: 'fixed',
+    bottom: 0,
+    zIndex: 999,
+    left: 0,
+    width: '100%',
+    justifyContent: 'center',
 
     '& .Mui-selected': {
       backgroundColor: 'transparent'
@@ -15,20 +20,25 @@ const useStyles = makeStyles(them => ({
     container: {
       display: 'flex',
       alignItems: 'center',
-      justifyContent: 'center',
-      left: '50%'
+      justifyContent: 'center'
+      // left: '50%'
     }
   }
 }));
 
-const AppPagination = () => {
+const AppPagination = ({ setPage, page }) => {
   const classes = useStyles();
+
+  const handleChange = page => {
+    setPage(page);
+  };
 
   return (
     <div className={classes.container}>
       <div className={classes.root}>
         <Pagination
-          size='small'
+          onChange={e => handleChange(e.target.textContent)}
+          size='large'
           count={5}
           style={{ display: 'flex', justifyContent: 'center' }}
         />

@@ -97,24 +97,15 @@ const Cart = () => {
   const addFlashMessage = useContext(ExampleContext);
   const dispatch = useDispatch();
 
-  const handleDelete = () => {
-    dispatch(removeProduct({ cart }));
-  };
-
   const handleClick = () => {
     addFlashMessage('위시리스트에 담겼습니다!');
     // SOLVEdispatch(addWish({장바구니안에있는 아이템을 전달해주기}));
     // TODO카트에 있는 아이템수량을 증가하고 감소시키기
-    dispatch(addWish({ cart }));
   };
 
-  // const handleQuantity = type => {
-  //   if (type === 'dec') {
-  //     quantity > 1 && setQuantity(quantity - 1);
-  //   } else {
-  //     setQuantity(quantity + 1);
-  //   }
-  // };
+  const handleDelete = () => {
+    dispatch(removeProduct({ cart }));
+  };
 
   return (
     <Container>
@@ -122,20 +113,20 @@ const Cart = () => {
         <Left>
           <Title>쇼핑백({cart.quantity})</Title>
           {cart.products.map(product => (
-            <>
+            <div key={product.index}>
               <Product>
                 <ProductDetail>
                   <Image src={product.image} />
                   <Details>
                     <div>
-                      <Link to={`/product/${product.id}`}>
+                      <Link to={`/${product.id}`}>
                         <b>{product.product}</b>
                       </Link>
                       <p>{product.kind}</p>
                     </div>
                     <div>사이즈: {product.size}</div>
                     <ProductColor color={product.color} />
-                    <Wish onClick={handleClick}>위시리스트로 이동</Wish>
+                    <Wish>위시리스트로 이동</Wish>
                   </Details>
                 </ProductDetail>
                 <PriceDetail>
@@ -149,7 +140,7 @@ const Cart = () => {
                 </PriceDetail>
               </Product>
               <Hr />
-            </>
+            </div>
           ))}
         </Left>
         <Right>

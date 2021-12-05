@@ -23,7 +23,9 @@ import FlashMessage from './components/Message/FlashMessage';
 import ExampleContext from './components/ExampleContext';
 
 import Axios from 'axios';
-Axios.defaults.baseURL = 'http://pvpvpvpvp.gonetis.com:8080/sample';
+
+Axios.defaults.baseURL =
+  'http://ec2-3-37-117-153.ap-northeast-2.compute.amazonaws.com:8080/shoppingmall/products';
 
 const App = () => {
   const [flashMessage, setFlashMessage] = useState([]);
@@ -40,23 +42,23 @@ const App = () => {
         <Header />
         <FlashMessage message={flashMessage} />
         <Switch>
-          <Route exact path='/'>
-            <Home />
-          </Route>
-          <Route path='/products/:id'>
-            <Product />
-          </Route>
-          <Route path='/products'>
-            <ProductList />
-          </Route>
-          <Route path='/checkout'>
-            <CheckOut />
+          <Route exact path='/wish'>
+            <WishList />
           </Route>
           <Route path='/cart'>
             <Cart />
           </Route>
-          <Route path='/wish'>
-            <WishList />
+          <Route path='/products'>
+            <ProductList />
+          </Route>
+          <Route exact path='/:id'>
+            <Product />
+          </Route>
+          <Route path='/checkout'>
+            <CheckOut />
+          </Route>
+          <Route exact path='/'>
+            <Home />
           </Route>
           <Route exact path='/customerService'>
             <CustomerCenter />

@@ -44,6 +44,7 @@ const Desc = styled.div`
 `;
 
 const CategoryItem = ({ item }) => {
+  console.log(item);
   return (
     <Container>
       <Link to={`/${item.cat}`}>

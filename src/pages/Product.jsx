@@ -3,9 +3,9 @@ import { media } from '../responsive';
 import { Add, Remove } from '@material-ui/icons';
 import StyledButton from '../components/Button/Button';
 
+import Axios from 'axios';
 import axios from 'axios';
-
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { addProduct } from '../store/cart-slice';
@@ -134,7 +134,7 @@ const Info = styled.div`
 
 const Product = () => {
   const { id } = useParams();
-  console.log(id);
+
   const [product, setProduct] = useState({});
   const [quantity, setQuantity] = useState(1);
   const [color, setColor] = useState('');
@@ -145,9 +145,9 @@ const Product = () => {
     const getProduct = async () => {
       try {
         const response = await axios.get(
-          `http://pvpvpvpvp.gonetis.com:8080/sample/products/${id}`
+          `http://ec2-3-37-117-153.ap-northeast-2.compute.amazonaws.com:8080/shoppingmall/products/${id}`
         );
-        console.log('데이터', response.data.price);
+        console.log('데이터', response.data);
         setProduct(response.data);
       } catch (error) {
         console.error(error);
