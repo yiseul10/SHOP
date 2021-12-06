@@ -8,7 +8,7 @@ import React, { useContext } from 'react';
 import { useSelector } from 'react-redux';
 import { addWish } from '../store/wish-slice';
 import ExampleContext from '../components/ExampleContext';
-import { removeProduct } from '../store/cart-slice';
+import { addProduct, removeProduct } from '../store/cart-slice';
 
 const Container = styled.div`
   padding: 13rem 10rem;
@@ -106,7 +106,9 @@ const Cart = () => {
   const handleDelete = () => {
     dispatch(removeProduct({ cart }));
   };
-
+  const handleCheckOut = () => {
+    dispatch(addProduct({ cart }));
+  };
   return (
     <Container>
       <Wrapper>
@@ -164,7 +166,9 @@ const Cart = () => {
               </SummaryItem>
             </SummaryItemText>
             <Link to='/checkout'>
-              <StyledButton>주문결제로 이동</StyledButton>
+              <StyledButton onClick={handleCheckOut}>
+                주문결제로 이동
+              </StyledButton>
             </Link>
           </Total>
         </Right>

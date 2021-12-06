@@ -42,6 +42,9 @@ const App = () => {
         <Header />
         <FlashMessage message={flashMessage} />
         <Switch>
+          <Route path='/checkout'>
+            <CheckOut />
+          </Route>
           <Route exact path='/wish'>
             <WishList />
           </Route>
@@ -55,9 +58,7 @@ const App = () => {
           <Route exact path='/:id'>
             <Product />
           </Route>
-          <Route path='/checkout'>
-            <CheckOut />
-          </Route>
+
           <Route exact path='/'>
             <Home />
           </Route>
