@@ -71,10 +71,11 @@ const Category = styled.div`
 `;
 
 const ProductList = () => {
-  const { cat } = useParams();
-  // console.log(cat);
-  // const location = useLocation();
-  // console.log(location);
+  // const { cat } = useParams();
+  // // console.log(cat);
+  const location = useLocation();
+  const cat = location.pathname.split('/')[1];
+  console.log(cat);
 
   const [filters, setFilters] = useState({});
   const [sort, setSort] = useState('featured');

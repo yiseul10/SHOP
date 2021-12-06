@@ -49,6 +49,7 @@ const App = () => {
             <Cart />
           </Route>
           <Route path='/products'>
+            {/* <Route path='/:category'> */}
             <ProductList />
           </Route>
           <Route exact path='/:id'>

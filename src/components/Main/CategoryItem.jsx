@@ -44,10 +44,9 @@ const Desc = styled.div`
 `;
 
 const CategoryItem = ({ item }) => {
-  console.log(item);
   return (
     <Container>
-      <Link to={`/${item.cat}`}>
+      <Link to={`${item.cat}`}>
         <Image src={item.img} />
       </Link>
       <Info>

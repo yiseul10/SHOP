@@ -4,10 +4,11 @@ import { makeStyles } from '@material-ui/core';
 
 const useStyles = makeStyles(them => ({
   root: {
-    // position: 'fixed',
+    position: 'fixed',
     bottom: 0,
-    zIndex: 999,
     left: 0,
+    zIndex: 999,
+    padding: '60px',
     width: '100%',
     justifyContent: 'center',
 
@@ -26,11 +27,12 @@ const useStyles = makeStyles(them => ({
   }
 }));
 
-const AppPagination = ({ setPage, page }) => {
+const AppPagination = ({ setPage, page = 1 }) => {
   const classes = useStyles();
 
   const handleChange = page => {
     setPage(page);
+    window.scroll(0, 0);
   };
 
   return (
@@ -38,8 +40,8 @@ const AppPagination = ({ setPage, page }) => {
       <div className={classes.root}>
         <Pagination
           onChange={e => handleChange(e.target.textContent)}
-          size='large'
-          count={5}
+          size='small'
+          count={8}
           style={{ display: 'flex', justifyContent: 'center' }}
         />
       </div>
