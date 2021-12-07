@@ -89,7 +89,6 @@ const Total = styled.div`
   height: 10vh;
 `;
 
-const RadioLabel = styled.label``;
 const Info = styled.div`
   width: 30%;
   height: 20px;
@@ -113,18 +112,20 @@ const CheckOut = () => {
         <Left>
           <Title>배송주소</Title>
           <Info>
-            <input></input>
+            <form>
+              <input></input>
+            </form>
           </Info>
           <Hr />
           <Title>배송정보</Title>
-          <RadioLabel>
+          <label>
             <Radio type='radio' value='disabled' size='small' disabled />
             우체국택배 | 2 - 3일 소요
-          </RadioLabel>
+          </label>
           <Hr />
           <Title>결제정보</Title>
           <form>
-            <RadioLabel>
+            <label>
               <Radio
                 checked={selectedValue === 'a'}
                 onChange={handleChange}
@@ -135,8 +136,8 @@ const CheckOut = () => {
                 inputProps={{ 'aria-label': 'A' }}
               />
               체크카드/신용카드
-            </RadioLabel>
-            <RadioLabel>
+            </label>
+            <label>
               <Radio
                 checked={selectedValue === 'b'}
                 onChange={handleChange}
@@ -147,7 +148,7 @@ const CheckOut = () => {
                 inputProps={{ 'aria-label': 'B' }}
               />
               간편결제
-            </RadioLabel>
+            </label>
           </form>
           <Hr />
           <Title>주문정보</Title>
