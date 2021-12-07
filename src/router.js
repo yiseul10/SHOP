@@ -14,6 +14,7 @@ import {
   FAQ,
   ReviewInsert,
   MyPage,
+  LoadingPage,
 } from "pages";
 import { OrderListPage } from "pages/ordeListPage";
 import { OrderReviewPage } from "pages/orderReviewPage";
@@ -27,6 +28,7 @@ export default function Router() {
     <Content>
       <Switch>
         <Route exact path="/" component={Home} />
+        <Route exact path="/loading" component={LoadingPage} />
         <Route exact path="/passwordsearch" component={PasswordSearchPage} />
         <Route exact path="/products/:id" component={Product} />
         <Route exact path="/products" component={ProductList} />
