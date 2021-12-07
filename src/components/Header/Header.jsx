@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { media } from "../../responsive";
 import { LoginModal, LoginPage, SignUpPage } from "components/modal";
+import Modal from "react-modal";
 
 import { ShoppingCartOutlined } from "@material-ui/icons";
 import { IoSearchOutline, IoMenuOutline } from "react-icons/io5";
@@ -100,6 +101,15 @@ function Header() {
 
   const [isModalUp, setIsmodalUp] = useState(false);
   const [isSwitch, setIsSwitch] = useState(false);
+
+  const [pwSearchModal, setPwSearchModal] = useState(false);
+
+  function isPwModalOpen() {
+    setPwSearchModal(true);
+  }
+  function isPwModaClose() {
+    setPwSearchModal(false);
+  }
 
   useEffect(() => {
     if (!isModalUp) {
