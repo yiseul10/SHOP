@@ -36,7 +36,7 @@ const Cover = styled.div`
   }
   p {
     height: 20px;
-    width: 20%;
+    width: 22%;
     line-height: 38px;
   }
   /* @media only screen and (max-width: 1000px) {
