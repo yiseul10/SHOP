@@ -51,39 +51,67 @@ const Postcode = () => {
   };
   return (
     <>
-      <input type="text" id="postcode" value={full[0]} placeholder="우편번호" />
-      <input type="button" value="우편번호 찾기" onClick={disablePostCode} />
-      <br />
-      <input
-        type="text"
-        id="roadAddress"
-        value={full[1]}
-        placeholder="도로명주소"
-      />
-      <br />
-      <span id="guide"></span>
-      <input
-        type="text"
-        id="detailAddress"
-        onChange={saveDataAdressDetail}
-        placeholder="상세주소"
-      />
-      <br />
-      {/* <input
+      <AddressCover>
+        <input
+          type="text"
+          id="postcode"
+          value={full[0]}
+          placeholder="우편번호"
+        />
+        <div className="searchBtn">
+          <input
+            type="button"
+            value="우편번호 찾기"
+            onClick={disablePostCode}
+          />
+        </div>
+        <br />
+        <input
+          type="text"
+          id="roadAddress"
+          value={full[1]}
+          placeholder="도로명주소"
+        />
+        <br />
+        <span id="guide"></span>
+        <input
+          type="text"
+          id="detailAddress"
+          onChange={saveDataAdressDetail}
+          placeholder="상세주소"
+        />
+        <br />
+        {/* <input
         type="text"
         id="extraAddress"
         onChange={saveDataAdressExtra}
         placeholder="참고항목"
       /> */}
-      <input
-        type="button"
-        id="sendAdress"
-        onClick={sendDataAddress}
-        value="보내기"
-      />
-      {disable && <DaumPostCode onComplete={handleComplete} />}
+        <br />
+        <br />
+        <br />
+        <div className="submitBtn">
+          <input
+            type="button"
+            id="sendAdress"
+            onClick={sendDataAddress}
+            value="보내기"
+          />
+        </div>
+        {disable && <DaumPostCode onComplete={handleComplete} />}
+      </AddressCover>
     </>
   );
 };
 
 const Cover = styled.div``;
+
+const AddressCover = styled.div`
+  text-align: center;
+  .submitBtn {
+    text-align: right;
+  }
+  .searchBtn {
+    text-align: right;
+  }
+`;
