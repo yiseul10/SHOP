@@ -102,7 +102,6 @@ export function SignUpPage() {
         checked={isIdCheck} //  컴포넌트의 재사용
         errorMsg="중복된 아이디입니다"
       />
-
       <LoginInput
         email="email"
         value={email}
@@ -112,6 +111,7 @@ export function SignUpPage() {
         checked={isEmailCheck} //  컴포넌트의 재사용
         errorMsg="중복된 이메일입니다"
       />
+      <button>중복확인</button>
       <LoginInput
         id="passowrd"
         label="비밀번호"
