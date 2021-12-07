@@ -106,17 +106,15 @@ const Cart = () => {
   const handleDelete = () => {
     dispatch(removeProduct({ cart }));
   };
-  const handleCheckOut = () => {
-    dispatch(addProduct({ cart }));
-  };
+
   return (
     <Container>
       <Wrapper>
         <Left>
           <Title>쇼핑백({cart.quantity})</Title>
           {cart.products.map(product => (
-            <div key={product.index}>
-              <Product>
+            <div>
+              <Product key={product.index}>
                 <ProductDetail>
                   <Image src={product.image} />
                   <Details>
@@ -166,9 +164,7 @@ const Cart = () => {
               </SummaryItem>
             </SummaryItemText>
             <Link to='/checkout'>
-              <StyledButton onClick={handleCheckOut}>
-                주문결제로 이동
-              </StyledButton>
+              <StyledButton>주문결제로 이동</StyledButton>
             </Link>
           </Total>
         </Right>

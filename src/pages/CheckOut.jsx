@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import StyledButton from '../components/Button/Button';
-import { Link } from 'react-router-dom';
-import { Radio, TextField } from '@material-ui/core';
+
+import { Radio } from '@material-ui/core';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { addProduct } from '../store/cart-slice';
 
 const Container = styled.div`
   padding: 13rem 10rem;
@@ -197,9 +196,8 @@ const CheckOut = () => {
                 <span>{cart.total}원</span>
               </SummaryItem>
             </SummaryItemText>
-            <Link to='/'>
-              <StyledButton>주문</StyledButton>
-            </Link>
+
+            <StyledButton>주문</StyledButton>
           </Total>
         </Right>
       </Wrapper>

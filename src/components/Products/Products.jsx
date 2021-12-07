@@ -68,7 +68,7 @@ const Products = ({ cat, filters, sort }) => {
             product={product}
             kind={product.kind}
             image={product.image}
-            key={product.id}
+            key={product.index}
             id={product.productNumber}
             product={product.product}
             price={product.price}
