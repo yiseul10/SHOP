@@ -12,10 +12,10 @@ export function PrimaryBtn({ label, onClick, type = "button" }) {
 const Cover = styled.button`
   border: none;
   border-radius: 10px;
-  background-color: #70a1ff;
+  background-color: #2f3542;
   font: bold;
   color: #fff;
-  width: 50%;
+  width: 73%;
   height: 38px;
   margin-bottom: 20px;
 `;
