@@ -21,9 +21,9 @@ export function LoginModal({ isVisible, isModalClose, components }) {
 }
 
 const StyleModal = styled(Modal)`
-  position: fixed;
+  position: absolute;
   width: 100%;
-  height: 100vh;
+  height: 100%;
   background-color: rgba(29, 49, 65, 0.8);
   overflow-x: hidden;
   overflow-y: auto;
@@ -31,16 +31,19 @@ const StyleModal = styled(Modal)`
 `;
 
 const Container = styled.div`
-  position: relative;
-  left: 30%;
-  top: 10%;
-  width: 40%;
-  height: 80%;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  width: 520px;
+  height: 600px;
   background-color: #fff;
   border-radius: 20px;
-  border: solid 10px #5352ed;
+  border: solid 5px#2C3A47;
   padding: 16px;
   div {
-    text-align: center;
+    text-align: right;
   }
 `;
