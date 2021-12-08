@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Favorite, FavoriteBorderOutlined } from '@material-ui/icons';
 import styled from 'styled-components';
 import { media } from '../../responsive';
@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 
 import { useDispatch } from 'react-redux';
 import { addWish } from '../../store/wish-slice';
+import ExampleContext from '../ExampleContext';
 
 const Container = styled.div`
   position: relative;
@@ -72,17 +73,20 @@ const Currency = styled.span`
   padding: 0.1rem;
 `;
 
-const Product = ({ product, id }) => {
+const Product = ({ id, ...product }) => {
   const [click, setClick] = useState(false);
+  const addFlashMessage = useContext(ExampleContext);
 
   const dispatch = useDispatch();
   const handleClick = () => {
+    addFlashMessage('위시리스트에 담겼습니다!');
     dispatch(addWish({ ...product }));
     setClick(!click);
   };
+
   return (
     <Container>
-      <Link to={`/products/${id}`}>
+      <Link to={`/${id}`}>
         <ImgView>
           <Image src={product.image} alt={product.product} />
         </ImgView>
@@ -91,9 +95,7 @@ const Product = ({ product, id }) => {
         {click ? <Favorite /> : <FavoriteBorderOutlined />}
       </Icon>
       <Detail>
-        <Link to={`/products/${id}`}>
-          <ProductTitle>{product.product}</ProductTitle>
-        </Link>
+        <ProductTitle>{product.product}</ProductTitle>
         <PriceView>
           <ProductPrice>{product.price}</ProductPrice>
           <Currency>원</Currency>

@@ -1,14 +1,10 @@
+import React, { useState } from 'react';
 import styled from 'styled-components';
-import { Add, Remove } from '@material-ui/icons';
 import StyledButton from '../components/Button/Button';
-import { Link } from 'react-router-dom';
 
-import { useDispatch } from 'react-redux';
-import React, { useContext } from 'react';
-import { useSelector } from 'react-redux';
-import { addWish } from '../store/wish-slice';
-import ExampleContext from '../components/ExampleContext';
-import { addProduct, removeProduct } from '../store/cart-slice';
+import { Radio } from '@material-ui/core';
+
+import { useDispatch, useSelector } from 'react-redux';
 
 const Container = styled.div`
   padding: 13rem 10rem;
@@ -29,7 +25,7 @@ const ProductDetail = styled.div`
   display: flex;
 `;
 const Image = styled.img`
-  width: 170px;
+  width: 100px;
 `;
 const Details = styled.div`
   padding: 1rem;
@@ -39,6 +35,7 @@ const Details = styled.div`
 `;
 const Title = styled.div`
   font-weight: 500;
+  padding: 20px 0px;
 `;
 const ProductColor = styled.div`
   width: 15px;
@@ -92,51 +89,88 @@ const Total = styled.div`
   height: 10vh;
 `;
 
-const Cart = () => {
-  const cart = useSelector(state => state.cart);
-  const addFlashMessage = useContext(ExampleContext);
+const Info = styled.div`
+  width: 30%;
+  height: 20px;
+  padding: 10px;
+  position: relative;
+`;
+
+const CheckOut = () => {
   const dispatch = useDispatch();
+  const cart = useSelector(state => state.cart);
 
-  const handleClick = () => {
-    addFlashMessage('위시리스트에 담겼습니다!');
-    // SOLVEdispatch(addWish({장바구니안에있는 아이템을 전달해주기}));
-    // TODO카트에 있는 아이템수량을 증가하고 감소시키기
-  };
+  const [selectedValue, setSelectedValue] = useState('a');
 
-  const handleDelete = () => {
-    dispatch(removeProduct({ cart }));
+  const handleChange = event => {
+    setSelectedValue(event.target.value);
   };
 
   return (
     <Container>
       <Wrapper>
         <Left>
-          <Title>쇼핑백({cart.quantity})</Title>
+          <Title>배송주소</Title>
+          <Info>
+            <form>
+              <input></input>
+            </form>
+          </Info>
+          <Hr />
+          <Title>배송정보</Title>
+          <label>
+            <Radio type='radio' value='disabled' size='small' disabled />
+            우체국택배 | 2 - 3일 소요
+          </label>
+          <Hr />
+          <Title>결제정보</Title>
+          <form>
+            <label>
+              <Radio
+                checked={selectedValue === 'a'}
+                onChange={handleChange}
+                color='default'
+                size='small'
+                value='a'
+                name='radio-buttons'
+                inputProps={{ 'aria-label': 'A' }}
+              />
+              체크카드/신용카드
+            </label>
+            <label>
+              <Radio
+                checked={selectedValue === 'b'}
+                onChange={handleChange}
+                color='default'
+                size='small'
+                value='b'
+                name='radio-buttons'
+                inputProps={{ 'aria-label': 'B' }}
+              />
+              간편결제
+            </label>
+          </form>
+          <Hr />
+          <Title>주문정보</Title>
           {cart.products.map(product => (
-            <div>
-              <Product key={product.index}>
+            <div key={product.index}>
+              <Product>
                 <ProductDetail>
                   <Image src={product.image} />
                   <Details>
                     <div>
-                      <Link to={`/${product.id}`}>
-                        <b>{product.product}</b>
-                      </Link>
+                      <b>{product.product}</b>
                       <p>{product.kind}</p>
                     </div>
                     <div>사이즈: {product.size}</div>
                     <ProductColor color={product.color} />
-                    <Wish>위시리스트로 이동</Wish>
                   </Details>
                 </ProductDetail>
                 <PriceDetail>
                   <AmountContainer>
-                    <Add style={{ fontSize: '13px' }} />
                     <ProductAmount>{product.quantity}</ProductAmount>
-                    <Remove style={{ fontSize: '13px' }} />
                   </AmountContainer>
                   <p>{product.price * product.quantity}원</p>
-                  <Wish onClick={handleDelete}>삭제</Wish>
                 </PriceDetail>
               </Product>
               <Hr />
@@ -144,7 +178,7 @@ const Cart = () => {
           ))}
         </Left>
         <Right>
-          <Title>결제 </Title>
+          <Title>결제확인</Title>
           <Total>
             <SummaryItemText>
               <SummaryItem>
@@ -163,9 +197,8 @@ const Cart = () => {
                 <span>{cart.total}원</span>
               </SummaryItem>
             </SummaryItemText>
-            <Link to='/checkout'>
-              <StyledButton>주문결제로 이동</StyledButton>
-            </Link>
+
+            <StyledButton>주문</StyledButton>
           </Total>
         </Right>
       </Wrapper>
@@ -173,4 +206,4 @@ const Cart = () => {
   );
 };
 
-export default Cart;
+export default CheckOut;

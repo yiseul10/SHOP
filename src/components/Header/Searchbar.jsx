@@ -1,6 +1,9 @@
-import React, { useState, useEffect } from "react";
-import styled from "styled-components";
-import { BsArrowRight } from "react-icons/bs";
+import React, { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+
+import styled from 'styled-components';
+import { BsArrowRight } from 'react-icons/bs';
+import { fetchProducts } from '../../store/api-call';
 
 const Container = styled.div`
   width: 100%;
@@ -19,7 +22,7 @@ const Container = styled.div`
     display: none;
   }
 `;
-const InputHandle = styled.form`
+const InputForm = styled.form`
   border-top: 0.1px solid rgba(0, 0, 0, 0.3);
   text-align: center;
   display: flex;
@@ -41,28 +44,34 @@ const SearchIcon = styled.button`
   background-color: transparent;
   border: none;
 `;
-const Searchbar = ({ product }) => {
-  const [keyword, setKeyword] = useState("");
-  const onChange = e => setKeyword(e.target.value);
-  useEffect(() => {
-    if (keyword !== "") {
-    }
-  }, [keyword]);
-  console.log(keyword);
+const Searchbar = () => {
+  const [keyword, setKeyword] = useState('');
+  const dispatch = useDispatch();
+  // useEffect(() => {
+  //   if (keyword !== "") {
+  //   }
+  // }, [keyword]);
+
+  const submitHandler = e => {
+    e.preventDefault();
+    console.log(keyword);
+    dispatch(fetchProducts(keyword));
+    setKeyword('');
+  };
 
   return (
     <Container>
-      <InputHandle>
+      <InputForm onSubmit={submitHandler}>
         <SearchInput
-          onChange={onChange}
+          onChange={e => setKeyword(e.target.value)}
           value={keyword}
-          type="search"
-          placeholder="search store..."
+          type='search'
+          placeholder='search store...'
         ></SearchInput>
         <SearchIcon>
           <BsArrowRight />
         </SearchIcon>
-      </InputHandle>
+      </InputForm>
     </Container>
   );
 };

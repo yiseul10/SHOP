@@ -1,7 +1,8 @@
-import styled from "styled-components";
-import { Link } from "react-router-dom";
+import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from 'react-redux';
+import { removeWish } from '../store/wish-slice';
 
 const Container = styled.div`
   padding: 13rem 17rem;
@@ -62,28 +63,36 @@ const ProductTitle = styled(Link)`
 
 const WishList = ({ product }) => {
   const wish = useSelector(state => state.wish);
+  const dispatch = useDispatch();
+
+  const handleDelete = () => {
+    dispatch(removeWish({ wish }));
+  };
+
   return (
     <Container>
       <Wrapper>
         <Left>
           <Title>위시리스트({wish.quantity})</Title>
           {wish.products.map(product => (
-            <>
+            <div key={product.index}>
               <Product>
                 <ProductDetail>
                   <Image src={product.image} />
                   <Details>
-                    <ProductTitle>{product.product}</ProductTitle>
+                    <Link to={`/${product.id}`}>
+                      <ProductTitle>{product.product}</ProductTitle>
+                    </Link>
                     <p>{product.kind}</p>
                   </Details>
                 </ProductDetail>
                 <PriceDetail>
                   <p>{product.price}원</p>
-                  <Delete>삭제</Delete>
+                  <Delete onClick={handleDelete}>삭제</Delete>
                 </PriceDetail>
               </Product>
               <Hr />
-            </>
+            </div>
           ))}
         </Left>
       </Wrapper>

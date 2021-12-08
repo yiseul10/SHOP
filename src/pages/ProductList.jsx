@@ -1,9 +1,10 @@
-import React, { useState } from "react";
-import { useParams } from "react-router";
-import styled from "styled-components";
+import React, { useState } from 'react';
+import { useLocation } from 'react-router-dom';
+import { useParams } from 'react-router';
+import styled from 'styled-components';
 
-import Products from "../components/Header/Products";
-import { media } from "../responsive";
+import Products from '../components/Products/Products';
+import { media } from '../responsive';
 
 const Container = styled.div``;
 const Wrapper = styled.div`
@@ -11,8 +12,8 @@ const Wrapper = styled.div`
   width: 100%;
   grid-template-columns: 250px 1fr 50px;
   ${media({
-    display: "block",
-    flexDirection: "space-between"
+    display: 'block',
+    flexDirection: 'space-between'
   })}
 `;
 
@@ -22,8 +23,8 @@ const FilterContainer = styled.div`
   letter-spacing: -0.5px;
 
   ${media({
-    flexDirection: "row",
-    borderBottom: "0.5px solid grey"
+    flexDirection: 'row',
+    borderBottom: '0.5px solid grey'
   })}
 `;
 const Filter = styled.div`
@@ -34,16 +35,16 @@ const Filter = styled.div`
   font-weight: 600;
   margin-top: 40px;
   ${media({
-    padding: "20px",
-    flexDirection: "space-between",
-    marginTop: "0"
+    padding: '20px',
+    flexDirection: 'space-between',
+    marginTop: '0'
   })}
 `;
 const VerticalLine = styled.div`
   ${media({
-    borderRight: "0.1px solid grey",
-    width: "0.1px",
-    height: "110px"
+    borderRight: '0.1px solid grey',
+    width: '0.1px',
+    height: '110px'
   })}
 `;
 const FilterText = styled.span``;
@@ -53,7 +54,7 @@ const Select = styled.select`
   margin: 10px 0;
   border: none;
   font-size: 11px;
-  ${media({ display: "flex" })}
+  ${media({ display: 'flex' })}
 `;
 const Option = styled.option``;
 const Category = styled.div`
@@ -61,20 +62,23 @@ const Category = styled.div`
   text-decoration: underline;
   padding: 150px 30px 50px 50px;
   ${media({
-    borderBottom: "0.5px solid grey",
-    textAlign: "center",
-    height: "100%",
-    padding: "10px",
-    fontSize: "18px"
+    borderBottom: '0.5px solid grey',
+    textAlign: 'center',
+    height: '100%',
+    padding: '10px',
+    fontSize: '18px'
   })}
 `;
 
 const ProductList = () => {
-  const { cat } = useParams();
+  // const { cat } = useParams();
+  // // console.log(cat); split[2] cat로 되면 전체데이터가 들어오지 않음
+  const location = useLocation();
+  const cat = location.pathname.split('/')[1];
   console.log(cat);
 
   const [filters, setFilters] = useState({});
-  const [sort, setSort] = useState("featured");
+  const [sort, setSort] = useState('featured');
 
   const handleFilters = e => {
     const value = e.target.value;
@@ -83,7 +87,8 @@ const ProductList = () => {
       [e.target.name]: value
     });
   };
-  console.log(filters);
+
+  // console.log(filters);
 
   return (
     <Container>
@@ -97,15 +102,15 @@ const ProductList = () => {
               onChange={e => setSort(e.target.value)}
               style={{ marginBottom: 20 }}
             >
-              <Option value="featured">Featured</Option>
-              <Option value="asc">높은 가격순</Option>
-              <Option value="desc">낮은 가격순</Option>
+              <Option value='featured'>Featured</Option>
+              <Option value='asc'>높은 가격순</Option>
+              <Option value='desc'>낮은 가격순</Option>
             </Select>
           </Filter>
           <VerticalLine></VerticalLine>
           <Filter>
             <FilterText>전체 카테고리</FilterText>
-            <Select name="color" onChange={handleFilters}>
+            <Select name='color' onChange={handleFilters}>
               <Option>Color</Option>
               <Option>White</Option>
               <Option>Black</Option>
@@ -114,7 +119,7 @@ const ProductList = () => {
               <Option>Yellow</Option>
               <Option>Green</Option>
             </Select>
-            <Select name="size" onChange={handleFilters}>
+            <Select name='size' onChange={handleFilters}>
               <Option>Size</Option>
               <Option>XS</Option>
               <Option>S</Option>

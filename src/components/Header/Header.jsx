@@ -8,11 +8,8 @@ import { IoSearchOutline, IoMenuOutline } from 'react-icons/io5';
 import { Badge } from '@material-ui/core';
 
 import Searchbar from './Searchbar';
-import DropMenu from './DropMenu';
 import SlideNav from './SlideNav';
 import { useSelector } from 'react-redux';
-
-import axios from 'axios';
 
 const Container = styled.div`
   display: flex;
@@ -93,28 +90,12 @@ const Search = styled.div`
 `;
 
 function Header() {
+  const quantity = useSelector(state => state.cart.quantity);
+
   const [click, setClick] = useState(false);
   const handleClick = () => setClick(!click);
   const [showSlide, setShowSlide] = useState(false);
   const handleSlide = () => setShowSlide(!showSlide);
-  const [dropdown, setDropDown] = useState(false);
-
-  const [product, setProduct] = useState([]);
-  useEffect(() => {
-    const getProduct = async () => {
-      try {
-        const response = await axios.get(
-          `http://pvpvpvpvp.gonetis.com:8080/sample/products`
-        );
-        setProduct(response.data.products);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    getProduct();
-  }, []);
-
-  // const quantity = useSelector(state => state.cart.quantity);
 
   return (
     <Container>
@@ -125,17 +106,14 @@ function Header() {
             {showSlide ? <SlideNav /> : null}
           </Invisible>
 
-          <LeftMenu to='/products'>
+          <LeftMenu to={`/products`}>
             <p>COLLECTION</p>
           </LeftMenu>
-          {/* {product.map(product => (
-            <DropMenu key={product.index} kind={product.kind} />
-          ))} */}
 
           <LeftMenu to='/'>CUSTOM</LeftMenu>
           <LeftMenu to='/review'>REVIEW</LeftMenu>
           <Search onClick={handleClick}>검색</Search>
-          {click ? <Searchbar product={product} /> : null}
+          {click ? <Searchbar /> : null}
           <Invisible>
             <IoSearchOutline
               onClick={handleClick}
@@ -150,11 +128,9 @@ function Header() {
         <Right>
           <MenuHandle to='/login'>LOGIN</MenuHandle>
           <MenuHandle to='/customerService'>고객센터</MenuHandle>
-          <MenuHandle to='/wish' product={product}>
-            위시리스트
-          </MenuHandle>
+          <MenuHandle to='/wish'>위시리스트</MenuHandle>
           <MenuItem to='/cart'>
-            <Badge badgeContent={0} color='error'>
+            <Badge badgeContent={quantity} color='error'>
               <ShoppingCartOutlined />
             </Badge>
           </MenuItem>
