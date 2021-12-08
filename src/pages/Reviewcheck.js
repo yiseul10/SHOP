@@ -23,7 +23,7 @@ export default function Reviewcheck() {
                 // loading 상태를 true 로 바꿉니다.
                 setLoading(true);
                 const response = await axios.get(
-                    'http://pvpvpvpvp.gonetis.com:8080/sample/reviews'
+                    'http://ec2-3-37-117-153.ap-northeast-2.compute.amazonaws.com:8080/shoppingmall/reviews'
                 );
                 setUsers(response.data); // 데이터는 response.data 안에 들어있습니다.
             } catch (e) {

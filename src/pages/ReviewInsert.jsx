@@ -87,7 +87,7 @@ font-size: 1rem;
 
         addCustomer() {
 
-            const url = 'http://pvpvpvpvp.gonetis.com:8080/sample/reviews';
+            const url = 'http://ec2-3-37-117-153.ap-northeast-2.compute.amazonaws.com:8080/shoppingmall/reviews';
 
             const formData = new FormData();
 
@@ -108,7 +108,7 @@ font-size: 1rem;
                 }
 
             }
-
+                            
             return post(url, formData, config)
 
         }

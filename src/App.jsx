@@ -20,6 +20,7 @@ import ReviewUpdate from "./pages/ReviewUpdate";
 import Reviewcheck from "./pages/Reviewcheck";
 
 const App = () => {
+
     const user = true;
     return (
         <BrowserRouter>
@@ -47,7 +48,8 @@ const App = () => {
                 <Route exact="exact" path="/review">
                     <Review/>
                 </Route>
-
+=======
+  
 
                 <Route exact="exact" path="/customerService">
                     <CustomerCenter/>
