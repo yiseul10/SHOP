@@ -2,8 +2,14 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { media } from "../../responsive";
-import { LoginModal, LoginPage, SignUpPage } from "components/modal";
+import {
+  LoginModal,
+  LoginPage,
+  SignUpPage,
+  pwSearchModal,
+} from "components/modal";
 import Modal from "react-modal";
+import { useHistory } from "react-router-dom";
 
 import { ShoppingCartOutlined } from "@material-ui/icons";
 import { IoSearchOutline, IoMenuOutline } from "react-icons/io5";
@@ -64,6 +70,12 @@ const Right = styled.ul`
   align-items: center;
   justify-content: space-around;
   ${media({ justifyContent: "flex-end" })}
+  cursor: pointer;
+  .login {
+    &:hover {
+      text-decoration: underline;
+    }
+  }
 `;
 const LeftMenu = styled(Link)`
   cursor: pointer;
@@ -92,6 +104,7 @@ const Search = styled.div`
   ${media({ display: "none" })}
 `;
 function Header() {
+  const history = useHistory();
   const [click, setClick] = useState(false);
   const handleClick = () => setClick(!click);
   const [showSlide, setShowSlide] = useState(false);
@@ -101,15 +114,6 @@ function Header() {
 
   const [isModalUp, setIsmodalUp] = useState(false);
   const [isSwitch, setIsSwitch] = useState(false);
-
-  const [pwSearchModal, setPwSearchModal] = useState(false);
-
-  function isPwModalOpen() {
-    setPwSearchModal(true);
-  }
-  function isPwModaClose() {
-    setPwSearchModal(false);
-  }
 
   useEffect(() => {
     if (!isModalUp) {
@@ -127,6 +131,11 @@ function Header() {
 
   function onSwitchBtn() {
     setIsSwitch(true);
+  }
+
+  function onPwSearchClick() {
+    setIsmodalUp(false);
+    history.push("passwordsearch");
   }
 
   return (
@@ -162,11 +171,18 @@ function Header() {
           isVisible={isModalUp}
           isModalClose={isModalDown}
           components={
-            isSwitch ? <SignUpPage /> : <LoginPage signup={onSwitchBtn} />
+            isSwitch ? (
+              <SignUpPage />
+            ) : (
+              <LoginPage signup={onSwitchBtn} onPwSearchBtn={onPwSearchClick} />
+            )
           }
         />
+
         <Right>
-          <div onClick={isModalOpen}>로그인</div>
+          <div className="login" onClick={isModalOpen}>
+            로그인
+          </div>
           <MenuHandle to="/customerService">고객센터</MenuHandle>
           <MenuHandle to="/">위시리스트</MenuHandle>
           <MenuItem to="/cart">
