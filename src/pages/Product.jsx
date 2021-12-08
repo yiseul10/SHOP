@@ -144,9 +144,7 @@ const Product = () => {
   useEffect(() => {
     const getProduct = async () => {
       try {
-        const response = await axios.get(
-          `http://ec2-3-37-117-153.ap-northeast-2.compute.amazonaws.com:8080/shoppingmall/products/${id}`
-        );
+        const response = await Axios.get(`/${id}`);
         console.log('데이터', response.data);
         setProduct(response.data);
       } catch (error) {

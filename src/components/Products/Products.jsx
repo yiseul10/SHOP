@@ -45,10 +45,8 @@ const Products = ({ cat, filters, sort }) => {
       try {
         setError(null);
         setLoading(true);
-        const response = await axios.get(
-          cat
-            ? `http://ec2-3-37-117-153.ap-northeast-2.compute.amazonaws.com:8080/shoppingmall/products?page=${page}&count=30`
-            : `http://ec2-3-37-117-153.ap-northeast-2.compute.amazonaws.com:8080/shoppingmall/products?page=1&kind=${cat}`
+        const response = await Axios.get(
+          cat ? `?page=${page}&count=30` : `?page=1&kind=${cat}`
         );
         console.log('데이터', response.data.products);
         setProduct(response.data.products);
