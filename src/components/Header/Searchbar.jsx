@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+
 import styled from 'styled-components';
 import { BsArrowRight } from 'react-icons/bs';
+import { fetchProducts } from '../../store/api-call';
 
 const Container = styled.div`
   width: 100%;
@@ -41,9 +44,9 @@ const SearchIcon = styled.button`
   background-color: transparent;
   border: none;
 `;
-const Searchbar = ({ product }) => {
+const Searchbar = () => {
   const [keyword, setKeyword] = useState('');
-
+  const dispatch = useDispatch();
   // useEffect(() => {
   //   if (keyword !== "") {
   //   }
@@ -52,6 +55,8 @@ const Searchbar = ({ product }) => {
   const submitHandler = e => {
     e.preventDefault();
     console.log(keyword);
+    dispatch(fetchProducts(keyword));
+    setKeyword('');
   };
 
   return (
