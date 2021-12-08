@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { media } from "../../responsive";
-import { useParams } from "react-router";
 
 const LeftMenu = styled.div`
   padding: 0px;
@@ -19,12 +18,13 @@ const DropDown = styled.div`
 `;
 const DropDownContent = styled.div`
   display: none;
+
   position: absolute;
   background-color: white;
   left: 0rem;
-  top: 4.4rem;
+  top: 4.7rem;
   min-width: 100%;
-  height: 120px;
+  height: 110px;
   box-shadow: 0px 1rem 0.3rem -1rem rgba(0, 0, 0, 0.1);
   transition: all 10s ease-in-out;
   ${media({ display: "inline", marginTop: "-30px", boxShadow: "none" })}
@@ -57,51 +57,23 @@ const LineDiv = styled.div`
   border-bottom: 3px solid black;
   ${media({ display: "none" })}
 `;
-const DropMenu = () => {
-  const { id } = useParams();
-  console.log(id);
-  // const [cats, setCats] = useState([]);
-  // const [loading, setLoading] = useState(false);
-  // const [error, setError] = useState(null);
-
-  // useEffect(() => {
-  //   const fetchUsers = async () => {
-  //     try {
-  //       setError(null);
-  //       setLoading(true);
-  //       const response = await axios.get(
-  //         `http://pvpvpvpvp.gonetis.com:8080/sample/products?kind=${id}`
-  //       );
-  //       console.log("데이터", response.data.products);
-  //       setProduct(response.data.products);
-  //     } catch (error) {
-  //       setError(error);
-  //     }
-  //     setLoading(false);
-  //   };
-  //   fetchUsers();
-  // }, []);
-
-  // if (!products) return null;
-
+const DropMenu = ({ kind }) => {
   return (
     <DropDown>
-      <LeftMenu>COLLECTION</LeftMenu>
+      <LeftMenu></LeftMenu>
       <DropDownContent className="dropdown-content">
         <GridContainer>
           <LineDiv></LineDiv>
+
           <DownContentLink
             style={{ marginTop: "30px" }}
             to={`/products?kind=아우터`}
           >
-            Outer
+            OUTER
           </DownContentLink>
-          <DownContentLink to="/">Top</DownContentLink>
-          <DownContentLink to="/">Pants</DownContentLink>
-          <DownContentLink to="/">Acc</DownContentLink>
-          <DownContentLink to="/">Shirts</DownContentLink>
-          <DownContentLink to="/">Life</DownContentLink>
-          <DownContentLink to="/">Sale</DownContentLink>
+          <DownContentLink to="/">PANTS</DownContentLink>
+          <DownContentLink to="/">T-SHIRT</DownContentLink>
+          <DownContentLink to="/">TOP</DownContentLink>
         </GridContainer>
       </DropDownContent>
     </DropDown>
