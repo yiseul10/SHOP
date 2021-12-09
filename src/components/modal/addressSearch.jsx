@@ -108,6 +108,7 @@ const Cover = styled.div``;
 
 const AddressCover = styled.div`
   text-align: center;
+
   .submitBtn {
     text-align: right;
   }
