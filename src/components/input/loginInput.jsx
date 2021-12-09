@@ -10,6 +10,9 @@ export function LoginInput({
   value,
   checked = true,
   errorMsg,
+  btn = false,
+  btnName,
+  btnClick,
 }) {
   return (
     <Cover msgDisplay={checked}>
@@ -20,6 +23,7 @@ export function LoginInput({
         value={value}
         placeholder={placeholder}
       />
+      {btn && <button onClick={btnClick}>{btnName}</button>}
       <p className="errorMsg">{errorMsg}</p>
     </Cover>
   );
