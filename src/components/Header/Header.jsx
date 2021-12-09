@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { media } from '../../responsive';
@@ -9,8 +9,10 @@ import { Badge } from '@material-ui/core';
 
 import Searchbar from './Searchbar';
 import SlideNav from './SlideNav';
-import { useSelector } from 'react-redux';
+import { getTotals } from '../../store/cart-slice';
 
+import { useSelector, useDispatch } from 'react-redux';
+import { useEffect, useContext } from 'react';
 const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -90,7 +92,13 @@ const Search = styled.div`
 `;
 
 function Header() {
-  const quantity = useSelector(state => state.cart.quantity);
+  const dispatch = useDispatch();
+  const cart = useSelector(state => state.cart);
+  const { quantity } = useSelector(state => state.cart);
+
+  useEffect(() => {
+    dispatch(getTotals());
+  }, [cart, dispatch]);
 
   const [click, setClick] = useState(false);
   const handleClick = () => setClick(!click);

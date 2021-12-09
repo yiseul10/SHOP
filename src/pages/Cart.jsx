@@ -1,14 +1,20 @@
 import styled from 'styled-components';
 import { Add, Remove } from '@material-ui/icons';
 import StyledButton from '../components/Button/Button';
-import { Link } from 'react-router-dom';
 
-import { useDispatch } from 'react-redux';
-import React, { useContext } from 'react';
-import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { useEffect, useContext } from 'react';
 import { addWish } from '../store/wish-slice';
 import ExampleContext from '../components/ExampleContext';
-import { addProduct, removeProduct } from '../store/cart-slice';
+
+import {
+  addToCart,
+  clearCart,
+  decreaseCart,
+  getTotals,
+  removeFromCart
+} from '../store/cart-slice';
 
 const Container = styled.div`
   padding: 13rem 10rem;
@@ -16,6 +22,10 @@ const Container = styled.div`
 `;
 const Wrapper = styled.div`
   display: flex;
+`;
+const Message = styled.div`
+  text-align: center;
+  padding-top: 5rem;
 `;
 const Left = styled.div`
   flex: 3;
@@ -32,7 +42,7 @@ const Image = styled.img`
   width: 170px;
 `;
 const Details = styled.div`
-  padding: 1rem;
+  padding: 3rem;
   display: flex;
   flex-direction: column;
   gap: 0.8rem;
@@ -40,6 +50,7 @@ const Details = styled.div`
 const Title = styled.div`
   font-weight: 500;
 `;
+
 const ProductColor = styled.div`
   width: 15px;
   height: 15px;
@@ -82,10 +93,17 @@ const SummaryItem = styled.div`
 const SummaryItemText = styled.div`
   padding: 1rem 0rem;
 `;
-const Wish = styled.span`
+const Pointer = styled.span`
   text-decoration: underline;
   cursor: pointer;
   margin-top: 1.8rem;
+`;
+const DeleteAll = styled.div`
+  cursor: pointer;
+  font-weight: 500;
+  &:hover {
+    text-decoration: underline;
+  }
 `;
 const Total = styled.div`
   padding: 2rem 0rem;
@@ -94,81 +112,108 @@ const Total = styled.div`
 
 const Cart = () => {
   const cart = useSelector(state => state.cart);
-  const addFlashMessage = useContext(ExampleContext);
   const dispatch = useDispatch();
+  const addFlashMessage = useContext(ExampleContext);
 
-  const handleClick = () => {
+  useEffect(() => {
+    dispatch(getTotals());
+  }, [cart, dispatch]);
+
+  const handleDecreaseCart = product => {
+    dispatch(decreaseCart(product));
+  };
+  const handleRemoveFromCart = product => {
+    dispatch(removeFromCart(product));
+  };
+  const handleClearCart = () => {
+    dispatch(clearCart());
+  };
+  const handleAddToWish = product => {
     addFlashMessage('위시리스트에 담겼습니다!');
-    // SOLVEdispatch(addWish({장바구니안에있는 아이템을 전달해주기}));
-    // TODO카트에 있는 아이템수량을 증가하고 감소시키기
+    dispatch(addWish(product));
   };
-
-  const handleDelete = () => {
-    dispatch(removeProduct({ cart }));
+  const handleIncreaseCart = product => {
+    dispatch(addToCart(product));
   };
-
   return (
     <Container>
-      <Wrapper>
-        <Left>
-          <Title>쇼핑백({cart.quantity})</Title>
-          {cart.products.map(product => (
-            <div>
-              <Product key={product.index}>
-                <ProductDetail>
-                  <Image src={product.image} />
-                  <Details>
-                    <div>
-                      <Link to={`/${product.id}`}>
-                        <b>{product.product}</b>
-                      </Link>
-                      <p>{product.kind}</p>
-                    </div>
-                    <div>사이즈: {product.size}</div>
-                    <ProductColor color={product.color} />
-                    <Wish>위시리스트로 이동</Wish>
-                  </Details>
-                </ProductDetail>
-                <PriceDetail>
-                  <AmountContainer>
-                    <Add style={{ fontSize: '13px' }} />
-                    <ProductAmount>{product.quantity}</ProductAmount>
-                    <Remove style={{ fontSize: '13px' }} />
-                  </AmountContainer>
-                  <p>{product.price * product.quantity}원</p>
-                  <Wish onClick={handleDelete}>삭제</Wish>
-                </PriceDetail>
-              </Product>
-              <Hr />
+      {cart.products.length === 0 ? (
+        <Message>장바구니가 비었습니다.</Message>
+      ) : (
+        <Wrapper>
+          <Left>
+            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+              <Title>쇼핑백({cart.quantity})</Title>
+              <DeleteAll onClick={handleClearCart}>모두삭제</DeleteAll>
             </div>
-          ))}
-        </Left>
-        <Right>
-          <Title>결제 </Title>
-          <Total>
-            <SummaryItemText>
-              <SummaryItem>
-                <span>가격</span>
-                <span>{cart.total}원</span>
-              </SummaryItem>
-              <SummaryItem>
-                <span>배송비</span>
-                <span>0원</span>
-              </SummaryItem>
-            </SummaryItemText>
-            <Hr />
-            <SummaryItemText>
-              <SummaryItem type='total'>
-                <span>합계</span>
-                <span>{cart.total}원</span>
-              </SummaryItem>
-            </SummaryItemText>
-            <Link to='/checkout'>
-              <StyledButton>주문결제로 이동</StyledButton>
-            </Link>
-          </Total>
-        </Right>
-      </Wrapper>
+            {cart.products.map(product => (
+              <div id={product.id} key={product.index}>
+                <Product>
+                  <ProductDetail>
+                    <Image src={product.image} />
+                    <Details>
+                      <div>
+                        <Link to={`/${product.id}`}>
+                          <b>{product.product}</b>
+                        </Link>
+                        <p>{product.kind}</p>
+                      </div>
+                      <div>사이즈: {product.size}</div>
+                      <ProductColor color={product.color} />
+                      <Pointer onClick={() => handleAddToWish(product)}>
+                        위시리스트로 이동
+                      </Pointer>
+                    </Details>
+                  </ProductDetail>
+                  <PriceDetail>
+                    <AmountContainer>
+                      <Remove
+                        style={{ fontSize: '13px' }}
+                        onClick={() => handleDecreaseCart(product)}
+                      />
+                      <ProductAmount>{product.quantity}</ProductAmount>
+                      <Add
+                        style={{ fontSize: '13px' }}
+                        onClick={() => handleIncreaseCart(product)}
+                      />
+                    </AmountContainer>
+                    <p>{product.price * product.quantity}원</p>
+                    <Pointer onClick={() => handleRemoveFromCart(product)}>
+                      삭제
+                    </Pointer>
+                  </PriceDetail>
+                </Product>
+                <Hr />
+              </div>
+            ))}
+          </Left>
+          <Right>
+            <Title>결제 </Title>
+            <Total>
+              <SummaryItemText>
+                <SummaryItem>
+                  <span>가격</span>
+                  <span>{cart.total}원</span>
+                </SummaryItem>
+                <SummaryItem>
+                  <span>배송비</span>
+                  <span>0원</span>
+                </SummaryItem>
+              </SummaryItemText>
+              <Hr />
+              <SummaryItemText>
+                <SummaryItem type='total'>
+                  <span>합계</span>
+                  <span>{cart.total}원</span>
+                </SummaryItem>
+              </SummaryItemText>
+              <Link to='/checkout'>
+                <StyledButton>주문결제로 이동</StyledButton>
+              </Link>
+            </Total>
+          </Right>
+        </Wrapper>
+      )}
     </Container>
   );
 };

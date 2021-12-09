@@ -78,9 +78,10 @@ const Product = ({ id, ...product }) => {
   const addFlashMessage = useContext(ExampleContext);
 
   const dispatch = useDispatch();
-  const handleClick = () => {
+
+  const handleAddToWish = product => {
     addFlashMessage('위시리스트에 담겼습니다!');
-    dispatch(addWish({ ...product }));
+    dispatch(addWish(product));
     setClick(!click);
   };
 
@@ -91,7 +92,7 @@ const Product = ({ id, ...product }) => {
           <Image src={product.image} alt={product.product} />
         </ImgView>
       </Link>
-      <Icon onClick={handleClick}>
+      <Icon onClick={() => handleAddToWish(product)}>
         {click ? <Favorite /> : <FavoriteBorderOutlined />}
       </Icon>
       <Detail>

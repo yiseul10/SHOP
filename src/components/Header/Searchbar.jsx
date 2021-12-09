@@ -47,10 +47,6 @@ const SearchIcon = styled.button`
 const Searchbar = () => {
   const [keyword, setKeyword] = useState('');
   const dispatch = useDispatch();
-  // useEffect(() => {
-  //   if (keyword !== "") {
-  //   }
-  // }, [keyword]);
 
   const submitHandler = e => {
     e.preventDefault();

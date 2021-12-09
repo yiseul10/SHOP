@@ -75,7 +75,7 @@ const WishList = ({ product }) => {
         <Left>
           <Title>위시리스트({wish.quantity})</Title>
           {wish.products.map(product => (
-            <div key={product.index}>
+            <div key={product.index} id={product.id}>
               <Product>
                 <ProductDetail>
                   <Image src={product.image} />

@@ -27,7 +27,7 @@ const useStyles = makeStyles(them => ({
   }
 }));
 
-const AppPagination = ({ setPage, page = 1 }) => {
+const AppPagination = ({ setPage, pageNumber }) => {
   const classes = useStyles();
 
   const handleChange = page => {
@@ -41,7 +41,7 @@ const AppPagination = ({ setPage, page = 1 }) => {
         <Pagination
           onChange={e => handleChange(e.target.textContent)}
           size='small'
-          count={8}
+          count={pageNumber}
           style={{ display: 'flex', justifyContent: 'center' }}
         />
       </div>

@@ -8,7 +8,7 @@ import axios from 'axios';
 import { useParams, Link, useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { addProduct } from '../store/cart-slice';
+import { addToCart } from '../store/cart-slice';
 
 const Container = styled.div``;
 const Wrapper = styled.div`
@@ -162,8 +162,9 @@ const Product = () => {
     }
   };
 
-  const handleClick = () => {
-    dispatch(addProduct({ ...product, quantity, color, size }));
+  const handleAddToCart = product => {
+    // dispatch(addToCart({ ...product, quantity, color, size }));
+    dispatch(addToCart(product));
   };
 
   return product.colors === undefined ? null : (
@@ -206,7 +207,7 @@ const Product = () => {
           </AddContainer>
           <ButtonHandle>
             <StyledButton
-              onClick={handleClick}
+              onClick={() => handleAddToCart(product)}
               style={{
                 backgroundColor: 'white',
                 color: 'black',
