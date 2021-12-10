@@ -6,9 +6,7 @@ import styled from 'styled-components';
 import Products from '../components/Products/Products';
 import { media } from '../responsive';
 
-const Container = styled.div`
-  ${media({})}
-`;
+const Container = styled.div``;
 const Wrapper = styled.div`
   display: grid;
   width: 100%;

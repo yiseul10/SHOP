@@ -10,10 +10,9 @@ import ExampleContext from '../ExampleContext';
 
 const Container = styled.div`
   position: relative;
-  ${media({ padding: '0px' })};
 `;
 const ImgView = styled.div`
-  min-width: 275px;
+  max-width: 275px;
   height: 350px;
   display: flex;
   align-items: center;
@@ -25,9 +24,8 @@ const ImgView = styled.div`
     cursor: pointer;
   }
   ${media({
-    height: '100%',
-    justifyContent: 'space-between',
-    padding: '20px'
+    width: '219.5px',
+    height: '330px'
   })}
 `;
 
@@ -36,6 +34,10 @@ const Image = styled.img`
   width: 100%;
   display: flex;
   padding: 0;
+  ${media({
+    /* objectFit: 'cover', */
+    width: '100%'
+  })}
 `;
 
 const Icon = styled.div`
@@ -48,7 +50,7 @@ const Icon = styled.div`
     transition: all 0.5s ease;
   }
   ${media({
-    position: 'relative'
+    display: 'none'
   })}
 `;
 
@@ -59,7 +61,11 @@ const Detail = styled.div`
   line-height: normal;
   margin-bottom: 1rem;
   padding: 0.5rem 0.5rem;
-  ${media({ display: 'block', position: 'static' })}
+  ${media({
+    margin: '12px 0px 60px 0px',
+    padding: '0',
+    flexDirection: 'column'
+  })}
 `;
 const ProductTitle = styled.span`
   letter-spacing: -1px;
@@ -68,19 +74,22 @@ const ProductTitle = styled.span`
 
 const PriceView = styled.div`
   display: flex;
+  ${media({
+    paddingTop: '8px'
+  })}
 `;
 
 const ProductPrice = styled.span`
   display: block;
+  ${media({
+    fontSize: '11px'
+  })}
 `;
 const Currency = styled.span`
   font-size: 5px;
   color: grey;
   letter-spacing: -0.5px;
   padding: 0.1rem;
-`;
-const GridContainer = styled.div`
-  ${media({})}
 `;
 
 const Product = ({ id, ...product }) => {
@@ -96,24 +105,22 @@ const Product = ({ id, ...product }) => {
   };
 
   return (
-    <Container>
-      <GridContainer>
-        <Link to={`/${id}`}>
-          <ImgView>
-            <Image src={product.image} alt={product.product} />
-          </ImgView>
-        </Link>
-        <Icon onClick={() => handleAddToWish(product)}>
-          {click ? <Favorite /> : <FavoriteBorderOutlined />}
-        </Icon>
-        <Detail>
-          <ProductTitle>{product.product}</ProductTitle>
-          <PriceView>
-            <ProductPrice>{product.price}</ProductPrice>
-            <Currency>원</Currency>
-          </PriceView>
-        </Detail>
-      </GridContainer>
+    <Container className='whatAbout'>
+      <Link to={`/${id}`}>
+        <ImgView>
+          <Image src={product.image} alt={product.product} />
+        </ImgView>
+      </Link>
+      <Icon onClick={() => handleAddToWish(product)}>
+        {click ? <Favorite /> : <FavoriteBorderOutlined />}
+      </Icon>
+      <Detail>
+        <ProductTitle>{product.product}</ProductTitle>
+        <PriceView>
+          <ProductPrice>{product.price}</ProductPrice>
+          <Currency>원</Currency>
+        </PriceView>
+      </Detail>
     </Container>
   );
 };

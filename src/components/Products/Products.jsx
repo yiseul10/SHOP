@@ -12,15 +12,13 @@ import AppPagination from './AppPagination';
 import { fetchProducts, getAllProducts } from '../../store/api-call';
 
 const Container = styled.div`
-  padding: 0px 50px 150px 50px;
+  padding: 30px 50px 150px 50px;
   flex-wrap: wrap;
   position: relative;
   display: flex;
   justify-content: space-between;
   ${media({
-    justifyContent: 'center',
-    flexDirection: 'column',
-    padding: '50px 30px'
+    padding: '15px'
   })}
 `;
 const Page = styled.div`
@@ -91,7 +89,7 @@ const Products = ({ cat, filters, sort }) => {
 
   return (
     <>
-      <Container>
+      <Container className='me'>
         {/* {products.products.map(product => ( */}
         {filteredProducts.map(product => (
           <Product
