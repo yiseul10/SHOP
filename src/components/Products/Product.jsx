@@ -19,13 +19,16 @@ const ImgView = styled.div`
   align-items: center;
   justify-content: center;
   z-index: 3;
-  /* background-color: mintcream; */
   &:hover {
     opacity: 70%;
     transition: all 0.5s ease;
     cursor: pointer;
   }
-  ${media({ height: '100%' })}
+  ${media({
+    height: '100%',
+    justifyContent: 'space-between',
+    padding: '20px'
+  })}
 `;
 
 const Image = styled.img`
@@ -44,6 +47,9 @@ const Icon = styled.div`
     transform: scale(1.1);
     transition: all 0.5s ease;
   }
+  ${media({
+    position: 'relative'
+  })}
 `;
 
 const Detail = styled.div`
@@ -53,6 +59,7 @@ const Detail = styled.div`
   line-height: normal;
   margin-bottom: 1rem;
   padding: 0.5rem 0.5rem;
+  ${media({ display: 'block', position: 'static' })}
 `;
 const ProductTitle = styled.span`
   letter-spacing: -1px;
@@ -72,6 +79,9 @@ const Currency = styled.span`
   letter-spacing: -0.5px;
   padding: 0.1rem;
 `;
+const GridContainer = styled.div`
+  ${media({})}
+`;
 
 const Product = ({ id, ...product }) => {
   const [click, setClick] = useState(false);
@@ -87,21 +97,23 @@ const Product = ({ id, ...product }) => {
 
   return (
     <Container>
-      <Link to={`/${id}`}>
-        <ImgView>
-          <Image src={product.image} alt={product.product} />
-        </ImgView>
-      </Link>
-      <Icon onClick={() => handleAddToWish(product)}>
-        {click ? <Favorite /> : <FavoriteBorderOutlined />}
-      </Icon>
-      <Detail>
-        <ProductTitle>{product.product}</ProductTitle>
-        <PriceView>
-          <ProductPrice>{product.price}</ProductPrice>
-          <Currency>원</Currency>
-        </PriceView>
-      </Detail>
+      <GridContainer>
+        <Link to={`/${id}`}>
+          <ImgView>
+            <Image src={product.image} alt={product.product} />
+          </ImgView>
+        </Link>
+        <Icon onClick={() => handleAddToWish(product)}>
+          {click ? <Favorite /> : <FavoriteBorderOutlined />}
+        </Icon>
+        <Detail>
+          <ProductTitle>{product.product}</ProductTitle>
+          <PriceView>
+            <ProductPrice>{product.price}</ProductPrice>
+            <Currency>원</Currency>
+          </PriceView>
+        </Detail>
+      </GridContainer>
     </Container>
   );
 };

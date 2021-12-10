@@ -8,7 +8,7 @@ const Container = styled.div`
   padding: 60px;
   flex-wrap: wrap;
   justify-content: space-between;
-  ${media({ padding: '0px', flexDirection: 'column' })}
+  ${media({ padding: '30px', flexDirection: 'column' })}
 `;
 
 const Categories = () => {

@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import { useParams } from 'react-router';
+
 import styled from 'styled-components';
 
 import Products from '../components/Products/Products';
 import { media } from '../responsive';
 
-const Container = styled.div``;
+const Container = styled.div`
+  ${media({})}
+`;
 const Wrapper = styled.div`
   display: grid;
   width: 100%;
@@ -63,18 +65,13 @@ const Category = styled.div`
   padding: 150px 30px 50px 50px;
   ${media({
     borderBottom: '0.5px solid grey',
-    textAlign: 'center',
-    height: '100%',
-    padding: '10px',
-    fontSize: '18px'
+    padding: '4rem'
   })}
 `;
 
 const ProductList = () => {
-  // const { cat } = useParams();
-  // // console.log(cat); split[2] cat로 되면 전체데이터가 들어오지 않음
   const location = useLocation();
-  const cat = location.pathname.split('/')[1];
+  const cat = location.pathname.split('/')[2];
   console.log(cat);
 
   const [filters, setFilters] = useState({});
@@ -103,14 +100,23 @@ const ProductList = () => {
               style={{ marginBottom: 20 }}
             >
               <Option value='featured'>Featured</Option>
-              <Option value='asc'>높은 가격순</Option>
-              <Option value='desc'>낮은 가격순</Option>
+              <Option value='asc'>낮은가격순</Option>
+              <Option value='desc'>높은가격순</Option>
             </Select>
           </Filter>
           <VerticalLine></VerticalLine>
           <Filter>
             <FilterText>전체 카테고리</FilterText>
-            <Select name='color' onChange={handleFilters}>
+            <Select name='size' onChange={handleFilters}>
+              <Option>Size</Option>
+              <Option>XS</Option>
+              <Option>S</Option>
+              <Option>M</Option>
+              <Option>L</Option>
+              <Option>XL</Option>
+              <Option>FREE</Option>
+            </Select>
+            <Select name='color' onChange={handleFilters} disabled>
               <Option>Color</Option>
               <Option>White</Option>
               <Option>Black</Option>
@@ -118,14 +124,6 @@ const ProductList = () => {
               <Option>Blue</Option>
               <Option>Yellow</Option>
               <Option>Green</Option>
-            </Select>
-            <Select name='size' onChange={handleFilters}>
-              <Option>Size</Option>
-              <Option>XS</Option>
-              <Option>S</Option>
-              <Option>M</Option>
-              <Option>L</Option>
-              <Option>XL~</Option>
             </Select>
           </Filter>
         </FilterContainer>

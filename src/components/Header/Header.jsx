@@ -114,7 +114,7 @@ function Header() {
             {showSlide ? <SlideNav /> : null}
           </Invisible>
 
-          <LeftMenu to={`/products`}>
+          <LeftMenu to={`/products/기모`}>
             <p>COLLECTION</p>
           </LeftMenu>
 

@@ -1,5 +1,5 @@
 import Axios from 'axios';
-import axios from 'axios';
+
 import { useDispatch, useSelector } from 'react-redux';
 
 import { useState, useEffect } from 'react';
@@ -12,7 +12,7 @@ import AppPagination from './AppPagination';
 import { fetchProducts, getAllProducts } from '../../store/api-call';
 
 const Container = styled.div`
-  padding: 30px 50px 150px 50px;
+  padding: 0px 50px 150px 50px;
   flex-wrap: wrap;
   position: relative;
   display: flex;
@@ -34,48 +34,66 @@ const Page = styled.div`
 `;
 
 const Products = ({ cat, filters, sort }) => {
-  // console.log(cat, filters, sort);
+  console.log(cat, filters, sort);
   // TODO
   const [products, setProduct] = useState([]);
+  const [filteredProducts, setFilteredProducts] = useState([]);
   const [page, setPage] = useState(1);
   const [numberOfPages, setNumberOfPages] = useState(10);
-
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
 
   // const products = useSelector(getAllProducts);
   // console.log(products);
   // const dispatch = useDispatch();
-  // const keyword = '아우터';
+  // const keyword = '기모';
 
   // useEffect(() => {
   //   dispatch(fetchProducts(keyword));
   // }, [dispatch, keyword, page]);
 
+  //FIXME
   useEffect(() => {
     const fetchUsers = async () => {
-      try {
-        setError(null);
-        setLoading(true);
-        const response = await Axios.get(
-          cat ? `?page=${page}&count=30` : `?page=1&kind=${cat}`
-        );
-        console.log('데이터', response.data.products);
-        setProduct(response.data.products);
-        setNumberOfPages(response.data.endPage);
-      } catch (error) {
-        setError(error);
-      }
-      setLoading(false);
+      const response = await Axios.get(
+        cat
+          ? `?page=${page}&count=15&kind=${cat}`
+          : `?page=1&count=30&product=${cat}`
+        // `?page=${page}&count=30`
+      );
+      console.log('데이터', response.data.products);
+      setProduct(response.data.products);
+      setNumberOfPages(response.data.endPage);
     };
     fetchUsers();
   }, [cat, page]);
+
+  useEffect(() => {
+    cat &&
+      setFilteredProducts(
+        products.filter(item =>
+          Object.entries(filters).every(([key, value]) =>
+            item[key].includes(value)
+          )
+        )
+      );
+  }, [products, cat, filters]);
+
+  useEffect(() => {
+    if (sort === 'featured') {
+      setFilteredProducts(prev =>
+        [...prev].sort((a, b) => a.createdAt - b.createdAt)
+      );
+    } else if (sort === 'asc') {
+      setFilteredProducts(prev => [...prev].sort((a, b) => a.price - b.price));
+    } else {
+      setFilteredProducts(prev => [...prev].sort((a, b) => b.price - a.price));
+    }
+  }, [sort]);
 
   return (
     <>
       <Container>
         {/* {products.products.map(product => ( */}
-        {products.map(product => (
+        {filteredProducts.map(product => (
           <Product
             product={product}
             kind={product.kind}

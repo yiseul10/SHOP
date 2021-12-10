@@ -153,7 +153,7 @@ const CheckOut = () => {
           <Hr />
           <Title>주문정보</Title>
           {cart.products.map(product => (
-            <div key={product.index}>
+            <div key={product.index} id={product.id}>
               <Product>
                 <ProductDetail>
                   <Image src={product.image} />

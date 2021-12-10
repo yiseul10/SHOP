@@ -51,17 +51,16 @@ const App = () => {
           <Route path='/cart'>
             <Cart />
           </Route>
-
-          <Route path='/products'>
-            {/* <Route path='/:category'> */}
+          <Route path='/products/:category'>
             <ProductList />
           </Route>
           <Route exact path='/:id'>
             <Product />
           </Route>
-          <Route path='/products/:category'>
+          {/* <Route path='/products/:category'>
             <ProductList />
-          </Route>
+          </Route> */}
+
           <Route exact path='/'>
             <Home />
           </Route>
