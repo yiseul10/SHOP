@@ -35,7 +35,7 @@ const Image = styled.img`
   display: flex;
   padding: 0;
   ${media({
-    /* objectFit: 'cover', */
+    objectFit: 'cover',
     width: '100%'
   })}
 `;
@@ -60,9 +60,9 @@ const Detail = styled.div`
   justify-content: space-between;
   line-height: normal;
   margin-bottom: 1rem;
-  padding: 0.5rem 0.5rem;
+  padding: 0.5rem;
   ${media({
-    margin: '12px 0px 60px 0px',
+    margin: '12px 0px 30px 0px',
     padding: '0',
     flexDirection: 'column'
   })}

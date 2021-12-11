@@ -12,6 +12,10 @@ const useStyles = makeStyles(them => ({
     width: '100%',
     justifyContent: 'center',
 
+    '@media (max-width: 768px)': {
+      padding: '20px'
+    },
+
     '& .Mui-selected': {
       backgroundColor: 'transparent'
     },
@@ -22,7 +26,6 @@ const useStyles = makeStyles(them => ({
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center'
-      // left: '50%'
     }
   }
 }));

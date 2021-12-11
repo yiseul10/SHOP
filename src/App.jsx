@@ -60,10 +60,6 @@ const App = () => {
           {/* <Route path='/products/:category'>
             <ProductList />
           </Route> */}
-
-          <Route exact path='/'>
-            <Home />
-          </Route>
           <Route exact path='/customerService'>
             <CustomerCenter />
           </Route>
@@ -81,6 +77,9 @@ const App = () => {
             <ReviewInsert />
           </Route>
           <Route path='/review'>{user ? <NavLink to='/' /> : <Review />}</Route>
+          <Route exact path='/'>
+            <Home />
+          </Route>
         </Switch>
 
         <Footer />

@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { media } from '../responsive';
 import { Add, Remove } from '@material-ui/icons';
 import StyledButton from '../components/Button/Button';
 
@@ -7,7 +8,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useContext } from 'react';
 import { addWish } from '../store/wish-slice';
 import ExampleContext from '../components/ExampleContext';
-
 import {
   addToCart,
   clearCart,
@@ -19,9 +19,11 @@ import {
 const Container = styled.div`
   padding: 13rem 10rem;
   font-size: 11px;
+  ${media({ padding: '120px 25px 80px 25px' })}
 `;
 const Wrapper = styled.div`
   display: flex;
+  ${media({ flexDirection: 'column' })}
 `;
 const Message = styled.div`
   text-align: center;
@@ -29,6 +31,11 @@ const Message = styled.div`
 `;
 const Left = styled.div`
   flex: 3;
+`;
+const LeftSection = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
 `;
 const Product = styled.div`
   display: flex;
@@ -39,16 +46,19 @@ const ProductDetail = styled.div`
   display: flex;
 `;
 const Image = styled.img`
-  width: 170px;
+  width: 140px;
+  height: 170px;
+  object-fit: cover;
 `;
 const Details = styled.div`
-  padding: 3rem;
+  padding: 1rem;
   display: flex;
   flex-direction: column;
   gap: 0.8rem;
 `;
 const Title = styled.div`
   font-weight: 500;
+  ${media({ marginTop: '30px' })}
 `;
 
 const ProductColor = styled.div`
@@ -71,27 +81,36 @@ const AmountContainer = styled.div`
   margin: 2rem 0rem;
 `;
 const ProductAmount = styled.div`
-  margin: 0rem 1rem;
-  font-size: 13px;
+  margin: 0rem 0.5rem;
+  font-size: 11px;
 `;
 const Hr = styled.hr`
   background-color: #eee;
   border: none;
   height: 1px;
 `;
+const MediaLine = styled.hr`
+  background-color: #eee;
+  border: none;
+  height: 1px;
+  display: none;
+  ${media({ display: 'block', marginTop: '9px' })}
+`;
 const Right = styled.div`
   flex: 2;
   margin-left: 5rem;
+  ${media({ margin: '0' })}
 `;
 const SummaryItem = styled.div`
   display: flex;
   justify-content: space-between;
-  line-height: 1.5rem;
+  line-height: 1.2rem;
   font-weight: ${props => props.type === 'total' && '500'};
-  margin-top: ${props => props.type === 'total' && '10px'};
+  ${media({ margin: '5px 0px' })}
 `;
 const SummaryItemText = styled.div`
   padding: 1rem 0rem;
+  ${media({ padding: '0.5rem 0rem' })}
 `;
 const Pointer = styled.span`
   text-decoration: underline;
@@ -107,7 +126,7 @@ const DeleteAll = styled.div`
 `;
 const Total = styled.div`
   padding: 2rem 0rem;
-  height: 10vh;
+  ${media({ padding: '1rem 0rem' })}
 `;
 
 const Cart = () => {
@@ -142,10 +161,11 @@ const Cart = () => {
       ) : (
         <Wrapper>
           <Left>
-            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+            <LeftSection>
               <Title>쇼핑백({cart.quantity})</Title>
               <DeleteAll onClick={handleClearCart}>모두삭제</DeleteAll>
-            </div>
+            </LeftSection>
+            <MediaLine />
             {cart.products.map(product => (
               <div id={product.id} key={product.index}>
                 <Product>
@@ -168,12 +188,12 @@ const Cart = () => {
                   <PriceDetail>
                     <AmountContainer>
                       <Remove
-                        style={{ fontSize: '13px' }}
+                        style={{ fontSize: '11px' }}
                         onClick={() => handleDecreaseCart(product)}
                       />
                       <ProductAmount>{product.quantity}</ProductAmount>
                       <Add
-                        style={{ fontSize: '13px' }}
+                        style={{ fontSize: '11px' }}
                         onClick={() => handleIncreaseCart(product)}
                       />
                     </AmountContainer>
@@ -189,6 +209,7 @@ const Cart = () => {
           </Left>
           <Right>
             <Title>결제 </Title>
+            <MediaLine />
             <Total>
               <SummaryItemText>
                 <SummaryItem>
@@ -208,7 +229,9 @@ const Cart = () => {
                 </SummaryItem>
               </SummaryItemText>
               <Link to='/checkout'>
-                <StyledButton>주문결제로 이동</StyledButton>
+                <StyledButton style={{ postion: 'relative' }}>
+                  주문결제로 이동
+                </StyledButton>
               </Link>
             </Total>
           </Right>
