@@ -1,4 +1,5 @@
 import Axios from 'axios';
+import axios from 'axios';
 
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -12,11 +13,12 @@ import AppPagination from './AppPagination';
 import { fetchProducts, getAllProducts } from '../../store/api-call';
 
 const Container = styled.div`
-  padding: 30px 58px 150px 50px;
+  /* padding: 30px 58px 150px 50px; */
+  padding: 10px 50px 150px 50px;
   flex-wrap: wrap;
   position: relative;
   display: flex;
-  gap: 1rem;
+  justify-content: space-between;
   ${media({
     padding: '15px 15px 80px 15px'
   })}
@@ -31,13 +33,14 @@ const Page = styled.div`
   transform: translate(-50%, 0%);
 `;
 
-const Products = ({ cat, filters, sort }) => {
-  console.log(cat, filters, sort);
+const Products = ({ cat, filters, sort, keyword, setKeyword }) => {
+  // console.log(cat, filters, sort);
   // TODO
   const [products, setProduct] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
+
   const [page, setPage] = useState(1);
-  const [numberOfPages, setNumberOfPages] = useState(10);
+  const [numberOfPages, setNumberOfPages] = useState();
 
   // const products = useSelector(getAllProducts);
   // console.log(products);
@@ -48,21 +51,26 @@ const Products = ({ cat, filters, sort }) => {
   //   dispatch(fetchProducts(keyword));
   // }, [dispatch, keyword, page]);
 
-  //FIXME
   useEffect(() => {
     const fetchUsers = async () => {
-      const response = await Axios.get(
-        cat
-          ? `?page=${page}&count=15&kind=${cat}`
-          : `?page=1&count=30&product=${cat}`
-        // `?page=${page}&count=30`
-      );
-      console.log('데이터', response.data.products);
-      setProduct(response.data.products);
-      setNumberOfPages(response.data.endPage);
+      try {
+        //FIXME전체URL안에 page, count, kind, product / kind값안에 전체데이터까지 포괄하는
+        // switch문? if문?? 조건에 따라 렌더링해주는 방법??
+
+        const response = await Axios.get(
+          cat
+            ? `?page=${page}&count=20&kind=${cat}`
+            : `/` && keyword
+            ? `?page=1&product=${keyword}`
+            : `?page=${page}&count=20&kind=${cat}`
+        );
+        console.log('데이터', response.data);
+        setProduct(response.data.products);
+        setNumberOfPages(response.data.endPage);
+      } catch (err) {}
     };
     fetchUsers();
-  }, [cat, page]);
+  }, [cat, page, keyword]);
 
   useEffect(() => {
     cat &&
@@ -87,26 +95,41 @@ const Products = ({ cat, filters, sort }) => {
     }
   }, [sort]);
 
+  {
+    /* {products.products.map(product => ( */
+  }
   return (
-    <>
-      <Container>
-        {/* {products.products.map(product => ( */}
-        {filteredProducts.map(product => (
-          <Product
-            product={product}
-            kind={product.kind}
-            image={product.image}
-            key={product.index}
-            id={product.productNumber}
-            product={product.product}
-            price={product.price}
-          />
-        ))}
-        <Page>
+    <Container>
+      {cat
+        ? filteredProducts.map(product => (
+            <Product
+              product={product}
+              id={product.productNumber}
+              kind={product.kind}
+              image={product.image}
+              key={product.index}
+              product={product.product}
+              price={product.price}
+            />
+          ))
+        : products.map(product => (
+            <Product
+              product={product}
+              id={product.productNumber}
+              kind={product.kind}
+              image={product.image}
+              key={product.index}
+              product={product.product}
+              price={product.price}
+            />
+          ))}
+
+      <Page>
+        {setNumberOfPages > 1 && (
           <AppPagination setPage={setPage} pageNumber={numberOfPages} />
-        </Page>
-      </Container>
-    </>
+        )}
+      </Page>
+    </Container>
   );
 };
 

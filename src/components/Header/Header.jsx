@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { media } from '../../responsive';
 
 import { ShoppingCartOutlined } from '@material-ui/icons';
@@ -93,6 +93,7 @@ const Search = styled.div`
 
 function Header() {
   const dispatch = useDispatch();
+  const history = useHistory();
   const cart = useSelector(state => state.cart);
   const { quantity } = useSelector(state => state.cart);
 
@@ -101,7 +102,10 @@ function Header() {
   }, [cart, dispatch]);
 
   const [click, setClick] = useState(false);
-  const handleClick = () => setClick(!click);
+  const handleClick = () => {
+    setClick(!click);
+    history.push('/search');
+  };
   const [showSlide, setShowSlide] = useState(false);
   const handleSlide = () => setShowSlide(!showSlide);
 
@@ -114,14 +118,14 @@ function Header() {
             {showSlide ? <SlideNav /> : null}
           </Invisible>
 
-          <LeftMenu to={`/products/기모`}>
+          <LeftMenu to={`/product`}>
             <p>COLLECTION</p>
           </LeftMenu>
 
           <LeftMenu to='/'>CUSTOM</LeftMenu>
           <LeftMenu to='/review'>REVIEW</LeftMenu>
           <Search onClick={handleClick}>검색</Search>
-          {click ? <Searchbar /> : null}
+          {/* {click ? <Searchbar /> : null} */}
           <Invisible>
             <IoSearchOutline
               onClick={handleClick}

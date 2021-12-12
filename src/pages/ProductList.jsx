@@ -8,18 +8,23 @@ import { media } from '../responsive';
 
 const Container = styled.div``;
 const Wrapper = styled.div`
-  display: grid;
-  width: 100%;
-  grid-template-columns: 250px 1fr 50px;
+  /* padding: 0px 20px; */
+  /* display: grid; */
+  /* width: 100%; */
+  /* grid-template-columns: 250px 1fr 50px; */
+  /* flex-direction: space-between */
+  display: block;
   ${media({
     display: 'block',
     flexDirection: 'space-between'
-  })}
+  })};
 `;
 
 const FilterContainer = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  padding: 0px 50px;
+  justify-content: space-between;
   letter-spacing: -0.5px;
 
   ${media({
@@ -28,9 +33,9 @@ const FilterContainer = styled.div`
   })}
 `;
 const Filter = styled.div`
-  padding-left: 50px;
-  padding-right: 20px;
-  width: 100%;
+  /* padding-left: 50px; */
+  /* padding-right: 20px; */
+  width: 8rem;
   font-size: 11px;
   font-weight: 600;
   margin-top: 40px;
@@ -58,13 +63,14 @@ const Select = styled.select`
 `;
 const Option = styled.option``;
 const Category = styled.div`
-  font-size: 11px;
-  text-decoration: underline;
-  padding: 150px 30px 50px 50px;
+  font-size: 45px;
+  font-weight: 300;
+  margin: 0px 0px 40px 160px;
+
   ${media({
     borderBottom: '0.5px solid grey',
     padding: '4rem'
-  })}
+  })};
 `;
 
 const ProductList = () => {
@@ -83,12 +89,9 @@ const ProductList = () => {
     });
   };
 
-  // console.log(filters);
-
   return (
     <Container>
-      <Category>전체상품</Category>
-
+      <Category>SHOP ALL</Category>
       <Wrapper>
         <FilterContainer>
           <Filter>
@@ -114,7 +117,7 @@ const ProductList = () => {
               <Option>XL</Option>
               <Option>FREE</Option>
             </Select>
-            <Select name='color' onChange={handleFilters} disabled>
+            {/* <Select name='color' onChange={handleFilters} disabled>
               <Option>Color</Option>
               <Option>White</Option>
               <Option>Black</Option>
@@ -122,7 +125,7 @@ const ProductList = () => {
               <Option>Blue</Option>
               <Option>Yellow</Option>
               <Option>Green</Option>
-            </Select>
+            </Select> */}
           </Filter>
         </FilterContainer>
         <Products cat={cat} filters={filters} sort={sort} />

@@ -55,12 +55,12 @@ const Icon = styled.div`
 `;
 
 const Detail = styled.div`
-  font-size: 13px;
+  font-size: 12px;
   display: flex;
   justify-content: space-between;
   line-height: normal;
   margin-bottom: 1rem;
-  padding: 0.5rem;
+  padding: 0.5rem 0rem;
   ${media({
     margin: '12px 0px 30px 0px',
     padding: '0',

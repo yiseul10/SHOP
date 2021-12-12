@@ -10,6 +10,8 @@ import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { addToCart } from '../store/cart-slice';
 
+import { Tabs, Tab } from '@material-ui/core';
+
 const Container = styled.div``;
 const Wrapper = styled.div`
   padding: 150px;
@@ -147,13 +149,16 @@ const Product = () => {
   const [quantity, setQuantity] = useState(1);
   const [color, setColor] = useState('');
   const [size, setSize] = useState('');
-  const dispatch = useDispatch();
 
+  const [type, setType] = useState(0);
+  const [page, setPage] = useState(1);
+
+  const dispatch = useDispatch();
   useEffect(() => {
     const getProduct = async () => {
       try {
         const response = await Axios.get(`/${id}`);
-        console.log('데이터', response.data);
+        // console.log('데이터', response.data);
         setProduct(response.data);
       } catch (error) {
         console.error(error);
@@ -229,17 +234,26 @@ const Product = () => {
             </Link>
           </ButtonHandle>
           <Underline />
-          <Desc>
-            <Details>Description</Details>
-            <Details>Details</Details>
-            <Details>Care</Details>
-            <Details>Etc</Details>
-            <Info>
-              자수/패치만 가능. 가볍지만 따뜻한 소재의 가디건입니다. 코트안에
-              착용하거나 환절기 시즌에 단독으로 착용하기 좋습니다. 소재:
-              아크릴90%, 레이온 10% 제조국: 한국
-            </Info>
-          </Desc>
+          {/* <Desc> */}
+          <Tabs
+            value={type}
+            indicatorColor='primary'
+            textColor='primary'
+            onChange={(event, newValue) => {
+              setType(newValue);
+              setPage(1);
+            }}
+          >
+            {/* <Details>Description</Details> */}
+            <Tab style={{ width: '20%', fontSize: '10px' }} label='Details' />
+            가볍지만 따뜻한 소재의 가디건입니다. 코트안에 착용하거나 환절기
+            시즌에 단독으로 착용하기 좋습니다.
+            <Tab style={{ width: '20%', fontSize: '10px' }} label='Care' />
+            소재: 아크릴90%, 레이온 10%
+            <Tab style={{ width: '20%', fontSize: '10px' }} label='Etc' />
+            자수/패치만 가능.
+          </Tabs>
+          {/* </Desc> */}
         </InfoContainer>
       </Wrapper>
     </Container>

@@ -2,7 +2,7 @@ import React from 'react';
 import Pagination from '@material-ui/lab/Pagination';
 import { makeStyles } from '@material-ui/core';
 
-const useStyles = makeStyles(them => ({
+const useStyles = makeStyles(() => ({
   root: {
     position: 'fixed',
     bottom: 0,

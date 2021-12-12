@@ -18,6 +18,7 @@ import CustomerCenter from './pages/CustomerCenter';
 import EventNotice from './pages/EventNotice';
 import QuestionOne from './pages/QuestionOne';
 import FAQ from './pages/FAQ';
+import Search from './pages/Search';
 import ReviewInsert from './pages/ReviewInsert';
 import FlashMessage from './components/Message/FlashMessage';
 import ExampleContext from './components/ExampleContext';
@@ -42,6 +43,12 @@ const App = () => {
         <Header />
         <FlashMessage message={flashMessage} />
         <Switch>
+          <Route exact path='/search'>
+            <Search />
+          </Route>
+          <Route path='/products/:category'>
+            <ProductList />
+          </Route>
           <Route path='/checkout'>
             <CheckOut />
           </Route>
@@ -51,15 +58,10 @@ const App = () => {
           <Route path='/cart'>
             <Cart />
           </Route>
-          <Route path='/products/:category'>
-            <ProductList />
-          </Route>
           <Route exact path='/:id'>
             <Product />
           </Route>
-          {/* <Route path='/products/:category'>
-            <ProductList />
-          </Route> */}
+
           <Route exact path='/customerService'>
             <CustomerCenter />
           </Route>
