@@ -132,7 +132,7 @@ const Info = styled.div`
   line-height: 20px;
 `;
 
-const Product = () => {
+export const Product = () => {
   const { id } = useParams();
 
   const [product, setProduct] = useState({});
@@ -236,4 +236,4 @@ const Product = () => {
     </Container>
   );
 };
-export default Product;
+

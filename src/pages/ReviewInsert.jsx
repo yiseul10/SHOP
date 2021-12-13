@@ -10,7 +10,7 @@ font-size: 1rem;
     padding: 100px;
     margin: 50px`
 
-    class ReviewInsert extends React.Component {
+    export class ReviewInsert extends React.Component {
 
         constructor(props) {
 

@@ -92,7 +92,7 @@ const Total = styled.div`
   height: 10vh;
 `;
 
-const Cart = () => {
+export const Cart = () => {
   const cart = useSelector(state => state.cart);
   const addFlashMessage = useContext(ExampleContext);
   const dispatch = useDispatch();
@@ -172,5 +172,3 @@ const Cart = () => {
     </Container>
   );
 };
-
-export default Cart;

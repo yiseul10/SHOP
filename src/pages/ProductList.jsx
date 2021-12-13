@@ -70,7 +70,7 @@ const Category = styled.div`
   })}
 `;
 
-const ProductList = () => {
+export const ProductList = () => {
   // const { cat } = useParams();
   // // console.log(cat); split[2] cat로 되면 전체데이터가 들어오지 않음
   const location = useLocation();
@@ -134,5 +134,3 @@ const ProductList = () => {
     </Container>
   );
 };
-
-export default ProductList;

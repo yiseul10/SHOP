@@ -15,3 +15,4 @@ export { OrderReviewPage } from "./orderReviewPage";
 export { PasswordSearchPage } from "./passwordSearchPage";
 export { LoadingPage } from "./loadingPage";
 export { PasswordResetPage } from "./passwordResetPage";
+export { Approval } from "./Approval";

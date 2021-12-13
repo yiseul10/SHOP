@@ -1,7 +1,7 @@
 import React from 'react'
 
 
- const customerService = () => {
+export const customerService = () => {
    
    
    
@@ -14,4 +14,3 @@ import React from 'react'
     )
 }
 
-export default customerService

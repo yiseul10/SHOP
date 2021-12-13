@@ -17,7 +17,7 @@ const TableStyle = styled.div `
     
 `
 
-const Review = () => {
+export const Review = () => {
 
     const [users, setUsers] = useState(""); // axios를 통해 json에서 데이터를 끄집어 내기 위한 곳
     const [loading, setLoading] = useState(false); //  로딩을 위한 변수와 함수 설정
