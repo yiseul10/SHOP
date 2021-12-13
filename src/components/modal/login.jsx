@@ -3,9 +3,10 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { LoginInput } from "components/input";
 import { PrimaryBtn } from "components/Button";
+import { LoginBtn } from "components/Button/loginBtn";
 import axios from "axios";
 
-export function LoginPage({ signup, pwSearch }) {
+export function LoginPage({ signup, pwSearch, onPwSearchBtn }) {
   const [id, setId] = useState("");
   const [password, setPassword] = useState("");
   const history = useHistory();
@@ -55,37 +56,48 @@ export function LoginPage({ signup, pwSearch }) {
 
   return (
     <Cover>
-      <LoginInput
-        id="id"
-        onChange={onIdChange}
-        placeholder="이메일을 입력해 주세요"
-      />
-      <LoginInput
-        id="passowrd"
-        type="password"
-        onChange={onPasswordChange}
-        placeholder="비밀번호를 입력해 주세요"
-      />
+      <div className="text">
+        <h3>로그인</h3>
+        <br />
+        <br />
+      </div>
+      <div className="loginInput">
+        <LoginInput id="id" onChange={onIdChange} placeholder="Email" />
+        <LoginInput
+          id="passowrd"
+          type="password"
+          onChange={onPasswordChange}
+          placeholder="PassWord"
+        />
+      </div>
       <div className="loginBtn">
-        <PrimaryBtn label="로그인" onClick={userData} />
+        <LoginBtn label="로그인" onClick={userData} />
+        <LoginBtn label="회원가입" onClick={signup} type="button" />
       </div>
-      <div className="signupBtn">
-        <PrimaryBtn label="회원가입" onClick={signup} type="button" />
-      </div>
+      {/* <div className="signupBtn"> */}
+
+      {/* </div> */}
       <div className="passwordSearchBtn">
-        <PrimaryBtn label="비밀번호찾기" onClick={pwSearch} type="button" />
+        <PrimaryBtn
+          label="비밀번호찾기"
+          onClick={onPwSearchBtn}
+          type="button"
+        />
+      </div>
+      <div className="kakaologin">
+        <PrimaryBtn label="카카오 로그인" type="button" />
       </div>
     </Cover>
   );
 }
 
 const Cover = styled.div`
-  margin-top: 30%;
+  margin-top: 15%;
   width: 80%;
-  .loginBtn {
-    text-align: center;
+  text-align: center;
+  .loginInput {
   }
-  .signupBtn {
-    text-align: center;
+  .text {
+    margin-right: 100px;
   }
 `;
