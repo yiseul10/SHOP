@@ -67,9 +67,9 @@ export default function Router() {
         <Route exact path="/mypage/my" component={MyPage} />
         <Route exact path="/orderlist/order" component={OrderListPage} />
         <Route exact path="/orderreview/order" component={OrderReviewPage} />
-        <Route exact path="/review/re" component={Review} />
+        {/* <Route exact path="/review/re" component={Review} /> */}
         <Route exact path="/review/ReviewInsert" component={ReviewInsert} />
-        {/* <Route exact path="*" component={ErrorPage} /> */}
+        {/* <Route exact path="*"component={ErrorPage} /> */}
       </Switch>
     </Content>
   );

@@ -3,7 +3,7 @@ export { Product } from "./Product";
 export { ProductList } from "./ProductList";
 export { Home } from "./Home";
 export { Cart } from "./Cart";
-export { Review } from "./Review";
+// export { Review } from "./Review";
 export { customerService } from "./customerService";
 export { CustomerCenter } from "./CustomerCenter";
 export { EventNotice } from "./EventNotice";
