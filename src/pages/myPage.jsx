@@ -119,16 +119,16 @@ export function MyPage() {
 
         <div className="mypage">마이페이지</div>
         <div className="mypageContainer">
-          <Link to="/orderlist">
+          <Link to="/orderlist/order">
             <div>주문내역</div>
           </Link>
-          <Link to="/orderreview">
+          <Link to="/orderreview/order">
             <div>구매후기</div>
           </Link>
-          <Link to="/QuestionOne">
+          <Link to="/customerService/QuestionOne">
             <div>1:1문의</div>
           </Link>
-          <Link to="customerService">
+          <Link to="/customerService/service">
             <div>고객센터</div>
           </Link>
         </div>
