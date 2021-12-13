@@ -32,7 +32,7 @@ export function Approval() {
         setLoading(true);
         const response = await axios({
             method:'POST',
-            url:`http://pvpvpvpvp.gonetis.com:8080/sample/orders/approve`,
+            url:`http://ec2-3-37-117-153.ap-northeast-2.compute.amazonaws.com:8080/shoppingmall/orders/approve`,
             data:formdata,
         });
         console.log(response.data.result); 

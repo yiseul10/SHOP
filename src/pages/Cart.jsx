@@ -148,7 +148,7 @@ export const Cart = () => {
     dispatch(clearCart());
   };
   const handleAddToWish = product => {
-    addFlashMessage('위시리스트에 담겼습니다!');
+    // addFlashMessage('위시리스트에 담겼습니다!');
     dispatch(addWish(product));
   };
   const handleIncreaseCart = product => {
