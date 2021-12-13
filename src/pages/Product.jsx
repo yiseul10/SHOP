@@ -2,13 +2,22 @@ import styled from 'styled-components';
 import { media } from '../responsive';
 import { Add, Remove } from '@material-ui/icons';
 import StyledButton from '../components/Button/Button';
-
 import Axios from 'axios';
 import axios from 'axios';
 import { useParams, Link, useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { addProduct } from '../store/cart-slice';
+
+const ReviewWrapper = styled.div `
+    padding : auto;
+    background-color: whitesmoke;
+  text-align: center;
+`;
+
+
+
+
 
 const Container = styled.div``;
 const Wrapper = styled.div`
@@ -140,19 +149,8 @@ const Product = () => {
   const [color, setColor] = useState('');
   const [size, setSize] = useState('');
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    const getProduct = async () => {
-      try {
-        const response = await Axios.get(`/${id}`);
-        console.log('데이터', response.data);
-        setProduct(response.data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    getProduct();
-  }, [id]);
+  
+  
 
   const handleQuantity = type => {
     if (type === 'dec') {
@@ -166,8 +164,50 @@ const Product = () => {
     dispatch(addProduct({ ...product, quantity, color, size }));
   };
 
+
+  
+  const [users, setUsers] = useState(""); // axios를 통해 json에서 데이터를 끄집어 내기 위한 곳
+
+
+  useEffect(() => {
+    const getProduct = async () => {
+      try {
+        const response = await Axios.get(`/${id}`);
+        console.log('들어온 데이터 확인용 :', response.data);
+        setProduct(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    getProduct();
+  }, [id]);
+
+
+
+  useEffect(() => {
+      const fetchUsers = async () => {
+          try {
+           
+              setUsers(null);
+              const response = await axios.get(
+                  'http://ec2-3-37-117-153.ap-northeast-2.compute.amazonaws.com:8080/shoppingmall/reviews'
+              );
+              setUsers(response.data); // 데이터는 response.data 안에 들어있습니다.
+          } catch (e) {
+console.err(e)          }
+      };
+
+      fetchUsers();
+  }, []);
+
+ 
+  
+  console.log(users);
+
+
+
   return product.colors === undefined ? null : (
-    <Container>
+    <><Container>
       <Wrapper>
         <ImgContainer>
           <Image src={product.image} />
@@ -182,18 +222,18 @@ const Product = () => {
                 <FilterColor color={c} key={c} onClick={() => setColor(c)} />
               ))}
             </Filter>
+            <button>커스텀하기</button>
+
           </FilterContainer>
           <AddContainer>
             <AmountContainer>
               <Remove
                 style={{ fontSize: 15 }}
-                onClick={() => handleQuantity('dec')}
-              />
+                onClick={() => handleQuantity('dec')} />
               <Amount>{quantity}</Amount>
               <Add
                 style={{ fontSize: 15 }}
-                onClick={() => handleQuantity('inc')}
-              />
+                onClick={() => handleQuantity('inc')} />
             </AmountContainer>
             <FilterSize onChange={e => setSize(e.target.value)}>
               <FilterSizeOption defaultValue='default'>
@@ -202,6 +242,7 @@ const Product = () => {
               {product.sizes.size.map(s => (
                 <FilterSizeOption key={s}>{s}</FilterSizeOption>
               ))}
+              
             </FilterSize>
           </AddContainer>
           <ButtonHandle>
@@ -215,6 +256,9 @@ const Product = () => {
             >
               ADD TO CART
             </StyledButton>
+
+           
+
             <Link to='/cart'>
               <StyledButton>바로 구매하기</StyledButton>
             </Link>
@@ -234,6 +278,65 @@ const Product = () => {
         </InfoContainer>
       </Wrapper>
     </Container>
+    
+    
+  
+    <ReviewWrapper>
+        <div>
+
+
+           <th>   <h2>  상품평 </h2>  </th> 
+               
+      
+               
+                  <hr/>
+
+                  {
+                        users
+                            .reviews
+                            .map(user => (
+                                <>
+                               <td colspan="2"> 
+                                <span> 
+                                        <img  
+
+                                            style={{height:'15%',width:'15%'}} 
+                                         src={user.images.image} />
+                                      
+                                    </span>
+                            
+                                </td>
+
+                                <td> 
+                                <span>
+                                       <p> {user.content} </p>
+                                    </span>
+                                    </td>
+                           
+                               
+                               
+                                    <button>  상품평 등록하기</button>
+                                    
+                            
+                           
+                            <hr/><br/>
+
+                        </>
+
+                            ))
+
+                    }
+
+        </div>
+
+      </ReviewWrapper></>
+
+
+
+
+
+
+
   );
 };
 export default Product;

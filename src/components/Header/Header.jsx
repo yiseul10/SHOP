@@ -111,7 +111,7 @@ function Header() {
           </LeftMenu>
 
           <LeftMenu to='/'>CUSTOM</LeftMenu>
-          <LeftMenu to='/review'>REVIEW</LeftMenu>
+
           <Search onClick={handleClick}>검색</Search>
           {click ? <Searchbar /> : null}
           <Invisible>
