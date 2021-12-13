@@ -20,6 +20,8 @@ import QuestionOne from './pages/QuestionOne';
 import FAQ from './pages/FAQ';
 import FlashMessage from './components/Message/FlashMessage';
 import ExampleContext from './components/ExampleContext';
+import ReviewInsert from './pages/ReviewInsert';
+
 
 import Axios from 'axios';
 
@@ -64,6 +66,10 @@ const App = () => {
           <Route exact path='/'>
             <Home />
           </Route>
+          <Route exact path='/ReviewInsert'>
+            <ReviewInsert />
+          </Route>
+
           <Route exact path='/customerService'>
             <CustomerCenter />
           </Route>
@@ -77,7 +83,9 @@ const App = () => {
           <Route exact path='/customerService/QuestionOne'>
             <QuestionOne />
           </Route>
-         
+        
+
+
         </Switch>
 
         <Footer />

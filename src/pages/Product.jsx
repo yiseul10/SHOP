@@ -4,10 +4,13 @@ import { Add, Remove } from '@material-ui/icons';
 import StyledButton from '../components/Button/Button';
 import Axios from 'axios';
 import axios from 'axios';
-import { useParams, Link, useLocation } from 'react-router-dom';
+import { Route,useParams, Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { addProduct } from '../store/cart-slice';
+
+
+
 
 const ReviewWrapper = styled.div `
     padding : auto;
@@ -173,7 +176,7 @@ const Product = () => {
     const getProduct = async () => {
       try {
         const response = await Axios.get(`/${id}`);
-        console.log('들어온 데이터 확인용 :', response.data);
+        console.log(' 데이터 확인용 :', response.data);
         setProduct(response.data);
       } catch (error) {
         console.error(error);
@@ -315,7 +318,17 @@ console.err(e)          }
                            
                                
                                
-                                    <button>  상품평 등록하기</button>
+                                 
+                
+
+                <Link to="/ReviewInsert">
+
+                   
+                        <button>
+                            상품평 등록</button>
+
+                </Link>
+
                                     
                             
                            
