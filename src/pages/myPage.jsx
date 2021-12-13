@@ -2,14 +2,15 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import Modal from "react-modal";
+import { Input } from "reactstrap";
 import { useHistory } from "react-router-dom";
 // import { LoginInput } from "components/input";
-import { PrimaryBtn } from "components/Button";
 import axios from "axios";
 import { MyPageInput } from "components/input";
 import { AddressSearch } from "components/modal/addressSearch";
 import { BiSearchAlt2 } from "react-icons/bi";
 import { IoIosClose } from "react-icons/io";
+import { LoginBtn } from "components/Button/loginBtn";
 
 export function MyPage() {
   const [userName, setUserName] = useState(""); //  이름
@@ -101,21 +102,18 @@ export function MyPage() {
     <>
       <AddressOpenModal isOpen={isAddressBtn}>
         <ModalContainer>
-          <div>
+          <div className="btnclose">
             <button onClick={isAddressModalClose}>
               <IoIosClose />
             </button>
           </div>
+
           <AddressSearch />
         </ModalContainer>
       </AddressOpenModal>
 
       <Cover>
-        <div className="addressBtn">
-          <button onClick={onAddressBtn}>
-            <BiSearchAlt2 />
-          </button>
-        </div>
+        <div className="addressBtn"></div>
 
         <div className="mypage">마이페이지</div>
         <div className="mypageContainer">
@@ -134,53 +132,58 @@ export function MyPage() {
         </div>
 
         <form onSubmit={handleSubmit}>
-          <div>
-            <MyPageInput
-              id="userName"
-              label="이름"
-              onChange={onUserNameChange}
-              placeholder="이름"
-            />
-            <MyPageInput
-              id="id"
-              label="아이디"
-              onChange={onIdChange}
-              placeholder="아이디(5~12자)"
-            />
-            <MyPageInput
-              id="nickname"
-              label="닉네임"
-              onChange={onNickNameChange}
-              placeholder="닉네임"
-            />
-            <MyPageInput
-              id="email"
-              label="이메일"
-              onChange={onEmailChange}
-              placeholder="이메일 형식에 맞게 작성해주세요"
-            />
-            <MyPageInput
-              id="address"
-              label="주소"
-              onChange={onAddressChange}
-              placeholder="주소"
-            ></MyPageInput>
-
-            <MyPageInput
-              id="phoneNum"
-              label="핸드폰"
-              onChange={onPhoneNumChange}
-              placeholder="전화번호 형식에 맞게 작성해주세요"
-            />
-            <MyPageInput
-              id="passowrd"
-              label="비밀번호"
-              type="password"
-              onChange={onPasswordChange}
-              placeholder="비밀번호(숫자, 영문을 포함한 8자리 이상)"
-            />
+          <MyPageInput
+            id="userName"
+            label="이름"
+            onChange={onUserNameChange}
+            placeholder="이름"
+          />
+          <MyPageInput
+            id="id"
+            label="아이디"
+            onChange={onIdChange}
+            placeholder="아이디(5~12자)"
+          />
+          <MyPageInput
+            id="nickname"
+            label="닉네임"
+            onChange={onNickNameChange}
+            placeholder="닉네임"
+          />
+          <MyPageInput
+            id="email"
+            label="이메일"
+            onChange={onEmailChange}
+            placeholder="이메일 형식에 맞게 작성해주세요"
+          />
+          <div className="address">
+            <p>주소</p>
+            <div>
+              <Input
+                className="addressInput"
+                id="address"
+                onChange={onAddressChange}
+                placeholder="주소"
+              />
+              <button type="button" onClick={onAddressBtn}>
+                <BiSearchAlt2 />
+              </button>
+            </div>
           </div>
-          <PrimaryBtn label="수정하기" onClick={userData} type="submit" />
+          <MyPageInput
+            id="phoneNum"
+            label="핸드폰"
+            onChange={onPhoneNumChange}
+            placeholder="전화번호 형식에 맞게 작성해주세요"
+          />
+          <MyPageInput
+            id="passowrd"
+            label="비밀번호"
+            type="password"
+            onChange={onPasswordChange}
+            placeholder="비밀번호(숫자, 영문을 포함한 8자리 이상)"
+          />
+          <LoginBtn label="수정하기" onClick={userData} type="submit" />
         </form>
       </Cover>
     </>
@@ -191,6 +194,7 @@ const Cover = styled.div`
   padding: 10px;
   text-align: center;
   .mypageContainer {
+    width: 20%;
     text-align: left;
     font-size: 16px;
   }
@@ -202,30 +206,59 @@ const Cover = styled.div`
   .addressBtn {
     float: right;
   }
+  .address {
+    display: flex;
+    width: 40%;
+    height: 46px;
+    margin: 0 auto;
+    justify-content: space-between;
+    p {
+      line-height: 44px;
+    }
+    div {
+      width: 80%;
+      display: flex;
+
+      .form-control {
+        width: 85%;
+      }
+      button {
+        width: 15%;
+        border: none;
+        border-radius: 0 10px 10px 0;
+        background-color: #2cb5e8;
+        svg {
+          color: #fff;
+        }
+      }
+    }
+  }
 `;
 
 const AddressOpenModal = styled(Modal)`
-  position: fixed;
+  position: absolute;
   width: 100%;
-  height: 100vh;
-  background-color: rgba(29, 49, 65, 0.8);
+  height: 100%;
+  background-color: rgba(22, 39, 53, 0.8);
   overflow-x: hidden;
   overflow-y: auto;
   z-index: 1031;
 `;
 
 const ModalContainer = styled.div`
-  position: relative;
-  right: 30%;
-  left: 30%;
-  top: 10%;
-  width: 40%;
-  height: 80%;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  width: 520px;
+  height: 600px;
   background-color: #fff;
   border-radius: 20px;
-  border: solid 10px #5352ed;
+  border: solid 5px#416f99;
   padding: 16px;
-  div {
-    text-align: center;
+  .btnclose {
+    text-align: right;
   }
 `;
