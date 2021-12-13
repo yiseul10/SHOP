@@ -13,7 +13,7 @@ export function MyPageInput({
   errorMsg,
 }) {
   return (
-    <Cover msgDisplay={checked}>
+    <InputContainer>
       <p>{label}</p>
       <IdInput
         onChange={onChange}
@@ -21,17 +21,25 @@ export function MyPageInput({
         value={value}
         placeholder={placeholder}
       />
-      <p className="errorMsg">{errorMsg}</p>
-    </Cover>
+    </InputContainer>
   );
 }
+const InputContainer = styled.div`
+  display: flex;
+  box-sizing: border-box;
+  width: 40% !important;
+  height: 46px;
+  padding: 0;
+  margin: 15px auto;
+  justify-content: space-between;
+  line-height: 32px;
 
-const Cover = styled.div`
-  width: 100%;
-  padding: 20px;
+  p {
+    margin-top: 6px;
+  }
 `;
 
 const IdInput = styled(Input)`
-  width: 50%;
-  margin: 0 auto;
+  width: 80% !important;
+  margin: 0;
 `;
