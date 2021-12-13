@@ -12,6 +12,14 @@ import { addToCart } from '../store/cart-slice';
 
 import { Tabs, Tab } from '@material-ui/core';
 
+
+
+const ReviewWrapper = styled.div`
+padding : auto;
+background-color: whitesmoke;
+text-align: center;
+`;
+
 const Container = styled.div``;
 const Wrapper = styled.div`
   padding: 150px;
@@ -152,7 +160,7 @@ export const Product = () => {
 
   const [type, setType] = useState(0);
   const [page, setPage] = useState(1);
-
+  const [users, setUsers] = useState(""); // axios를 통해 json에서 데이터를 끄집어 내기 위한 곳
   const dispatch = useDispatch();
   useEffect(() => {
     const getProduct = async () => {
@@ -167,6 +175,21 @@ export const Product = () => {
     getProduct();
   }, [id]);
 
+  useEffect(() => {
+    const fetchUsers = async () => {
+      try {
+        setUsers(null);
+        const response = await Axios.get(
+          'http://ec2-3-37-117-153.ap-northeast-2.compute.amazonaws.com:8080/shoppingmall/reviews'
+        );
+        setUsers(response.data); // 데이터는 response.data 안에 들어있습니다.
+      } catch (e) {
+        console.err(e)
+      }
+    };
+
+    fetchUsers();
+  }, []);
   const handleQuantity = type => {
     if (type === 'dec') {
       quantity > 1 && setQuantity(quantity - 1);
@@ -256,6 +279,39 @@ export const Product = () => {
           {/* </Desc> */}
         </InfoContainer>
       </Wrapper>
+      
+      {users!=null&&<ReviewWrapper>
+        <div>
+          <th>   <h2>  상품평 </h2>  </th>
+          <hr />
+          {
+            users
+              .reviews
+              .map(user => (
+                <>
+                  <td colspan="2">
+                    <span>
+                      <img
+
+                        style={{ height: '15%', width: '15%' }}
+                        src={user.images.image} />
+                    </span>
+                  </td>
+                  <td>
+                    <span>
+                      <p> {user.content} </p>
+                    </span>
+                  </td>
+                  <Link to="/ReviewInsert">
+                    <button>
+                      상품평 등록</button>
+                  </Link>
+                  <hr /><br />
+                </>
+              ))
+          }
+        </div>
+      </ReviewWrapper>}
     </Container>
   );
 };
