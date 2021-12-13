@@ -23,53 +23,52 @@ const Wrapper = styled.div`
 const FilterContainer = styled.div`
   display: flex;
   flex-direction: row;
-  padding: 0px 50px;
   justify-content: space-between;
+  padding: 0px 50px;
   letter-spacing: -0.5px;
-
   ${media({
     flexDirection: 'row',
+    padding: '0',
     borderBottom: '0.5px solid grey'
   })}
 `;
 const Filter = styled.div`
-  /* padding-left: 50px; */
-  /* padding-right: 20px; */
   width: 8rem;
   font-size: 11px;
   font-weight: 600;
   margin-top: 40px;
   ${media({
-    padding: '20px',
+    margin: '17px 35px',
+    width: '10rem',
     flexDirection: 'space-between',
-    marginTop: '0'
+    alignContent: 'center'
   })}
 `;
 const VerticalLine = styled.div`
   ${media({
     borderRight: '0.1px solid grey',
     width: '0.1px',
-    height: '110px'
+    height: '80px'
   })}
 `;
-const FilterText = styled.span``;
+
 const Select = styled.select`
   display: block;
   width: 100%;
   margin: 10px 0;
   border: none;
   font-size: 11px;
-  ${media({ display: 'flex' })}
+  ${media({ display: 'flex', margin: '10px 0px 0px 0px' })}
 `;
 const Option = styled.option``;
 const Category = styled.div`
   font-size: 45px;
   font-weight: 300;
   margin: 0px 0px 40px 160px;
-
   ${media({
     borderBottom: '0.5px solid grey',
-    padding: '4rem'
+    padding: '2rem',
+    margin: '0px'
   })};
 `;
 
@@ -95,11 +94,8 @@ const ProductList = () => {
       <Wrapper>
         <FilterContainer>
           <Filter>
-            <FilterText>정렬</FilterText>
-            <Select
-              onChange={e => setSort(e.target.value)}
-              style={{ marginBottom: 20 }}
-            >
+            <p>정렬</p>
+            <Select onChange={e => setSort(e.target.value)}>
               <Option value='featured'>Featured</Option>
               <Option value='asc'>낮은가격순</Option>
               <Option value='desc'>높은가격순</Option>
@@ -107,7 +103,7 @@ const ProductList = () => {
           </Filter>
           <VerticalLine></VerticalLine>
           <Filter>
-            <FilterText>전체 카테고리</FilterText>
+            <p>전체 카테고리</p>
             <Select name='size' onChange={handleFilters}>
               <Option>Size</Option>
               <Option>XS</Option>

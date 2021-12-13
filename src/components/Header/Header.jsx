@@ -1,18 +1,17 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
+import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { useMediaQuery } from 'react-responsive';
 import { Link, useHistory } from 'react-router-dom';
-import { media } from '../../responsive';
 
+import styled from 'styled-components';
+import { media } from '../../responsive';
 import { ShoppingCartOutlined } from '@material-ui/icons';
-import { IoSearchOutline, IoMenuOutline } from 'react-icons/io5';
+import { IoSearchOutline } from 'react-icons/io5';
 import { Badge } from '@material-ui/core';
 
-import Searchbar from './Searchbar';
-import SlideNav from './SlideNav';
+import SlideNav from '../Nav/SlideNav';
 import { getTotals } from '../../store/cart-slice';
 
-import { useSelector, useDispatch } from 'react-redux';
-import { useEffect, useContext } from 'react';
 const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -20,7 +19,7 @@ const Container = styled.div`
   font-weight: 500;
   box-shadow: 0px 1rem 0.3rem -1rem rgba(0, 0, 0, 0.1);
   position: fixed;
-  width: 100vw;
+  width: 100%;
   z-index: 1;
   padding-top: 1.7rem;
   background-color: white;
@@ -92,16 +91,19 @@ const Search = styled.div`
 `;
 
 function Header() {
+  const [click, setClick] = useState(false);
+
   const dispatch = useDispatch();
   const history = useHistory();
   const cart = useSelector(state => state.cart);
   const { quantity } = useSelector(state => state.cart);
 
+  const isMobile = useMediaQuery({ maxWidth: 768 });
+
   useEffect(() => {
     dispatch(getTotals());
   }, [cart, dispatch]);
 
-  const [click, setClick] = useState(false);
   const handleClick = () => {
     setClick(!click);
     history.push('/search');
@@ -109,15 +111,15 @@ function Header() {
   const [showSlide, setShowSlide] = useState(false);
   const handleSlide = () => setShowSlide(!showSlide);
 
+  const handleScroll = () => {
+    window.scroll(0, 0);
+  };
+
   return (
     <Container>
       <Wrapper>
         <Left>
-          <Invisible>
-            <IoMenuOutline onClick={handleSlide} />
-            {showSlide ? <SlideNav /> : null}
-          </Invisible>
-
+          {isMobile && <SlideNav />}
           <LeftMenu to={`/product`}>
             <p>COLLECTION</p>
           </LeftMenu>
@@ -125,17 +127,18 @@ function Header() {
           <LeftMenu to='/'>CUSTOM</LeftMenu>
           <LeftMenu to='/review'>REVIEW</LeftMenu>
           <Search onClick={handleClick}>검색</Search>
-          {/* {click ? <Searchbar /> : null} */}
+
           <Invisible>
             <IoSearchOutline
               onClick={handleClick}
               style={{ fontSize: ' 21px', marginLeft: '22px' }}
             />
-            {click ? <Searchbar /> : null}
           </Invisible>
         </Left>
         <Center>
-          <Logo to='/'>SHOP</Logo>
+          <Logo to='/' onClick={handleScroll}>
+            SHOP
+          </Logo>
         </Center>
         <Right>
           <MenuHandle to='/login'>LOGIN</MenuHandle>

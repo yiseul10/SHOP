@@ -7,19 +7,19 @@ import ProductList from '../pages/ProductList';
 
 import { media } from '../responsive';
 
-const Container = styled.div`
+const Container = styled.div``;
+const Wrapper = styled.div`
   width: 100%;
   left: 0;
   top: 95px;
   height: 70px;
-  position: absolute;
-  padding: 9px 60px;
+  position: fixed;
+  padding: 10px 60px;
   background-color: white;
   opacity: 100%;
   transition: all 2s ease;
   z-index: 1;
   box-shadow: 0px 1rem 0.3rem -1rem rgba(0, 0, 0, 0.1);
-
   &.clicked {
     display: none;
   }
@@ -27,13 +27,11 @@ const Container = styled.div`
 const InputForm = styled.form`
   border-top: 0.1px solid rgba(0, 0, 0, 0.3);
   text-align: center;
-  display: flex;
-  position: relative;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  z-index: 1;
+  position: fixed;
+  /* z-index: 999; */
   padding-top: 1rem;
+  left: 0;
+  width: 100%;
 `;
 const SearchInput = styled.input`
   border: none;
@@ -45,11 +43,14 @@ const SearchInput = styled.input`
 const SearchIcon = styled.button`
   background-color: transparent;
   border: none;
+  ${media({
+    color: 'black'
+  })}
 `;
 const ProductContainer = styled.div`
   display: flex;
   flex-direction: row;
-  padding: 0px 50px;
+  padding: 170px 0px;
   justify-content: space-between;
   letter-spacing: -0.5px;
 
@@ -63,6 +64,7 @@ const Search = () => {
   const [products, setProduct] = useState([]);
   const [page, setPage] = useState(1);
   const [numberOfPages, setNumberOfPages] = useState();
+  const [close, setClose] = useState(false);
 
   const fetchSearch = async e => {
     try {
@@ -78,23 +80,27 @@ const Search = () => {
     fetchSearch();
   }, [keyword, page]);
 
+  const handleClose = e => {
+    e.preventDefault();
+  };
+
   return (
     <Container>
-      <InputForm onSubmit={fetchSearch}>
-        <SearchInput
-          onChange={e => setKeyword(e.target.value)}
-          value={keyword}
-          type='search'
-          placeholder='search store...'
-        ></SearchInput>
-        <SearchIcon>
-          <BsArrowRight />
-        </SearchIcon>
-      </InputForm>
+      <Wrapper>
+        <InputForm onSubmit={fetchSearch}>
+          <SearchInput
+            onChange={e => setKeyword(e.target.value)}
+            value={keyword}
+            type='search'
+            placeholder='search store...'
+          ></SearchInput>
+          <SearchIcon onClick={handleClose}>x</SearchIcon>
+        </InputForm>
+      </Wrapper>
       <ProductContainer>
         <Products keyword={keyword} setKeyword={setKeyword} />
       </ProductContainer>
-      {!keyword && <h2>No Search result</h2>}
+      {!keyword && <h2></h2>}
     </Container>
   );
 };

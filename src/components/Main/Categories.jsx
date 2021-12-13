@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import { categories } from '../../data';
 import { media } from '../../responsive';
+import { categories } from '../../data';
 import CategoryItem from './CategoryItem';
 
 const Container = styled.div`
@@ -12,7 +12,6 @@ const Container = styled.div`
 `;
 
 const Categories = () => {
-  // 데이터를 보내줘야하지 않나유?
   return (
     <Container>
       {categories.map(item => (

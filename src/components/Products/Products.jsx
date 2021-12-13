@@ -1,7 +1,4 @@
 import Axios from 'axios';
-import axios from 'axios';
-
-import { useDispatch, useSelector } from 'react-redux';
 
 import { useState, useEffect } from 'react';
 
@@ -10,7 +7,6 @@ import { media } from '../../responsive';
 
 import Product from './Product';
 import AppPagination from './AppPagination';
-import { fetchProducts, getAllProducts } from '../../store/api-call';
 
 const Container = styled.div`
   /* padding: 30px 58px 150px 50px; */
@@ -20,7 +16,7 @@ const Container = styled.div`
   display: flex;
   justify-content: space-between;
   ${media({
-    padding: '15px 15px 80px 15px'
+    padding: '50px 15px 80px 15px'
   })}
 `;
 const Page = styled.div`
@@ -40,16 +36,7 @@ const Products = ({ cat, filters, sort, keyword, setKeyword }) => {
   const [filteredProducts, setFilteredProducts] = useState([]);
 
   const [page, setPage] = useState(1);
-  const [numberOfPages, setNumberOfPages] = useState();
-
-  // const products = useSelector(getAllProducts);
-  // console.log(products);
-  // const dispatch = useDispatch();
-  // const keyword = '기모';
-
-  // useEffect(() => {
-  //   dispatch(fetchProducts(keyword));
-  // }, [dispatch, keyword, page]);
+  const [numberOfPages, setNumberOfPages] = useState('');
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -66,7 +53,9 @@ const Products = ({ cat, filters, sort, keyword, setKeyword }) => {
         );
         console.log('데이터', response.data);
         setProduct(response.data.products);
+        const num = response.data.endPage;
         setNumberOfPages(response.data.endPage);
+        console.log(num);
       } catch (err) {}
     };
     fetchUsers();
@@ -95,9 +84,6 @@ const Products = ({ cat, filters, sort, keyword, setKeyword }) => {
     }
   }, [sort]);
 
-  {
-    /* {products.products.map(product => ( */
-  }
   return (
     <Container>
       {cat
@@ -125,7 +111,7 @@ const Products = ({ cat, filters, sort, keyword, setKeyword }) => {
           ))}
 
       <Page>
-        {setNumberOfPages > 1 && (
+        {numberOfPages > 1 && (
           <AppPagination setPage={setPage} pageNumber={numberOfPages} />
         )}
       </Page>

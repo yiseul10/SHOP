@@ -83,7 +83,6 @@ const App = () => {
             <Home />
           </Route>
         </Switch>
-
         <Footer />
       </BrowserRouter>
     </ExampleContext.Provider>
