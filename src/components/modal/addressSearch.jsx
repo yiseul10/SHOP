@@ -52,20 +52,16 @@ const Postcode = () => {
   return (
     <>
       <AddressCover>
-        <input
-          type="text"
-          id="postcode"
-          value={full[0]}
-          placeholder="우편번호"
-        />
         <div className="searchBtn">
           <input
-            type="button"
-            value="우편번호 찾기"
-            onClick={disablePostCode}
+            type="text"
+            id="postcode"
+            value={full[0]}
+            placeholder="우편번호"
           />
+          <input type="button" value="검색" onClick={disablePostCode} />
         </div>
-        <br />
+
         <input
           type="text"
           id="roadAddress"
@@ -87,8 +83,7 @@ const Postcode = () => {
         onChange={saveDataAdressExtra}
         placeholder="참고항목"
       /> */}
-        <br />
-        <br />
+
         <br />
         <div className="submitBtn">
           <input
@@ -113,6 +108,7 @@ const AddressCover = styled.div`
     text-align: right;
   }
   .searchBtn {
-    text-align: right;
+    text-align: center;
+    margin-left: 34px;
   }
 `;
