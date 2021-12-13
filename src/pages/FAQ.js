@@ -1,14 +1,21 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react'
+import styled from 'styled-components'
+
 
 const FFAAQQ = styled.div`
-  padding: 10rem;
-`;
+padding: 10rem`
 
-export function FAQ() {
-  return (
-    <FFAAQQ>
-      <div>FAQ 자주 묻는 질문</div>
-    </FFAAQQ>
-  );
+
+export default function FAQ() {
+    return (
+        
+        <FFAAQQ>
+        <div>
+            
+
+            FAQ 자주 묻는 질문 
+
+        </div>
+        </FFAAQQ>
+    )
 }
