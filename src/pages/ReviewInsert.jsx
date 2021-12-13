@@ -3,15 +3,14 @@ import {post} from 'axios'
 import styled from "styled-components";
 
 const Review = styled.div `
-font-size: 1rem;
-    background-color: whitesmoke;
-    font-weight: 100;
-    font-style: italic;
-    padding: 100px;
-    margin: 50px`
+    padding: 20rem;
+    margin: auto`;
 
     export class ReviewInsert extends React.Component {
 
+
+        
+      
         constructor(props) {
 
             super(props);
@@ -115,7 +114,10 @@ font-size: 1rem;
 
         render() {
 
-            return (<Review>
+            return (
+            
+            
+            <Review>
 
                 <form onSubmit={this.handleFormSubmit}>
 
@@ -164,3 +166,4 @@ font-size: 1rem;
     }
 
     export default ReviewInsert
+

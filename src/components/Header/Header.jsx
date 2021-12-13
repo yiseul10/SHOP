@@ -164,8 +164,8 @@ function Header() {
             <p>COLLECTION</p>
           </LeftMenu>
 
-          <LeftMenu to="/">CUSTOM</LeftMenu>
-          <LeftMenu to="/review/re">REVIEW</LeftMenu>
+          <LeftMenu to='/'>CUSTOM</LeftMenu>
+
           <Search onClick={handleClick}>검색</Search>
           {/* {click ? <Searchbar /> : null} */}
           <Invisible>
