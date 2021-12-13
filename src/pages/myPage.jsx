@@ -117,6 +117,7 @@ export function MyPage() {
 
         <div className="mypage">마이페이지</div>
         <div className="mypageContainer">
+          <br />
           <Link to="/orderlist">
             <div>주문내역</div>
           </Link>
