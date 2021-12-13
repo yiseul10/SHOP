@@ -219,6 +219,7 @@ export const Product = () => {
                 <FilterColor color={c} key={c} onClick={() => setColor(c)} />
               ))}
             </Filter>
+            <button>커스텀하기</button>
           </FilterContainer>
           <AddContainer>
             <AmountContainer>

@@ -48,8 +48,8 @@ export function Approval() {
     };
     approve();
   }, [uuid]);
-  if (loading) return <><CircularProgress/></>
+  if (loading) return <><CircularProgress/>결제 승인 중..</>
   if (error) return <div>에러가 발생했습니다</div>;
   if (result) return <><p>결제가 완료되었습니다.!</p><Link to="/">메인으로 돌아가기</Link></>;
-  return <p>결제 승인 중...</p>
+  return <p><CircularProgress/>결제 승인 중...</p>
 }
