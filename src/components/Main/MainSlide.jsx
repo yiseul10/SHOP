@@ -1,20 +1,20 @@
-import React, { useState } from "react";
-import styled from "styled-components";
-import { media } from "../../responsive";
-import { sliderItems } from "../../data";
+import React, { useState } from 'react';
+import styled from 'styled-components';
+import { media } from '../../responsive';
+import { sliderItems } from '../../data';
 import {
   KeyboardArrowLeftRounded,
   KeyboardArrowRightRounded,
 } from "@material-ui/icons";
 
 const Container = styled.div`
-  padding-top: 5rem;
+  /* padding-top: 5rem; */
   width: 100%;
   height: 100vh;
   display: flex;
   position: relative;
   overflow: hidden;
-  ${media({ display: "none" })};
+  ${media({ display: 'none' })};
 `;
 
 const Arrow = styled.div`
@@ -26,8 +26,8 @@ const Arrow = styled.div`
   position: absolute;
   top: 5rem;
   bottom: 0;
-  left: ${(props) => props.direction === "left" && "16px"};
-  right: ${(props) => props.direction === "right" && "16px"};
+  left: ${props => props.direction === 'left' && '16px'};
+  right: ${props => props.direction === 'right' && '16px'};
   margin: auto;
   cursor: pointer;
   z-index: 2;
@@ -64,8 +64,8 @@ const InfoContainer = styled.div`
 
 const MainSlide = () => {
   const [slideIndex, setSlideIndex] = useState(0);
-  const handleClick = (direction) => {
-    if (direction === "left") {
+  const handleClick = direction => {
+    if (direction === 'left') {
       setSlideIndex(slideIndex > 0 ? slideIndex - 1 : 2);
     } else {
       setSlideIndex(slideIndex < 2 ? slideIndex + 1 : 0);
@@ -73,7 +73,7 @@ const MainSlide = () => {
   };
   return (
     <Container>
-      <Arrow direction="left" onClick={() => handleClick("left")}>
+      <Arrow direction='left' onClick={() => handleClick('left')}>
         <KeyboardArrowLeftRounded />
       </Arrow>
       <Wrapper slideIndex={slideIndex}>
@@ -88,7 +88,7 @@ const MainSlide = () => {
           </Slide>
         ))}
       </Wrapper>
-      <Arrow direction="right" onClick={() => handleClick("right")}>
+      <Arrow direction='right' onClick={() => handleClick('right')}>
         <KeyboardArrowRightRounded />
       </Arrow>
     </Container>

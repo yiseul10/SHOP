@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import Axios from 'axios';
-
 import styled from 'styled-components';
 import { BsArrowRight } from 'react-icons/bs';
-import { fetchProducts } from '../../store/api-call';
+import Axios from 'axios';
+import Products from '../components/Products/Products';
+import ProductList from '../pages/ProductList';
+
+import { media } from '../responsive';
 
 const Container = styled.div`
   width: 100%;
@@ -45,11 +46,23 @@ const SearchIcon = styled.button`
   background-color: transparent;
   border: none;
 `;
-const Searchbar = () => {
+const ProductContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  padding: 0px 50px;
+  justify-content: space-between;
+  letter-spacing: -0.5px;
+
+  ${media({
+    flexDirection: 'row',
+    borderBottom: '0.5px solid grey'
+  })}
+`;
+export const Search = () => {
   const [keyword, setKeyword] = useState('');
   const [products, setProduct] = useState([]);
   const [page, setPage] = useState(1);
-  const [numberOfPages, setNumberOfPages] = useState(10);
+  const [numberOfPages, setNumberOfPages] = useState();
 
   const fetchSearch = async e => {
     try {
@@ -65,22 +78,6 @@ const Searchbar = () => {
     fetchSearch();
   }, [keyword, page]);
 
-  // const submitHandler = e => {
-  //   e.preventDefault();
-  //   console.log(keyword);
-
-  //   setKeyword('');
-  // };
-
-  // const dispatch = useDispatch();
-
-  // const submitHandler = e => {
-  //   e.preventDefault();
-  //   console.log(keyword);
-  //   dispatch(fetchProducts(keyword));
-  //   setKeyword('');
-  // };
-
   return (
     <Container>
       <InputForm onSubmit={fetchSearch}>
@@ -94,8 +91,12 @@ const Searchbar = () => {
           <BsArrowRight />
         </SearchIcon>
       </InputForm>
+      <ProductContainer>
+        <Products keyword={keyword} setKeyword={setKeyword} />
+      </ProductContainer>
+      {!keyword && <h2>No Search result</h2>}
     </Container>
   );
 };
 
-export default Searchbar;
+

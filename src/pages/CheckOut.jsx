@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { media } from '../responsive';
 import styled from 'styled-components';
 import StyledButton from '../components/Button/Button';
 
@@ -9,9 +10,11 @@ import { useDispatch, useSelector } from 'react-redux';
 const Container = styled.div`
   padding: 13rem 10rem;
   font-size: 11px;
+  ${media({ padding: '120px 25px 80px 25px' })}
 `;
 const Wrapper = styled.div`
   display: flex;
+  ${media({ flexDirection: 'column' })}
 `;
 const Left = styled.div`
   flex: 3;
@@ -35,7 +38,7 @@ const Details = styled.div`
 `;
 const Title = styled.div`
   font-weight: 500;
-  padding: 20px 0px;
+  padding: 5px 0px;
 `;
 const ProductColor = styled.div`
   width: 15px;
@@ -68,16 +71,18 @@ const Hr = styled.hr`
 const Right = styled.div`
   flex: 2;
   margin-left: 5rem;
+  ${media({ margin: '30px 0px' })}
 `;
 const SummaryItem = styled.div`
   display: flex;
   justify-content: space-between;
   line-height: 1.5rem;
   font-weight: ${props => props.type === 'total' && '500'};
-  margin-top: ${props => props.type === 'total' && '10px'};
+  ${media({ margin: '10px 0px' })}
 `;
 const SummaryItemText = styled.div`
   padding: 1rem 0rem;
+  ${media({ padding: '0.5rem 0rem' })}
 `;
 const Wish = styled.span`
   text-decoration: underline;
@@ -86,7 +91,7 @@ const Wish = styled.span`
 `;
 const Total = styled.div`
   padding: 2rem 0rem;
-  height: 10vh;
+  /* height: 10vh; */
 `;
 
 const Info = styled.div`
@@ -95,8 +100,15 @@ const Info = styled.div`
   padding: 10px;
   position: relative;
 `;
+const MediaLine = styled.hr`
+  background-color: #eee;
+  border: none;
+  height: 1px;
+  display: none;
+  ${media({ display: 'block', marginTop: '9px' })}
+`;
 
-const CheckOut = () => {
+export const CheckOut = () => {
   const dispatch = useDispatch();
   const cart = useSelector(state => state.cart);
 
@@ -111,19 +123,20 @@ const CheckOut = () => {
       <Wrapper>
         <Left>
           <Title>배송주소</Title>
+          <Hr />
           <Info>
             <form>
               <input></input>
             </form>
           </Info>
-          <Hr />
           <Title>배송정보</Title>
+          <Hr />
           <label>
             <Radio type='radio' value='disabled' size='small' disabled />
             우체국택배 | 2 - 3일 소요
           </label>
-          <Hr />
           <Title>결제정보</Title>
+          <Hr />
           <form>
             <label>
               <Radio
@@ -150,10 +163,10 @@ const CheckOut = () => {
               간편결제
             </label>
           </form>
-          <Hr />
           <Title>주문정보</Title>
+          <Hr />
           {cart.products.map(product => (
-            <div key={product.index}>
+            <div key={product.index} id={product.id}>
               <Product>
                 <ProductDetail>
                   <Image src={product.image} />
@@ -179,31 +192,29 @@ const CheckOut = () => {
         </Left>
         <Right>
           <Title>결제확인</Title>
-          <Total>
-            <SummaryItemText>
-              <SummaryItem>
-                <span>가격</span>
-                <span>{cart.total}원</span>
-              </SummaryItem>
-              <SummaryItem>
-                <span>배송비</span>
-                <span>0원</span>
-              </SummaryItem>
-            </SummaryItemText>
-            <Hr />
-            <SummaryItemText>
-              <SummaryItem type='total'>
-                <span>합계</span>
-                <span>{cart.total}원</span>
-              </SummaryItem>
-            </SummaryItemText>
 
-            <StyledButton>주문</StyledButton>
-          </Total>
+          <MediaLine />
+          <SummaryItemText>
+            <SummaryItem>
+              <span>가격</span>
+              <span>{cart.total}원</span>
+            </SummaryItem>
+            <SummaryItem>
+              <span>배송비</span>
+              <span>0원</span>
+            </SummaryItem>
+          </SummaryItemText>
+          <Hr />
+          <SummaryItemText>
+            <SummaryItem type='total'>
+              <span>합계</span>
+              <span>{cart.total}원</span>
+            </SummaryItem>
+          </SummaryItemText>
+          <StyledButton>주문</StyledButton>
         </Right>
       </Wrapper>
     </Container>
   );
 };
 
-export default CheckOut;

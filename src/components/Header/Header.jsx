@@ -15,11 +15,13 @@ import { ShoppingCartOutlined } from "@material-ui/icons";
 import { IoSearchOutline, IoMenuOutline } from "react-icons/io5";
 import { Badge } from "@material-ui/core";
 
-import Searchbar from "./Searchbar";
-import DropMenu from "./DropMenu";
-import SlideNav from "./SlideNav";
-import { useSelector } from "react-redux";
 
+import SlideNav from "./SlideNav";
+import Searchbar from './Searchbar';
+import { getTotals } from '../../store/cart-slice';
+
+import { useSelector, useDispatch } from 'react-redux';
+import { useContext } from 'react';
 const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -104,9 +106,20 @@ const Search = styled.div`
   ${media({ display: "none" })}
 `;
 function Header() {
+  const dispatch = useDispatch();
   const history = useHistory();
+  const cart = useSelector(state => state.cart);
+  // const { quantity } = useSelector(state => state.cart);
+
+  useEffect(() => {
+    dispatch(getTotals());
+  }, [cart, dispatch]);
+
   const [click, setClick] = useState(false);
-  const handleClick = () => setClick(!click);
+  const handleClick = () => {
+    setClick(!click);
+    history.push('/search');
+  };
   const [showSlide, setShowSlide] = useState(false);
   const handleSlide = () => setShowSlide(!showSlide);
 
@@ -147,15 +160,14 @@ function Header() {
             {showSlide ? <SlideNav /> : null}
           </Invisible>
 
-          <LeftMenu to="/products">
-            {" "}
-            <DropMenu />
+          <LeftMenu to={`/product`}>
+            <p>COLLECTION</p>
           </LeftMenu>
 
           <LeftMenu to="/">CUSTOM</LeftMenu>
           <LeftMenu to="/review">REVIEW</LeftMenu>
           <Search onClick={handleClick}>검색</Search>
-          {click ? <Searchbar /> : null}
+          {/* {click ? <Searchbar /> : null} */}
           <Invisible>
             <IoSearchOutline
               onClick={handleClick}

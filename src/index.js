@@ -5,6 +5,10 @@ import { Provider } from "react-redux";
 import store from "./store/store";
 import { BrowserRouter } from "react-router-dom";
 
+import { getTotals } from './store/cart-slice';
+
+store.dispatch(getTotals());
+
 ReactDOM.render(
   <BrowserRouter>
     <Provider store={store}>

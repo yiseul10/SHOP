@@ -1,3 +1,4 @@
+
 export { Product } from "./Product";
 export { ProductList } from "./ProductList";
 export { Home } from "./Home";
@@ -16,3 +17,6 @@ export { PasswordSearchPage } from "./passwordSearchPage";
 export { LoadingPage } from "./loadingPage";
 export { PasswordResetPage } from "./passwordResetPage";
 export { Approval } from "./Approval";
+export { CheckOut } from "./CheckOut";
+export { Search } from "./Search";
+export { WishList } from "./WishList"

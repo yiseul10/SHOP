@@ -16,6 +16,9 @@ import {
   MyPage,
   LoadingPage,
   Approval,
+  Search,
+  WishList,
+  CheckOut,
 } from "pages";
 import { OrderListPage } from "pages/ordeListPage";
 import { OrderReviewPage } from "pages/orderReviewPage";
@@ -35,25 +38,31 @@ export default function Router() {
         <Route exact path="/approval" component={Approval} />     
         <Route exact path="/passwordsearch" component={PasswordSearchPage} />
         <Route exact path="/passwordreset" component={PasswordResetPage} />
-        <Route exact path="/products/:id" component={Product} />
-        <Route exact path="/products" component={ProductList} />
+
+        <Route exact path="/search" component={Search} />
+        <Route exact path="/products/:category" component={ProductList} />  
+        <Route exact path="/checkout" component={CheckOut} />
+        <Route exact path="/wish" component={WishList} />
         <Route exact path="/cart" component={Cart} />
-        <Route exact path="/review" component={Review} />
+        <Route exact path="/:id" component={Product} />
+        
+
+
+        
         <Route exact path="/customerService" component={CustomerCenter} />
         <Route exact path="/customerService/FAQ" component={FAQ} />
-        <Route exact path="/mypage" component={MyPage} />
-        <Route exact path="/orderlist" component={OrderListPage} />
-        <Route exact path="/orderreview" component={OrderReviewPage} />
         <Route
           exact
           path="/customerService/EventNotice"
-          component={EventNotice}
-        />
+          component={EventNotice}/>
         <Route
           exact
           path="/customerService/QuestionOne"
-          component={QuestionOne}
-        />
+          component={QuestionOne}/>
+        <Route exact path="/mypage" component={MyPage} />
+        <Route exact path="/orderlist" component={OrderListPage} />
+        <Route exact path="/orderreview" component={OrderReviewPage} />
+        <Route exact path="/review" component={Review} />
         <Route exact path="/review/ReviewInsert" component={ReviewInsert} />
         <Route
           exact
