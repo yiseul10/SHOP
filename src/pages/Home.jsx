@@ -2,7 +2,7 @@ import MainSlide from '../components/Main/MainSlide';
 import Newsletter from '../components/Main/Newsletter';
 import Categories from '../components/Main/Categories';
 
-const Home = () => {
+export const Home = () => {
   return (
     <div>
       <MainSlide />
@@ -11,5 +11,3 @@ const Home = () => {
     </div>
   );
 };
-
-export default Home;
