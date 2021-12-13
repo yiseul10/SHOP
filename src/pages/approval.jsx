@@ -3,6 +3,7 @@ import { useState,useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import styled, {keyframes} from "styled-components";
+import CircularProgress from '@mui/material/CircularProgress';
 
 
 
@@ -47,67 +48,8 @@ export function Approval() {
     };
     approve();
   }, [uuid]);
-  if (loading) return <><Circle></Circle><Outer><Middle><Inner></Inner></Middle></Outer></>
+  if (loading) return <><CircularProgress/></>
   if (error) return <div>에러가 발생했습니다</div>;
   if (result) return <><p>결제가 완료되었습니다.!</p><Link to="/">메인으로 돌아가기</Link></>;
   return <p>결제 승인 중...</p>
 }
-const bounce = keyframes`
-  0% {
-    transform: scale(1)
-  }
-  50% {
-    transform: scale(0)
-  }
-  100% {
-    transform: scale(1)
-  }
-`;
- 
-const Circle = styled.div`
-  width: 300px;
-  height: 300px;
-  border-radius: 50%;
-  background-color: #ff7979;
-  animation: ${bounce} 2s infinite;
-`;
-
-const cover = keyframes`
-from {
-  -webkit-transform: rotate(270deg);
-}
-to{
-  -webkit-transform: rotate(630deg);
-  }
-  
-`
-const Outer = styled.div`
-  margin: auto;
-  margin-top: 15%;
-  background: $main;
-  height: 100px;
-  width: 100px;
-  border-radius: 15px;
-  animation: ${cover} 2s infinite;`
-const Middle = styled.div`
-  height: 60px;
-  width: 60px;
-  margin:auto;
-  position: relative;
-  top:20px;
-  border-radius: 50%;
-  background-image: linear-gradient(150deg, transparent 50%, $sec 50%),linear-gradient(90deg, $sec 50%, $little-cursor 50%);
-   -webkit-animation: rotation 1200ms infinite linear;
-  transform-origin: 50% 50%;
-  animation-timing-function: ease;
-  animation: ${cover} 2s infinite;`
-const Inner = styled.div`
-  background: $main;
-  height: 48px;
-  width: 48px;
-  margin:auto;
-  position: relative;
-  top:6px;
-  border-radius: 50%;
-  animation: ${cover} 2s infinite;`
-
