@@ -26,6 +26,11 @@ import { PasswordSearchPage } from "pages/passwordSearchPage";
 import { PasswordResetPage } from "pages/passwordResetPage";
 
 //  page폴더 내의 index파일에 export할 페이지들을 한꺼번에 모아놓고 이 페이지들을 import해줄 때 한줄로 편하게 사용하기위함
+import Axios from 'axios';
+
+Axios.defaults.baseURL =
+  'http://ec2-3-37-117-153.ap-northeast-2.compute.amazonaws.com:8080/shoppingmall/products';
+
 
 export default function Router() {
   const user = true;
