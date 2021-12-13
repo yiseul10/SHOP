@@ -183,7 +183,9 @@ export function MyPage() {
             onChange={onPasswordChange}
             placeholder="비밀번호(숫자, 영문을 포함한 8자리 이상)"
           />
-          <LoginBtn label="수정하기" onClick={userData} type="submit" />
+          <div className="modifyBtn">
+            <LoginBtn label="수정하기" onClick={userData} type="submit" />
+          </div>
         </form>
       </Cover>
     </>
@@ -232,6 +234,10 @@ const Cover = styled.div`
         }
       }
     }
+  }
+  .modifyBtn {
+    width: 50%;
+    margin: auto;
   }
 `;
 
