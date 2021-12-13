@@ -196,7 +196,7 @@ function Header() {
             로그인
           </div>
           <MenuHandle to="/customerService">고객센터</MenuHandle>
-          <MenuHandle to="/">위시리스트</MenuHandle>
+          <MenuHandle to="/wish">위시리스트</MenuHandle>
           <MenuItem to="/cart">
             <Badge badgeContent={quantity} color="error">
               <ShoppingCartOutlined />

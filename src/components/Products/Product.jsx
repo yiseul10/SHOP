@@ -99,7 +99,7 @@ const Product = ({ id, ...product }) => {
   const dispatch = useDispatch();
 
   const handleAddToWish = product => {
-    addFlashMessage('위시리스트에 담겼습니다!');
+    // addFlashMessage('위시리스트에 담겼습니다!');
     dispatch(addWish(product));
     setClick(!click);
   };

@@ -64,9 +64,9 @@ export default function Router() {
           exact
           path="/customerService/QuestionOne"
           component={QuestionOne}/>
-        <Route exact path="/mypage" component={MyPage} />
-        <Route exact path="/orderlist" component={OrderListPage} />
-        <Route exact path="/orderreview" component={OrderReviewPage} />
+        <Route exact path="/mypage/my" component={MyPage} />
+        <Route exact path="/orderlist/order" component={OrderListPage} />
+        <Route exact path="/orderreview/order" component={OrderReviewPage} />
         <Route exact path="/review/re" component={Review} />
         <Route exact path="/review/ReviewInsert" component={ReviewInsert} />
         {/* <Route exact path="*" component={ErrorPage} /> */}
