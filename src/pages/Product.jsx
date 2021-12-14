@@ -5,20 +5,17 @@ import StyledButton from '../components/Button/Button';
 
 import Axios from 'axios';
 
-import { useParams, Link, useLocation } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { addToCart } from '../store/cart-slice';
 
-import { Tabs, Tab } from '@material-ui/core';
-
-
+import AppTabs from '../components/Products/AppTabs';
 
 const ReviewWrapper = styled.div`
-padding : auto;
-background-color: whitesmoke;
-text-align: center;
-font-style: oblique;
+  padding: auto;
+  background-color: whitesmoke;
+  text-align: center;
 `;
 
 const Container = styled.div``;
@@ -186,7 +183,7 @@ export const Product = () => {
         );
         setUsers(response.data); // 데이터는 response.data 안에 들어있습니다.
       } catch (e) {
-        console.error(e);
+        console.err(e);
       }
     };
 
@@ -263,25 +260,9 @@ export const Product = () => {
           </ButtonHandle>
           <Underline />
           {/* <Desc> */}
-          <Tabs
-            value={type}
-            indicatorColor='primary'
-            textColor='primary'
-            onChange={(event, newValue) => {
-              setType(newValue);
-              setPage(1);
-            }}
-          >
-            {/* <Details>Description</Details> */}
-            <Tab style={{ width: '20%', fontSize: '10px' }} label='Details' />
-            가볍지만 따뜻한 소재의 가디건입니다. 코트안에 착용하거나 환절기
-            시즌에 단독으로 착용하기 좋습니다.
-            <Tab style={{ width: '20%', fontSize: '10px' }} label='Care' />
-            소재: 아크릴90%, 레이온 10%
-            <Tab style={{ width: '20%', fontSize: '10px' }} label='Etc' />
-            자수/패치만 가능.
-          </Tabs>
+          {/* <Details>Description</Details> */}
           {/* </Desc> */}
+          <AppTabs />
         </InfoContainer>
       </Wrapper>
       
@@ -332,4 +313,3 @@ export const Product = () => {
     </Container>
   );
 };
-

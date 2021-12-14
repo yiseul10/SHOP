@@ -52,7 +52,6 @@ const CategoryItem = ({ item }) => {
       <Link to={`/products/${item.cat}`}>
         <Image src={item.img} />
       </Link>
-
       <Info>
         <Title>{item.title}</Title>
         <Desc>21WINTER</Desc>

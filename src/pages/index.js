@@ -19,4 +19,5 @@ export { PasswordResetPage } from "./passwordResetPage";
 export { Approval } from "./Approval";
 export { CheckOut } from "./CheckOut";
 export { Search } from "./Search";
-export { WishList } from "./WishList"
+export { WishList } from "./WishList";
+export { EmailCerified } from "./EmailCertified";

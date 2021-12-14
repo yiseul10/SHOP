@@ -1,14 +1,14 @@
-import React, { useState } from "react";
-import styled from "styled-components";
-import { BsArrowLeft } from "react-icons/bs";
-import DropMenu from "./DropMenu";
+import React, { useState } from 'react';
+import styled from 'styled-components';
+import { BsArrowLeft } from 'react-icons/bs';
+import DropMenu from './DropMenu';
+import SlideNav from './SlideNav';
 
 const Overlay = styled.div`
   width: 100%;
   height: 100vh;
-  top: 5.5rem;
   left: 0;
-  background-color: white;
+  /* background-color: white; */
   color: black;
   position: fixed;
 `;
@@ -29,14 +29,13 @@ const Content = styled.div`
 `;
 
 const SlideNavSlide = () => {
-  const [click, setClick] = useState(false);
-  const handleClick = () => setClick(!click);
+  const [close, setClose] = useState(false);
+
   return (
     <Overlay>
       <OverlayContent>
         <Content>
-          <BsArrowLeft onClick={handleClick} />
-          {click ? <SlideNavSlide /> : null}
+          {/* <BsArrowLeft onClick={() => setClose(!close)} /> */}
           <DropMenu />
         </Content>
       </OverlayContent>
