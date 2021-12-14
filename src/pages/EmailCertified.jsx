@@ -2,7 +2,6 @@ import React from "react";
 import { useState,useEffect } from "react"; 
 import axios from "axios";
 import { Link } from "react-router-dom";
-import styled, {keyframes} from "styled-components";
 import CircularProgress from '@mui/material/CircularProgress';
 
 
