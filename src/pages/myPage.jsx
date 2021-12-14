@@ -113,10 +113,15 @@ export function MyPage() {
       </AddressOpenModal>
 
       <Cover>
-        <div className="addressBtn"></div>
-
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
         <div className="mypage">마이페이지</div>
         <div className="mypageContainer">
+          <br />
           <Link to="/orderlist/order">
             <div>주문내역</div>
           </Link>
