@@ -32,7 +32,7 @@ export function LoginInput({
 const Cover = styled.div`
   display: flex;
   margin-bottom: 24px;
-  justify-content: center;
+  justify-content: left;
 
   .errorMsg {
     display: ${({ msgDisplay }) => (msgDisplay ? "none" : "")};
@@ -43,12 +43,21 @@ const Cover = styled.div`
     width: 22%;
     line-height: 38px;
   }
+
+  button {
+    border: 0;
+    outline: 0;
+    background-color: #2cb5e8;
+    color: #fff;
+    font: bold;
+    border-radius: 10px;
+  }
   /* @media only screen and (max-width: 1000px) {
     display: none;
   } */
 `;
 
 const IdInput = styled(Input)`
-  width: 70%;
+  width: 80%;
   margin-left: 16px;
 `;
