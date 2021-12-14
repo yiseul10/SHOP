@@ -18,6 +18,7 @@ const ReviewWrapper = styled.div`
 padding : auto;
 background-color: whitesmoke;
 text-align: center;
+font-style: oblique;
 `;
 
 const Container = styled.div``;
@@ -160,8 +161,9 @@ export const Product = () => {
 
   const [type, setType] = useState(0);
   const [page, setPage] = useState(1);
-  const [users, setUsers] = useState(""); // axios를 통해 json에서 데이터를 끄집어 내기 위한 곳
+  const [users, setUsers] = useState(null); // axios를 통해 json에서 데이터를 끄집어 내기 위한 곳
   const dispatch = useDispatch();
+
   useEffect(() => {
     const getProduct = async () => {
       try {
@@ -180,16 +182,18 @@ export const Product = () => {
       try {
         setUsers(null);
         const response = await Axios.get(
-          'http://ec2-3-37-117-153.ap-northeast-2.compute.amazonaws.com:8080/shoppingmall/reviews'
+          `http://ec2-3-37-117-153.ap-northeast-2.compute.amazonaws.com:8080/shoppingmall/product-reviews/${id}`
         );
         setUsers(response.data); // 데이터는 response.data 안에 들어있습니다.
       } catch (e) {
-        console.err(e)
+        console.error(e);
       }
     };
 
     fetchUsers();
   }, []);
+
+
   const handleQuantity = type => {
     if (type === 'dec') {
       quantity > 1 && setQuantity(quantity - 1);
@@ -283,30 +287,42 @@ export const Product = () => {
       
       {users!=null&&<ReviewWrapper>
         <div>
-          <th>   <h2>  상품평 </h2>  </th>
+          <th>   <h1>  상품평 </h1>  </th>      
+              
+               <span>   
+                
+                <Link to="${id}/ReviewInsert">
+                    <button>  상품평 등록</button>
+                  
+                  </Link> 
+                   </span>
           <hr />
+        
           {
             users
               .reviews
               .map(user => (
                 <>
-                  <td colspan="2">
+                  <td colspan="1">
                     <span>
+                    <td> </td>
+
                       <img
 
-                        style={{ height: '15%', width: '15%' }}
+                        style={{ height: '25%', width: '25%' }}
                         src={user.images.image} />
+
                     </span>
                   </td>
                   <td>
+                    <h2><span> 제목 : {user.title} </span></h2>
+
                     <span>
-                      <p> {user.content} </p>
+                      <h5><p> 내용 : {user.content} </p></h5>
+                 
                     </span>
                   </td>
-                  <Link to="/ReviewInsert">
-                    <button>
-                      상품평 등록</button>
-                  </Link>
+                
                   <hr /><br />
                 </>
               ))

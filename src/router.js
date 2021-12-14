@@ -50,6 +50,7 @@ export default function Router() {
         <Route exact path="/wish" component={WishList} />
         <Route exact path="/cart" component={Cart} />
         <Route exact path="/:id" component={Product} />
+        <Route exact path="/${id}/ReviewInsert" component={ReviewInsert} />
         
 
 
@@ -68,7 +69,6 @@ export default function Router() {
         <Route exact path="/orderlist/order" component={OrderListPage} />
         <Route exact path="/orderreview/order" component={OrderReviewPage} />
         {/* <Route exact path="/review/re" component={Review} /> */}
-        <Route exact path="/review/ReviewInsert" component={ReviewInsert} />
         {/* <Route exact path="*"component={ErrorPage} /> */}
       </Switch>
     </Content>
