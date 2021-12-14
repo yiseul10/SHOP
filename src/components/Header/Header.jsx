@@ -13,18 +13,21 @@ import { useHistory } from 'react-router-dom';
 import { ShoppingCartOutlined } from '@material-ui/icons';
 import { IoSearchOutline, IoMenuOutline } from 'react-icons/io5';
 import { Badge } from '@material-ui/core';
-import SlideNav from './SlideNav';
+// import SlideNav from './SlideNav';
 import Searchbar from './Searchbar';
 import { getTotals } from '../../store/cart-slice';
 import { useSelector, useDispatch } from 'react-redux';
 import { useContext } from 'react';
+import { useMediaQuery } from 'react-responsive';
+import SlideNav from '../Nav/SlideNav';
+
 const Container = styled.div`
   display: flex;
   flex-direction: column;
   font-size: 11px;
   font-weight: 500;
   box-shadow: 0px 1rem 0.3rem -1rem rgba(0, 0, 0, 0.1);
-  /* position: fixed; // fixed는 부유 객체라 다른 컴포넌트들이 밑으로 깔림. app.js에 pages 컴포넌트 보다 위에 선언되어 화면 가장 위에 보여짐. */
+  position: fixed;
   width: 100vw;
   z-index: 1;
   padding-top: 1.7rem;
