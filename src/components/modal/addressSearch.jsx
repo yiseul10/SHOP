@@ -59,29 +59,25 @@ export function AddressSearch() {
               <BiSearchAlt2 />
             </button>
           </div>
-
-          <Input
-            type="text"
-            id="roadAddress"
-            value={full[1]}
-            placeholder="도로명주소"
-          />
-          <br />
-          <span id="guide"></span>
-          <Input
-            type="text"
-            id="detailAddress"
-            onChange={saveDataAdressDetail}
-            placeholder="상세주소"
-          />
-          <br />
-          <div className="submitBtn">
-            <LoginBtn
-              type="button"
-              id="sendAdress"
-              onClick={sendDataAddress}
-              label="보내기"
+          <div className="address2input">
+            <Input
+              type="text"
+              id="roadAddress"
+              value={full[1]}
+              placeholder="도로명주소"
             />
+          </div>
+          <span id="guide"></span>
+          <div className="submitinput">
+            <Input
+              type="text"
+              id="detailAddress"
+              onChange={saveDataAdressDetail}
+              placeholder="상세주소"
+            />
+            <button type="button" onClick={sendDataAddress}>
+              전송
+            </button>
           </div>
           {disable && <DaumPostCode onComplete={handleComplete} />}
         </AddressCover>
@@ -108,13 +104,41 @@ const AddressCover = styled.div`
   .addressinput {
     text-align: right;
   }
+  .submitinput {
+    display: flex;
+    width: 80%;
+    height: 38px;
+    margin: 0 auto;
+    justify-content: space-between;
+  }
   button {
-    width: 10%;
+    color: #fff;
+  }
+
+  .addressinput {
+    display: flex;
+    width: 80%;
+    height: 38px;
+    margin: 0 auto;
+    justify-content: space-between;
+  }
+  .form-control {
+    width: 85%;
+  }
+  button {
+    width: 15%;
     border: none;
-    border-radius: 10px;
+    border-radius: 0 10px 10px 0;
     background-color: #2cb5e8;
     svg {
       color: #fff;
     }
+  }
+  .address2input {
+    display: flex;
+    width: 80%;
+    height: 38px;
+    margin: 0 auto;
+    justify-content: space-between;
   }
 `;

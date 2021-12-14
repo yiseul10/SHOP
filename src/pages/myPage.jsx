@@ -264,7 +264,7 @@ const ModalContainer = styled.div`
   right: 0;
   margin: auto;
   width: 520px;
-  height: 600px;
+  height: 650px;
   background-color: #fff;
   border-radius: 20px;
   border: solid 5px#416f99;
