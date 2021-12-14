@@ -129,7 +129,7 @@ const Total = styled.div`
   ${media({ padding: '1rem 0rem' })}
 `;
 
-const Cart = () => {
+export const Cart = () => {
   const cart = useSelector(state => state.cart);
   const dispatch = useDispatch();
   const addFlashMessage = useContext(ExampleContext);
@@ -148,7 +148,7 @@ const Cart = () => {
     dispatch(clearCart());
   };
   const handleAddToWish = product => {
-    addFlashMessage('위시리스트에 담겼습니다!');
+    // addFlashMessage('위시리스트에 담겼습니다!');
     dispatch(addWish(product));
   };
   const handleIncreaseCart = product => {
@@ -240,5 +240,3 @@ const Cart = () => {
     </Container>
   );
 };
-
-export default Cart;

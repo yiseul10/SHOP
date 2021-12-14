@@ -4,7 +4,7 @@ import Categories from '../components/Main/Categories';
 import Products from '../components/Products/Products';
 import ProductList from './ProductList';
 
-const Home = () => {
+export const Home = () => {
   return (
     <div style={{ paddingTop: '100px' }}>
       <MainSlide />
@@ -12,5 +12,3 @@ const Home = () => {
     </div>
   );
 };
-
-export default Home;

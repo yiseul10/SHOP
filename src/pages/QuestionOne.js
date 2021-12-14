@@ -1,20 +1,20 @@
-import React from 'react'
-import styled from 'styled-components'
+import React from 'react';
 
 
-const Quest = styled.div`
-padding: 10rem`
 
 
-export default function QuestionOne() {
+
+
+
+export const QuestionOne = () => {
+
+  
+
     return (
-        
-
-        <Quest>
-        <div>
-                    1대 1 문의하기    
-        </div>
-        </Quest>
-
-    )
+      
+ <div>
+     d1
+ </div>
+    );
 }
+

@@ -59,7 +59,7 @@ const ProductContainer = styled.div`
     borderBottom: '0.5px solid grey'
   })}
 `;
-const Search = () => {
+export const Search = () => {
   const [keyword, setKeyword] = useState('');
   const [products, setProduct] = useState([]);
   const [page, setPage] = useState(1);
@@ -105,4 +105,4 @@ const Search = () => {
   );
 };
 
-export default Search;
+

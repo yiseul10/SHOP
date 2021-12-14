@@ -4,8 +4,8 @@ import { media } from '../../responsive';
 import { sliderItems } from '../../data';
 import {
   KeyboardArrowLeftRounded,
-  KeyboardArrowRightRounded
-} from '@material-ui/icons';
+  KeyboardArrowRightRounded,
+} from "@material-ui/icons";
 
 const Container = styled.div`
   /* padding-top: 5rem; */
@@ -36,7 +36,7 @@ const Arrow = styled.div`
 const Wrapper = styled.div`
   height: 100%;
   display: flex;
-  transform: translateX(${props => props.slideIndex * -100}vw);
+  transform: translateX(${(props) => props.slideIndex * -100}vw);
   transition: all 1.5s ease;
 `;
 
@@ -46,7 +46,7 @@ const Slide = styled.div`
   /* height: 100vh; */
   display: flex;
   align-items: center;
-  background-color: ${props => props.bg};
+  background-color: ${(props) => props.bg};
 `;
 const ImgContainer = styled.div`
   height: 100%;
@@ -77,7 +77,7 @@ const MainSlide = () => {
         <KeyboardArrowLeftRounded />
       </Arrow>
       <Wrapper slideIndex={slideIndex}>
-        {sliderItems.map(item => (
+        {sliderItems.map((item) => (
           <Slide bg={item.bg} key={item.id}>
             <ImgContainer>
               <Image src={item.img} />

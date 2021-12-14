@@ -61,7 +61,7 @@ const ProductTitle = styled(Link)`
   cursor: pointer;
 `;
 
-const WishList = ({ product }) => {
+export const WishList = ({ product }) => {
   const wish = useSelector(state => state.wish);
   const dispatch = useDispatch();
 
@@ -99,5 +99,3 @@ const WishList = ({ product }) => {
     </Container>
   );
 };
-
-export default WishList;

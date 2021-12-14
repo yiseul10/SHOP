@@ -6,6 +6,8 @@ import StyledButton from '../components/Button/Button';
 import { Radio } from '@material-ui/core';
 
 import { useDispatch, useSelector } from 'react-redux';
+import axios from 'axios';
+import { Redirect } from "react-router-dom";
 
 const Container = styled.div`
   padding: 13rem 10rem;
@@ -108,7 +110,13 @@ const MediaLine = styled.hr`
   ${media({ display: 'block', marginTop: '9px' })}
 `;
 
-const CheckOut = () => {
+export const CheckOut = () => {
+
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const [result,setResult] = useState("");
+
+ 
   const dispatch = useDispatch();
   const cart = useSelector(state => state.cart);
 
@@ -117,7 +125,54 @@ const CheckOut = () => {
   const handleChange = event => {
     setSelectedValue(event.target.value);
   };
+  const payment = () => {
+    const paydata = async () => {
+      try {    
+        const formdata = new FormData();
+        let product ="";
+        let quantity ="";
+        let id ="";
+        let price ="";
+        
+      
+        formdata.append("usersNumber",'1');
+        cart.products.map(pr =>(
+          product += pr.product+",",
+          quantity += pr.quantity+",",
+          id += pr.id+",",
+          price +=pr.quantity*pr.price+","
+        ))
+        
+        formdata.append("price",price);
+        formdata.append("product",product);
+        formdata.append("quantity",quantity);
+        formdata.append("productsNumber",id);
+        formdata.append("productCustomNumber",'29,29');
+        formdata.append("productCount",'2');
 
+        console.log(cart.products[0].id);
+        console.log(formdata.get("product"));
+        setError(null);
+        setLoading(true);
+        const response = await axios({
+            method:'POST',
+            url:`http://ec2-3-37-117-153.ap-northeast-2.compute.amazonaws.com:8080/shoppingmall/orders`,
+            data:formdata,
+        });
+        console.log(response.data); 
+        if(response.data.result=="PaymentDone");
+        {
+          setResult(response.data.paymentURL);
+        }
+      } catch (error) {
+        console.error(error);
+        setError(error);
+      }
+      setLoading(false);
+    };
+    paydata();
+  };
+  if(result) return window.location.href=`${result}`;
   return (
     <Container>
       <Wrapper>
@@ -211,11 +266,10 @@ const CheckOut = () => {
               <span>{cart.total}원</span>
             </SummaryItem>
           </SummaryItemText>
-          <StyledButton>주문</StyledButton>
+          <StyledButton onClick={payment} >주문</StyledButton>
         </Right>
       </Wrapper>
     </Container>
   );
 };
 
-export default CheckOut;

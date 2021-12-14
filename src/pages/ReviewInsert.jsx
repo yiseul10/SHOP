@@ -2,13 +2,15 @@ import React from 'react'
 import {post} from 'axios'
 import styled from "styled-components";
 
-const Review = styled
-    .div `
-padding: 10rem`
+const Review = styled.div `
+    padding: 20rem;
+    margin: auto`;
 
-    class ReviewInsert extends React
-    .Component {
+    export class ReviewInsert extends React.Component {
 
+
+        
+      
         constructor(props) {
 
             super(props);
@@ -18,7 +20,7 @@ padding: 10rem`
                 file: '',
                 fileName: '',
 
-                productNumber: '',
+                productNumber: '',      
 
                 title: '',
 
@@ -54,6 +56,7 @@ padding: 10rem`
                     console.log(response.data);
 
                 })
+                alert("리뷰 등록이 완료되었습니다.")
 
         }
 
@@ -83,7 +86,7 @@ padding: 10rem`
 
         addCustomer() {
 
-            const url = 'http://pvpvpvpvp.gonetis.com:8080/sample/reviews';
+            const url = 'http://ec2-3-37-117-153.ap-northeast-2.compute.amazonaws.com:8080/shoppingmall/reviews';
 
             const formData = new FormData();
 
@@ -104,14 +107,17 @@ padding: 10rem`
                 }
 
             }
-
+                            
             return post(url, formData, config)
 
         }
 
         render() {
 
-            return (<Review>
+            return (
+            
+            
+            <Review>
 
                 <form onSubmit={this.handleFormSubmit}>
 
@@ -160,3 +166,4 @@ padding: 10rem`
     }
 
     export default ReviewInsert
+
