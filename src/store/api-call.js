@@ -5,7 +5,7 @@ export const fetchProducts = createAsyncThunk(
   'products/fetchProducts',
   async (keyword = '') => {
     const page = 1;
-    const response = await Axios.get(`?page=${page}&kind=${keyword}`);
+    const response = await Axios.get(`?page=${page}&product=${keyword}`);
     return response.data.products;
   }
 );

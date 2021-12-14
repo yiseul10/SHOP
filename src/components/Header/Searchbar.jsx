@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
+import Axios from 'axios';
 
 import styled from 'styled-components';
 import { BsArrowRight } from 'react-icons/bs';
@@ -46,22 +47,43 @@ const SearchIcon = styled.button`
 `;
 const Searchbar = () => {
   const [keyword, setKeyword] = useState('');
-  const dispatch = useDispatch();
-  // useEffect(() => {
-  //   if (keyword !== "") {
-  //   }
-  // }, [keyword]);
+  const [products, setProduct] = useState([]);
+  const [page, setPage] = useState(1);
+  const [numberOfPages, setNumberOfPages] = useState(10);
 
-  const submitHandler = e => {
-    e.preventDefault();
-    console.log(keyword);
-    dispatch(fetchProducts(keyword));
-    setKeyword('');
+  const fetchSearch = async e => {
+    try {
+      const response = await Axios.get(`?page=${page}&product=${keyword}`);
+      console.log('데이터', response.data);
+      setProduct(response.data.products);
+      setNumberOfPages(response.data.endPage);
+    } catch (err) {}
   };
+
+  useEffect(() => {
+    window.scroll(0, 0);
+    fetchSearch();
+  }, [keyword, page]);
+
+  // const submitHandler = e => {
+  //   e.preventDefault();
+  //   console.log(keyword);
+
+  //   setKeyword('');
+  // };
+
+  // const dispatch = useDispatch();
+
+  // const submitHandler = e => {
+  //   e.preventDefault();
+  //   console.log(keyword);
+  //   dispatch(fetchProducts(keyword));
+  //   setKeyword('');
+  // };
 
   return (
     <Container>
-      <InputForm onSubmit={submitHandler}>
+      <InputForm onSubmit={fetchSearch}>
         <SearchInput
           onChange={e => setKeyword(e.target.value)}
           value={keyword}

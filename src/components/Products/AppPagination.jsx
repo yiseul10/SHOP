@@ -2,7 +2,7 @@ import React from 'react';
 import Pagination from '@material-ui/lab/Pagination';
 import { makeStyles } from '@material-ui/core';
 
-const useStyles = makeStyles(them => ({
+const useStyles = makeStyles(() => ({
   root: {
     position: 'fixed',
     bottom: 0,
@@ -11,6 +11,10 @@ const useStyles = makeStyles(them => ({
     padding: '60px',
     width: '100%',
     justifyContent: 'center',
+
+    '@media (max-width: 768px)': {
+      padding: '20px'
+    },
 
     '& .Mui-selected': {
       backgroundColor: 'transparent'
@@ -22,12 +26,11 @@ const useStyles = makeStyles(them => ({
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center'
-      // left: '50%'
     }
   }
 }));
 
-const AppPagination = ({ setPage, page = 1 }) => {
+const AppPagination = ({ setPage, pageNumber }) => {
   const classes = useStyles();
 
   const handleChange = page => {
@@ -41,7 +44,7 @@ const AppPagination = ({ setPage, page = 1 }) => {
         <Pagination
           onChange={e => handleChange(e.target.textContent)}
           size='small'
-          count={8}
+          count={pageNumber}
           style={{ display: 'flex', justifyContent: 'center' }}
         />
       </div>

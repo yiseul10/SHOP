@@ -4,6 +4,7 @@ import styled, { keyframes } from 'styled-components';
 
 const Container = styled.div`
   display: block;
+  position: fixed;
 `;
 
 const Ani = keyframes`

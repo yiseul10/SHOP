@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import { useParams } from 'react-router';
+
 import styled from 'styled-components';
 
 import Products from '../components/Products/Products';
@@ -8,73 +8,73 @@ import { media } from '../responsive';
 
 const Container = styled.div``;
 const Wrapper = styled.div`
-  display: grid;
-  width: 100%;
-  grid-template-columns: 250px 1fr 50px;
+  /* padding: 0px 20px; */
+  /* display: grid; */
+  /* width: 100%; */
+  /* grid-template-columns: 250px 1fr 50px; */
+  /* flex-direction: space-between */
+  display: block;
   ${media({
     display: 'block',
     flexDirection: 'space-between'
-  })}
+  })};
 `;
 
 const FilterContainer = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 0px 50px;
   letter-spacing: -0.5px;
-
   ${media({
     flexDirection: 'row',
+    padding: '0',
     borderBottom: '0.5px solid grey'
   })}
 `;
 const Filter = styled.div`
-  padding-left: 50px;
-  padding-right: 20px;
-  width: 100%;
+  width: 8rem;
   font-size: 11px;
   font-weight: 600;
   margin-top: 40px;
   ${media({
-    padding: '20px',
+    margin: '17px 35px',
+    width: '10rem',
     flexDirection: 'space-between',
-    marginTop: '0'
+    alignContent: 'center'
   })}
 `;
 const VerticalLine = styled.div`
   ${media({
     borderRight: '0.1px solid grey',
     width: '0.1px',
-    height: '110px'
+    height: '80px'
   })}
 `;
-const FilterText = styled.span``;
+
 const Select = styled.select`
   display: block;
   width: 100%;
   margin: 10px 0;
   border: none;
   font-size: 11px;
-  ${media({ display: 'flex' })}
+  ${media({ display: 'flex', margin: '10px 0px 0px 0px' })}
 `;
 const Option = styled.option``;
 const Category = styled.div`
-  font-size: 11px;
-  text-decoration: underline;
-  padding: 150px 30px 50px 50px;
+  font-size: 45px;
+  font-weight: 300;
+  margin: 0px 0px 40px 160px;
   ${media({
     borderBottom: '0.5px solid grey',
-    textAlign: 'center',
-    height: '100%',
-    padding: '10px',
-    fontSize: '18px'
-  })}
+    padding: '2rem',
+    margin: '0px'
+  })};
 `;
 
-const ProductList = () => {
-  // const { cat } = useParams();
-  // // console.log(cat); split[2] cat로 되면 전체데이터가 들어오지 않음
+export const ProductList = () => {
   const location = useLocation();
-  const cat = location.pathname.split('/')[1];
+  const cat = location.pathname.split('/')[2];
   console.log(cat);
 
   const [filters, setFilters] = useState({});
@@ -88,29 +88,32 @@ const ProductList = () => {
     });
   };
 
-  // console.log(filters);
-
   return (
     <Container>
-      <Category>전체상품</Category>
-
+      <Category>SHOP ALL</Category>
       <Wrapper>
         <FilterContainer>
           <Filter>
-            <FilterText>정렬</FilterText>
-            <Select
-              onChange={e => setSort(e.target.value)}
-              style={{ marginBottom: 20 }}
-            >
+            <p>정렬</p>
+            <Select onChange={e => setSort(e.target.value)}>
               <Option value='featured'>Featured</Option>
-              <Option value='asc'>높은 가격순</Option>
-              <Option value='desc'>낮은 가격순</Option>
+              <Option value='asc'>낮은가격순</Option>
+              <Option value='desc'>높은가격순</Option>
             </Select>
           </Filter>
           <VerticalLine></VerticalLine>
           <Filter>
-            <FilterText>전체 카테고리</FilterText>
-            <Select name='color' onChange={handleFilters}>
+            <p>전체 카테고리</p>
+            <Select name='size' onChange={handleFilters}>
+              <Option>Size</Option>
+              <Option>XS</Option>
+              <Option>S</Option>
+              <Option>M</Option>
+              <Option>L</Option>
+              <Option>XL</Option>
+              <Option>FREE</Option>
+            </Select>
+            {/* <Select name='color' onChange={handleFilters} disabled>
               <Option>Color</Option>
               <Option>White</Option>
               <Option>Black</Option>
@@ -118,15 +121,7 @@ const ProductList = () => {
               <Option>Blue</Option>
               <Option>Yellow</Option>
               <Option>Green</Option>
-            </Select>
-            <Select name='size' onChange={handleFilters}>
-              <Option>Size</Option>
-              <Option>XS</Option>
-              <Option>S</Option>
-              <Option>M</Option>
-              <Option>L</Option>
-              <Option>XL~</Option>
-            </Select>
+            </Select> */}
           </Filter>
         </FilterContainer>
         <Products cat={cat} filters={filters} sort={sort} />
@@ -134,5 +129,3 @@ const ProductList = () => {
     </Container>
   );
 };
-
-export default ProductList;

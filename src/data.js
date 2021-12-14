@@ -32,13 +32,13 @@ export const categories = [
     id: 2,
     img: 'https://images.unsplash.com/photo-1619198900795-0db40afaca4e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=768&q=80',
     title: '후드/맨투맨',
-    cat: '맨투맨/후드/집업'
+    cat: '맨투맨-후드-집업'
   },
   {
     id: 3,
     img: 'https://images.unsplash.com/photo-1613243706336-150bf7ec02f4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
     title: 'T-shirt',
-    cat: '티셔츠/셔츠'
+    cat: '티셔츠-셔츠'
   },
   {
     id: 4,

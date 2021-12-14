@@ -9,6 +9,10 @@ a {
   cursor: pointer;
   text-decoration: none;
 }
+button {
+  cursor: pointer;
+  text-decoration: none;
+}
 
 /* a:link, visited, hover, active순으로 */
 a:link,

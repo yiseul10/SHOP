@@ -17,7 +17,7 @@ const Image = styled.img`
     opacity: 70%;
     transition: all 0.5s ease;
   }
-  ${media({ height: '20vh' })}
+  ${media({ width: '100%', height: '333px', objectFit: 'cover' })}
 `;
 
 const Info = styled.div`
@@ -26,12 +26,14 @@ const Info = styled.div`
   align-items: flex-start;
   justify-content: space-between;
   margin-top: 10px;
+  ${media({ position: 'reltive' })}
 `;
 
 const Title = styled.h2`
   margin-bottom: 20px;
   font-weight: 300;
   letter-spacing: -0.2px;
+  ${media({ fontSize: '19px' })}
 `;
 
 const Desc = styled.div`
@@ -41,6 +43,7 @@ const Desc = styled.div`
   font-size: 13px;
   letter-spacing: 1px;
   transform: translateX(-110px);
+  ${media({ marginLeft: '100px', padding: '0' })}
 `;
 
 const CategoryItem = ({ item }) => {

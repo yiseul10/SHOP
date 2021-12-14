@@ -6,7 +6,7 @@ import React from 'react';
 
 
 
-const QuestionOne = () => {
+export const QuestionOne = () => {
 
   
 
@@ -18,4 +18,3 @@ const QuestionOne = () => {
     );
 }
 
-export default QuestionOne
