@@ -133,14 +133,15 @@ export const CheckOut = () => {
         let quantity ="";
         let id ="";
         let price ="";
-        
+        let productCount = 0;
       
         formdata.append("usersNumber",'1');
         cart.products.map(pr =>(
           product += pr.product+",",
           quantity += pr.quantity+",",
           id += pr.id+",",
-          price +=pr.quantity*pr.price+","
+          price +=pr.quantity*pr.price+",",
+          productCount++
         ))
         
         formdata.append("price",price);
@@ -148,7 +149,7 @@ export const CheckOut = () => {
         formdata.append("quantity",quantity);
         formdata.append("productsNumber",id);
         formdata.append("productCustomNumber",'29,29');
-        formdata.append("productCount",'2');
+        formdata.append("productCount",productCount);
 
         console.log(cart.products[0].id);
         console.log(formdata.get("product"));

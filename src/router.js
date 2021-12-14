@@ -19,6 +19,7 @@ import {
   Search,
   WishList,
   CheckOut,
+  EmailCerified,
 } from "pages";
 import { OrderListPage } from "pages/ordeListPage";
 import { OrderReviewPage } from "pages/orderReviewPage";
@@ -39,6 +40,7 @@ export default function Router() {
     <Content>
       <Switch>
         <Route exact path="/" component={Home} />
+        <Route exact path="/email-cerified" component={EmailCerified} />
         <Route exact path="/loading" component={LoadingPage} />
         <Route exact path="/approval" component={Approval} />     
         <Route exact path="/passwordsearch" component={PasswordSearchPage} />
