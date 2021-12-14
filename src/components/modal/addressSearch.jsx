@@ -1,5 +1,8 @@
 import React from "react";
 import styled from "styled-components";
+import { Input } from "reactstrap";
+import { LoginBtn } from "components/Button/loginBtn";
+import { BiSearchAlt2 } from "react-icons/bi";
 import { useState } from "react";
 import DaumPostCode from "react-daum-postcode";
 
@@ -46,21 +49,18 @@ export function AddressSearch() {
       <>
         <AddressCover>
           <div className="addressinput">
-            <input
+            <Input
               type="text"
               id="postcode"
               value={full[0]}
               placeholder="우편번호"
             />
-            <input
-              className="searchBtn"
-              type="button"
-              value="검색"
-              onClick={disablePostCode}
-            />
+            <button type="button" onClick={disablePostCode}>
+              <BiSearchAlt2 />
+            </button>
           </div>
 
-          <input
+          <Input
             type="text"
             id="roadAddress"
             value={full[1]}
@@ -68,7 +68,7 @@ export function AddressSearch() {
           />
           <br />
           <span id="guide"></span>
-          <input
+          <Input
             type="text"
             id="detailAddress"
             onChange={saveDataAdressDetail}
@@ -76,11 +76,11 @@ export function AddressSearch() {
           />
           <br />
           <div className="submitBtn">
-            <input
+            <LoginBtn
               type="button"
               id="sendAdress"
               onClick={sendDataAddress}
-              value="보내기"
+              label="보내기"
             />
           </div>
           {disable && <DaumPostCode onComplete={handleComplete} />}
@@ -96,20 +96,25 @@ export function AddressSearch() {
   );
 }
 
-const Cover = styled.div``;
-
-const AddressCover = styled.div`
-  text-align: center;
+const Cover = styled.div`
   .submitBtn {
     text-align: right;
   }
+`;
+
+const AddressCover = styled.div`
+  margin-top: 10%;
+
   .addressinput {
-    text-align: center;
-    margin-left: 30px;
+    text-align: right;
   }
-  .searchBtn {
-    border: 0;
-    outline: 0;
-    background-color: #fff;
+  button {
+    width: 10%;
+    border: none;
+    border-radius: 10px;
+    background-color: #2cb5e8;
+    svg {
+      color: #fff;
+    }
   }
 `;
