@@ -32,6 +32,9 @@ export function LoginPage({ signup, pwSearch, onPwSearchBtn }) {
   // function onSignUpBtn(event) {
   //   history.push("/signup");
   // }
+  const socialLogin = () => {
+    window.location.href="https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=8c2835e5881d60b38a8561176852e4e2&redirect_uri=http://localhost:3000/loading";
+  }
 
   const userData = async () => {
     if (id.length === 0 || password.length === 0) {
@@ -85,7 +88,7 @@ export function LoginPage({ signup, pwSearch, onPwSearchBtn }) {
         />
       </div>
       <div className="kakaologin">
-        <PrimaryBtn label="카카오 로그인" type="button" />
+        <PrimaryBtn label="카카오 로그인" onClick={socialLogin} type="button" />
       </div>
     </Cover>
   );
