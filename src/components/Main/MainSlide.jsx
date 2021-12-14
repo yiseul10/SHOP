@@ -4,21 +4,20 @@ import { media } from '../../responsive';
 import { sliderItems } from '../../data';
 import {
   KeyboardArrowLeftRounded,
-  KeyboardArrowRightRounded,
-} from "@material-ui/icons";
+  KeyboardArrowRightRounded
+} from '@material-ui/icons';
 
 const Container = styled.div`
-  /* padding-top: 5rem; */
   width: 100%;
   height: 100vh;
   display: flex;
   position: relative;
   overflow: hidden;
-  ${media({ display: 'none' })};
+  ${media({ display: 'none' })}
 `;
 
 const Arrow = styled.div`
-  color: #171717;
+  /* color: #171717;
   opacity: 50%;
   display: flex;
   align-items: center;
@@ -26,8 +25,22 @@ const Arrow = styled.div`
   position: absolute;
   top: 5rem;
   bottom: 0;
-  left: ${props => props.direction === 'left' && '16px'};
-  right: ${props => props.direction === 'right' && '16px'};
+  left: ${props => props.direction === 'left' && '10px'};
+  right: ${props => props.direction === 'right' && '10px'};
+  margin: auto;
+  cursor: pointer;
+  z-index: 2; */
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: ${props => props.direction === 'left' && '10px'};
+  right: ${props => props.direction === 'right' && '10px'};
   margin: auto;
   cursor: pointer;
   z-index: 2;
@@ -36,17 +49,18 @@ const Arrow = styled.div`
 const Wrapper = styled.div`
   height: 100%;
   display: flex;
-  transform: translateX(${(props) => props.slideIndex * -100}vw);
   transition: all 1.5s ease;
+  transform: translateX(${props => props.slideIndex * -100}vw);
 `;
 
 const Slide = styled.div`
-  padding-top: 3.4rem;
-  width: 100vw;
+  /* padding-top: 3.4rem; */
   /* height: 100vh; */
+  width: 100vw;
+  height: 100vh;
   display: flex;
   align-items: center;
-  background-color: ${(props) => props.bg};
+  background-color: #${props => props.bg};
 `;
 const ImgContainer = styled.div`
   height: 100%;
@@ -77,7 +91,7 @@ const MainSlide = () => {
         <KeyboardArrowLeftRounded />
       </Arrow>
       <Wrapper slideIndex={slideIndex}>
-        {sliderItems.map((item) => (
+        {sliderItems.map(item => (
           <Slide bg={item.bg} key={item.id}>
             <ImgContainer>
               <Image src={item.img} />

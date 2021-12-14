@@ -11,6 +11,10 @@ const Container = styled.div`
 const Wrapper = styled.div`
   display: flex;
 `;
+const Message = styled.div`
+  text-align: center;
+  padding: 5rem;
+`;
 const Left = styled.div`
   flex: 3;
 `;
@@ -71,31 +75,35 @@ export const WishList = ({ product }) => {
 
   return (
     <Container>
-      <Wrapper>
-        <Left>
-          <Title>위시리스트({wish.quantity})</Title>
-          {wish.products.map(product => (
-            <div key={product.index} id={product.id}>
-              <Product>
-                <ProductDetail>
-                  <Image src={product.image} />
-                  <Details>
-                    <Link to={`/${product.id}`}>
-                      <ProductTitle>{product.product}</ProductTitle>
-                    </Link>
-                    <p>{product.kind}</p>
-                  </Details>
-                </ProductDetail>
-                <PriceDetail>
-                  <p>{product.price}원</p>
-                  <Delete onClick={handleDelete}>삭제</Delete>
-                </PriceDetail>
-              </Product>
-              <Hr />
-            </div>
-          ))}
-        </Left>
-      </Wrapper>
+      {wish.products.length === 0 ? (
+        <Message>위시리스트가 없습니다.</Message>
+      ) : (
+        <Wrapper>
+          <Left>
+            <Title>위시리스트({wish.quantity})</Title>
+            {wish.products.map(product => (
+              <div key={product.index} id={product.id}>
+                <Product>
+                  <ProductDetail>
+                    <Image src={product.image} />
+                    <Details>
+                      <Link to={`/${product.id}`}>
+                        <ProductTitle>{product.product}</ProductTitle>
+                      </Link>
+                      <p>{product.kind}</p>
+                    </Details>
+                  </ProductDetail>
+                  <PriceDetail>
+                    <p>{product.price}원</p>
+                    <Delete onClick={handleDelete}>삭제</Delete>
+                  </PriceDetail>
+                </Product>
+                <Hr />
+              </div>
+            ))}
+          </Left>
+        </Wrapper>
+      )}
     </Container>
   );
 };

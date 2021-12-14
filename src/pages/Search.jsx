@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { BsArrowRight } from 'react-icons/bs';
+
 import Axios from 'axios';
 import Products from '../components/Products/Products';
-import ProductList from '../pages/ProductList';
 
 import { media } from '../responsive';
 
@@ -28,10 +27,12 @@ const InputForm = styled.form`
   border-top: 0.1px solid rgba(0, 0, 0, 0.3);
   text-align: center;
   position: fixed;
-  /* z-index: 999; */
   padding-top: 1rem;
   left: 0;
   width: 100%;
+  ${media({
+    padding: '1rem'
+  })}
 `;
 const SearchInput = styled.input`
   border: none;
@@ -40,23 +41,15 @@ const SearchInput = styled.input`
     color: rgba(0, 0, 0, 0.3);
   }
 `;
-const SearchIcon = styled.button`
-  background-color: transparent;
-  border: none;
-  ${media({
-    color: 'black'
-  })}
-`;
+
 const ProductContainer = styled.div`
   display: flex;
   flex-direction: row;
   padding: 170px 0px;
   justify-content: space-between;
   letter-spacing: -0.5px;
-
   ${media({
-    flexDirection: 'row',
-    borderBottom: '0.5px solid grey'
+    flexDirection: 'row'
   })}
 `;
 export const Search = () => {
@@ -64,7 +57,6 @@ export const Search = () => {
   const [products, setProduct] = useState([]);
   const [page, setPage] = useState(1);
   const [numberOfPages, setNumberOfPages] = useState();
-  const [close, setClose] = useState(false);
 
   const fetchSearch = async e => {
     try {
@@ -80,10 +72,6 @@ export const Search = () => {
     fetchSearch();
   }, [keyword, page]);
 
-  const handleClose = e => {
-    e.preventDefault();
-  };
-
   return (
     <Container>
       <Wrapper>
@@ -94,15 +82,12 @@ export const Search = () => {
             type='search'
             placeholder='search store...'
           ></SearchInput>
-          <SearchIcon onClick={handleClose}>x</SearchIcon>
         </InputForm>
       </Wrapper>
       <ProductContainer>
         <Products keyword={keyword} setKeyword={setKeyword} />
+        {!keyword && <div></div>}
       </ProductContainer>
-      {!keyword && <h2></h2>}
     </Container>
   );
 };
-
-

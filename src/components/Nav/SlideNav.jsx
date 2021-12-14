@@ -11,6 +11,7 @@ const Overlay = styled.div`
   height: 100%
   left: 0;
   display: flex;
+  z-index: 1;
 
 `;
 
@@ -29,21 +30,13 @@ const Content = styled.ul`
   font-size: 21px;
   font-weight: 300;
   margin: 0;
-`;
-
-const CloseSlide = styled.div`
-  text-align: center;
-  border-top: 0.1px solid black;
-  bottom: 0;
-  padding: 0.8rem;
-  width: 100%;
-  position: fixed;
+  z-index: 1;
 `;
 
 const Toggle = styled.div`
   position: absolute;
-  top: 45px;
-  left: 25px;
+  top: 51px;
+  left: 23px;
   z-index: 999;
 `;
 

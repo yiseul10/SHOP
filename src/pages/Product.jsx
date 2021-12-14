@@ -58,17 +58,6 @@ const Underline = styled.div`
   width: 100%;
 `;
 
-const Desc = styled.div`
-  font-size: 11px;
-  font-weight: 500;
-  justify-content: flex-start;
-  &:hover {
-    cursor: pointer;
-    opacity: 85%;
-    transition: all 0.2ms ease;
-  }
-`;
-
 const FilterContainer = styled.div`
   width: 100%;
   margin: 30px 0px;
@@ -127,20 +116,12 @@ const Amount = styled.span`
   margin: 0px 10px;
 `;
 
-const Details = styled.span`
-  margin-right: 2rem;
-`;
-
 const ButtonHandle = styled.div`
   margin: 30px 0;
   display: grid;
   grid-template-columns: 1fr 1fr;
 `;
-const Info = styled.div`
-  font-size: 11px;
-  margin-top: 10px;
-  line-height: 20px;
-`;
+
 const Currency = styled.span`
   font-size: 12px;
   color: grey;

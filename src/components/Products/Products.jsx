@@ -29,7 +29,7 @@ const Page = styled.div`
   transform: translate(-50%, 0%);
 `;
 
-const Products = ({ cat, filters, sort, keyword, setKeyword }) => {
+const Products = ({ cat, filters, sort, keyword }) => {
   // console.log(cat, filters, sort);
   // TODO
   const [products, setProduct] = useState([]);

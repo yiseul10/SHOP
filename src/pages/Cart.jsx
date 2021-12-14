@@ -27,7 +27,7 @@ const Wrapper = styled.div`
 `;
 const Message = styled.div`
   text-align: center;
-  padding-top: 5rem;
+  padding: 5rem;
 `;
 const Left = styled.div`
   flex: 3;
@@ -85,7 +85,7 @@ const ProductAmount = styled.div`
   font-size: 11px;
 `;
 const Hr = styled.hr`
-  background-color: #eee;
+  background-color: #42493a;
   border: none;
   height: 1px;
 `;
