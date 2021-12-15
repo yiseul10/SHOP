@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import { MenuToggle } from './menuToggle';
 
 import { BsArrowLeft, BsArrowRight } from 'react-icons/bs';
-// import SlideNavSlide from '../Nav/SlideNavSlide';
 
 const Overlay = styled.div`
   width: 100%;
