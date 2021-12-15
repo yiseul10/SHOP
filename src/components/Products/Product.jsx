@@ -105,7 +105,7 @@ const Product = ({ id, ...product }) => {
   };
 
   return (
-    <Container className='whatAbout'>
+    <Container>
       <Link to={`/${id}`}>
         <ImgView>
           <Image src={product.image} alt={product.product} />

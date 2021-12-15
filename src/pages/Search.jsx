@@ -86,7 +86,7 @@ export const Search = () => {
       </Wrapper>
       <ProductContainer>
         <Products keyword={keyword} setKeyword={setKeyword} />
-        {!keyword && <div></div>}
+        {!keyword && <div>인기검색어 #패딩 #후드 </div>}
       </ProductContainer>
     </Container>
   );

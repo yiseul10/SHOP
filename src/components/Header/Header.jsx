@@ -20,7 +20,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useContext } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import SlideNav from '../Nav/SlideNav';
-import transitions from '@material-ui/core/styles/transitions';
 
 const Container = styled.div`
   display: flex;

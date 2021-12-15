@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { MenuToggle } from './menuToggle';
 
-import { BsArrowRight } from 'react-icons/bs';
+import { BsArrowLeft, BsArrowRight } from 'react-icons/bs';
 // import SlideNavSlide from '../Nav/SlideNavSlide';
 
 const Overlay = styled.div`
@@ -23,6 +23,7 @@ const Content = styled.ul`
   position: fixed;
   gap: 1.5rem;
   width: 100%;
+  transition: all 0.3s ease;
   height: 100%;
   top: 0px;
   left: 0px;
@@ -52,16 +53,20 @@ const Menu = styled.div`
 const SlideNav = props => {
   const [isOpen, setOpen] = useState(false);
 
+  const [wide, setWide] = useState(false);
+
   return (
     <Overlay>
       <Toggle>
         <MenuToggle isOpen={isOpen} toggle={() => setOpen(!isOpen)} />
       </Toggle>
       {isOpen && (
-        <Content>
+        <Content onClick={() => setOpen(!isOpen)} clicked={wide}>
           <Menu>
-            <p>COLLECTION</p>
-            <BsArrowRight />
+            <li>
+              <Link to={`/products/product`}>COLLECTION</Link>
+            </li>
+            <BsArrowLeft />
           </Menu>
           <LineDiv />
           <li>

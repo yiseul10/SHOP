@@ -16,7 +16,7 @@ const Container = styled.div`
   display: flex;
   justify-content: space-between;
   ${media({
-    padding: '50px 15px 80px 15px'
+    padding: '20px 15px 80px 15px'
   })}
 `;
 const Page = styled.div`
