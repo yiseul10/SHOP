@@ -3,8 +3,22 @@ import {post} from 'axios'
 import styled from "styled-components";
 
 const Review = styled.div `
-    padding: 20rem;
-    margin: auto`;
+    padding: auto;
+    margin: auto;
+    background-color: whitesmoke;
+    text-align: center;
+    `;
+
+const Button = styled.button`
+  color: skyblue;
+  font-size: 1em;
+  margin: 1em;
+  padding: 0.25em 1em;
+  border: 2px solid skyblue;
+  border-radius: 3px;
+`;
+
+
 
     export class ReviewInsert extends React.Component {
 
@@ -56,7 +70,7 @@ const Review = styled.div `
                     console.log(response.data);
 
                 })
-                alert("리뷰 등록이 완료되었습니다.")
+                alert("리뷰 등록이 완료되었습니다. 뒤로 돌아가주세요.")
 
         }
 
@@ -115,21 +129,19 @@ const Review = styled.div `
         render() {
 
             return (
-            
-            
+                
             <Review>
 
                 <form onSubmit={this.handleFormSubmit}>
 
-                    <h1>리뷰 등록</h1>
+                    <h1>상품평 등록</h1>
 
-                        이미지:
+                    상품넘버:
                     <input
-                        type="file"
-                        name="image"
-                        file={this.state.file}
-                        value={this.state.fileName}
-                        onChange={this.handleFileChange}/>
+                        type="text"
+                        name="productNumber"
+                        value={this.state.productNumber}
+                        onChange={this.handleValueChange}/><br/>
                       
                         이름:
                         <input
@@ -147,14 +159,21 @@ const Review = styled.div `
                         value={this.state.content}
                         onChange={this.handleValueChange}/><br/>
 
-                    상품넘버:
-                    <input
-                        type="text"
-                        name="productNumber"
-                        value={this.state.productNumber}
-                        onChange={this.handleValueChange}/><br/>
 
-                    <button type="submit">추가하기</button>
+
+                     이미지:
+                    <input
+                        type="file"
+                        name="image"
+                        file={this.state.file}
+                        value={this.state.fileName}
+                        onChange={this.handleFileChange}/>
+                  
+                 
+                    <Button type="submit">
+                    상품평 등록하기
+                    </Button>
+                
 
                 </form>
 
