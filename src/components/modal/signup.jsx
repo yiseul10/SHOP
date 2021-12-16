@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-// import { Input, FormFeedback } from "reactstrap";
+import { Input } from "reactstrap";
 import { useHistory } from "react-router-dom";
 import { LoginInput } from "components/input";
 import { EmailCheckInput } from "components/input";
@@ -133,7 +133,7 @@ export function SignUpPage() {
         checked={isIdCheck} //  컴포넌트의 재사용
         errorMsg="중복된 아이디입니다"
       />
-      <div className="checkemailbtn">
+      <div className="checkemail">
         <LoginInput
           email="email"
           value={email}
@@ -170,7 +170,7 @@ export function SignUpPage() {
         type="password"
         onChange={onPasswordChangeCheck}
       />
-      <div>
+      <div className="signupBtn">
         <LoginBtn label="회원가입" onClick={userData} type="button" />
       </div>
       {/* <PrimaryBtn label="회원등록" onClick={userData} type="submit" /> */}
@@ -182,12 +182,14 @@ const Cover = styled.div`
   margin-top: 15%;
 
   .text {
-    margin-bottom: 0;
-  }
-  div {
     text-align: center;
   }
-  .checkemailbtn {
-    text-align: right;
+  div {
+    text-align: left;
+  }
+  .signupBtn {
+    text-align: center;
+  }
+  .checkemail {
   }
 `;
