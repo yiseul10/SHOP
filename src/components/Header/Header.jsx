@@ -11,8 +11,6 @@ import {
 import Modal from 'react-modal';
 import { useHistory } from 'react-router-dom';
 import { ShoppingCartOutlined } from '@material-ui/icons';
-import { GoSearch } from 'react-icons/go';
-import { IoSearchOutline, IoMenuOutline } from 'react-icons/io5';
 import { Badge } from '@material-ui/core';
 
 import { getTotals } from '../../store/cart-slice';
@@ -159,16 +157,6 @@ function Header() {
           <LeftMenu to={`/products/product`}>COLLECTION</LeftMenu>
           <MenuHandle to='/wish'>위시리스트</MenuHandle>
           <Search onClick={handleClick}>검색</Search>
-          {isMobile && (
-            <GoSearch
-              onClick={handleClick}
-              style={{
-                fontSize: '23px',
-                transform: 'translate(180px, 0px)',
-                cursor: 'pointer'
-              }}
-            />
-          )}
         </Left>
         <Center>
           <Logo to='/' onClick={handleScroll}>

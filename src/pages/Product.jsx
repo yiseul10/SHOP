@@ -60,7 +60,7 @@ const Underline = styled.div`
 
 const FilterContainer = styled.div`
   width: 100%;
-  margin: 30px 0px;
+  margin: 20px 0px;
   display: flex;
   justify-content: space-between;
 `;
@@ -75,18 +75,24 @@ const FilterTitle = styled.span`
   margin-right: 8px;
 `;
 
-const FilterColor = styled.div`
+const FilterColor = styled.button`
   width: 15px;
   height: 15px;
   border-radius: 50%;
   background-color: ${props => props.color};
   margin: 0px 4px;
-  border: 0.1px solid #e5e5e5;
+  border: 0.1px solid white;
   cursor: pointer;
-  /* &:visited {
-    border: 1px;
-  } */
-  //TODO
+  &:hover {
+    opacity: 70%;
+    transition: all 0.5s ease;
+  }
+  &:focus,
+  &:target {
+    border: 2px solid #d3fbd8;
+    transition: all 0.5s ease;
+    transform: scale(1.2);
+  }
 `;
 
 const FilterSize = styled.select`
@@ -132,6 +138,11 @@ const Currency = styled.span`
   color: grey;
   letter-spacing: -0.5px;
   padding: 0.1rem;
+`;
+
+const InfoControl = styled.div`
+  display: flex;
+  justify-content: space-between;
 `;
 
 export const Product = () => {
@@ -194,8 +205,21 @@ export const Product = () => {
         </ImgContainer>
         <InfoContainer>
           <Title>{product.product}</Title>
-          <Price>{product.price}</Price>
-          <Currency>원</Currency>
+          <InfoControl>
+            <Price>
+              {product.price}
+              <Currency>원</Currency>
+            </Price>
+            <StyledButton
+              style={{
+                width: '60px',
+                height: '22px',
+                padding: '2px'
+              }}
+            >
+              커스텀
+            </StyledButton>
+          </InfoControl>
           <FilterContainer>
             <Filter>
               <FilterTitle>색상</FilterTitle>
@@ -203,7 +227,6 @@ export const Product = () => {
                 <FilterColor color={c} key={c} onClick={() => setColor(c)} />
               ))}
             </Filter>
-            <button>커스텀하기</button>
           </FilterContainer>
           <AddContainer>
             <AmountContainer>
@@ -227,6 +250,7 @@ export const Product = () => {
             </FilterSize>
           </AddContainer>
           <AppTabs />
+
           <Underline />
           <ButtonHandle>
             <StyledButton

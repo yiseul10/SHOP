@@ -52,6 +52,7 @@ const ProductContainer = styled.div`
     flexDirection: 'row'
   })}
 `;
+
 export const Search = () => {
   const [keyword, setKeyword] = useState('');
   const [products, setProduct] = useState([]);
@@ -85,8 +86,8 @@ export const Search = () => {
         </InputForm>
       </Wrapper>
       <ProductContainer>
+        {!keyword && <div></div>}
         <Products keyword={keyword} setKeyword={setKeyword} />
-        {!keyword && <div>인기검색어 #패딩 #후드 </div>}
       </ProductContainer>
     </Container>
   );

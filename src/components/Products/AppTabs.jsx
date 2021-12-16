@@ -13,7 +13,8 @@ const useStyles = makeStyles(() => ({
     '& .MuiTab-root': {
       fontSize: '0.5rem',
       minWidth: '78px',
-      backgroundColor: 'transparent'
+      backgroundColor: 'transparent',
+      alignItems: 'flex-start'
     },
     '& .Mui-selected': {
       color: '#E2E2E2'
@@ -27,9 +28,15 @@ const useStyles = makeStyles(() => ({
     '& .MuiTypography-root': {
       color: '#1F1F1F',
       fontSize: '12px',
-      fontWeight: '300'
+      fontWeight: '400'
     },
-
+    '& .MuiButtonBase-root': {
+      color: '#1F1F1F',
+      backgroundColor: 'transparent'
+    },
+    '& .css-1h9z7r5-MuiButtonBase-root-MuiTab-root.Mui-selected': {
+      color: '#1F1F1F'
+    },
     container: {}
   }
 }));
@@ -94,10 +101,10 @@ const AppTabs = () => {
             코트안에 착용하거나 환절기 시즌에 단독으로 착용하기 좋습니다.
           </TabPanel>
           <TabPanel value={value} index={1}>
-            소재: 아크릴90%, 레이온 10%
+            아크릴90%, 레이온 10%
           </TabPanel>
           <TabPanel value={value} index={2}>
-            자수/패치만 가능.
+            자수 / 패치만 가능
           </TabPanel>
         </Box>
       </div>

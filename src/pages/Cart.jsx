@@ -49,6 +49,7 @@ const Image = styled.img`
   width: 140px;
   height: 170px;
   object-fit: cover;
+  ${media({ margin: '16px 0px' })}
 `;
 const Details = styled.div`
   padding: 1rem;
