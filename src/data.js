@@ -1,24 +1,21 @@
 export const sliderItems = [
   {
     id: 1,
-    img: '',
-    title: 'SALE',
-    desc: 'Hey😎',
-    bg: 'white'
+    img: '/',
+    title: 'title1',
+    desc: 'WINTER SALE UPTO 50%'
   },
   {
     id: 2,
     img: '/',
-    title: 'AUTUMN COLLECTION',
-    desc: 'Hey😜',
-    bg: '#8e44ad'
+    title: 'title2',
+    desc: '겨울세일 시작'
   },
   {
     id: 3,
     img: '/',
-    title: ':)',
-    desc: 'Hey👻',
-    bg: '#F2C94C'
+    title: 'title3',
+    desc: 'HO HO HO'
   }
 ];
 export const categories = [

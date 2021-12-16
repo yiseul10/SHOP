@@ -1,10 +1,8 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
 const Container = styled.div`
   width: 100%;
-  /* bottom: 0; */
-  /* left: 0; */
   height: 100px;
   position: absolute;
   font-size: 0.7rem;
@@ -29,9 +27,9 @@ function Footer() {
   return (
     <Container>
       <InfoSet>
-        <Info to="/">About Us</Info>
-        <Info to="/">이용약관</Info>
-        <Info to="/">고객지원</Info>
+        <Info to='/'>About Us</Info>
+        <Info to='/'>이용약관</Info>
+        <Info to='/'>고객지원</Info>
       </InfoSet>
       <Copyright>Copyright &copy; 2021 Team1</Copyright>
     </Container>

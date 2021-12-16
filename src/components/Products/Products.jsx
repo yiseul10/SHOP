@@ -16,7 +16,7 @@ const Container = styled.div`
   display: flex;
   justify-content: space-between;
   ${media({
-    padding: '50px 15px 80px 15px'
+    padding: '20px 15px 80px 15px'
   })}
 `;
 const Page = styled.div`
@@ -29,7 +29,7 @@ const Page = styled.div`
   transform: translate(-50%, 0%);
 `;
 
-const Products = ({ cat, filters, sort, keyword, setKeyword }) => {
+const Products = ({ cat, filters, sort, keyword }) => {
   // console.log(cat, filters, sort);
   // TODO
   const [products, setProduct] = useState([]);

@@ -4,49 +4,48 @@ import { media } from '../../responsive';
 import { sliderItems } from '../../data';
 import {
   KeyboardArrowLeftRounded,
-  KeyboardArrowRightRounded,
-} from "@material-ui/icons";
+  KeyboardArrowRightRounded
+} from '@material-ui/icons';
 
 const Container = styled.div`
-  /* padding-top: 5rem; */
   width: 100%;
-  height: 100vh;
+  height: 30vh;
   display: flex;
   position: relative;
   overflow: hidden;
-  ${media({ display: 'none' })};
+  ${media({ display: 'none' })}
 `;
 
 const Arrow = styled.div`
-  color: #171717;
-  opacity: 50%;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   position: absolute;
-  top: 5rem;
+  top: 0;
   bottom: 0;
-  left: ${props => props.direction === 'left' && '16px'};
-  right: ${props => props.direction === 'right' && '16px'};
+  left: ${props => props.direction === 'left' && '10px'};
+  right: ${props => props.direction === 'right' && '10px'};
   margin: auto;
   cursor: pointer;
   z-index: 2;
+  opacity: 80;
 `;
 
 const Wrapper = styled.div`
-  height: 100%;
+  height: 30%;
   display: flex;
-  transform: translateX(${(props) => props.slideIndex * -100}vw);
   transition: all 1.5s ease;
+  transform: translateX(${props => props.slideIndex * -100}vw);
 `;
 
 const Slide = styled.div`
-  padding-top: 3.4rem;
   width: 100vw;
-  /* height: 100vh; */
+  height: 30vh;
   display: flex;
   align-items: center;
-  background-color: ${(props) => props.bg};
 `;
 const ImgContainer = styled.div`
   height: 100%;
@@ -55,11 +54,32 @@ const ImgContainer = styled.div`
 const Image = styled.img``;
 const Title = styled.div`
   font-size: 5rem;
+  font-weight: 300;
   display: flex;
   align-items: center;
 `;
 const InfoContainer = styled.div`
-  flex: 1;
+  /* flex: 1;*/
+  margin: auto;
+  background-image: linear-gradient(
+    90deg,
+    #000000,
+    #e5e5e5,
+    #1f1f1f,
+    /* #e2e2e2, */ #6a6a6a
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  background-size: 300%;
+  background-position: -100%;
+  animation: gradientText 10s infinite alternate-reverse;
+
+  @keyframes gradientText {
+    to {
+      background-position: 100%;
+    }
+  }
 `;
 
 const MainSlide = () => {
@@ -77,11 +97,11 @@ const MainSlide = () => {
         <KeyboardArrowLeftRounded />
       </Arrow>
       <Wrapper slideIndex={slideIndex}>
-        {sliderItems.map((item) => (
-          <Slide bg={item.bg} key={item.id}>
-            <ImgContainer>
+        {sliderItems.map(item => (
+          <Slide key={item.id}>
+            {/* <ImgContainer>
               <Image src={item.img} />
-            </ImgContainer>
+            </ImgContainer> */}
             <InfoContainer>
               <Title>{item.desc}</Title>
             </InfoContainer>

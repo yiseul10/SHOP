@@ -1,23 +1,17 @@
 import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
-
 import styled from 'styled-components';
-
-import Products from '../components/Products/Products';
 import { media } from '../responsive';
+import Products from '../components/Products/Products';
 
-const Container = styled.div``;
+const Container = styled.div`
+  padding: 6rem 0rem;
+`;
 const Wrapper = styled.div`
-  /* padding: 0px 20px; */
-  /* display: grid; */
-  /* width: 100%; */
-  /* grid-template-columns: 250px 1fr 50px; */
-  /* flex-direction: space-between */
   display: block;
-  ${media({
-    display: 'block',
+  /* ${media({
     flexDirection: 'space-between'
-  })};
+  })}; */
 `;
 
 const FilterContainer = styled.div`
@@ -62,14 +56,25 @@ const Select = styled.select`
 `;
 const Option = styled.option``;
 const Category = styled.div`
-  font-size: 45px;
   font-weight: 300;
-  margin: 0px 0px 40px 160px;
+  font-family: 'Redacted Script', cursive;
+  text-align: center;
+  font-size: 18px;
+  margin-top: 2rem;
   ${media({
-    borderBottom: '0.5px solid grey',
-    padding: '2rem',
-    margin: '0px'
+    display: 'none'
   })};
+`;
+const MobileCat = styled.div`
+  display: none;
+  ${media({
+    display: 'block',
+    fontWeight: '300',
+    fontFamily: 'Redacted Script, cursive',
+    textAlign: 'center',
+    fontSize: '15px',
+    marginTop: '40px'
+  })}
 `;
 
 export const ProductList = () => {
@@ -90,8 +95,8 @@ export const ProductList = () => {
 
   return (
     <Container>
-      <Category>SHOP ALL</Category>
       <Wrapper>
+        <Category>{cat}</Category>
         <FilterContainer>
           <Filter>
             <p>정렬</p>
@@ -103,7 +108,7 @@ export const ProductList = () => {
           </Filter>
           <VerticalLine></VerticalLine>
           <Filter>
-            <p>전체 카테고리</p>
+            <p>사이즈</p>
             <Select name='size' onChange={handleFilters}>
               <Option>Size</Option>
               <Option>XS</Option>
@@ -124,6 +129,7 @@ export const ProductList = () => {
             </Select> */}
           </Filter>
         </FilterContainer>
+        <MobileCat>{cat}</MobileCat>
         <Products cat={cat} filters={filters} sort={sort} />
       </Wrapper>
     </Container>
