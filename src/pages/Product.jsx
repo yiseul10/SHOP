@@ -53,7 +53,7 @@ const Price = styled.span`
 `;
 
 const Underline = styled.div`
-  margin: 30px 0;
+  margin: 5px 0;
   border-top: 0.5px solid rgb(241, 239, 239);
   width: 100%;
 `;
@@ -81,7 +81,12 @@ const FilterColor = styled.div`
   border-radius: 50%;
   background-color: ${props => props.color};
   margin: 0px 4px;
+  border: 0.1px solid #e5e5e5;
   cursor: pointer;
+  /* &:visited {
+    border: 1px;
+  } */
+  //TODO
 `;
 
 const FilterSize = styled.select`
@@ -221,6 +226,8 @@ export const Product = () => {
               ))}
             </FilterSize>
           </AddContainer>
+          <AppTabs />
+          <Underline />
           <ButtonHandle>
             <StyledButton
               onClick={() => handleAddToCart(product)}
@@ -236,11 +243,10 @@ export const Product = () => {
               <StyledButton>바로 구매하기</StyledButton>
             </Link>
           </ButtonHandle>
-          <Underline />
+
           {/* <Desc> */}
           {/* <Details>Description</Details> */}
           {/* </Desc> */}
-          <AppTabs />
         </InfoContainer>
       </Wrapper>
 
