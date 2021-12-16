@@ -65,22 +65,6 @@ const Searchbar = () => {
     fetchSearch();
   }, [keyword, page]);
 
-  // const submitHandler = e => {
-  //   e.preventDefault();
-  //   console.log(keyword);
-
-  //   setKeyword('');
-  // };
-
-  // const dispatch = useDispatch();
-
-  // const submitHandler = e => {
-  //   e.preventDefault();
-  //   console.log(keyword);
-  //   dispatch(fetchProducts(keyword));
-  //   setKeyword('');
-  // };
-
   return (
     <Container>
       <InputForm onSubmit={fetchSearch}>

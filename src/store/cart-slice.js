@@ -45,15 +45,6 @@ const cartSlice = createSlice({
       state.products = nextproducts;
       localStorage.setItem('products', JSON.stringify(state.products));
       return state;
-      // state.products.map(product => {
-      //   if (product.id === action.payload.id) {
-      //     const nextproducts = state.products.filter(
-      //       item => item.id !== product.id
-      //     );
-      //     state.products = nextproducts;
-      //   }
-      //   return state;
-      // });
     },
     getTotals(state, action) {
       let { total, quantity } = state.products.reduce(

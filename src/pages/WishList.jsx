@@ -65,9 +65,9 @@ const ProductTitle = styled(Link)`
   cursor: pointer;
 `;
 
-export const WishList = ({ product }) => {
-  const wish = useSelector(state => state.wish);
+export const WishList = () => {
   const dispatch = useDispatch();
+  const wish = useSelector(state => state.wish);
 
   const handleDelete = () => {
     dispatch(removeWish({ wish }));

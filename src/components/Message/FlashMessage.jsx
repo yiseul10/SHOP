@@ -34,20 +34,19 @@ const Ani = keyframes`
 `;
 const Message = styled.div`
   display: none;
-  /* position: absolute; */
   position: fixed;
   z-index: 999;
   top: 98px;
   left: 50%;
   text-align: center;
   line-height: normal;
-  background-color: #00896f;
+  background-color: #68edcb;
   color: white;
   width: 100%;
   align-items: center;
   padding: 0.2rem;
   transform: translateX(-50%);
-  animation: ${Ani} ease-in 10s forwards;
+  animation: ${Ani} ease-in 5s forwards;
   &:last-of-type {
     display: block;
   }

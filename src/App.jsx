@@ -5,7 +5,7 @@ import Footer from './components/Footer/Footer';
 import Router from './router';
 import { useState } from 'react';
 import FlashMessage from 'components/Message/FlashMessage';
-import ExampleContext from 'components/ExampleContext';
+import MessageContext from 'components/MessageContext';
 
 const App = () => {
   const [flashMessage, setFlashMessage] = useState([]);
@@ -14,7 +14,7 @@ const App = () => {
   };
 
   return (
-    <ExampleContext.Provider value={addFlashMessage}>
+    <MessageContext.Provider value={addFlashMessage}>
       <div className='App'>
         <Notice />
         <Header />
@@ -22,7 +22,7 @@ const App = () => {
         <Router addFlashMessage={addFlashMessage} />
         <Footer />
       </div>
-    </ExampleContext.Provider>
+    </MessageContext.Provider>
   );
 };
 

@@ -5,7 +5,10 @@ import { media } from '../responsive';
 import Products from '../components/Products/Products';
 
 const Container = styled.div`
-  padding: 6rem 0rem;
+  padding: 8rem 0rem;
+  ${media({
+    padding: '6rem 0rem'
+  })}
 `;
 const Wrapper = styled.div`
   display: block;

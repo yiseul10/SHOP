@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 
 import { useDispatch } from 'react-redux';
 import { addWish } from '../../store/wish-slice';
-import ExampleContext from '../ExampleContext';
+import MessageContext from '../MessageContext';
 
 const Container = styled.div`
   position: relative;
@@ -17,7 +17,6 @@ const ImgView = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  /* z-index: 3; */
   &:hover {
     opacity: 70%;
     transition: all 0.5s ease;
@@ -93,7 +92,7 @@ const Currency = styled.span`
 `;
 
 const Product = ({ id, ...product }) => {
-  const addFlashMessage = useContext(ExampleContext);
+  const addFlashMessage = useContext(MessageContext);
   const [click, setClick] = useState(false);
 
   const dispatch = useDispatch();

@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useContext } from 'react';
 import { addWish } from '../store/wish-slice';
-import ExampleContext from '../components/ExampleContext';
+import MessageContext from '../components/MessageContext';
 import {
   addToCart,
   clearCart,
@@ -133,7 +133,7 @@ const Total = styled.div`
 export const Cart = () => {
   const cart = useSelector(state => state.cart);
   const dispatch = useDispatch();
-  const addFlashMessage = useContext(ExampleContext);
+  const addFlashMessage = useContext(MessageContext);
 
   useEffect(() => {
     dispatch(getTotals());
@@ -219,7 +219,7 @@ export const Cart = () => {
                 </SummaryItem>
                 <SummaryItem>
                   <span>배송비</span>
-                  <span>0원</span>
+                  <span>{cart.total >= 50000 ? 0 : 2500}원</span>
                 </SummaryItem>
               </SummaryItemText>
               <Hr />

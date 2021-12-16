@@ -6,9 +6,10 @@ import StyledButton from '../components/Button/Button';
 import Axios from 'axios';
 
 import { useParams, Link } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { useDispatch } from 'react-redux';
 import { addToCart } from '../store/cart-slice';
+import MessageContext from '../components/MessageContext';
 
 import AppTabs from '../components/Products/AppTabs';
 
@@ -81,7 +82,7 @@ const FilterColor = styled.button`
   border-radius: 50%;
   background-color: ${props => props.color};
   margin: 0px 4px;
-  border: 0.1px solid white;
+  border: 0.1px solid #f3f3f3;
   cursor: pointer;
   &:hover {
     opacity: 70%;
@@ -157,6 +158,8 @@ export const Product = () => {
   const [page, setPage] = useState(1);
   const [users, setUsers] = useState(''); // axios를 통해 json에서 데이터를 끄집어 내기 위한 곳
   const dispatch = useDispatch();
+  const addFlashMessage = useContext(MessageContext);
+
   useEffect(() => {
     const getProduct = async () => {
       try {
@@ -194,6 +197,7 @@ export const Product = () => {
   };
 
   const handleAddToCart = product => {
+    addFlashMessage('장바구니에 담겼습니다!');
     dispatch(addToCart({ ...product, quantity, color, size }));
   };
 
@@ -267,10 +271,6 @@ export const Product = () => {
               <StyledButton>바로 구매하기</StyledButton>
             </Link>
           </ButtonHandle>
-
-          {/* <Desc> */}
-          {/* <Details>Description</Details> */}
-          {/* </Desc> */}
         </InfoContainer>
       </Wrapper>
 
