@@ -9,9 +9,6 @@ const Container = styled.div`
 `;
 const Wrapper = styled.div`
   display: block;
-  /* ${media({
-    flexDirection: 'space-between'
-  })}; */
 `;
 
 const FilterContainer = styled.div`

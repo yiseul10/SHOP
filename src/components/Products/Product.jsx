@@ -17,7 +17,7 @@ const ImgView = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 3;
+  /* z-index: 3; */
   &:hover {
     opacity: 70%;
     transition: all 0.5s ease;
@@ -93,13 +93,13 @@ const Currency = styled.span`
 `;
 
 const Product = ({ id, ...product }) => {
-  const [click, setClick] = useState(false);
   const addFlashMessage = useContext(ExampleContext);
+  const [click, setClick] = useState(false);
 
   const dispatch = useDispatch();
 
   const handleAddToWish = product => {
-    // addFlashMessage('위시리스트에 담겼습니다!');
+    addFlashMessage('위시리스트에 담겼습니다!');
     dispatch(addWish(product));
     setClick(!click);
   };

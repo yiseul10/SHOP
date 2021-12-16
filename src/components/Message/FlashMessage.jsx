@@ -4,7 +4,6 @@ import styled, { keyframes } from 'styled-components';
 
 const Container = styled.div`
   display: block;
-  position: fixed;
 `;
 
 const Ani = keyframes`
@@ -35,19 +34,20 @@ const Ani = keyframes`
 `;
 const Message = styled.div`
   display: none;
-  position: absolute;
+  /* position: absolute; */
+  position: fixed;
   z-index: 999;
-  top: 97px;
+  top: 98px;
   left: 50%;
   text-align: center;
   line-height: normal;
   background-color: #00896f;
   color: white;
-  width: 100vw;
+  width: 100%;
   align-items: center;
   padding: 0.2rem;
   transform: translateX(-50%);
-  animation: ${Ani} ease-in 5s forwards;
+  animation: ${Ani} ease-in 10s forwards;
   &:last-of-type {
     display: block;
   }
