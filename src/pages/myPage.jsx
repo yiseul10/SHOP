@@ -51,6 +51,8 @@ export function MyPage() {
   function onAddressBtn() {
     setIsAddressBtn(true);
   }
+  //  주소 받아오기 함수
+
   //  핸드폰의 상태관리 함수
   function onPhoneNumChange(event) {
     setPhoneNum(event.target.value);
@@ -90,7 +92,7 @@ export function MyPage() {
       //비동기 통신 POST
       const send = await axios({
         method: "POST",
-        url: `http://pvpvpvpvp.gonetis.com:8080/sample/user-privacy	`,
+        url: `http://ec2-3-37-117-153.ap-northeast-2.compute.amazonaws.com:8080/shoppingmall/mypage/my	`,
         data: formdata,
       });
       console.log(send.data);
@@ -175,6 +177,17 @@ export function MyPage() {
               </button>
             </div>
           </div>
+          {/* <div className="address2">
+            <p></p>
+            <div>
+              <Input
+                className="addressInput"
+                id="address"
+                onChange={onAddressChange}
+                placeholder="상세주소"
+              />
+            </div>
+          </div> */}
           <MyPageInput
             id="phoneNum"
             label="핸드폰"
@@ -240,6 +253,23 @@ const Cover = styled.div`
       }
     }
   }
+  /* .address2 {
+    display: flex;
+    width: 50%;
+    height: 46px;
+    margin: 0 auto;
+    justify-content: space-between;
+    p {
+      line-height: 44px;
+    }
+    div {
+      width: 74%;
+      display: flex;
+
+      .form-control {
+        width: 85%;
+      }
+  } */
   .modifyBtn {
     width: 50%;
     margin: auto;
