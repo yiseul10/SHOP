@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 import { Input } from "reactstrap";
-import { LoginBtn } from "components/Button/loginBtn";
 import { BiSearchAlt2 } from "react-icons/bi";
 import { useState } from "react";
 import DaumPostCode from "react-daum-postcode";
@@ -45,6 +44,7 @@ export function AddressSearch() {
       if (full.length < 1 || detail.length < 1)
         alert("주소를 바르게 입력해 주세요");
     };
+
     return (
       <>
         <AddressCover>
