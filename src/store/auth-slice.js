@@ -3,7 +3,8 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
     authorization: localStorage.getItem('authorization')
     ? JSON.parse(localStorage.getItem('authorization'))
-    : ""
+    : "",
+    authorization: "",
 };
 
 const authSlice = createSlice({
@@ -11,11 +12,11 @@ const authSlice = createSlice({
   initialState,
   reducers: {
     addToAuth(state, action) {
-        const auth = {state};
-        state.authorization.push(auth);
-        localStorage.setItem('authorization',  JSON.stringify(state.authorization));
+        state.authorization = action.payload;
+        localStorage.setItem('authorization',  JSON.stringify(action.payload));
     },
     clearAuth(state, action) {
+        state.authorization = ""
         localStorage.removeItem('authorization');
     }
   }

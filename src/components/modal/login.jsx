@@ -10,7 +10,7 @@ import { addToAuth } from '../../store/auth-slice';
 
 
 
-export function LoginPage({ signup, pwSearch, onPwSearchBtn }) {
+export function LoginPage({ signup, pwSearch, onPwSearchBtn, authorization }) {
   const auth = useSelector(state => state.authorization);
   const [id, setId] = useState("");
   const [password, setPassword] = useState("");
@@ -18,8 +18,9 @@ export function LoginPage({ signup, pwSearch, onPwSearchBtn }) {
 
   const dispatch = useDispatch();
   const handleAddToAuth = authorization => {
-    dispatch(addToAuth({authorization}));
+    dispatch(addToAuth(authorization));
   };
+
 
   // 아이디의 상태관리 함수
   function onIdChange(event) {
@@ -65,11 +66,11 @@ export function LoginPage({ signup, pwSearch, onPwSearchBtn }) {
       console.log(send.headers);
       if(send.headers.authorization!=null)
       {
+        authorization=send.headers.authorization;
         console.log(typeof(send.headers.authorization)+": "+send.headers.authorization);
-        handleAddToAuth(send.headers.authorization);
+        handleAddToAuth(authorization);
       }
       console.log(auth);
-
       history.push("/");
     }
   };
