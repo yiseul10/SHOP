@@ -68,9 +68,10 @@ const ProductTitle = styled(Link)`
 export const WishList = () => {
   const dispatch = useDispatch();
   const wish = useSelector(state => state.wish);
+  console.log(wish);
 
   const handleDelete = () => {
-    dispatch(removeWish({ wish }));
+    dispatch(removeWish(wish));
   };
 
   return (
@@ -87,9 +88,9 @@ export const WishList = () => {
                   <ProductDetail>
                     <Image src={product.image} />
                     <Details>
-                      <Link to={`/${product.id}`}>
-                        <ProductTitle>{product.product}</ProductTitle>
-                      </Link>
+                      <ProductTitle to={`/${product.id}`}>
+                        {product.product}
+                      </ProductTitle>
                       <p>{product.kind}</p>
                     </Details>
                   </ProductDetail>

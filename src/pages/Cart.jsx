@@ -155,6 +155,8 @@ export const Cart = () => {
   const handleIncreaseCart = product => {
     dispatch(addToCart(product));
   };
+  const shippingCost = cart.total >= 50000 ? 0 : 2500;
+
   return (
     <Container>
       {cart.products.length === 0 ? (
@@ -219,14 +221,14 @@ export const Cart = () => {
                 </SummaryItem>
                 <SummaryItem>
                   <span>배송비</span>
-                  <span>{cart.total >= 50000 ? 0 : 2500}원</span>
+                  <span>{shippingCost}원</span>
                 </SummaryItem>
               </SummaryItemText>
               <Hr />
               <SummaryItemText>
                 <SummaryItem type='total'>
                   <span>합계</span>
-                  <span>{cart.total}원</span>
+                  <span>{cart.total + shippingCost}원</span>
                 </SummaryItem>
               </SummaryItemText>
               <Link to='/checkout'>
