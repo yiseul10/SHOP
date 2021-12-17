@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
 import { media } from '../responsive';
+
 import styled from 'styled-components';
 import StyledButton from '../components/Button/Button';
-
 import { Radio } from '@material-ui/core';
 
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
-import { Redirect } from 'react-router-dom';
 
 const Container = styled.div`
   padding: 13rem 10rem;
@@ -86,15 +85,6 @@ const SummaryItemText = styled.div`
   padding: 1rem 0rem;
   ${media({ padding: '0.5rem 0rem' })}
 `;
-const Wish = styled.span`
-  text-decoration: underline;
-  cursor: pointer;
-  margin-top: 1.8rem;
-`;
-const Total = styled.div`
-  padding: 2rem 0rem;
-  /* height: 10vh; */
-`;
 
 const Info = styled.div`
   width: 30%;
@@ -123,6 +113,7 @@ export const CheckOut = () => {
   const handleChange = event => {
     setSelectedValue(event.target.value);
   };
+
   const payment = () => {
     const paydata = async () => {
       try {
