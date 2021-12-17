@@ -19,7 +19,7 @@ import {
 const Container = styled.div`
   padding: 13rem 10rem;
   font-size: 11px;
-  ${media({ padding: '120px 25px 80px 25px' })}
+  ${media({ padding: '150px 25px 80px 25px' })}
 `;
 const Wrapper = styled.div`
   display: flex;
@@ -27,7 +27,6 @@ const Wrapper = styled.div`
 `;
 const Message = styled.div`
   text-align: center;
-  padding: 5rem;
 `;
 const Left = styled.div`
   flex: 3;
@@ -86,12 +85,12 @@ const ProductAmount = styled.div`
   font-size: 11px;
 `;
 const Hr = styled.hr`
-  background-color: #42493a;
+  background-color: var(--main-line-color);
   border: none;
   height: 1px;
 `;
 const MediaLine = styled.hr`
-  background-color: #eee;
+  background-color: var(--main-line-color);
   border: none;
   height: 1px;
   display: none;

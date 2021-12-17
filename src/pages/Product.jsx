@@ -55,7 +55,7 @@ const Price = styled.span`
 
 const Underline = styled.div`
   margin: 5px 0;
-  border-top: 0.5px solid rgb(241, 239, 239);
+  border-top: 0.5px solid var(--light-grey-color);
   width: 100%;
 `;
 
@@ -82,7 +82,7 @@ const FilterColor = styled.button`
   border-radius: 50%;
   background-color: ${props => props.color};
   margin: 0px 4px;
-  border: 0.1px solid #f3f3f3;
+  border: 0.1px solid var(--light-grey-color);
   cursor: pointer;
   &:hover {
     opacity: 70%;
@@ -90,7 +90,7 @@ const FilterColor = styled.button`
   }
   &:focus,
   &:target {
-    border: 2px solid #d3fbd8;
+    border: 2px solid var(--sub-color-5);
     transition: all 0.5s ease;
     transform: scale(1.2);
   }
@@ -101,7 +101,7 @@ const FilterSize = styled.select`
   width: 100%;
   padding: 8px;
   font-size: 11px;
-  border: 0.5px solid rgb(241, 239, 239);
+  border: 0.5px solid var(--light-grey-color);
 `;
 
 const FilterSizeOption = styled.option``;
@@ -121,7 +121,7 @@ const AmountContainer = styled.div`
 const Amount = styled.span`
   width: 30px;
   height: 30px;
-  border: 0.5px solid rgb(241, 239, 239);
+  border: 0.5px solid var(--light-grey-color);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -260,8 +260,8 @@ export const Product = () => {
             <StyledButton
               onClick={() => handleAddToCart(product)}
               style={{
-                backgroundColor: 'white',
-                color: 'black',
+                backgroundColor: 'var(--back-color)',
+                color: 'var(--main-color)',
                 fontWeight: 600
               }}
             >

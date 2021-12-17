@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
 const Container = styled.div`
-  background-color: black;
-  color: white;
+  background-color: var(--main-color);
+  color: var(--back-color);
   font-size: 0.7rem;
   font-weight: 300;
   height: 1.7rem;

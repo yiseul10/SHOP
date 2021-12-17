@@ -23,19 +23,19 @@ const useStyles = makeStyles(() => ({
       backgroundColor: 'transparent'
     },
     '& .MuiTabs-indicator': {
-      backgroundColor: '#1F1F1F'
+      backgroundColor: 'var(--main-grey-color)'
     },
     '& .MuiTypography-root': {
-      color: '#1F1F1F',
+      color: 'var(--main-grey-color)',
       fontSize: '12px',
       fontWeight: '400'
     },
     '& .MuiButtonBase-root': {
-      color: '#1F1F1F',
+      color: 'var(--main-grey-color)',
       backgroundColor: 'transparent'
     },
     '& .css-1h9z7r5-MuiButtonBase-root-MuiTab-root.Mui-selected': {
-      color: '#1F1F1F'
+      color: 'var(--main-grey-color)'
     },
     container: {}
   }

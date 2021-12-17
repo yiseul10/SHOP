@@ -39,7 +39,7 @@ const Filter = styled.div`
 `;
 const VerticalLine = styled.div`
   ${media({
-    borderRight: '0.1px solid grey',
+    borderRight: '0.1px solid var(--main-grey-color)',
     width: '0.1px',
     height: '80px'
   })}

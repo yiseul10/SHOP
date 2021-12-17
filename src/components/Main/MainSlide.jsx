@@ -47,11 +47,11 @@ const Slide = styled.div`
   display: flex;
   align-items: center;
 `;
-const ImgContainer = styled.div`
-  height: 100%;
-  flex: 1;
-`;
-const Image = styled.img``;
+// const ImgContainer = styled.div`
+//   height: 100%;
+//   flex: 1;
+// `;
+// const Image = styled.img``;
 const Title = styled.div`
   font-size: 5rem;
   font-weight: 300;
@@ -59,15 +59,8 @@ const Title = styled.div`
   align-items: center;
 `;
 const InfoContainer = styled.div`
-  /* flex: 1;*/
   margin: auto;
-  background-image: linear-gradient(
-    90deg,
-    #000000,
-    #e5e5e5,
-    #1f1f1f,
-    /* #e2e2e2, */ #6a6a6a
-  );
+  background-image: linear-gradient(90deg, #000000, #e5e5e5, #1f1f1f, #6a6a6a);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;

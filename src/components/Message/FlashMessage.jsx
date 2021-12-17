@@ -40,8 +40,8 @@ const Message = styled.div`
   left: 50%;
   text-align: center;
   line-height: normal;
-  background-color: #68edcb;
-  color: white;
+  background-color: var(--sub-color-1);
+  color: var(--back-color);
   width: 100%;
   align-items: center;
   padding: 0.2rem;

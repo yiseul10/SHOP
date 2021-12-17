@@ -105,7 +105,7 @@ export const CheckOut = () => {
   const [error, setError] = useState(null);
   const [result, setResult] = useState('');
 
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const cart = useSelector(state => state.cart);
 
   const [selectedValue, setSelectedValue] = useState('a');

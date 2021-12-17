@@ -4,6 +4,7 @@ import styled from 'styled-components';
 
 import { MenuToggle } from './menuToggle';
 import { GoSearch } from 'react-icons/go';
+import { AiFillInstagram } from 'react-icons/ai';
 
 const Overlay = styled.div`
   width: 100%;
@@ -14,7 +15,7 @@ const Overlay = styled.div`
 `;
 
 const Content = styled.ul`
-  background-color: rgb(255, 255, 255, 0.9);
+  background-color: var(--back-color);
   list-style: none;
   display: flex;
   flex-direction: column;
@@ -29,10 +30,10 @@ const Content = styled.ul`
   padding: 100px 25px 0px 25px;
   font-size: 21px;
   font-weight: 300;
-
+  opacity: 100%;
   & a:hover {
     text-decoration: none;
-    opacity: 50%;
+    opacity: 60%;
     transition: all 0.5s ease;
   }
 `;
@@ -46,7 +47,7 @@ const Toggle = styled.div`
 
 const LineDiv = styled.div`
   width: 100%;
-  border-bottom: 0.1px solid #303030;
+  border-bottom: 0.1px solid var(--main-line-color);
 `;
 const Menu = styled.div`
   width: 100%;
@@ -57,8 +58,12 @@ const NavBottom = styled.li`
   width: 100%;
   display: flex;
   justify-content: space-between;
-  font-size: 12px;
-  font-weight: 400;
+  font-size: 11px;
+  font-weight: 500;
+  & a:hover {
+    text-decoration: underline;
+    opacity: 100;
+  }
 `;
 
 const SlideNav = props => {
@@ -81,18 +86,18 @@ const SlideNav = props => {
           </Menu>
           <LineDiv />
           <li>
-            <Link to={`/products/아우터`}>Outer</Link>
+            <Link to={`/products/아우터`}>OUTER</Link>
           </li>
 
           <li>
-            <Link to={`/products/맨투맨-후드-집업`}>Top</Link>
+            <Link to={`/products/맨투맨-후드-집업`}>TOP</Link>
           </li>
 
           <li>
-            <Link to={`/products/티셔츠-셔츠`}>T-shirt</Link>
+            <Link to={`/products/티셔츠-셔츠`}>T-SHIRT</Link>
           </li>
           <li>
-            <Link to={`/products/바지`}>Pants</Link>
+            <Link to={`/products/바지`}>PANTS</Link>
           </li>
           <LineDiv />
           <Link to={`/search`}>
@@ -107,8 +112,8 @@ const SlideNav = props => {
           <LineDiv />
           <NavBottom>
             <Link to={`/login`}>로그인</Link>
-            <div>About us</div>
             <Link to={`/wish`}>위시리스트</Link>
+            <div>ABOUT US</div>
           </NavBottom>
         </Content>
       )}

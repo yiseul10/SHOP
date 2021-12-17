@@ -14,7 +14,7 @@ const Wrapper = styled.div`
   height: 70px;
   position: fixed;
   padding: 10px 60px;
-  background-color: white;
+  background-color: var(--back-color);
   opacity: 100%;
   transition: all 2s ease;
   z-index: 0;
@@ -25,7 +25,7 @@ const Wrapper = styled.div`
 
 `;
 const InputForm = styled.form`
-  border-top: 0.1px solid rgba(0, 0, 0, 0.3);
+  border-top: 0.1px solid var(--main-line-color);
   text-align: center;
   position: fixed;
   padding-top: 1rem;
@@ -39,7 +39,7 @@ const SearchInput = styled.input`
   border: none;
   width: 25rem;
   &::placeholder {
-    color: rgba(0, 0, 0, 0.3);
+    color: var(--main-line-color);
   }
 `;
 
@@ -96,19 +96,44 @@ export const Search = () => {
       {!keyword && (
         <ExKeyword>
           인기검색:&nbsp;&nbsp;
-          <a style={{ backgroundColor: '#68EDCB', padding: '0px 4px' }}>
+          <a
+            style={{
+              backgroundColor: 'var(--sub-color-1)',
+              padding: '0px 4px'
+            }}
+          >
             #기모
           </a>
-          <a style={{ backgroundColor: '#00A749', padding: '0px 4px' }}>
+          <a
+            style={{
+              backgroundColor: 'var(--sub-color-2)',
+              padding: '0px 4px'
+            }}
+          >
             #패딩
           </a>
-          <a style={{ backgroundColor: '#D3FBD8', padding: '0px 4px' }}>
+          <a
+            style={{
+              backgroundColor: 'var(--sub-color-3)',
+              padding: '0px 4px'
+            }}
+          >
             #아메리칸어패럴
           </a>
-          <a style={{ backgroundColor: '#F8FFF8', padding: '0px 4px' }}>
+          <a
+            style={{
+              backgroundColor: 'var(--sub-color-4)',
+              padding: '0px 4px'
+            }}
+          >
             #맨투맨
           </a>
-          <a style={{ backgroundColor: '#D5F1B5', padding: '0px 4px' }}>
+          <a
+            style={{
+              backgroundColor: 'var(--sub-color-5)',
+              padding: '0px 4px'
+            }}
+          >
             #티셔츠
           </a>
         </ExKeyword>

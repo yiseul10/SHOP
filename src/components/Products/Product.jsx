@@ -83,7 +83,7 @@ const ProductPrice = styled.span`
 `;
 const Currency = styled.span`
   font-size: 5px;
-  color: grey;
+  color: var(--main-line-color);
   letter-spacing: -0.5px;
   padding: 0.1rem;
 `;

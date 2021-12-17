@@ -8,14 +8,13 @@ import { media } from '../responsive';
 const Container = styled.div`
   padding: 13rem 17rem;
   font-size: 11px;
-  ${media({ padding: '120px 25px 80px 25px' })}
+  ${media({ padding: '150px 25px 80px 25px' })}
 `;
 const Wrapper = styled.div`
   display: flex;
 `;
 const Message = styled.div`
   text-align: center;
-  padding: 5rem;
   ${media({ flexDirection: 'row' })}
 `;
 const Left = styled.div`
@@ -56,7 +55,7 @@ const PriceDetail = styled.div`
 `;
 
 const Hr = styled.hr`
-  background-color: #42493a;
+  background-color: var(--main-line-color);
   border: none;
   height: 1px;
 `;
