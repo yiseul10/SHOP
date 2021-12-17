@@ -176,9 +176,9 @@ function Header() {
         />
 
         <Right>
-          <MenuHandle className='login' onClick={isModalOpen}>
+          <div className='login' onClick={isModalOpen}>
             로그인
-          </MenuHandle>
+          </div>
           <MenuHandle to='/customerService/service'>고객센터</MenuHandle>
 
           <MenuItem to='/cart'>

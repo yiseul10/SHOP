@@ -5,28 +5,21 @@ import { LoginInput } from "components/input";
 import { PrimaryBtn } from "components/Button";
 import { LoginBtn } from "components/Button/loginBtn";
 import axios from "axios";
-import { createStore } from "redux";
+import { useDispatch, useSelector } from 'react-redux';
+import { addToAuth } from '../../store/auth-slice';
 
-function auth(state = [], action) {
-  switch (action.type) {
-    case 'token':
-      return state.concat([action.text])
-    default:
-      return state;
-  }
-}
-const store = createStore(auth,['User Redux'])
 
-store.dispatch({
-  type: 'token',
-  text: 'null'
-})
-console.log(store.getState());
 
 export function LoginPage({ signup, pwSearch, onPwSearchBtn }) {
+  const auth = useSelector(state => state.authorization);
   const [id, setId] = useState("");
   const [password, setPassword] = useState("");
   const history = useHistory();
+
+  const dispatch = useDispatch();
+  const handleAddToAuth = authorization => {
+    dispatch(addToAuth({authorization}));
+  };
 
   // 아이디의 상태관리 함수
   function onIdChange(event) {
@@ -70,6 +63,12 @@ export function LoginPage({ signup, pwSearch, onPwSearchBtn }) {
       });
       console.log(send.data);
       console.log(send.headers);
+      if(send.headers.authorization!=null)
+      {
+        console.log(typeof(send.headers.authorization)+": "+send.headers.authorization);
+        handleAddToAuth(send.headers.authorization);
+      }
+      console.log(auth);
 
       history.push("/");
     }
