@@ -1,5 +1,7 @@
 import React from "react";
 import styled from "styled-components";
+import { Input } from "reactstrap";
+import { BiSearchAlt2 } from "react-icons/bi";
 import { useState } from "react";
 import DaumPostCode from "react-daum-postcode";
 
@@ -42,46 +44,40 @@ export function AddressSearch() {
       if (full.length < 1 || detail.length < 1)
         alert("주소를 바르게 입력해 주세요");
     };
+
     return (
       <>
         <AddressCover>
           <div className="addressinput">
-            <input
+            <Input
               type="text"
               id="postcode"
               value={full[0]}
               placeholder="우편번호"
             />
-            <input
-              className="searchBtn"
-              type="button"
-              value="검색"
-              onClick={disablePostCode}
+            <button type="button" onClick={disablePostCode}>
+              <BiSearchAlt2 />
+            </button>
+          </div>
+          <div className="address2input">
+            <Input
+              type="text"
+              id="roadAddress"
+              value={full[1]}
+              placeholder="도로명주소"
             />
           </div>
-
-          <input
-            type="text"
-            id="roadAddress"
-            value={full[1]}
-            placeholder="도로명주소"
-          />
-          <br />
           <span id="guide"></span>
-          <input
-            type="text"
-            id="detailAddress"
-            onChange={saveDataAdressDetail}
-            placeholder="상세주소"
-          />
-          <br />
-          <div className="submitBtn">
-            <input
-              type="button"
-              id="sendAdress"
-              onClick={sendDataAddress}
-              value="보내기"
+          <div className="submitinput">
+            <Input
+              type="text"
+              id="detailAddress"
+              onChange={saveDataAdressDetail}
+              placeholder="상세주소"
             />
+            <button type="button" onClick={sendDataAddress}>
+              전송
+            </button>
           </div>
           {disable && <DaumPostCode onComplete={handleComplete} />}
         </AddressCover>
@@ -96,20 +92,53 @@ export function AddressSearch() {
   );
 }
 
-const Cover = styled.div``;
-
-const AddressCover = styled.div`
-  text-align: center;
+const Cover = styled.div`
   .submitBtn {
     text-align: right;
   }
+`;
+
+const AddressCover = styled.div`
+  margin-top: 10%;
+
   .addressinput {
-    text-align: center;
-    margin-left: 30px;
+    text-align: right;
   }
-  .searchBtn {
-    border: 0;
-    outline: 0;
-    background-color: #fff;
+  .submitinput {
+    display: flex;
+    width: 80%;
+    height: 38px;
+    margin: 0 auto;
+    justify-content: space-between;
+  }
+  button {
+    color: #fff;
+  }
+
+  .addressinput {
+    display: flex;
+    width: 80%;
+    height: 38px;
+    margin: 0 auto;
+    justify-content: space-between;
+  }
+  .form-control {
+    width: 85%;
+  }
+  button {
+    width: 15%;
+    border: none;
+    border-radius: 0 10px 10px 0;
+    background-color: #2cb5e8;
+    svg {
+      color: #fff;
+    }
+  }
+  .address2input {
+    display: flex;
+    width: 80%;
+    height: 38px;
+    margin: 0 auto;
+    justify-content: space-between;
   }
 `;

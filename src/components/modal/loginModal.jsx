@@ -32,7 +32,7 @@ const StyleModal = styled(Modal)`
 
 const Container = styled.div`
   position: fixed;
-  top: 0;
+  top: 15%;
   bottom: 0;
   left: 0;
   right: 0;
