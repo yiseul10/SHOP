@@ -21,7 +21,6 @@ const Container = styled.div`
 const Page = styled.div`
   position: absolute;
   bottom: 0;
-  /* z-index: 999; */
   height: 3rem;
   left: 50%;
   width: 100%;

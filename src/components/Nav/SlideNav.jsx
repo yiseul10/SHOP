@@ -53,6 +53,13 @@ const Menu = styled.div`
   display: flex;
   justify-content: space-between;
 `;
+const NavBottom = styled.li`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  font-weight: 400;
+`;
 
 const SlideNav = props => {
   const [isOpen, setOpen] = useState(false);
@@ -98,9 +105,11 @@ const SlideNav = props => {
             />
           </Link>
           <LineDiv />
-          <li>
-            <Link to='/'>로그인</Link>
-          </li>
+          <NavBottom>
+            <Link to={`/login`}>로그인</Link>
+            <div>About us</div>
+            <Link to={`/wish`}>위시리스트</Link>
+          </NavBottom>
         </Content>
       )}
     </Overlay>

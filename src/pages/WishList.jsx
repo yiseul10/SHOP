@@ -3,10 +3,12 @@ import { Link } from 'react-router-dom';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { removeWish } from '../store/wish-slice';
+import { media } from '../responsive';
 
 const Container = styled.div`
   padding: 13rem 17rem;
   font-size: 11px;
+  ${media({ padding: '120px 25px 80px 25px' })}
 `;
 const Wrapper = styled.div`
   display: flex;
@@ -14,9 +16,15 @@ const Wrapper = styled.div`
 const Message = styled.div`
   text-align: center;
   padding: 5rem;
+  ${media({ flexDirection: 'row' })}
 `;
 const Left = styled.div`
   flex: 3;
+`;
+const LeftSection = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
 `;
 const Product = styled.div`
   display: flex;
@@ -48,7 +56,7 @@ const PriceDetail = styled.div`
 `;
 
 const Hr = styled.hr`
-  background-color: #eee;
+  background-color: #42493a;
   border: none;
   height: 1px;
 `;
@@ -57,6 +65,13 @@ const Delete = styled.span`
   text-decoration: underline;
   cursor: pointer;
   margin-top: 4.3rem;
+`;
+const DeleteAll = styled.div`
+  cursor: pointer;
+  font-weight: 500;
+  &:hover {
+    text-decoration: underline;
+  }
 `;
 const ProductTitle = styled(Link)`
   padding: 0.2rem 0rem;
@@ -81,7 +96,10 @@ export const WishList = () => {
       ) : (
         <Wrapper>
           <Left>
-            <Title>위시리스트({wish.quantity})</Title>
+            <LeftSection>
+              <Title>위시리스트({wish.quantity})</Title>
+              <DeleteAll onClick={handleDelete}>모두삭제</DeleteAll>
+            </LeftSection>
             {wish.products.map(product => (
               <div key={product.index} id={product.id}>
                 <Product>

@@ -48,9 +48,6 @@ const Icon = styled.div`
     transform: scale(1.1);
     transition: all 0.5s ease;
   }
-  ${media({
-    display: 'none'
-  })}
 `;
 
 const Detail = styled.div`
@@ -99,7 +96,7 @@ const Product = ({ id, ...product }) => {
 
   const handleAddToWish = product => {
     addFlashMessage('위시리스트에 담겼습니다!');
-    dispatch(addWish(product));
+    dispatch(addWish({ id, ...product }));
     setClick(!click);
   };
 
@@ -110,7 +107,7 @@ const Product = ({ id, ...product }) => {
           <Image src={product.image} alt={product.product} />
         </ImgView>
       </Link>
-      <Icon onClick={() => handleAddToWish(product)}>
+      <Icon onClick={() => handleAddToWish({ id, ...product })}>
         {click ? <Favorite /> : <FavoriteBorderOutlined />}
       </Icon>
       <Detail>

@@ -6,9 +6,7 @@ import Products from '../components/Products/Products';
 
 const Container = styled.div`
   padding: 8rem 0rem;
-  ${media({
-    padding: '6rem 0rem'
-  })}
+  ${media({ padding: '7.5rem 0rem' })}
 `;
 const Wrapper = styled.div`
   display: block;
@@ -23,7 +21,8 @@ const FilterContainer = styled.div`
   ${media({
     flexDirection: 'row',
     padding: '0',
-    borderBottom: '0.5px solid grey'
+    borderBottom: '0.5px solid grey',
+    borderTop: '0.5px solid grey'
   })}
 `;
 const Filter = styled.div`

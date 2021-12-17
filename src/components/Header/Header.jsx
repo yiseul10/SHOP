@@ -25,7 +25,7 @@ const Container = styled.div`
   font-size: 11px;
   font-weight: 500;
   box-shadow: 0px 1rem 0.3rem -1rem rgba(0, 0, 0, 0.1);
-  // position: fixed;
+  position: fixed;
   width: 100vw;
   z-index: 1;
   padding-top: 1.7rem;
