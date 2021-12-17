@@ -5,6 +5,23 @@ import { LoginInput } from "components/input";
 import { PrimaryBtn } from "components/Button";
 import { LoginBtn } from "components/Button/loginBtn";
 import axios from "axios";
+import { createStore } from "redux";
+
+function auth(state = [], action) {
+  switch (action.type) {
+    case 'token':
+      return state.concat([action.text])
+    default:
+      return state;
+  }
+}
+const store = createStore(auth,['User Redux'])
+
+store.dispatch({
+  type: 'token',
+  text: 'null'
+})
+console.log(store.getState());
 
 export function LoginPage({ signup, pwSearch, onPwSearchBtn }) {
   const [id, setId] = useState("");
