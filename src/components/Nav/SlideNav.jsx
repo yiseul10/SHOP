@@ -4,7 +4,6 @@ import styled from 'styled-components';
 
 import { MenuToggle } from './menuToggle';
 import { GoSearch } from 'react-icons/go';
-import { AiFillInstagram } from 'react-icons/ai';
 
 const Overlay = styled.div`
   width: 100%;

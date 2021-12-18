@@ -24,7 +24,8 @@ const ImgView = styled.div`
   }
   ${media({
     width: '219.5px',
-    height: '330px'
+    height: '330px',
+    maxWidth: 'auto'
   })}
 `;
 
