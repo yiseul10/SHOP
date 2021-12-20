@@ -59,7 +59,7 @@ export function LoginPage({ signup, pwSearch, onPwSearchBtn, authorization }) {
       //비동기 통신 POST
       const send = await axios({
         method: "POST",
-        url: `http://ec2-3-37-117-153.ap-northeast-2.compute.amazonaws.com:8080/shoppingmall/user-login	`,
+        url: `http://ec2-3-37-117-153.ap-northeast-2.compute.amazonaws.com:8080/shopApp/user-login	`,
         data: formdata,
       });
       console.log(send.data);

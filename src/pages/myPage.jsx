@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState ,useEffect } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import Modal from "react-modal";
@@ -11,6 +11,8 @@ import { AddressSearch } from "components/modal/addressSearch";
 import { BiSearchAlt2 } from "react-icons/bi";
 import { IoIosClose } from "react-icons/io";
 import { LoginBtn } from "components/Button/loginBtn";
+import { useSelector } from 'react-redux';
+
 
 export function MyPage() {
   const [userName, setUserName] = useState(""); //  이름
@@ -22,6 +24,30 @@ export function MyPage() {
   const [password, setPassword] = useState(""); //  비밀번호
   const [isAddressBtn, setIsAddressBtn] = useState(false);
   const history = useHistory();
+  const auth = useSelector(state => state.authorization);
+
+  useEffect(() => {
+    console.log(typeof(auth)+" : "+auth);
+    const userdataload = async () => {
+      try {    
+        const response = await axios({
+            method:'GET',
+            url:`http://ec2-3-37-117-153.ap-northeast-2.compute.amazonaws.com:8080/shopApp/user-privacy`,
+            headers:{
+              authorization: auth.authorization
+            }
+        });
+        console.log(response.data); 
+        setId(response.data.id);
+        setNickName(response.data.nickName);
+        setPhoneNum(response.data.phone);
+        setAddress(response.data.address);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    userdataload();
+  }, []);
 
   function isAddressModalClose() {
     setIsAddressBtn(false);
@@ -33,6 +59,7 @@ export function MyPage() {
   }
   //  아이디의 상태관리 함수
   function onIdChange(event) {
+    console.log(auth);
     setId(event.target.value);
   }
   //  닉네임의 상태관리 함수

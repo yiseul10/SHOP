@@ -79,7 +79,21 @@ export function SignUpPage() {
   }
 
   function onEmailCheckBtn() {
-    console.log("전송되었습니다");
+    const emailCheck = async () => {
+      try {
+        const formdata = new FormData();
+        formdata.append("id", email);
+        const response = await axios({
+          method: "POST",
+          url: `http://ec2-3-37-117-153.ap-northeast-2.compute.amazonaws.com:8080/shopApp/user-id`,
+          data: formdata,
+        });
+        console.log(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    emailCheck();
   }
 
   // const [test, setTest] = useState("");

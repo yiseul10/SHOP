@@ -4,7 +4,6 @@ const initialState = {
     authorization: localStorage.getItem('authorization')
     ? JSON.parse(localStorage.getItem('authorization'))
     : "",
-    authorization: "",
 };
 
 const authSlice = createSlice({
