@@ -4,8 +4,11 @@ import { Input } from "reactstrap";
 import { BiSearchAlt2 } from "react-icons/bi";
 import { useState } from "react";
 import DaumPostCode from "react-daum-postcode";
+import { useDispatch } from "react-redux";
+import { addressAdd } from "store/addressReduce";
 
-export function AddressSearch() {
+export function AddressSearch({ setModalVisible }) {
+  const dispatch = useDispatch();
   const Postcode = () => {
     const [full, setFull] = useState("");
     const [disable, setDisable] = useState(false);
@@ -39,7 +42,17 @@ export function AddressSearch() {
            "detailAddress":${detail},
            "extraAddress":${extra}
          }`;
-        alert(jsonAddress);
+        // alert(jsonAddress);
+        dispatch(
+          addressAdd({
+            postCode: full[0],
+            roadName: full[1],
+            detailName: detail,
+          }),
+        );
+        if (typeof setModalVisible === "function") {
+          setModalVisible(false);
+        }
       }
       if (full.length < 1 || detail.length < 1)
         alert("주소를 바르게 입력해 주세요");
