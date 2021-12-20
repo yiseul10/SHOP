@@ -7,6 +7,8 @@ import { LoginInput } from "components/input";
 import { PrimaryBtn } from "components/Button";
 import CircularProgress from "@mui/material/CircularProgress";
 import { useHistory } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { addToAuth } from "../store/auth-slice";
 
 export function LoadingPage() {
   const [authorization, setAuthorization] = useState("");
@@ -16,6 +18,12 @@ export function LoadingPage() {
   const [code, setCode] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+
+  const dispatch = useDispatch();
+  const handleAddToAuth = (authorization) => {
+    dispatch(addToAuth(authorization));
+  };
+
   // const history = useHistory();
   setTimeout(() => {
     setCode(new URL(window.location.href).searchParams.get("code"));
@@ -36,9 +44,8 @@ export function LoadingPage() {
         console.log(response.data);
 
         setAuthorization(response.headers.authorization);
-        if (response.headers.authorization) {
-          const accessToken = response.headers.authorization.split(" ")[1];
-          localStorage.setItem("accessToken", accessToken);
+        if (response.headers.authorization != null) {
+          handleAddToAuth(response.headers.authorization);
         }
         if (response.data.kakaoNumber) {
           setResult(response.data.kakaoNumber);

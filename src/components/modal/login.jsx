@@ -5,11 +5,19 @@ import { LoginInput } from "components/input";
 import { PrimaryBtn } from "components/Button";
 import { LoginBtn } from "components/Button/loginBtn";
 import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { addToAuth } from "../../store/auth-slice";
 
-export function LoginPage({ signup, pwSearch, onPwSearchBtn }) {
+export function LoginPage({ signup, pwSearch, onPwSearchBtn, authorization }) {
+  const auth = useSelector((state) => state.authorization);
   const [id, setId] = useState("");
   const [password, setPassword] = useState("");
   const history = useHistory();
+
+  const dispatch = useDispatch();
+  const handleAddToAuth = (authorization) => {
+    dispatch(addToAuth(authorization));
+  };
 
   // 아이디의 상태관리 함수
   function onIdChange(event) {
@@ -48,18 +56,20 @@ export function LoginPage({ signup, pwSearch, onPwSearchBtn }) {
       //비동기 통신 POST
       const send = await axios({
         method: "POST",
-        url: `http://ec2-3-37-117-153.ap-northeast-2.compute.amazonaws.com:8080/shoppingmall/user-login	`,
+        url: `http://ec2-3-37-117-153.ap-northeast-2.compute.amazonaws.com:8080/shopApp/user-login	`,
         data: formdata,
       });
-      if (send.status === 200) {
-        localStorage.getItem("accessToken", send.data.nickName);
-        console.log("send::", send);
-        console.log(send.headers);
-
-        history.push("/");
-      } else {
-        console.log("fail");
+      console.log(send.data);
+      console.log(send.headers);
+      if (send.headers.authorization != null) {
+        authorization = send.headers.authorization;
+        console.log(
+          typeof send.headers.authorization + ": " + send.headers.authorization,
+        );
+        handleAddToAuth(authorization);
       }
+      console.log(auth);
+      history.push("/");
     }
   };
 

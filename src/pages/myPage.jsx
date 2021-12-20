@@ -23,6 +23,30 @@ export function MyPage() {
   const [password, setPassword] = useState(""); //  비밀번호
   const [isAddressBtn, setIsAddressBtn] = useState(false);
   const history = useHistory();
+  const auth = useSelector((state) => state.authorization);
+
+  useEffect(() => {
+    console.log(typeof auth + " : " + auth);
+    const userdataload = async () => {
+      try {
+        const response = await axios({
+          method: "GET",
+          url: `http://ec2-3-37-117-153.ap-northeast-2.compute.amazonaws.com:8080/shopApp/user-privacy`,
+          headers: {
+            authorization: auth.authorization,
+          },
+        });
+        console.log(response.data);
+        setId(response.data.id);
+        setNickName(response.data.nickName);
+        setPhoneNum(response.data.phone);
+        setAddress(response.data.address);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    userdataload();
+  }, []);
 
   const postCode = useSelector((state) => state.address.postCode);
   const roadName = useSelector((state) => state.address.roadName);
@@ -38,6 +62,7 @@ export function MyPage() {
   }
   //  아이디의 상태관리 함수
   function onIdChange(event) {
+    console.log(auth);
     setId(event.target.value);
   }
   //  닉네임의 상태관리 함수
