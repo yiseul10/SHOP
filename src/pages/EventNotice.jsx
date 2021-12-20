@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 const NoticeEvent = styled.div`
-  padding: 10rem;
+  padding: 20rem;
 `;
 
 export function EventNotice() {
