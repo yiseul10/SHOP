@@ -18,12 +18,12 @@ export const CustomerCenter = () => {
         <Route>
           
     
-          <Link to="/customerService/EventNotice">
-            {" "}
+          <Link to="/CustomerService/EventNotice">
+         
             <span>
-              {" "}
-              <TiDocumentText size="130" /> 이벤트 및 공지사항{" "}
-            </span>{" "}
+              <TiDocumentText size="130" /> 이벤트 및 공지사항
+            </span>
+         
           </Link>
    
         </Route>

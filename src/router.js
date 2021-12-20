@@ -54,10 +54,10 @@ export default function Router() {
 
 
         
-        <Route exact path="/customerService/service" component={CustomerCenter} />
+        <Route exact path="/CustomerCenter" component={CustomerCenter} />
         <Route
           exact
-          path="/customerService/EventNotice"
+          path="/CustomerCenter/EventNotice"
           component={EventNotice}/>
    
         <Route exact path="/mypage/my" component={MyPage} />

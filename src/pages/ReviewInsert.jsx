@@ -143,14 +143,15 @@ const Button = styled.button`
                         value={this.state.productNumber}
                         onChange={this.handleValueChange}/><br/>
                       
-                        이름:
+                      <br/>
+                        리뷰제목:
                         <input
                         type="text"
                         name="title"
                         value={this.state.title}
                         onChange={this.handleValueChange}/><br/>
-
-                    내용:
+                        <br/>
+                    
                     <textarea
                         cols="50"
                         rows="10"
@@ -161,7 +162,7 @@ const Button = styled.button`
 
 
 
-                     이미지:
+                     리뷰할 사진:
                     <input
                         type="file"
                         name="image"

@@ -198,7 +198,7 @@ function Header() {
           <div className='login' onClick={isModalOpen}>
             로그인
           </div>
-          <MenuHandle to='/customerService/service'>고객센터</MenuHandle>
+          <MenuHandle to='/CustomerCenter'>고객센터</MenuHandle>
           <MenuHandle to='/wish'>위시리스트</MenuHandle>
           <MenuItem to='/cart'>
             <Badge badgeContent={quantity} color='error'>

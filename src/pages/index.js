@@ -4,7 +4,7 @@ export { ProductList } from "./ProductList";
 export { Home } from "./Home";
 export { Cart } from "./Cart";
 // export { Review } from "./Review";
-export { customerService } from "./customerService";
+export { CustomerCenter} from "./CustomerCenter";
 export { EventNotice } from "./EventNotice";
 export { ReviewInsert } from "./ReviewInsert";
 export { MyPage } from "./myPage";
