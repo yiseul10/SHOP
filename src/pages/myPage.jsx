@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import Modal from "react-modal";
@@ -11,6 +11,7 @@ import { AddressSearch } from "components/modal/addressSearch";
 import { BiSearchAlt2 } from "react-icons/bi";
 import { IoIosClose } from "react-icons/io";
 import { LoginBtn } from "components/Button/loginBtn";
+import { useSelector } from "react-redux";
 
 export function MyPage() {
   const [userName, setUserName] = useState(""); //  이름
@@ -22,6 +23,10 @@ export function MyPage() {
   const [password, setPassword] = useState(""); //  비밀번호
   const [isAddressBtn, setIsAddressBtn] = useState(false);
   const history = useHistory();
+
+  const postCode = useSelector((state) => state.address.postCode);
+  const roadName = useSelector((state) => state.address.roadName);
+  const detailName = useSelector((state) => state.address.detailName);
 
   function isAddressModalClose() {
     setIsAddressBtn(false);
@@ -47,6 +52,11 @@ export function MyPage() {
   function onAddressChange(event) {
     setAddress(event.target.value);
   }
+  useEffect(() => {
+    if (postCode) {
+      setAddress(postCode + " " + roadName + " " + detailName);
+    }
+  }, [postCode]);
   //  주소 검색 버튼 함수
   function onAddressBtn() {
     setIsAddressBtn(true);
@@ -100,6 +110,8 @@ export function MyPage() {
     } catch (e) {}
   };
 
+  const [test, setTest] = useState("");
+  console.log(test);
   return (
     <>
       <AddressOpenModal isOpen={isAddressBtn}>
@@ -110,7 +122,7 @@ export function MyPage() {
             </button>
           </div>
 
-          <AddressSearch />
+          <AddressSearch setModalVisible={setIsAddressBtn} />
         </ModalContainer>
       </AddressOpenModal>
 
@@ -169,6 +181,7 @@ export function MyPage() {
               <Input
                 className="addressInput"
                 id="address"
+                value={address}
                 onChange={onAddressChange}
                 placeholder="주소"
               />
