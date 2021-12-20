@@ -7,11 +7,8 @@ import {
   Home,
   Cart,
   Review,
-  customerService,
   CustomerCenter,
   EventNotice,
-  QuestionOne,
-  FAQ,
   ReviewInsert,
   MyPage,
   LoadingPage,
@@ -58,15 +55,11 @@ export default function Router() {
 
         
         <Route exact path="/customerService/service" component={CustomerCenter} />
-        <Route exact path="/customerService/FAQ" component={FAQ} />
         <Route
           exact
           path="/customerService/EventNotice"
           component={EventNotice}/>
-        <Route
-          exact
-          path="/customerService/QuestionOne"
-          component={QuestionOne}/>
+   
         <Route exact path="/mypage/my" component={MyPage} />
         <Route exact path="/orderlist/order" component={OrderListPage} />
         <Route exact path="/orderreview/order" component={OrderReviewPage} />
