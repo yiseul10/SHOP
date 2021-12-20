@@ -51,10 +51,15 @@ export function LoginPage({ signup, pwSearch, onPwSearchBtn }) {
         url: `http://ec2-3-37-117-153.ap-northeast-2.compute.amazonaws.com:8080/shoppingmall/user-login	`,
         data: formdata,
       });
-      console.log(send.data);
-      console.log(send.headers);
+      if (send.status === 200) {
+        localStorage.getItem("accessToken", send.data.nickName);
+        console.log("send::", send);
+        console.log(send.headers);
 
-      history.push("/");
+        history.push("/");
+      } else {
+        console.log("fail");
+      }
     }
   };
 
