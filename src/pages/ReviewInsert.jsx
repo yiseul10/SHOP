@@ -127,6 +127,8 @@ const Button = styled.button`
             return post(url, formData, config)
 
         }
+        
+        
 
         render() {
 
@@ -183,7 +185,7 @@ const Button = styled.button`
                 </form>
 
 
-                <Button onClick={this.handleGoBack}>뒤로 가기 </Button>
+                <Button onClick={this.handleGoBack}>뒤로 가기 </Button> 
              
             </Review>
             )

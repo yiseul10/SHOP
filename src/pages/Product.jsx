@@ -286,8 +286,8 @@ export const Product = () => {
                 <>
                   <td colspan="1">
                     <span>
-                    <td> <p> 리뷰 번호 : {user.reviewsNumber} </p> </td>
-
+                    <td> <p> 리뷰 번호 : {user.reviewsNumber}  &nbsp;	&nbsp; &nbsp;	&nbsp; </p> </td>
+                   
                       <img
 
                         style={{ height: '25%', width: '25%' }}
