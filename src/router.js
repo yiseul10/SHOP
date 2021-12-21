@@ -7,6 +7,8 @@ import {
   Home,
   Cart,
   Review,
+  PostMain,
+  PostView,
   CustomerCenter,
   ReviewInsert,
   MyPage,
@@ -48,9 +50,12 @@ export default function Router() {
         <Route exact path="/wish" component={WishList} />
         <Route exact path="/cart" component={Cart} />
         <Route exact path="/:id" component={Product} />
-        <Route exact path="/${id}/ReviewInsert" component={ReviewInsert} />
+        <Route exact path="/:id/ReviewInsert" component={ReviewInsert} />
         
-
+       
+        <Route exact path='/CustomerCenter/custom/:no' component={PostView} />
+        <Route exact path='/CustomerCenter/custom' component={PostMain} />
+     
 
         
         <Route exact path="/CustomerCenter/custom" component={CustomerCenter} />
