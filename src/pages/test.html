@@ -12,29 +12,54 @@
 src="https://browserboard.com/whiteboard/8JU2aujSPEPVhJMfAKdHZP?key=HdhMiwDGmWoUoFjz6DyxzW"
 >
 </iframe>
-<button onclick="sendBrowserboardMessage()">버튼</button>
-  
-</body>
+<input type="button" id="btn" value="load" data="load" /> 
+<!-- <input type="button" id="btn" value="insert" data="insert" />  -->
+<input type="button" id="target" value="insert" />
+<img id="ak" src=""/>
 <script>
+
+var t = document.getElementById('target');
+t.addEventListener('click', (e) => {
+    console.log(e.target.value);
+  
+    alert('Hello world, '+e.target.value);
+});
+
 const iframeElement = document.getElementById("browserboard");
-iframeElement.contentWindow.postMessage(
-    // what to send
-    { action: "actionName", ...otherArguments },
-    // tell the browser who we expect the iframe to be
-    "https://browserboard.com"
-  );
-  function sendBrowserboardMessage() {
-    iframeElement.contentWindow.postMessage({ "action": "downloadImage" }
-, "https://browserboard.com");
+  function sendBrowserboardMessage(message) {
+    iframeElement.contentWindow.postMessage(message, "https://browserboard.com");
   }
-  window.addEventListener("message", (e) => {
-    console.log(e.data.action);
-    switch (e.data.action) {
-      case "actionName":
-        break; /* handle the action */
+  var tt = document.getElementById("btn");
+  tt.addEventListener("click", (e) => {
+    console.log(e.target.value);
+    switch (e.target.value) {
+      case "load":
+        var a=  sendBrowserboardMessage({ "action": "downloadImage" })
+        console.log(a);
+        break; 
+      case "insert":
+        sendBrowserboardMessage({
+          action: "insertImage",
+          url: "https://shoppingmal.s3.ap-northeast-2.amazonaws.com/review/a40009bb-2793-4ac9-b95b-877f6115d2f1",
+        })
+        break;
+      /* handle the action */
       /* the rest of this file will explain what actions exist and how to handle them. */
     }
   });
+
+  window.addEventListener("message", (e) => {
+  switch (e.data.action) {
+    case "updateDownloadImageProgress":
+      document.getElementById('ak').src=e.data.url
+      console.log(e.data);
+      break; /* handle the action */
+      case "downloadImageComplete":
+      console.log(e.data);
+      break; /* handle the action */
+    /* the rest of this file will explain what actions exist and how to handle them. */
+  }
+});
 </script>
 </html>
 
