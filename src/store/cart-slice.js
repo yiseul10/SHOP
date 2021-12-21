@@ -13,19 +13,21 @@ const cartSlice = createSlice({
   initialState,
   reducers: {
     addToCart(state, action) {
-      const pseudoId = new Date().getTime(); // 카트아이템에 대한 아이디
+      const pseudoId = new Date().getTime(); // 카트아이템에 대한 개별아이디
 
-      // const itemIndex = state.products.findIndex(
-      //   item => item.id === action.payload.id
-      // );
-      // if (itemIndex >= 0) {
-      //   state.products[itemIndex].quantity += 1;
-      // } else {
-      // FIXMEBUG 컬러값과 사이즈로 비교할 수 있는 방법?
-      const tempProduct = { ...action.payload, pseudoId };
-      state.products.push(tempProduct);
-      state.quantity += 1;
-      // }
+      const itemColor = state.products.findIndex(
+        item => item.color === action.payload.color
+      );
+      const itemSize = state.products.findIndex(
+        item => item.size === action.payload.size
+      );
+      if (itemColor >= 0 && itemSize >= 0) {
+        state.products[(itemColor, itemSize)].quantity += 1;
+      } else {
+        const tempProduct = { ...action.payload, pseudoId };
+        state.products.push(tempProduct);
+        state.quantity += 1;
+      }
 
       localStorage.setItem('products', JSON.stringify(state.products));
     },
