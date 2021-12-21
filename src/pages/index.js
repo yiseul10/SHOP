@@ -5,7 +5,6 @@ export { Home } from "./Home";
 export { Cart } from "./Cart";
 // export { Review } from "./Review";
 export { CustomerCenter} from "./CustomerCenter";
-export { EventNotice } from "./EventNotice";
 export { ReviewInsert } from "./ReviewInsert";
 export { MyPage } from "./myPage";
 export { OrderListPage } from "./ordeListPage";

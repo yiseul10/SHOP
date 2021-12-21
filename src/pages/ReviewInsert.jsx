@@ -22,7 +22,9 @@ const Button = styled.button`
 
     export class ReviewInsert extends React.Component {
 
-
+        handleGoBack = () => {
+            this.props.history.goBack();
+          };
         
       
         constructor(props) {
@@ -70,7 +72,7 @@ const Button = styled.button`
                     console.log(response.data);
 
                 })
-                alert("리뷰 등록이 완료되었습니다. 뒤로 돌아가주세요.")
+                alert("리뷰 등록이 완료되었습니다.")
 
         }
 
@@ -169,7 +171,9 @@ const Button = styled.button`
                         file={this.state.file}
                         value={this.state.fileName}
                         onChange={this.handleFileChange}/>
-                  
+
+
+
                  
                     <Button type="submit">
                     상품평 등록하기
@@ -178,6 +182,9 @@ const Button = styled.button`
 
                 </form>
 
+
+                <Button onClick={this.handleGoBack}>뒤로 가기 </Button>
+             
             </Review>
             )
 

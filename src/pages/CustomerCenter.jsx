@@ -4,30 +4,17 @@ import { TiDocumentText } from "react-icons/ti";
 import { Link, Route } from "react-router-dom";
 
 const CustSc = styled.div`
-  padding: 10rem;
+  padding: 20rem;
 `;
 
 export const CustomerCenter = () => {
   return (
     <CustSc>
-      <div>
-        <h2> 고객센터</h2>
-        <hr />
-        <br /> <br />
+     
+
+       <h1> ssss</h1>
+
       
-        <Route>
-          
-    
-          <Link to="/CustomerService/EventNotice">
-         
-            <span>
-              <TiDocumentText size="130" /> 이벤트 및 공지사항
-            </span>
-         
-          </Link>
-   
-        </Route>
-      </div>
     </CustSc>
   );
 }
