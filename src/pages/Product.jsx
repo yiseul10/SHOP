@@ -196,9 +196,9 @@ export const Product = () => {
     }
   };
 
-  const handleAddToCart = product => {
+  const handleAddToCart = () => {
     addFlashMessage('장바구니에 담겼습니다!');
-    dispatch(addToCart({ ...product, quantity, color, size }));
+    dispatch(addToCart({ quantity, color, size, ...product }));
   };
 
   return product.colors === undefined ? null : (
@@ -258,7 +258,7 @@ export const Product = () => {
           <Underline />
           <ButtonHandle>
             <StyledButton
-              onClick={() => handleAddToCart(product)}
+              onClick={() => handleAddToCart()}
               style={{
                 backgroundColor: 'var(--back-color)',
                 color: 'var(--main-color)',
