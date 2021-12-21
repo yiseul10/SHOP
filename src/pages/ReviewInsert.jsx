@@ -169,6 +169,7 @@ const Button = styled.button`
                      리뷰할 사진:
                     <input
                         type="file"
+                        accept='image/jpg,impge/png,image/jpeg' 
                         name="image"
                         file={this.state.file}
                         value={this.state.fileName}
