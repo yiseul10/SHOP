@@ -53,7 +53,7 @@ export default function Router() {
 
 
         
-        <Route exact path="/CustomerCenter" component={CustomerCenter} />
+        <Route exact path="/CustomerCenter/custom" component={CustomerCenter} />
    
         <Route exact path="/mypage/my" component={MyPage} />
         <Route exact path="/orderlist/order" component={OrderListPage} />
