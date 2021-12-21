@@ -26,7 +26,7 @@ export function MyPage() {
   const auth = useSelector((state) => state.authorization);
 
   useEffect(() => {
-    console.log(typeof auth + " : " + auth);
+    console.log(typeof auth + " : " + auth.authorization);
     const userdataload = async () => {
       try {
         const response = await axios({

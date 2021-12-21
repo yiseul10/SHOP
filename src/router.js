@@ -20,6 +20,7 @@ import {
   WishList,
   CheckOut,
   EmailCerified,
+  Custom,
 } from "pages";
 import { OrderListPage } from "pages/ordeListPage";
 import { OrderReviewPage } from "pages/orderReviewPage";
@@ -45,6 +46,8 @@ export default function Router() {
         <Route exact path="/approval" component={Approval} />     
         <Route exact path="/passwordsearch" component={PasswordSearchPage} />
         <Route exact path="/passwordreset" component={PasswordResetPage} />
+
+        <Route exact path="/custom" component={Custom} />
 
         <Route exact path="/search" component={Search} />
         <Route exact path="/products/:category" component={ProductList} />  

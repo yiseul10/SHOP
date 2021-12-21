@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+<iframe id="browserboard" width="100%" height=500px
+src="https://browserboard.com/whiteboard/8JU2aujSPEPVhJMfAKdHZP?key=HdhMiwDGmWoUoFjz6DyxzW"
+>
+</iframe>
+<button onclick="sendBrowserboardMessage()">버튼</button>
+  
+</body>
+<script>
+const iframeElement = document.getElementById("browserboard");
+iframeElement.contentWindow.postMessage(
+    // what to send
+    { action: "actionName", ...otherArguments },
+    // tell the browser who we expect the iframe to be
+    "https://browserboard.com"
+  );
+  function sendBrowserboardMessage() {
+    iframeElement.contentWindow.postMessage({ "action": "downloadImage" }
+, "https://browserboard.com");
+  }
+  window.addEventListener("message", (e) => {
+    console.log(e.data.action);
+    switch (e.data.action) {
+      case "actionName":
+        break; /* handle the action */
+      /* the rest of this file will explain what actions exist and how to handle them. */
+    }
+  });
+</script>
+</html>
+
+

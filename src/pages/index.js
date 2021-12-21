@@ -21,3 +21,4 @@ export { CheckOut } from "./CheckOut";
 export { Search } from "./Search";
 export { WishList } from "./WishList";
 export { EmailCerified } from "./EmailCertified";
+export { Custom } from "./Custom";
