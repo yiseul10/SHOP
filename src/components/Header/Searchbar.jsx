@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+
 import Axios from 'axios';
 
 import styled from 'styled-components';
 import { BsArrowRight } from 'react-icons/bs';
-import { fetchProducts } from '../../store/api-call';
 
 const Container = styled.div`
   width: 100%;
@@ -13,18 +12,18 @@ const Container = styled.div`
   height: 70px;
   position: absolute;
   padding: 9px 60px;
-  background-color: white;
+  background-color: var(--back-color);
   opacity: 100%;
   transition: all 2s ease;
   z-index: 1;
-  box-shadow: 0px 1rem 0.3rem -1rem rgba(0, 0, 0, 0.1);
+  box-shadow: var(--box-shadow);
 
   &.clicked {
     display: none;
   }
 `;
 const InputForm = styled.form`
-  border-top: 0.1px solid rgba(0, 0, 0, 0.3);
+  border-top: 0.1px solid var(--light-grey));
   text-align: center;
   display: flex;
   position: relative;
@@ -49,7 +48,7 @@ const Searchbar = () => {
   const [keyword, setKeyword] = useState('');
   const [products, setProduct] = useState([]);
   const [page, setPage] = useState(1);
-  const [numberOfPages, setNumberOfPages] = useState(10);
+  const [setNumberOfPages] = useState(10);
 
   const fetchSearch = async e => {
     try {
@@ -64,22 +63,6 @@ const Searchbar = () => {
     window.scroll(0, 0);
     fetchSearch();
   }, [keyword, page]);
-
-  // const submitHandler = e => {
-  //   e.preventDefault();
-  //   console.log(keyword);
-
-  //   setKeyword('');
-  // };
-
-  // const dispatch = useDispatch();
-
-  // const submitHandler = e => {
-  //   e.preventDefault();
-  //   console.log(keyword);
-  //   dispatch(fetchProducts(keyword));
-  //   setKeyword('');
-  // };
 
   return (
     <Container>

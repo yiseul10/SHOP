@@ -1,24 +1,21 @@
 export const sliderItems = [
   {
     id: 1,
-    img: '',
-    title: 'SALE',
-    desc: 'Hey😎',
-    bg: 'white'
+    img: '/',
+    title: 'title1',
+    desc: 'WINTER SALE UPTO 50%'
   },
   {
     id: 2,
     img: '/',
-    title: 'AUTUMN COLLECTION',
-    desc: 'Hey😜',
-    bg: '#8e44ad'
+    title: 'title2',
+    desc: '겨울세일 시작'
   },
   {
     id: 3,
     img: '/',
-    title: ':)',
-    desc: 'Hey👻',
-    bg: '#F2C94C'
+    title: 'title3',
+    desc: 'HO HO HO'
   }
 ];
 export const categories = [
@@ -45,29 +42,5 @@ export const categories = [
     img: 'https://images.unsplash.com/photo-1619575633812-441114700fbd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=765&q=80',
     title: '사계절 팬츠',
     cat: '바지'
-  }
-];
-
-export const NavMenu = [
-  {
-    title: 'OUTER',
-    path: '/coat',
-    cName: 'dropdown-link'
-  },
-  {
-    title: 'TOP',
-    path: '/top',
-    cName: 'dropdown-link'
-  },
-  {
-    title: 'PANTS',
-    path: '/pants',
-    cName: 'dropdown-link'
-  },
-
-  {
-    title: 'SALE',
-    path: '/outer',
-    cName: 'dropdown-link'
   }
 ];

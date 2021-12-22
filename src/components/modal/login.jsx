@@ -5,6 +5,23 @@ import { LoginInput } from "components/input";
 import { PrimaryBtn } from "components/Button";
 import { LoginBtn } from "components/Button/loginBtn";
 import axios from "axios";
+import { createStore } from "redux";
+
+function auth(state = [], action) {
+  switch (action.type) {
+    case 'token':
+      return state.concat([action.text])
+    default:
+      return state;
+  }
+}
+const store = createStore(auth,['User Redux'])
+
+store.dispatch({
+  type: 'token',
+  text: 'null'
+})
+console.log(store.getState());
 
 export function LoginPage({ signup, pwSearch, onPwSearchBtn }) {
   const [id, setId] = useState("");
@@ -33,8 +50,9 @@ export function LoginPage({ signup, pwSearch, onPwSearchBtn }) {
   //   history.push("/signup");
   // }
   const socialLogin = () => {
-    window.location.href="https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=8c2835e5881d60b38a8561176852e4e2&redirect_uri=http://localhost:3000/loading";
-  }
+    window.location.href =
+      "https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=8c2835e5881d60b38a8561176852e4e2&redirect_uri=http://localhost:3000/loading";
+  };
 
   const userData = async () => {
     if (id.length === 0 || password.length === 0) {

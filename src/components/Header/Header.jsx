@@ -11,10 +11,8 @@ import {
 import Modal from 'react-modal';
 import { useHistory } from 'react-router-dom';
 import { ShoppingCartOutlined } from '@material-ui/icons';
-import { IoSearchOutline, IoMenuOutline } from 'react-icons/io5';
 import { Badge } from '@material-ui/core';
-// import SlideNav from './SlideNav';
-import Searchbar from './Searchbar';
+
 import { getTotals } from '../../store/cart-slice';
 import { useSelector, useDispatch } from 'react-redux';
 import { useContext } from 'react';
@@ -26,12 +24,13 @@ const Container = styled.div`
   flex-direction: column;
   font-size: 11px;
   font-weight: 500;
-  box-shadow: 0px 1rem 0.3rem -1rem rgba(0, 0, 0, 0.1);
-  // position: fixed;
+  box-shadow: var(--box-shadow);
+  position: fixed;
   width: 100vw;
-  z-index: 1;
+  z-index: 10;
   padding-top: 1.7rem;
-  background-color: white;
+  background-color: var(--back-color);
+  width: 100%;
 `;
 
 const Wrapper = styled.div`
@@ -39,37 +38,36 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  ${media({ padding: '10px 30px' })}
+  flex: 1 1 1;
+  ${media({ padding: '10px 30px' })};
 `;
 
 const Left = styled.ul`
-  flex: 1;
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
+  width: 200px;
   list-style: none;
-  ${media({ justifyContent: 'flex-start' })}
 `;
 const Center = styled.div`
-  flex: 2;
   text-align: center;
   margin-bottom: 0.6rem;
+  ${media({ margin: '0' })}
 `;
 const Logo = styled(Link)`
   font-weight: bold;
   font-family: 'Unna', serif;
   font-size: 33px;
-  z-index: 1;
+  z-index: 10;
   &:hover {
     text-decoration: none;
   }
-  ${media({ flex: 1 })}
 `;
 const Right = styled.ul`
-  flex: 1;
+  width: 200px;
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
   ${media({ justifyContent: 'flex-end' })}
   cursor: pointer;
   .login {
@@ -86,17 +84,13 @@ const LeftMenu = styled(Link)`
 
 const MenuItem = styled(Link)`
   cursor: pointer;
+  ${media({ zIndex: '0' })}
 `;
 const MenuHandle = styled(Link)`
   cursor: pointer;
   ${media({ display: 'none' })}
 `;
-const Invisible = styled.div`
-  display: none;
-  cursor: pointer;
-  font-size: 27px;
-  ${media({ display: 'inline' })}
-`;
+
 const Search = styled.div`
   cursor: pointer;
   &:hover {
@@ -122,8 +116,6 @@ function Header() {
     setClick(!click);
     history.push('/search');
   };
-  const [showSlide, setShowSlide] = useState(false);
-  const handleSlide = () => setShowSlide(!showSlide);
 
   const handleScroll = () => {
     window.scroll(0, 0);
@@ -162,20 +154,9 @@ function Header() {
       <Wrapper>
         <Left>
           {isMobile && <SlideNav />}
-          <LeftMenu to={`/product`}>
-            <p>COLLECTION</p>
-          </LeftMenu>
-
-          <LeftMenu to='/'>CUSTOM</LeftMenu>
-
+          <LeftMenu to={`/products/product`}>COLLECTION</LeftMenu>
+          <MenuHandle to='/wish'>위시리스트</MenuHandle>
           <Search onClick={handleClick}>검색</Search>
-
-          <Invisible>
-            <IoSearchOutline
-              onClick={handleClick}
-              style={{ fontSize: ' 21px', marginLeft: '22px' }}
-            />
-          </Invisible>
         </Left>
         <Center>
           <Logo to='/' onClick={handleScroll}>
@@ -195,11 +176,11 @@ function Header() {
         />
 
         <Right>
-          <div className='login' onClick={isModalOpen}>
+          <MenuHandle className='login' onClick={isModalOpen}>
             로그인
-          </div>
+          </MenuHandle>
           <MenuHandle to='/customerService/service'>고객센터</MenuHandle>
-          <MenuHandle to='/wish'>위시리스트</MenuHandle>
+
           <MenuItem to='/cart'>
             <Badge badgeContent={quantity} color='error'>
               <ShoppingCartOutlined />

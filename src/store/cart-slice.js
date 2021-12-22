@@ -13,26 +13,33 @@ const cartSlice = createSlice({
   initialState,
   reducers: {
     addToCart(state, action) {
-      const itemIndex = state.products.findIndex(
-        item => item.id === action.payload.id
+      const pseudoId = new Date().getTime(); // 카트아이템에 대한 개별아이디
+
+      const itemColor = state.products.findIndex(
+        item => item.color === action.payload.color
       );
-      if (itemIndex >= 0) {
-        state.products[itemIndex].quantity += 1;
+      const itemSize = state.products.findIndex(
+        item => item.size === action.payload.size
+      );
+      if (itemColor >= 0 && itemSize >= 0) {
+        state.products[(itemColor, itemSize)].quantity += 1;
       } else {
-        const tempProduct = { ...action.payload, quantity: 1 };
+        const tempProduct = { ...action.payload, pseudoId };
         state.products.push(tempProduct);
+        state.quantity += 1;
       }
+
       localStorage.setItem('products', JSON.stringify(state.products));
     },
     decreaseCart(state, action) {
       const itemIndex = state.products.findIndex(
-        item => item.id === action.payload.id
+        item => item.pseudoId === action.payload.pseudoId
       );
       if (state.products[itemIndex].quantity > 1) {
         state.products[itemIndex].quantity -= 1;
       } else if (state.products[itemIndex].quantity === 1) {
         const nextproducts = state.products.filter(
-          item => item.id !== action.payload.id
+          item => item.pseudoId !== action.payload.pseudoId
         );
         state.products = nextproducts;
       }
@@ -40,20 +47,11 @@ const cartSlice = createSlice({
     },
     removeFromCart(state, action) {
       const nextproducts = state.products.filter(
-        item => item.id !== action.payload.id
+        item => item.pseudoId !== action.payload.pseudoId
       );
       state.products = nextproducts;
       localStorage.setItem('products', JSON.stringify(state.products));
       return state;
-      // state.products.map(product => {
-      //   if (product.id === action.payload.id) {
-      //     const nextproducts = state.products.filter(
-      //       item => item.id !== product.id
-      //     );
-      //     state.products = nextproducts;
-      //   }
-      //   return state;
-      // });
     },
     getTotals(state, action) {
       let { total, quantity } = state.products.reduce(
