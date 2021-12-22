@@ -283,7 +283,7 @@ export const Product = () => {
               
                <span>   
                 
-                <Link to="${id}/ReviewInsert">
+               <Link to={`/reviewinsert/${id}`}>
                     <StyledButton>  상품평 등록</StyledButton>
                   
                   </Link> 
