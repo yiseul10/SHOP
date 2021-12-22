@@ -37,18 +37,22 @@ export default function Router() {
   return (
     <Content>
       <Switch>
-        <Route exact path='/' component={Home} />
-        <Route exact path='/loading' component={LoadingPage} />
-        <Route exact path='/approval' component={Approval} />
-        <Route exact path='/passwordsearch' component={PasswordSearchPage} />
-        <Route exact path='/passwordreset' component={PasswordResetPage} />
 
-        <Route exact path='/search' component={Search} />
-        <Route exact path='/products/:category' component={ProductList} />
-        <Route exact path='/checkout' component={CheckOut} />
-        <Route exact path='/wish' component={WishList} />
-        <Route exact path='/cart' component={Cart} />
-        <Route exact path='/:id' component={Product} />
+        <Route exact path="/" component={Home} />
+        <Route exact path="/email-cerified" component={EmailCerified} />
+        <Route exact path="/loading" component={LoadingPage} />
+        <Route exact path="/approval" component={Approval} />     
+        <Route exact path="/passwordsearch" component={PasswordSearchPage} />
+        <Route exact path="/passwordreset" component={PasswordResetPage} />
+
+        <Route exact path="/search" component={Search} />
+        <Route exact path="/products/:category" component={ProductList} />  
+        <Route exact path="/checkout" component={CheckOut} />
+        <Route exact path="/wish" component={WishList} />
+        <Route exact path="/cart" component={Cart} />
+        <Route exact path="/:id" component={Product} />
+        <Route exact path="/${id}/ReviewInsert" component={ReviewInsert} />
+        
 
         <Route
           exact
@@ -69,9 +73,8 @@ export default function Router() {
         <Route exact path='/mypage/my' component={MyPage} />
         <Route exact path='/orderlist/order' component={OrderListPage} />
         <Route exact path='/orderreview/order' component={OrderReviewPage} />
-        {/* <Route exact path="/review/re" component={Review} /> */}
         <Route exact path='/review/ReviewInsert' component={ReviewInsert} />
-        {/* <Route exact path="*"component={ErrorPage} /> */}
+
       </Switch>
     </Content>
   );
