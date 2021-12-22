@@ -10,13 +10,24 @@ const Review = styled.div `
     font-family: fantasy;
    `;
 
-const Button = styled.button`
-  color: skyblue;
-  font-size: 1em;
-  margin: 1em;
-  padding: 0.25em 1em;
-  border: 2px solid skyblue;
-  border-radius: 3px;
+
+
+const StyledButton = styled.button`
+  font-size: 0.8rem;
+  text-align: center;
+  background-color: var(--main-color);
+  color: var(--back-color);
+  border-radius: 1.6rem;
+  margin: 0;
+  border: none;
+  cursor: pointer;
+  width: 10%;
+  height: 2.8rem;
+  padding: 5px;
+  &:hover {
+    opacity: 85%;
+    transition: all 0.2ms ease;
+  }
 `;
 
 
@@ -185,15 +196,15 @@ const Button = styled.button`
 
 
                  
-                    <Button type="submit">
+                    <StyledButton type="submit">
                     상품평 등록하기
-                    </Button>
+                    </StyledButton>
                 
 
                 </form>
 
 
-                <Button onClick={this.handleGoBack}>뒤로 가기 </Button> 
+                <StyledButton onClick={this.handleGoBack}>뒤로 가기 </StyledButton> 
              
             </Review>
             )

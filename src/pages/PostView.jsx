@@ -4,14 +4,7 @@ import '../components/Table/Post.css';
 import styled from 'styled-components'; 
 
 
-const Button = styled.button`
-  color: skyblue;
-  font-size: 1em;
-  margin: 1em;
-  padding: 0.25em 1em;
-  border: 2px solid skyblue;
-  border-radius: 2px;
-`;
+
 
 
 const Post = styled.div `
@@ -20,6 +13,25 @@ const Post = styled.div `
   font-family: fantasy;
   font-size: 20px;
 `
+
+const StyledButton = styled.button`
+  font-size: 0.8rem;
+  text-align: center;
+  background-color: var(--main-color);
+  color: var(--back-color);
+  border-radius: 1.6rem;
+  margin: 0;
+  border: none;
+  cursor: pointer;
+  width: 10%;
+  height: 2.8rem;
+  padding: 5px;
+  &:hover {
+    opacity: 85%;
+    transition: all 0.2ms ease;
+  }
+`;
+
 
 
 export const PostView = ({ history, location, match }) => {
@@ -63,7 +75,7 @@ export const PostView = ({ history, location, match }) => {
       </>
 
       <br/> <br/>
-          <Button className="post-view-go-list-btn" onClick={() => history.goBack()}>목록으로 돌아가기</Button>
+          <StyledButton className="post-view-go-list-btn" onClick={() => history.goBack()}>목록으로 돌아가기</StyledButton>
           <br/> <br/>
       </Post>
     )
