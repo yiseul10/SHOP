@@ -1,20 +1,18 @@
-import React from 'react';
+import React from "react";
+import styled from "styled-components";
 
-
-
-
-
-
-
-export const QuestionOne = () => {
-
-  
-
-    return (
-      
- <div>
-     d1
- </div>
-    );
+export function QuestionOne() {
+  return (
+    <Cover>
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      1:1문의페이지
+    </Cover>
+  );
 }
 
+const Cover = styled.div``;

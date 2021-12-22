@@ -1,10 +1,10 @@
 import React from 'react';
 import { IoCheckmarkCircle } from 'react-icons/io5';
 import styled, { keyframes } from 'styled-components';
+import { media } from '../../responsive';
 
 const Container = styled.div`
   display: block;
-  position: fixed;
 `;
 
 const Ani = keyframes`
@@ -35,15 +35,15 @@ const Ani = keyframes`
 `;
 const Message = styled.div`
   display: none;
-  position: absolute;
+  position: fixed;
   z-index: 999;
-  top: 97px;
+  top: 95px;
   left: 50%;
   text-align: center;
   line-height: normal;
-  background-color: #00896f;
-  color: white;
-  width: 100vw;
+  background-color: var(--sub-color-1);
+  color: var(--back-color);
+  width: 100%;
   align-items: center;
   padding: 0.2rem;
   transform: translateX(-50%);
@@ -51,6 +51,9 @@ const Message = styled.div`
   &:last-of-type {
     display: block;
   }
+  ${media({
+    top: '93px'
+  })}
 `;
 
 // props는 메세지!
