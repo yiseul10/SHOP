@@ -70,13 +70,14 @@ export function LoginPage({ signup, pwSearch, onPwSearchBtn, authorization }) {
       }
       console.log(auth);
       history.push("/");
+      history.go(0);
     }
   };
 
   return (
     <Cover>
       <div className="text">
-        <h3>로그인</h3>
+        <h3>SHOP</h3>
         <br />
         <br />
       </div>
