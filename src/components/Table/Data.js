@@ -2,7 +2,7 @@ const postList = [
     {
       "no": 1,
       "title": "회원가입 이벤트",
-      "content": "회원가입 이벤트!!!!!  "  ,
+      "content": "회원가입 이벤트!!!!!  "  ,   
       "createDate": "2021-10-25",
       "readCount": 6
     },
