@@ -179,7 +179,7 @@ function Header() {
           <MenuHandle className='login' onClick={isModalOpen}>
             로그인
           </MenuHandle>
-          <MenuHandle to='/customerService/service'>고객센터</MenuHandle>
+          <MenuHandle to='/CustomerCenter/custom'>고객센터</MenuHandle>
 
           <MenuItem to='/cart'>
             <Badge badgeContent={quantity} color='error'>

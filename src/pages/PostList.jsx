@@ -10,6 +10,7 @@ import styled from 'styled-components';
 const Wrapper = styled.div`
   color: gray;
   text-align: center;
+  padding: 10rem
 `;
 
 
@@ -29,7 +30,8 @@ const PostList = props => {
               <br/>
               <br/>
               <Wrapper>
-
+              <h1>  공지사항 </h1>
+              <hr/>
         <CommonTable headersName={['글번호', '제목', '등록일', '조회수']}>
           {
             dataList ? dataList.map((item, index) => {
