@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { Favorite, FavoriteBorderOutlined } from '@material-ui/icons';
 import styled from 'styled-components';
 import { media } from '../../responsive';
+import { mobile } from '../../responsive';
 import { Link } from 'react-router-dom';
 
 import { useDispatch } from 'react-redux';
@@ -10,21 +11,27 @@ import MessageContext from '../MessageContext';
 
 const Container = styled.div`
   position: relative;
+  z-index: 1;
 `;
 const ImgView = styled.div`
-  max-width: 275px;
+  width: 275px;
   height: 350px;
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 10px;
   &:hover {
     opacity: 70%;
     transition: all 0.5s ease;
     cursor: pointer;
   }
   ${media({
-    width: '219.5px',
-    height: '330px',
+    width: '225px',
+    height: '297px',
+    maxWidth: 'auto'
+  })}
+  ${mobile({
+    height: '456px',
     maxWidth: 'auto'
   })}
 `;
@@ -32,7 +39,6 @@ const ImgView = styled.div`
 const Image = styled.img`
   height: 100%;
   width: 100%;
-  display: flex;
   padding: 0;
   ${media({
     objectFit: 'cover',
@@ -57,10 +63,9 @@ const Detail = styled.div`
   justify-content: space-between;
   line-height: normal;
   margin-bottom: 3rem;
-  padding: 0.5rem 0rem;
+  padding: 0px 10px;
   ${media({
     margin: '12px 0px 30px 0px',
-    padding: '0',
     flexDirection: 'column'
   })}
 `;

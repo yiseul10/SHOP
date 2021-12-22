@@ -10,7 +10,7 @@ const Overlay = styled.div`
   height: 100%;
   left: 0;
   display: flex;
-  z-index: 1;
+  z-index: 100;
 `;
 
 const Content = styled.ul`

@@ -11,7 +11,7 @@ const Container = styled.div`
   align-items: center;
   position: fixed;
   width: 100%;
-  z-index: 2;
+  z-index: 100;
 `;
 
 const Notice = () => {

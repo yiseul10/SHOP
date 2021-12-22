@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 
 import styled from 'styled-components';
 import { media } from '../../responsive';
+import { mobile } from '../../responsive';
 
 import Product from './Product';
 import AppPagination from './AppPagination';
@@ -13,9 +14,13 @@ const Container = styled.div`
   flex-wrap: wrap;
   position: relative;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  /* flex: 1 1 auto; */
   ${media({
     padding: '20px 15px 80px 15px'
+  })}
+  ${mobile({
+    padding: '0'
   })}
 `;
 const Page = styled.div`

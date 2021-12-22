@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import Axios from 'axios';
 import Products from '../components/Products/Products';
-
+import { Link } from 'react-router-dom';
 import { media } from '../responsive';
 
 const Container = styled.div``;
@@ -17,7 +17,7 @@ const Wrapper = styled.div`
   background-color: var(--back-color);
   opacity: 100%;
   transition: all 2s ease;
-  z-index: 0;
+  z-index:2;
   box-shadow: 0px 1rem 0.3rem -1rem rgba(0, 0, 0, 0.1);
   &.clicked {
     display: none;
@@ -96,46 +96,51 @@ export const Search = () => {
       {!keyword && (
         <ExKeyword>
           인기검색:&nbsp;&nbsp;
-          <a
+          <Link
+            to={`/search/후드`}
             style={{
               backgroundColor: 'var(--sub-color-1)',
               padding: '0px 4px'
             }}
           >
-            #기모
-          </a>
-          <a
+            #후드
+          </Link>
+          <Link
+            to={`/products/맨투맨-후드-집업`}
             style={{
               backgroundColor: 'var(--sub-color-2)',
               padding: '0px 4px'
             }}
           >
             #패딩
-          </a>
-          <a
+          </Link>
+          <Link
+            to={`/products/티셔츠`}
             style={{
               backgroundColor: 'var(--sub-color-3)',
               padding: '0px 4px'
             }}
           >
-            #아메리칸어패럴
-          </a>
-          <a
+            #반팔
+          </Link>
+          <Link
+            to={`/products/맨투맨-후드-집업`}
             style={{
               backgroundColor: 'var(--sub-color-4)',
               padding: '0px 4px'
             }}
           >
             #맨투맨
-          </a>
-          <a
+          </Link>
+          <Link
+            to={`/products/티셔츠`}
             style={{
               backgroundColor: 'var(--sub-color-5)',
               padding: '0px 4px'
             }}
           >
             #티셔츠
-          </a>
+          </Link>
         </ExKeyword>
       )}
       <ProductContainer>

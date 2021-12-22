@@ -16,7 +16,7 @@ const FilterContainer = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  padding: 0px 50px;
+  padding: 0px 80px;
   letter-spacing: -0.5px;
   ${media({
     flexDirection: 'row',

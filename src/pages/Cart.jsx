@@ -66,6 +66,7 @@ const ProductColor = styled.div`
   height: 15px;
   border-radius: 50%;
   background-color: ${props => props.color};
+  border: 0.1px solid var(--light-grey-color);
 `;
 const PriceDetail = styled.div`
   padding: 1rem 0rem;
