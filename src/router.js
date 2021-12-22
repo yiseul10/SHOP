@@ -6,12 +6,11 @@ import {
   ProductList,
   Home,
   Cart,
+  EmailCerified,
   Review,
-  customerService,
+  PostMain,
+  PostView,
   CustomerCenter,
-  EventNotice,
-  QuestionOne,
-  FAQ,
   ReviewInsert,
   MyPage,
   LoadingPage,
@@ -51,30 +50,21 @@ export default function Router() {
         <Route exact path="/wish" component={WishList} />
         <Route exact path="/cart" component={Cart} />
         <Route exact path="/:id" component={Product} />
-        <Route exact path="/${id}/ReviewInsert" component={ReviewInsert} />
+        <Route exact path="/:id/ReviewInsert" component={ReviewInsert} />
         
+       
+        <Route exact path='/CustomerCenter/custom/:no' component={PostView} />
+        <Route exact path='/CustomerCenter/custom' component={PostMain} />
+     
 
-        <Route
-          exact
-          path='/customerService/service'
-          component={CustomerCenter}
-        />
-        <Route exact path='/customerService/FAQ' component={FAQ} />
-        <Route
-          exact
-          path='/customerService/EventNotice'
-          component={EventNotice}
-        />
-        <Route
-          exact
-          path='/customerService/QuestionOne'
-          component={QuestionOne}
-        />
-        <Route exact path='/mypage/my' component={MyPage} />
-        <Route exact path='/orderlist/order' component={OrderListPage} />
-        <Route exact path='/orderreview/order' component={OrderReviewPage} />
-        <Route exact path='/review/ReviewInsert' component={ReviewInsert} />
-
+        
+        <Route exact path="/CustomerCenter/custom" component={CustomerCenter} />
+   
+        <Route exact path="/mypage/my" component={MyPage} />
+        <Route exact path="/orderlist/order" component={OrderListPage} />
+        <Route exact path="/orderreview/order" component={OrderReviewPage} />
+        {/* <Route exact path="/review/re" component={Review} /> */}
+        {/* <Route exact path="*"component={ErrorPage} /> */}
       </Switch>
     </Content>
   );

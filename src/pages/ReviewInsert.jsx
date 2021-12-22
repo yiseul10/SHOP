@@ -7,7 +7,8 @@ const Review = styled.div `
     margin: auto;
     background-color: whitesmoke;
     text-align: center;
-    `;
+    font-family: fantasy;
+   `;
 
 const Button = styled.button`
   color: skyblue;
@@ -22,7 +23,9 @@ const Button = styled.button`
 
     export class ReviewInsert extends React.Component {
 
-
+        handleGoBack = () => {
+            this.props.history.goBack();
+          };
         
       
         constructor(props) {
@@ -41,6 +44,7 @@ const Button = styled.button`
                 content: ''
 
             }
+            
 
             this.handleFormSubmit = this
                 .handleFormSubmit
@@ -62,6 +66,8 @@ const Button = styled.button`
         handleFormSubmit(e) {
 
             e.preventDefault()
+              
+                
 
             this
                 .addCustomer()
@@ -70,7 +76,7 @@ const Button = styled.button`
                     console.log(response.data);
 
                 })
-                alert("리뷰 등록이 완료되었습니다. 뒤로 돌아가주세요.")
+                alert("리뷰 등록이 완료되었습니다.")
 
         }
 
@@ -125,6 +131,8 @@ const Button = styled.button`
             return post(url, formData, config)
 
         }
+        
+        
 
         render() {
 
@@ -133,42 +141,49 @@ const Button = styled.button`
             <Review>
 
                 <form onSubmit={this.handleFormSubmit}>
-
+                <br/> 
                     <h1>상품평 등록</h1>
-
-                    상품넘버:
+                        <br/> <br/>
+                    제품 번호:
                     <input
                         type="text"
                         name="productNumber"
+                        placeholder='제품 번호를 입력하세요.'
                         value={this.state.productNumber}
                         onChange={this.handleValueChange}/><br/>
                       
-                        이름:
+                      <br/>
+                        리뷰제목:
                         <input
                         type="text"
                         name="title"
+                        placeholder='리뷰 제목'
                         value={this.state.title}
                         onChange={this.handleValueChange}/><br/>
-
-                    내용:
+                        <br/>
+                    
                     <textarea
                         cols="50"
                         rows="10"
                         type="text"
                         name="content"
+                        placeholder='내용을 입력하세요.'
                         value={this.state.content}
                         onChange={this.handleValueChange}/><br/>
 
 
 
-                     이미지:
+                     사진:
                     <input
                         type="file"
+                        accept='image/jpg,impge/png,image/jpeg' 
                         name="image"
                         file={this.state.file}
                         value={this.state.fileName}
                         onChange={this.handleFileChange}/>
-                  
+
+
+
                  
                     <Button type="submit">
                     상품평 등록하기
@@ -177,6 +192,9 @@ const Button = styled.button`
 
                 </form>
 
+
+                <Button onClick={this.handleGoBack}>뒤로 가기 </Button> 
+             
             </Review>
             )
 
