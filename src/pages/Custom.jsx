@@ -141,7 +141,7 @@ export function Custom() {
     imageLoad();
   }, [insertImage,result]);
   return (<>
-    <Cover id="browserboard" src="https://browserboard.com/whiteboard/hzFMrpLWEwBSaaErCuVAg4?key=KzcR9ywx8D3MKbmba9pYTc">
+    <Cover id="browserboard" src="https://browserboard.com/whiteboard/9yAcLuQo4jwEm378zhstP5?key=ncXbudswBvXrJtHeya5HA6">
     </Cover>
     <Cover2>{customImage&&customImage.customs.map(img => (
       <>
