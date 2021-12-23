@@ -6,7 +6,7 @@ import { mobile } from '../../responsive';
 import { Link } from 'react-router-dom';
 
 import { useDispatch } from 'react-redux';
-import { addWish } from '../../store/wish-slice';
+import { addWish, removeWish } from '../../store/wish-slice';
 import MessageContext from '../MessageContext';
 
 const Container = styled.div`
@@ -101,9 +101,13 @@ const Product = ({ id, ...product }) => {
   const dispatch = useDispatch();
 
   const handleAddToWish = product => {
-    addFlashMessage('위시리스트에 담겼습니다!');
-    dispatch(addWish({ id, ...product }));
     setClick(!click);
+    if (!click) {
+      dispatch(addWish({ id, ...product }));
+      addFlashMessage('위시리스트에 담겼습니다!');
+    } else {
+      dispatch(removeWish({ id, ...product }));
+    }
   };
 
   return (
