@@ -2,6 +2,8 @@ import React from 'react'
 import {post} from 'axios'
 import styled from "styled-components";
 
+
+
 const Review = styled.div `
     padding: auto;
     margin: auto;
@@ -79,6 +81,29 @@ const StyledButton = styled.button`
             e.preventDefault()
               
                 
+                    
+            if(this.state.productNumber.length == 0){
+                alert('제품 번호를 입력하세요.');
+                return ;
+            }
+
+            if( this.state.productNumber<1 ||  this.state.productNumber>232 ){
+                alert('올바른 제품번호를 입력하세요.');
+                return ;
+            }
+
+            if(this.state.content.length==0){
+                alert('리뷰 내용을 입력하세요.');
+                return ;
+            }
+            
+            if(this.state.file.length == 0){
+                alert('리뷰할 사진을 넣어주세요.');
+                return ;
+            }
+
+
+
 
             this
                 .addCustomer()
@@ -87,7 +112,9 @@ const StyledButton = styled.button`
                     console.log(response.data);
 
                 })
-                alert("리뷰 등록이 완료되었습니다.")
+           
+
+                alert(" 등록이 완료 되었습니다. 뒤로가기를 눌러주세요.");
 
         }
 
