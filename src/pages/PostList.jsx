@@ -23,7 +23,7 @@ const PostList = props => {
     setDataList(postList);
   }, [ ])
 
-
+              
     return (
         <>
               <br/>
@@ -39,7 +39,7 @@ const PostList = props => {
                 <CommonTableRow key={index}>
                   <CommonTableColumn>{ item.no }</CommonTableColumn>
                   <CommonTableColumn>
-                    <Link to={`/CustomerCenter/custom/${item.no}`}>{ item.title }</Link>
+                    <Link to={`/Customer/cs/CustomerCenter/custom/NOTICE/${item.no}`}>{ item.title }</Link>
                   </CommonTableColumn>
                   <CommonTableColumn>{ item.createDate }</CommonTableColumn>
                   <CommonTableColumn>{ item.readCount }</CommonTableColumn>

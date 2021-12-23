@@ -4,14 +4,14 @@ const postList = [
       "title": "회원가입 이벤트",
       "content": "회원가입 이벤트!!!!!  "  ,   
       "createDate": "2021-10-25",
-      "readCount": 6
+      "readCount": 1
     },
     {
       "no": 2,
       "title": "2023년까지 오만원 이상 구매시 배송비 무료",
       "content": "오만원 이상 구매시 배송비 무료. 단, 제주도 및 산간지방은 1000원",
       "createDate": "2021-11-22",
-      "readCount": 5
+      "readCount": 1
     },
     {
       "no": 3,

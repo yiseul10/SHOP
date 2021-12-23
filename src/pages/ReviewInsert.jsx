@@ -211,10 +211,10 @@ const StyledButton = styled.button`
 
 
 
-                     사진:
+                     사진: 
                     <input
                         type="file"
-                        accept='image/jpg,impge/png,image/jpeg' 
+                        accept='image/*' 
                         name="image"
                         file={this.state.file}
                         value={this.state.fileName}

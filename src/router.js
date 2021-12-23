@@ -17,7 +17,9 @@ import {
   Approval,
   Search,
   WishList,
-  CheckOut
+  CheckOut,
+  Customer,
+  Question
 } from 'pages';
 import { OrderListPage } from 'pages/ordeListPage';
 import { OrderReviewPage } from 'pages/orderReviewPage';
@@ -53,16 +55,20 @@ export default function Router() {
         <Route exact path="/reviewinsert/:id" component={ReviewInsert} />        
        
         
-       
-        <Route exact path='/CustomerCenter/custom/:no' component={PostView} />
-        <Route exact path='/CustomerCenter/custom' component={PostMain} />
-     
-
-        <Route exact path="/CustomerCenter/custom" component={CustomerCenter} />
+        <Route exact path='/Customer/cs' component={Customer} />
+        <Route exact path='/Customer/cs/Question' component={Question} />
+        <Route exact path="/Customer/cs/CustomerCenter/NOTICE" component={CustomerCenter} />
+        <Route exact path='/Customer/cs/CustomerCenter/custom/NOTICE/:no' component={PostView} />
+        <Route exact path='/Customer/cs/CustomerCenter/NOTICE' component={PostMain} />
+        
    
         <Route exact path="/mypage/my" component={MyPage} />
         <Route exact path="/orderlist/order" component={OrderListPage} />
         <Route exact path="/orderreview/order" component={OrderReviewPage} />
+
+        
+
+
         {/* <Route exact path="/review/re" component={Review} /> */}
         {/* <Route exact path="*"component={ErrorPage} /> */}
       </Switch>
