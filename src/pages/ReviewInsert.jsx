@@ -114,7 +114,8 @@ const StyledButton = styled.button`
                 })
            
 
-                alert(" 등록이 완료 되었습니다. 뒤로가기를 눌러주세요.");
+                alert(" 등록이 완료 되었습니다.");
+                this.props.history.goBack();
 
         }
 
