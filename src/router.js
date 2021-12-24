@@ -18,10 +18,9 @@ import {
   Search,
   WishList,
   CheckOut,
-  EmailCerified,
   Custom,
   Customer,
-  Question
+  Question,
 } from "pages";
 import { OrderListPage } from "pages/ordeListPage";
 import { OrderReviewPage } from "pages/orderReviewPage";
@@ -75,17 +74,7 @@ export default function Router() {
           path='/customerService/service'
           component={CustomerCenter}
         />
-        <Route exact path='/customerService/FAQ' component={FAQ} />
-        <Route
-          exact
-          path='/customerService/EventNotice'
-          component={EventNotice}
-        />
-        <Route
-          exact
-          path='/customerService/QuestionOne'
-          component={QuestionOne}
-        />
+        
         <Route exact path='/mypage/my' component={MyPage} />
         <Route exact path='/orderlist/order' component={OrderListPage} />
         <Route exact path='/orderreview/order' component={OrderReviewPage} />

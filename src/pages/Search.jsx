@@ -97,7 +97,7 @@ export const Search = () => {
         <ExKeyword>
           인기검색:&nbsp;&nbsp;
           <Link
-            to={`/search/후드`}
+            to={`/products/후드`}
             style={{
               backgroundColor: 'var(--sub-color-1)',
               padding: '0px 4px'
