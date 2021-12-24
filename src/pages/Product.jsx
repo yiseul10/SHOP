@@ -283,7 +283,7 @@ export const Product = () => {
               
                <span>   
                 
-                <Link to="${id}/ReviewInsert">
+               <Link to={`/reviewinsert/${id}`}>
                     <StyledButton>  상품평 등록</StyledButton>
                   
                   </Link> 
@@ -297,8 +297,8 @@ export const Product = () => {
                 <>
                   <td colspan="1">
                     <span>
-                    <td> </td>
-
+                    <td> <p> 리뷰 번호 : {user.reviewsNumber}  &nbsp;	&nbsp; &nbsp;	&nbsp; </p> </td>
+                   
                       <img
 
                         style={{ height: '25%', width: '25%' }}
@@ -307,10 +307,10 @@ export const Product = () => {
                     </span>
                   </td>
                   <td>
-                    <h2><span> 제목 : {user.title} </span></h2>
+                    <h2><span> {user.title} </span></h2>
 
                     <span>
-                      <h5><p> 내용 : {user.content} </p></h5>
+                      <h5><p> {user.content} </p></h5>
                  
                     </span>
                   </td>

@@ -6,12 +6,11 @@ import {
   ProductList,
   Home,
   Cart,
+  EmailCerified,
   Review,
-  customerService,
+  PostMain,
+  PostView,
   CustomerCenter,
-  EventNotice,
-  QuestionOne,
-  FAQ,
   ReviewInsert,
   MyPage,
   LoadingPage,
@@ -21,6 +20,8 @@ import {
   CheckOut,
   EmailCerified,
   Custom,
+  Customer,
+  Question
 } from "pages";
 import { OrderListPage } from "pages/ordeListPage";
 import { OrderReviewPage } from "pages/orderReviewPage";
@@ -54,7 +55,20 @@ export default function Router() {
         <Route exact path="/wish" component={WishList} />
         <Route exact path="/cart" component={Cart} />
         <Route exact path="/:id" component={Product} />
-        <Route exact path="/${id}/ReviewInsert" component={ReviewInsert} />
+        <Route exact path="/reviewinsert/:id" component={ReviewInsert} />        
+       
+        
+        <Route exact path='/Customer/cs' component={Customer} />
+        <Route exact path='/Customer/cs/Question' component={Question} />
+        <Route exact path="/Customer/cs/CustomerCenter/NOTICE" component={CustomerCenter} />
+        <Route exact path='/Customer/cs/CustomerCenter/custom/NOTICE/:no' component={PostView} />
+        <Route exact path='/Customer/cs/CustomerCenter/NOTICE' component={PostMain} />
+        
+   
+        <Route exact path="/mypage/my" component={MyPage} />
+        <Route exact path="/orderlist/order" component={OrderListPage} />
+        <Route exact path="/orderreview/order" component={OrderReviewPage} />
+
         
         <Route
           exact

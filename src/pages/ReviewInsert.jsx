@@ -2,27 +2,43 @@ import React from 'react'
 import {post} from 'axios'
 import styled from "styled-components";
 
+
+
 const Review = styled.div `
     padding: auto;
     margin: auto;
     background-color: whitesmoke;
     text-align: center;
-    `;
+    font-family: fantasy;
+   `;
 
-const Button = styled.button`
-  color: skyblue;
-  font-size: 1em;
-  margin: 1em;
-  padding: 0.25em 1em;
-  border: 2px solid skyblue;
-  border-radius: 3px;
+
+
+const StyledButton = styled.button`
+  font-size: 0.8rem;
+  text-align: center;
+  background-color: var(--main-color);
+  color: var(--back-color);
+  border-radius: 1.6rem;
+  margin: 0;
+  border: none;
+  cursor: pointer;
+  width: 10%;
+  height: 2.8rem;
+  padding: 5px;
+  &:hover {
+    opacity: 85%;
+    transition: all 0.2ms ease;
+  }
 `;
 
 
 
     export class ReviewInsert extends React.Component {
 
-
+        handleGoBack = () => {
+            this.props.history.goBack();
+          };
         
       
         constructor(props) {
@@ -41,6 +57,7 @@ const Button = styled.button`
                 content: ''
 
             }
+            
 
             this.handleFormSubmit = this
                 .handleFormSubmit
@@ -62,6 +79,31 @@ const Button = styled.button`
         handleFormSubmit(e) {
 
             e.preventDefault()
+              
+                
+                    
+            if(this.state.productNumber.length == 0){
+                alert('제품 번호를 입력하세요.');
+                return ;
+            }
+
+            if( this.state.productNumber<1 ||  this.state.productNumber>232 ){
+                alert('올바른 제품번호를 입력하세요.');
+                return ;
+            }
+
+            if(this.state.content.length==0){
+                alert('리뷰 내용을 입력하세요.');
+                return ;
+            }
+            
+            if(this.state.file.length == 0){
+                alert('리뷰할 사진을 넣어주세요.');
+                return ;
+            }
+
+
+
 
             this
                 .addCustomer()
@@ -70,7 +112,9 @@ const Button = styled.button`
                     console.log(response.data);
 
                 })
-                alert("리뷰 등록이 완료되었습니다. 뒤로 돌아가주세요.")
+           
+
+                alert(" 등록이 완료 되었습니다. 뒤로가기를 눌러주세요.");
 
         }
 
@@ -125,6 +169,8 @@ const Button = styled.button`
             return post(url, formData, config)
 
         }
+        
+        
 
         render() {
 
@@ -133,50 +179,60 @@ const Button = styled.button`
             <Review>
 
                 <form onSubmit={this.handleFormSubmit}>
-
+                <br/> 
                     <h1>상품평 등록</h1>
-
-                    상품넘버:
+                        <br/> <br/>
+                    제품 번호:
                     <input
                         type="text"
                         name="productNumber"
+                        placeholder='제품 번호를 입력하세요.'
                         value={this.state.productNumber}
                         onChange={this.handleValueChange}/><br/>
                       
-                        이름:
+                      <br/>
+                        리뷰제목:
                         <input
                         type="text"
                         name="title"
+                        placeholder='리뷰 제목'
                         value={this.state.title}
                         onChange={this.handleValueChange}/><br/>
-
-                    내용:
+                        <br/>
+                    
                     <textarea
                         cols="50"
                         rows="10"
                         type="text"
                         name="content"
+                        placeholder='내용을 입력하세요.'
                         value={this.state.content}
                         onChange={this.handleValueChange}/><br/>
 
 
 
-                     이미지:
+                     사진: 
                     <input
                         type="file"
+                        accept='image/*' 
                         name="image"
                         file={this.state.file}
                         value={this.state.fileName}
                         onChange={this.handleFileChange}/>
-                  
+
+
+
                  
-                    <Button type="submit">
+                    <StyledButton type="submit">
                     상품평 등록하기
-                    </Button>
+                    </StyledButton>
                 
 
                 </form>
 
+
+                <StyledButton onClick={this.handleGoBack}>뒤로 가기 </StyledButton> 
+             
             </Review>
             )
 
