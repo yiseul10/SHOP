@@ -44,27 +44,3 @@ export const categories = [
     cat: '바지'
   }
 ];
-
-export const NavMenu = [
-  {
-    title: 'OUTER',
-    path: '/coat',
-    cName: 'dropdown-link'
-  },
-  {
-    title: 'TOP',
-    path: '/top',
-    cName: 'dropdown-link'
-  },
-  {
-    title: 'PANTS',
-    path: '/pants',
-    cName: 'dropdown-link'
-  },
-
-  {
-    title: 'SALE',
-    path: '/outer',
-    cName: 'dropdown-link'
-  }
-];

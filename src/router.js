@@ -1,6 +1,6 @@
-import React from "react";
-import styled from "styled-components";
-import { Route, Switch, NavLink } from "react-router-dom";
+import React from 'react';
+import styled from 'styled-components';
+import { Route, Switch } from 'react-router-dom';
 import {
   Product,
   ProductList,
@@ -33,7 +33,6 @@ import Axios from 'axios';
 Axios.defaults.baseURL =
   'http://ec2-3-37-117-153.ap-northeast-2.compute.amazonaws.com:8080/shoppingmall/products';
 
-
 export default function Router() {
   const user = true;
 
@@ -57,24 +56,26 @@ export default function Router() {
         <Route exact path="/:id" component={Product} />
         <Route exact path="/${id}/ReviewInsert" component={ReviewInsert} />
         
-
-
-        
-        <Route exact path="/customerService/service" component={CustomerCenter} />
-        <Route exact path="/customerService/FAQ" component={FAQ} />
         <Route
           exact
-          path="/customerService/EventNotice"
-          component={EventNotice}/>
+          path='/customerService/service'
+          component={CustomerCenter}
+        />
+        <Route exact path='/customerService/FAQ' component={FAQ} />
         <Route
           exact
-          path="/customerService/QuestionOne"
-          component={QuestionOne}/>
-        <Route exact path="/mypage/my" component={MyPage} />
-        <Route exact path="/orderlist/order" component={OrderListPage} />
-        <Route exact path="/orderreview/order" component={OrderReviewPage} />
-        {/* <Route exact path="/review/re" component={Review} /> */}
-        {/* <Route exact path="*"component={ErrorPage} /> */}
+          path='/customerService/EventNotice'
+          component={EventNotice}
+        />
+        <Route
+          exact
+          path='/customerService/QuestionOne'
+          component={QuestionOne}
+        />
+        <Route exact path='/mypage/my' component={MyPage} />
+        <Route exact path='/orderlist/order' component={OrderListPage} />
+        <Route exact path='/orderreview/order' component={OrderReviewPage} />
+        <Route exact path='/review/ReviewInsert' component={ReviewInsert} />
       </Switch>
     </Content>
   );

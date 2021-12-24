@@ -4,25 +4,28 @@ import { useState, useEffect } from 'react';
 
 import styled from 'styled-components';
 import { media } from '../../responsive';
+import { mobile } from '../../responsive';
 
 import Product from './Product';
 import AppPagination from './AppPagination';
 
 const Container = styled.div`
-  /* padding: 30px 58px 150px 50px; */
   padding: 10px 50px 150px 50px;
   flex-wrap: wrap;
   position: relative;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  /* flex: 1 1 auto; */
   ${media({
     padding: '20px 15px 80px 15px'
+  })}
+  ${mobile({
+    padding: '0'
   })}
 `;
 const Page = styled.div`
   position: absolute;
   bottom: 0;
-  z-index: 999;
   height: 3rem;
   left: 50%;
   width: 100%;
@@ -41,9 +44,6 @@ const Products = ({ cat, filters, sort, keyword }) => {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        //FIXME전체URL안에 page, count, kind, product / kind값안에 전체데이터까지 포괄하는
-        // switch문? if문?? 조건에 따라 렌더링해주는 방법??
-
         const response = await Axios.get(
           cat
             ? `?page=${page}&count=20&kind=${cat}`

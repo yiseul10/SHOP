@@ -12,14 +12,14 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  border-top: 0.5px solid gray;
+  border-top: 0.5px solid var(--main-grey-color);
 `;
 const InfoSet = styled.span``;
 const Info = styled.span`
   padding: 1rem;
 `;
 const Copyright = styled.div`
-  color: dimgrey;
+  color: var(--main-line-color);
   margin-top: 0.3rem;
 `;
 

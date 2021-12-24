@@ -3,42 +3,43 @@ import styled from 'styled-components';
 
 import Axios from 'axios';
 import Products from '../components/Products/Products';
-
+import { Link } from 'react-router-dom';
 import { media } from '../responsive';
 
 const Container = styled.div``;
 const Wrapper = styled.div`
   width: 100%;
   left: 0;
-  top: 95px;
+  top: 89.5px;
   height: 70px;
   position: fixed;
   padding: 10px 60px;
-  background-color: white;
+  background-color: var(--back-color);
   opacity: 100%;
   transition: all 2s ease;
-  z-index: 1;
+  z-index:2;
   box-shadow: 0px 1rem 0.3rem -1rem rgba(0, 0, 0, 0.1);
   &.clicked {
     display: none;
-  }
+  },
+
 `;
 const InputForm = styled.form`
-  border-top: 0.1px solid rgba(0, 0, 0, 0.3);
+  border-top: 0.1px solid var(--main-line-color);
   text-align: center;
   position: fixed;
   padding-top: 1rem;
   left: 0;
   width: 100%;
   ${media({
-    padding: '1rem'
+    top: '97.5px'
   })}
 `;
 const SearchInput = styled.input`
   border: none;
   width: 25rem;
   &::placeholder {
-    color: rgba(0, 0, 0, 0.3);
+    color: var(--main-line-color);
   }
 `;
 
@@ -51,6 +52,12 @@ const ProductContainer = styled.div`
   ${media({
     flexDirection: 'row'
   })}
+`;
+const ExKeyword = styled.div`
+  padding: 200px 0px;
+  font-size: 11px;
+  width: 100%;
+  text-align: center;
 `;
 
 export const Search = () => {
@@ -85,8 +92,58 @@ export const Search = () => {
           ></SearchInput>
         </InputForm>
       </Wrapper>
+
+      {!keyword && (
+        <ExKeyword>
+          인기검색:&nbsp;&nbsp;
+          <Link
+            to={`/search/후드`}
+            style={{
+              backgroundColor: 'var(--sub-color-1)',
+              padding: '0px 4px'
+            }}
+          >
+            #후드
+          </Link>
+          <Link
+            to={`/products/맨투맨-후드-집업`}
+            style={{
+              backgroundColor: 'var(--sub-color-2)',
+              padding: '0px 4px'
+            }}
+          >
+            #패딩
+          </Link>
+          <Link
+            to={`/products/티셔츠`}
+            style={{
+              backgroundColor: 'var(--sub-color-3)',
+              padding: '0px 4px'
+            }}
+          >
+            #반팔
+          </Link>
+          <Link
+            to={`/products/맨투맨-후드-집업`}
+            style={{
+              backgroundColor: 'var(--sub-color-4)',
+              padding: '0px 4px'
+            }}
+          >
+            #맨투맨
+          </Link>
+          <Link
+            to={`/products/티셔츠`}
+            style={{
+              backgroundColor: 'var(--sub-color-5)',
+              padding: '0px 4px'
+            }}
+          >
+            #티셔츠
+          </Link>
+        </ExKeyword>
+      )}
       <ProductContainer>
-        {!keyword && <div></div>}
         <Products keyword={keyword} setKeyword={setKeyword} />
       </ProductContainer>
     </Container>

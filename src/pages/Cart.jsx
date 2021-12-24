@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useContext } from 'react';
 import { addWish } from '../store/wish-slice';
-import ExampleContext from '../components/ExampleContext';
+import MessageContext from '../components/MessageContext';
 import {
   addToCart,
   clearCart,
@@ -19,7 +19,7 @@ import {
 const Container = styled.div`
   padding: 13rem 10rem;
   font-size: 11px;
-  ${media({ padding: '120px 25px 80px 25px' })}
+  ${media({ padding: '150px 25px 80px 25px' })}
 `;
 const Wrapper = styled.div`
   display: flex;
@@ -27,7 +27,6 @@ const Wrapper = styled.div`
 `;
 const Message = styled.div`
   text-align: center;
-  padding: 5rem;
 `;
 const Left = styled.div`
   flex: 3;
@@ -67,6 +66,7 @@ const ProductColor = styled.div`
   height: 15px;
   border-radius: 50%;
   background-color: ${props => props.color};
+  border: 0.1px solid var(--light-grey-color);
 `;
 const PriceDetail = styled.div`
   padding: 1rem 0rem;
@@ -86,12 +86,12 @@ const ProductAmount = styled.div`
   font-size: 11px;
 `;
 const Hr = styled.hr`
-  background-color: #42493a;
+  background-color: var(--main-line-color);
   border: none;
   height: 1px;
 `;
 const MediaLine = styled.hr`
-  background-color: #eee;
+  background-color: var(--main-line-color);
   border: none;
   height: 1px;
   display: none;
@@ -133,7 +133,7 @@ const Total = styled.div`
 export const Cart = () => {
   const cart = useSelector(state => state.cart);
   const dispatch = useDispatch();
-  const addFlashMessage = useContext(ExampleContext);
+  const addFlashMessage = useContext(MessageContext);
 
   useEffect(() => {
     dispatch(getTotals());
@@ -149,12 +149,14 @@ export const Cart = () => {
     dispatch(clearCart());
   };
   const handleAddToWish = product => {
-    // addFlashMessage('위시리스트에 담겼습니다!');
+    addFlashMessage('위시리스트에 담겼습니다!');
     dispatch(addWish(product));
   };
   const handleIncreaseCart = product => {
     dispatch(addToCart(product));
   };
+  const shippingCost = cart.total >= 50000 ? 0 : 2500;
+
   return (
     <Container>
       {cart.products.length === 0 ? (
@@ -219,14 +221,14 @@ export const Cart = () => {
                 </SummaryItem>
                 <SummaryItem>
                   <span>배송비</span>
-                  <span>0원</span>
+                  <span>{shippingCost}원</span>
                 </SummaryItem>
               </SummaryItemText>
               <Hr />
               <SummaryItemText>
                 <SummaryItem type='total'>
                   <span>합계</span>
-                  <span>{cart.total}원</span>
+                  <span>{cart.total + shippingCost}원</span>
                 </SummaryItem>
               </SummaryItemText>
               <Link to='/checkout'>

@@ -1,22 +1,21 @@
-import React, { useState } from "react";
-import { media } from "../responsive";
-import styled from "styled-components";
-import StyledButton from "../components/Button/Button";
+import React, { useState } from 'react';
+import { media } from '../responsive';
 
-import { Radio } from "@material-ui/core";
+import styled from 'styled-components';
+import StyledButton from '../components/Button/Button';
+import { Radio } from '@material-ui/core';
 
-import { useDispatch, useSelector } from "react-redux";
-import axios from "axios";
-import { Redirect } from "react-router-dom";
+import { useDispatch, useSelector } from 'react-redux';
+import axios from 'axios';
 
 const Container = styled.div`
   padding: 13rem 10rem;
   font-size: 11px;
-  ${media({ padding: "120px 25px 80px 25px" })}
+  ${media({ padding: '120px 25px 80px 25px' })}
 `;
 const Wrapper = styled.div`
   display: flex;
-  ${media({ flexDirection: "column" })}
+  ${media({ flexDirection: 'column' })}
 `;
 const Left = styled.div`
   flex: 3;
@@ -46,7 +45,7 @@ const ProductColor = styled.div`
   width: 15px;
   height: 15px;
   border-radius: 50%;
-  background-color: ${(props) => props.color};
+  background-color: ${props => props.color};
 `;
 const PriceDetail = styled.div`
   padding: 1rem 0rem;
@@ -73,27 +72,18 @@ const Hr = styled.hr`
 const Right = styled.div`
   flex: 2;
   margin-left: 5rem;
-  ${media({ margin: "30px 0px" })}
+  ${media({ margin: '30px 0px' })}
 `;
 const SummaryItem = styled.div`
   display: flex;
   justify-content: space-between;
   line-height: 1.5rem;
-  font-weight: ${(props) => props.type === "total" && "500"};
-  ${media({ margin: "10px 0px" })}
+  font-weight: ${props => props.type === 'total' && '500'};
+  ${media({ margin: '10px 0px' })}
 `;
 const SummaryItemText = styled.div`
   padding: 1rem 0rem;
-  ${media({ padding: "0.5rem 0rem" })}
-`;
-const Wish = styled.span`
-  text-decoration: underline;
-  cursor: pointer;
-  margin-top: 1.8rem;
-`;
-const Total = styled.div`
-  padding: 2rem 0rem;
-  /* height: 10vh; */
+  ${media({ padding: '0.5rem 0rem' })}
 `;
 
 const Info = styled.div`
@@ -107,61 +97,60 @@ const MediaLine = styled.hr`
   border: none;
   height: 1px;
   display: none;
-  ${media({ display: "block", marginTop: "9px" })}
+  ${media({ display: 'block', marginTop: '9px' })}
 `;
 
 export const CheckOut = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [result, setResult] = useState("");
+  const [result, setResult] = useState('');
 
-  const dispatch = useDispatch();
-  const cart = useSelector((state) => state.cart);
+  // const dispatch = useDispatch();
+  const cart = useSelector(state => state.cart);
 
-  const [selectedValue, setSelectedValue] = useState("a");
+  const [selectedValue, setSelectedValue] = useState('a');
 
-  const handleChange = (event) => {
+  const handleChange = event => {
     setSelectedValue(event.target.value);
   };
+
   const payment = () => {
     const paydata = async () => {
       try {
         const formdata = new FormData();
-        let product = "";
-        let quantity = "";
-        let id = "";
-        let price = "";
-        let productCount = 0;
+        let product = '';
+        let quantity = '';
+        let id = '';
+        let price = '';
 
-        formdata.append("usersNumber", "1");
+        formdata.append('usersNumber', '1');
         cart.products.map(
-          (pr) => (
-            (product += pr.product + ","),
-            (quantity += pr.quantity + ","),
-            (id += pr.id + ","),
-            (price += pr.quantity * pr.price + ","),
-            productCount++
-          ),
+          pr => (
+            (product += pr.product + ','),
+            (quantity += pr.quantity + ','),
+            (id += pr.id + ','),
+            (price += pr.quantity * pr.price + ',')
+          )
         );
 
-        formdata.append("price", price);
-        formdata.append("product", product);
-        formdata.append("quantity", quantity);
-        formdata.append("productsNumber", id);
-        formdata.append("productCustomNumber", "29,29");
-        formdata.append("productCount", productCount);
+        formdata.append('price', price);
+        formdata.append('product', product);
+        formdata.append('quantity', quantity);
+        formdata.append('productsNumber', id);
+        formdata.append('productCustomNumber', '29,29');
+        formdata.append('productCount', '2');
 
         console.log(cart.products[0].id);
-        console.log(formdata.get("product"));
+        console.log(formdata.get('product'));
         setError(null);
         setLoading(true);
         const response = await axios({
-          method: "POST",
+          method: 'POST',
           url: `http://ec2-3-37-117-153.ap-northeast-2.compute.amazonaws.com:8080/shoppingmall/orders`,
-          data: formdata,
+          data: formdata
         });
         console.log(response.data);
-        if (response.data.result == "PaymentDone");
+        if (response.data.result == 'PaymentDone');
         {
           setResult(response.data.paymentURL);
         }
@@ -188,7 +177,7 @@ export const CheckOut = () => {
           <Title>배송정보</Title>
           <Hr />
           <label>
-            <Radio type="radio" value="disabled" size="small" disabled />
+            <Radio type='radio' value='disabled' size='small' disabled />
             우체국택배 | 2 - 3일 소요
           </label>
           <Title>결제정보</Title>
@@ -196,32 +185,32 @@ export const CheckOut = () => {
           <form>
             <label>
               <Radio
-                checked={selectedValue === "a"}
+                checked={selectedValue === 'a'}
                 onChange={handleChange}
-                color="default"
-                size="small"
-                value="a"
-                name="radio-buttons"
-                inputProps={{ "aria-label": "A" }}
+                color='default'
+                size='small'
+                value='a'
+                name='radio-buttons'
+                inputProps={{ 'aria-label': 'A' }}
               />
               체크카드/신용카드
             </label>
             <label>
               <Radio
-                checked={selectedValue === "b"}
+                checked={selectedValue === 'b'}
                 onChange={handleChange}
-                color="default"
-                size="small"
-                value="b"
-                name="radio-buttons"
-                inputProps={{ "aria-label": "B" }}
+                color='default'
+                size='small'
+                value='b'
+                name='radio-buttons'
+                inputProps={{ 'aria-label': 'B' }}
               />
               간편결제
             </label>
           </form>
           <Title>주문정보</Title>
           <Hr />
-          {cart.products.map((product) => (
+          {cart.products.map(product => (
             <div key={product.index} id={product.id}>
               <Product>
                 <ProductDetail>
@@ -262,7 +251,7 @@ export const CheckOut = () => {
           </SummaryItemText>
           <Hr />
           <SummaryItemText>
-            <SummaryItem type="total">
+            <SummaryItem type='total'>
               <span>합계</span>
               <span>{cart.total}원</span>
             </SummaryItem>

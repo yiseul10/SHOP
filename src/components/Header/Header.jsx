@@ -25,12 +25,12 @@ const Container = styled.div`
   flex-direction: column;
   font-size: 11px;
   font-weight: 500;
-  box-shadow: 0px 1rem 0.3rem -1rem rgba(0, 0, 0, 0.1);
-  // position: fixed;
+  box-shadow: var(--box-shadow);
+  position: fixed;
   width: 100vw;
-  z-index: 1;
+  z-index: 10;
   padding-top: 1.7rem;
-  background-color: white;
+  background-color: var(--back-color);
   width: 100%;
 `;
 
@@ -59,7 +59,7 @@ const Logo = styled(Link)`
   font-weight: bold;
   font-family: "Unna", serif;
   font-size: 33px;
-  z-index: 1;
+  z-index: 10;
   &:hover {
     text-decoration: none;
   }

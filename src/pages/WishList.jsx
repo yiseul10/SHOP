@@ -3,20 +3,27 @@ import { Link } from 'react-router-dom';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { removeWish } from '../store/wish-slice';
+import { media } from '../responsive';
 
 const Container = styled.div`
   padding: 13rem 17rem;
   font-size: 11px;
+  ${media({ padding: '150px 25px 80px 25px' })}
 `;
 const Wrapper = styled.div`
   display: flex;
 `;
 const Message = styled.div`
   text-align: center;
-  padding: 5rem;
+  ${media({ flexDirection: 'row' })}
 `;
 const Left = styled.div`
   flex: 3;
+`;
+const LeftSection = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
 `;
 const Product = styled.div`
   display: flex;
@@ -48,7 +55,7 @@ const PriceDetail = styled.div`
 `;
 
 const Hr = styled.hr`
-  background-color: #eee;
+  background-color: var(--main-line-color);
   border: none;
   height: 1px;
 `;
@@ -58,6 +65,13 @@ const Delete = styled.span`
   cursor: pointer;
   margin-top: 4.3rem;
 `;
+const DeleteAll = styled.div`
+  cursor: pointer;
+  font-weight: 500;
+  &:hover {
+    text-decoration: underline;
+  }
+`;
 const ProductTitle = styled(Link)`
   padding: 0.2rem 0rem;
   font-weight: 500;
@@ -65,12 +79,13 @@ const ProductTitle = styled(Link)`
   cursor: pointer;
 `;
 
-export const WishList = ({ product }) => {
-  const wish = useSelector(state => state.wish);
+export const WishList = () => {
   const dispatch = useDispatch();
+  const wish = useSelector(state => state.wish);
+  console.log(wish);
 
   const handleDelete = () => {
-    dispatch(removeWish({ wish }));
+    dispatch(removeWish(wish));
   };
 
   return (
@@ -80,16 +95,19 @@ export const WishList = ({ product }) => {
       ) : (
         <Wrapper>
           <Left>
-            <Title>위시리스트({wish.quantity})</Title>
+            <LeftSection>
+              <Title>위시리스트({wish.quantity})</Title>
+              <DeleteAll onClick={handleDelete}>모두삭제</DeleteAll>
+            </LeftSection>
             {wish.products.map(product => (
               <div key={product.index} id={product.id}>
                 <Product>
                   <ProductDetail>
                     <Image src={product.image} />
                     <Details>
-                      <Link to={`/${product.id}`}>
-                        <ProductTitle>{product.product}</ProductTitle>
-                      </Link>
+                      <ProductTitle to={`/${product.id}`}>
+                        {product.product}
+                      </ProductTitle>
                       <p>{product.kind}</p>
                     </Details>
                   </ProductDetail>

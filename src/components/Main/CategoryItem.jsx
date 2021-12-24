@@ -44,8 +44,6 @@ const Desc = styled.p`
   font-family: 'Unna', serif;
   font-size: 12px;
   letter-spacing: 1px;
-  /* position: relative; */
-  /* transform: translateX(-110px); */
   ${media({ transform: 'translateY(-3px)' })}
 `;
 
@@ -62,11 +60,11 @@ const CategoryItem = ({ item }) => {
         </InfoDetail>
         <StyledButton
           style={{
-            backgroundColor: 'white',
-            color: 'black',
+            backgroundColor: 'var(--back-color)',
+            color: 'var(--main-color)',
             width: '130px',
             height: '35px',
-            border: '0.1px solid rgb(108, 108, 108)',
+            border: '0.1px solid var(--main-grey-color)',
             fontWeight: '200'
           }}
         >

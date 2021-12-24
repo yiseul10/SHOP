@@ -6,9 +6,10 @@ import StyledButton from '../components/Button/Button';
 import Axios from 'axios';
 
 import { useParams, Link } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { useDispatch } from 'react-redux';
 import { addToCart } from '../store/cart-slice';
+import MessageContext from '../components/MessageContext';
 
 import AppTabs from '../components/Products/AppTabs';
 
@@ -54,7 +55,7 @@ const Price = styled.span`
 
 const Underline = styled.div`
   margin: 5px 0;
-  border-top: 0.5px solid rgb(241, 239, 239);
+  border-top: 0.5px solid var(--light-grey-color);
   width: 100%;
 `;
 
@@ -81,7 +82,7 @@ const FilterColor = styled.button`
   border-radius: 50%;
   background-color: ${props => props.color};
   margin: 0px 4px;
-  border: 0.1px solid white;
+  border: 0.1px solid var(--light-grey-color);
   cursor: pointer;
   &:hover {
     opacity: 70%;
@@ -89,7 +90,7 @@ const FilterColor = styled.button`
   }
   &:focus,
   &:target {
-    border: 2px solid #d3fbd8;
+    border: 2px solid var(--sub-color-5);
     transition: all 0.5s ease;
     transform: scale(1.2);
   }
@@ -100,7 +101,7 @@ const FilterSize = styled.select`
   width: 100%;
   padding: 8px;
   font-size: 11px;
-  border: 0.5px solid rgb(241, 239, 239);
+  border: 0.5px solid var(--light-grey-color);
 `;
 
 const FilterSizeOption = styled.option``;
@@ -120,7 +121,7 @@ const AmountContainer = styled.div`
 const Amount = styled.span`
   width: 30px;
   height: 30px;
-  border: 0.5px solid rgb(241, 239, 239);
+  border: 0.5px solid var(--light-grey-color);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -157,6 +158,8 @@ export const Product = () => {
   const [page, setPage] = useState(1);
   const [users, setUsers] = useState(null); // axios를 통해 json에서 데이터를 끄집어 내기 위한 곳
   const dispatch = useDispatch();
+  const addFlashMessage = useContext(MessageContext);
+
 
   useEffect(() => {
     const getProduct = async () => {
@@ -196,8 +199,9 @@ export const Product = () => {
     }
   };
 
-  const handleAddToCart = product => {
-    dispatch(addToCart({ ...product, quantity, color, size }));
+  const handleAddToCart = () => {
+    addFlashMessage('장바구니에 담겼습니다!');
+    dispatch(addToCart({ quantity, color, size, ...product }));
   };
 
   return product.colors === undefined ? null : (
@@ -257,10 +261,10 @@ export const Product = () => {
           <Underline />
           <ButtonHandle>
             <StyledButton
-              onClick={() => handleAddToCart(product)}
+              onClick={() => handleAddToCart()}
               style={{
-                backgroundColor: 'white',
-                color: 'black',
+                backgroundColor: 'var(--back-color)',
+                color: 'var(--main-color)',
                 fontWeight: 600
               }}
             >
@@ -270,10 +274,6 @@ export const Product = () => {
               <StyledButton>바로 구매하기</StyledButton>
             </Link>
           </ButtonHandle>
-
-          {/* <Desc> */}
-          {/* <Details>Description</Details> */}
-          {/* </Desc> */}
         </InfoContainer>
       </Wrapper>
       

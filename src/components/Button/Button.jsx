@@ -1,10 +1,10 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const StyledButton = styled.button`
   font-size: 0.8rem;
   text-align: center;
-  background-color: black;
-  color: white;
+  background-color: var(--main-color);
+  color: var(--back-color);
   border-radius: 1.6rem;
   margin: 0;
   border: none;
