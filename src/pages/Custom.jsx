@@ -2,6 +2,7 @@ import styled from "styled-components";
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import axios from "axios";
+import CircularProgress from '@mui/material/CircularProgress';
 
 export function Custom() {
   const [sendImageBlob, setSendImageBlob] = useState("");
@@ -14,6 +15,7 @@ export function Custom() {
   const [iframeElement, setIframeElement] = useState("");
   const [customImage, setCustomImage] = useState(null);
   const [addImage, setAddImage] = useState("");
+  const [board, setBoard] = useState(null);
 
   setTimeout(() => {
     setIframeElement(document.getElementById("browserboard"));
@@ -51,7 +53,7 @@ export function Custom() {
       //비동기 통신 POST
       const send = await axios({
         method: 'POST',
-        url: `http://localhost:8080/sample/customs`,
+        url: `http://3.37.117.153:8080/shopApp/customs`,
         data: formdata,
         headers: {
           authorization: auth.authorization
@@ -128,7 +130,7 @@ export function Custom() {
       try {    
         const response = await axios({
             method:'GET',
-            url:`http://localhost:8080/sample/customs-user`,
+            url:`http://3.37.117.153:8080/shopApp/customs-user`,
             headers: {
               authorization: auth.authorization
             }
@@ -140,8 +142,28 @@ export function Custom() {
     };
     imageLoad();
   }, [insertImage,result]);
+
+  useEffect(() => {
+    const boardLoad = async () => {
+      try {    
+        const response = await axios({
+            method:'GET',
+            url:`http://3.37.117.153:8080/shopApp/user-board`,
+            headers: {
+              authorization: auth.authorization
+            }
+        });
+        console.log(response.data); 
+        setBoard(response.data.url);
+      } catch (error) {
+      }
+    };
+    boardLoad();
+  }, []);
+  if(!board) return <><br/><br/><br/><br/><br/><CircularProgress/>그림판 불러오는중...</>
   return (<>
-    <Cover id="browserboard" src="https://browserboard.com/whiteboard/9yAcLuQo4jwEm378zhstP5?key=ncXbudswBvXrJtHeya5HA6">
+  <br/><br/><br/><br/><br/>
+    <Cover id="browserboard" src={board}>
     </Cover>
     <Cover2>{customImage&&customImage.customs.map(img => (
       <>

@@ -15,7 +15,7 @@ export function PasswordSearchPage() {
     window.alert("전송 되었습니다. 이메일을 확인하세요.(전송시 까지 최대 1~2분 걸립니다.)")
     const send = await axios({
       method: "GET",
-      url: `http://ec2-3-37-117-153.ap-northeast-2.compute.amazonaws.com:8080/shoppingmall/user/reset?id=${email}	`,
+      url: `http://ec2-3-37-117-153.ap-northeast-2.compute.amazonaws.com:8080/shopApp/user/reset?id=${email}	`,
     }).catch((err) => Promise.reject(err));
     console.log(send.data);
   }

@@ -42,7 +42,7 @@ export function LoginPage({ signup, pwSearch, onPwSearchBtn, authorization }) {
   // }
   const socialLogin = () => {
     window.location.href =
-      "https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=8c2835e5881d60b38a8561176852e4e2&redirect_uri=http://localhost:3000/loading";
+      "https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=8c2835e5881d60b38a8561176852e4e2&redirect_uri=http://customshoppingmall.kro.kr/loading";
   };
 
   const userData = async () => {

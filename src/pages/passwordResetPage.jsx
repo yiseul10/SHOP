@@ -49,6 +49,12 @@ export function PasswordResetPage() {
 
   return (
     <Cover>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      
       <div className="container">
         <input class="input" placeholder="변경할 비밀번호" onChange={onPasswordChange} />
 
