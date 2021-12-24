@@ -2,23 +2,16 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { media } from "../../responsive";
-import {
-  LoginModal,
-  LoginPage,
-  SignUpPage,
-  pwSearchModal,
-} from "components/modal";
-import Modal from "react-modal";
+import { LoginModal, LoginPage, SignUpPage } from "components/modal";
 import { useHistory } from "react-router-dom";
 import { ShoppingCartOutlined } from "@material-ui/icons";
 import { Badge } from "@material-ui/core";
 
 import { getTotals } from "../../store/cart-slice";
 import { useSelector, useDispatch } from "react-redux";
-import { useContext } from "react";
 import { useMediaQuery } from "react-responsive";
 import SlideNav from "../Nav/SlideNav";
-import axios from "axios";
+import { useAxios } from "./useAxios";
 
 const Container = styled.div`
   display: flex;
@@ -107,6 +100,7 @@ const UserInfo = styled.div`
 `;
 
 function Header() {
+  const axiosCustom = useAxios();
   const [click, setClick] = useState(false);
 
   const dispatch = useDispatch();
@@ -119,10 +113,11 @@ function Header() {
 
   useEffect(() => {
     dispatch(getTotals());
-    if (localStorage.getItem("accessToken")) {
+    if (localStorage.getItem("authorization")) {
       (async () => {
-        const res = await axios.post(""); // todo: getUser 현재 로그인 중인 유저 정보 api
+        const res = await axiosCustom.get("/user"); // todo: getUser 현재 로그인 중인 유저 정보 api
         setUserName(res.data.nickName);
+        console.log(res);
       })();
     }
     // setUserName("박일규"); //todo: api통신되면 지울 것
@@ -166,8 +161,12 @@ function Header() {
   }
 
   function onLogoutBtn() {
-    localStorage.removeItem("accessToken");
+    localStorage.removeItem("authorization");
     history.go(0);
+  }
+
+  function test() {
+    setIsmodalUp(false);
   }
 
   return (
@@ -186,7 +185,9 @@ function Header() {
         </Center>
         <LoginModal
           isVisible={isModalUp}
+          onRequestClose={test}
           isModalClose={isModalDown}
+          setIsModalVisible={setIsmodalUp}
           components={
             isSwitch ? (
               <SignUpPage />
@@ -199,7 +200,7 @@ function Header() {
         <Right>
           {userName ? (
             <UserInfo>
-              <p>{userName} 님</p>
+              <p onClick={() => history.push("/mypage/my")}>{userName} 님</p>
               <p onClick={onLogoutBtn}>logout</p>
             </UserInfo>
           ) : (

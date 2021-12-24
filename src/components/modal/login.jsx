@@ -63,9 +63,7 @@ export function LoginPage({ signup, pwSearch, onPwSearchBtn, authorization }) {
       console.log(send.headers);
       if (send.headers.authorization != null) {
         authorization = send.headers.authorization;
-        console.log(
-          typeof send.headers.authorization + ": " + send.headers.authorization,
-        );
+        console.log(send.headers.authorization);
         handleAddToAuth(authorization);
       }
       console.log(auth);
