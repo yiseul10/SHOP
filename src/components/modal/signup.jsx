@@ -109,7 +109,7 @@ export function SignUpPage() {
   return (
     <Cover>
       <div className="text">
-        <h3>회원가입</h3>
+        <h3>SHOP</h3>
         <br />
         <br />
       </div>
@@ -194,6 +194,7 @@ export function SignUpPage() {
 
 const Cover = styled.div`
   margin-top: 15%;
+  text-align: left;
 
   .text {
     text-align: center;
