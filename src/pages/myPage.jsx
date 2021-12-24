@@ -69,7 +69,7 @@ export function MyPage() {
   function onNickNameChange(event) {
     setNickName(event.target.value);
   }
-  //  이메일의 상태관리 함수
+  //이메일의 상태관리 함수
   function onEmailChange(event) {
     setEamil(event.target.value);
   }
@@ -101,7 +101,7 @@ export function MyPage() {
     if (
       id.length === 0 ||
       nickName.length === 0 ||
-      email.length === 0 ||
+      // email.length === 0 ||
       address.length === 0 ||
       phoneNum.length === 0 ||
       password.length === 0
@@ -176,30 +176,33 @@ export function MyPage() {
         </div>
 
         <form onSubmit={handleSubmit}>
-          <MyPageInput
+          {/* <MyPageInput
             id="userName"
             label="이름"
             onChange={onUserNameChange}
             placeholder="이름"
-          />
+          /> */}
           <MyPageInput
             id="id"
             label="아이디"
             onChange={onIdChange}
-            placeholder="아이디(5~12자)"
+            value={id}
+            placeholder="Email"
           />
           <MyPageInput
             id="nickname"
             label="닉네임"
+            value={nickName}
             onChange={onNickNameChange}
             placeholder="닉네임"
           />
-          <MyPageInput
+          {/* <MyPageInput
             id="email"
             label="이메일"
+            value={email}
             onChange={onEmailChange}
             placeholder="이메일 형식에 맞게 작성해주세요"
-          />
+          /> */}
           <div className="address">
             <p>주소</p>
             <div>
@@ -230,6 +233,7 @@ export function MyPage() {
             id="phoneNum"
             label="핸드폰"
             onChange={onPhoneNumChange}
+            value={phoneNum}
             placeholder="전화번호 형식에 맞게 작성해주세요"
           />
           <MyPageInput
