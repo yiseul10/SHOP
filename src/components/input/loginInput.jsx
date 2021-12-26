@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { Input } from "reactstrap";
 
@@ -14,16 +14,26 @@ export function LoginInput({
   btnName,
   btnClick,
 }) {
+  const [inputFocus, setInputFocus] = useState(false);
+
+  function onInputFocus() {
+    setInputFocus(!inputFocus);
+  }
+
   return (
     <Cover msgDisplay={checked}>
       <p>{label}</p>
-      <IdInput
-        onChange={onChange}
-        type={type}
-        value={value}
-        placeholder={placeholder}
-      />
-      {btn && <button onClick={btnClick}>{btnName}</button>}
+      <InputContainer focus={inputFocus}>
+        <IdInput
+          onChange={onChange}
+          type={type}
+          value={value}
+          placeholder={placeholder}
+          onFocus={onInputFocus}
+          onBlur={onInputFocus}
+        />
+        {btn && <button onClick={btnClick}>{btnName}</button>}
+      </InputContainer>
       <p className="errorMsg">{errorMsg}</p>
     </Cover>
   );
@@ -33,6 +43,7 @@ const Cover = styled.div`
   display: flex;
   margin-bottom: 24px;
   justify-content: left;
+  width: 100%;
 
   .errorMsg {
     display: ${({ msgDisplay }) => (msgDisplay ? "none" : "")};
@@ -47,17 +58,31 @@ const Cover = styled.div`
   button {
     border: 0;
     outline: 0;
-    background-color: #2cb5e8;
+    background-color: #222;
+    width: 15%;
     color: #fff;
-    font: bold;
-    border-radius: 10px;
+    border-radius: 8px;
   }
   /* @media only screen and (max-width: 1000px) {
     display: none;
   } */
 `;
 
-const IdInput = styled(Input)`
-  width: 80%;
-  margin-left: 16px;
+const InputContainer = styled.div`
+  box-sizing: border-box;
+  border: ${({ focus }) => (focus ? "solid 1px #222" : "solid 1px #ced4da")};
+  border-radius: 8px;
+  /* padding: 5px; */
+  width: 75%;
+  height: 42px;
+  display: flex;
+
+  margin-left: 10px;
+`;
+
+const IdInput = styled.input`
+  width: 100%;
+  height: 32px;
+  margin: 5px;
+  border: none;
 `;

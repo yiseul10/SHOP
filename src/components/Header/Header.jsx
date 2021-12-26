@@ -157,7 +157,7 @@ function Header() {
 
   function onPwSearchClick() {
     setIsmodalUp(false);
-    history.push("passwordsearch");
+    history.push("/passwordsearch");
   }
 
   function onLogoutBtn() {

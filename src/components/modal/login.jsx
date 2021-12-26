@@ -75,9 +75,7 @@ export function LoginPage({ signup, pwSearch, onPwSearchBtn, authorization }) {
   return (
     <Cover>
       <div className="text">
-        <h3>SHOP</h3>
-        <br />
-        <br />
+        <p className="mainText">SHOP</p>
       </div>
       <div className="loginInput">
         <LoginInput id="id" onChange={onIdChange} placeholder="Email" />
@@ -112,7 +110,12 @@ export function LoginPage({ signup, pwSearch, onPwSearchBtn, authorization }) {
 const Cover = styled.div`
   margin-top: 15%;
   width: 80%;
-  text-align: center;
+  .mainText {
+    font-size: 32px;
+    font-weight: bold;
+    margin: 0 0 32px;
+  }
+
   .loginInput {
   }
   .text {

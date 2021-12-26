@@ -27,7 +27,7 @@ export function MyPageInput({
 const InputContainer = styled.div`
   display: flex;
   box-sizing: border-box;
-  width: 40% !important;
+  width: 100% !important;
   height: 46px;
   padding: 0;
   margin: 15px auto;

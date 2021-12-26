@@ -109,9 +109,7 @@ export function SignUpPage() {
   return (
     <Cover>
       <div className="text">
-        <h3>SHOP</h3>
-        <br />
-        <br />
+        <p className="mainText">SHOP</p>
       </div>
       {/* {isIdCheck ? (
           <LoginInput
@@ -195,7 +193,11 @@ export function SignUpPage() {
 const Cover = styled.div`
   margin-top: 15%;
   text-align: left;
-
+  .mainText {
+    font-size: 32px;
+    font-weight: bold;
+    margin: 0 0 32px;
+  }
   .text {
     text-align: center;
   }

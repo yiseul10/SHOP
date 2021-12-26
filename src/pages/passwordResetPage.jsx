@@ -1,5 +1,6 @@
 import axios from "axios";
 import { LoginBtn } from "components/Button/loginBtn";
+import { LoginInput } from "components/input";
 import React, { useState } from "react";
 import styled from "styled-components";
 
@@ -53,19 +54,20 @@ export function PasswordResetPage() {
       <br />
       <br />
       <div className="container">
-        <input
-          class="input"
+        <LoginInput
+          label="변경할 비밀번호"
           placeholder="변경할 비밀번호"
           onChange={onPasswordChange}
         />
 
-        <input
-          class="input"
+        <LoginInput
+          label="비밀번호 확인"
           placeholder="변경할 비밀번호 확인"
           onChange={onPasswdCheck}
         />
+
+        <LoginBtn label="비밀번호변경" onClick={onSend} />
       </div>
-      <LoginBtn label="비밀번호변경" onClick={onSend} />
     </Cover>
   );
 }
@@ -74,13 +76,10 @@ const Cover = styled.div`
   .container {
     display: flex;
     flex-direction: column;
-    width: 100%;
+    margin-top: 15px;
+    width: 40%;
     height: 100%;
     align-items: center;
-    justify-content: center;
-  }
-  .input {
-    width: 150px;
-    margin: 3px 0;
+    /* justify-content: center; */
   }
 `;

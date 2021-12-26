@@ -142,9 +142,7 @@ export function MyPage() {
       <AddressOpenModal isOpen={isAddressBtn}>
         <ModalContainer>
           <div className="btnclose">
-            <button onClick={isAddressModalClose}>
-              <IoIosClose />
-            </button>
+            <CloseIcon onClick={isAddressModalClose} />
           </div>
 
           <AddressSearch setModalVisible={setIsAddressBtn} />
@@ -182,43 +180,44 @@ export function MyPage() {
             onChange={onUserNameChange}
             placeholder="이름"
           /> */}
-          <MyPageInput
-            id="id"
-            label="아이디"
-            onChange={onIdChange}
-            value={id}
-            placeholder="Email"
-          />
-          <MyPageInput
-            id="nickname"
-            label="닉네임"
-            value={nickName}
-            onChange={onNickNameChange}
-            placeholder="닉네임"
-          />
-          {/* <MyPageInput
+          <div className="inputContainer">
+            <MyPageInput
+              id="id"
+              label="아이디"
+              onChange={onIdChange}
+              value={id}
+              placeholder="Email"
+            />
+            <MyPageInput
+              id="nickname"
+              label="닉네임"
+              value={nickName}
+              onChange={onNickNameChange}
+              placeholder="닉네임"
+            />
+            {/* <MyPageInput
             id="email"
             label="이메일"
             value={email}
             onChange={onEmailChange}
             placeholder="이메일 형식에 맞게 작성해주세요"
           /> */}
-          <div className="address">
-            <p>주소</p>
-            <div>
-              <Input
-                className="addressInput"
-                id="address"
-                value={address}
-                onChange={onAddressChange}
-                placeholder="주소"
-              />
-              <button type="button" onClick={onAddressBtn}>
-                <BiSearchAlt2 />
-              </button>
+            <div className="address">
+              <p>주소</p>
+              <div>
+                <Input
+                  className="addressInput"
+                  id="address"
+                  value={address}
+                  onChange={onAddressChange}
+                  placeholder="주소"
+                />
+                <button type="button" onClick={onAddressBtn}>
+                  <BiSearchAlt2 />
+                </button>
+              </div>
             </div>
-          </div>
-          {/* <div className="address2">
+            {/* <div className="address2">
             <p></p>
             <div>
               <Input
@@ -229,22 +228,23 @@ export function MyPage() {
               />
             </div>
           </div> */}
-          <MyPageInput
-            id="phoneNum"
-            label="핸드폰"
-            onChange={onPhoneNumChange}
-            value={phoneNum}
-            placeholder="전화번호 형식에 맞게 작성해주세요"
-          />
-          <MyPageInput
-            id="passowrd"
-            label="비밀번호"
-            type="password"
-            onChange={onPasswordChange}
-            placeholder="비밀번호(숫자, 영문을 포함한 8자리 이상)"
-          />
-          <div className="modifyBtn">
-            <LoginBtn label="수정하기" onClick={userData} type="submit" />
+            <MyPageInput
+              id="phoneNum"
+              label="핸드폰"
+              onChange={onPhoneNumChange}
+              value={phoneNum}
+              placeholder="전화번호 형식에 맞게 작성해주세요"
+            />
+            <MyPageInput
+              id="passowrd"
+              label="비밀번호"
+              type="password"
+              onChange={onPasswordChange}
+              placeholder="비밀번호(숫자, 영문을 포함한 8자리 이상)"
+            />
+            <div className="modifyBtn">
+              <LoginBtn label="수정하기" onClick={userData} type="submit" />
+            </div>
           </div>
         </form>
       </Cover>
@@ -270,7 +270,7 @@ const Cover = styled.div`
   }
   .address {
     display: flex;
-    width: 40%;
+    width: 100%;
     height: 46px;
     margin: 0 auto;
     justify-content: space-between;
@@ -288,7 +288,7 @@ const Cover = styled.div`
         width: 15%;
         border: none;
         border-radius: 0 10px 10px 0;
-        background-color: #2cb5e8;
+        background-color: #222;
         svg {
           color: #fff;
         }
@@ -316,6 +316,16 @@ const Cover = styled.div`
     width: 50%;
     margin: auto;
   }
+  .inputContainer {
+    width: 40%;
+    min-width: 457px;
+    margin: 0 auto;
+  }
+`;
+
+const CloseIcon = styled(IoIosClose)`
+  font-size: 38px;
+  cursor: pointer;
 `;
 
 const AddressOpenModal = styled(Modal)`
