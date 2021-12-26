@@ -31,12 +31,10 @@ export function Custom() {
       setLoad("load on");
     }, 1000);
   }
-
   const saveImage = (event) => {
     setImage(event.target.files[0]);
   }
-
-
+  
   const sendImage = async (message) => { //데이터를 비동기로 보내는 함수
     const formdata = new FormData();
     switch (message) {
@@ -75,7 +73,6 @@ export function Custom() {
         default:
           break;
       }
-
     }
     catch (e) {
     }
@@ -173,14 +170,10 @@ export function Custom() {
   return (<>
     <Div>
       <Cover id="browserboard" src={board} sandbox="allow-pointer-lock allow-same-origin allow-scripts allow-forms" >
-        
       </Cover>
-
       <Cover2 src="https://shoppingmal.s3.ap-northeast-2.amazonaws.com/review/04b82323-b83a-4adc-af1f-6739616aedf7" >
-
       </Cover2>
       <Test src={uploadImage}/>
-
     </Div>
     <Div>
       <BtnCover><StyledButton onClick={() => sendBrowserboardMessage()}>이미지 등록</StyledButton></BtnCover>
@@ -191,8 +184,6 @@ export function Custom() {
         <ImgList src={img.images.image} type='button' onClick={() => setAddImage(img.images.image)} />
       </>
     ))}
-
-
   </>
   )
 }
