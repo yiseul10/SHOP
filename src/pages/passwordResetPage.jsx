@@ -11,14 +11,14 @@ export function PasswordResetPage() {
   const [isPassWordCheck, setIsPassWordCheck] = useState(false);
 
   setTimeout(() => {
-    setId(new URL(window.location.href).searchParams.get('id'));
-    setKey(new URL(window.location.href).searchParams.get('key'));
+    setId(new URL(window.location.href).searchParams.get("id"));
+    setKey(new URL(window.location.href).searchParams.get("key"));
     console.log(id + key);
-  }, 0)
+  }, 0);
 
   const onPasswordChange = (event) => {
     setPasswd(event.target.value);
-  }
+  };
   const onPasswdCheck = (event) => {
     if (passwd == event.target.value) {
       setIsPassWordCheck(true);
@@ -26,13 +26,12 @@ export function PasswordResetPage() {
     if (passwd != event.target.value) {
       setIsPassWordCheck(false);
     }
-  }
+  };
 
-  const onSend = async() =>{
-    if(!isPassWordCheck)
-    {
+  const onSend = async () => {
+    if (!isPassWordCheck) {
       window.alert("비밀번호가 일치하지 않습니다.");
-    }else{
+    } else {
       const formdata = new FormData();
       formdata.append("id", id);
       formdata.append("key", key);
@@ -44,15 +43,27 @@ export function PasswordResetPage() {
       }).catch((err) => Promise.reject(err));
       console.log(send.data);
     }
-  }
-
+  };
 
   return (
     <Cover>
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
       <div className="container">
-        <input class="input" placeholder="변경할 비밀번호" onChange={onPasswordChange} />
+        <input
+          class="input"
+          placeholder="변경할 비밀번호"
+          onChange={onPasswordChange}
+        />
 
-        <input class="input" placeholder="변경할 비밀번호 확인" onChange={onPasswdCheck} />
+        <input
+          class="input"
+          placeholder="변경할 비밀번호 확인"
+          onChange={onPasswdCheck}
+        />
       </div>
       <LoginBtn label="비밀번호변경" onClick={onSend} />
     </Cover>
