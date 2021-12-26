@@ -10,6 +10,7 @@ import { useState, useEffect, useContext } from 'react';
 import { useDispatch } from 'react-redux';
 import { addToCart } from '../store/cart-slice';
 import MessageContext from '../components/MessageContext';
+import { Custom } from './Custom';
 
 import AppTabs from '../components/Products/AppTabs';
 
@@ -153,7 +154,7 @@ export const Product = () => {
   const [quantity, setQuantity] = useState(1);
   const [color, setColor] = useState('');
   const [size, setSize] = useState('');
-
+  const [custom, setCustom] = useState(false);
   const [type, setType] = useState(0);
   const [page, setPage] = useState(1);
   const [users, setUsers] = useState(null); // axios를 통해 json에서 데이터를 끄집어 내기 위한 곳
@@ -190,6 +191,10 @@ export const Product = () => {
     fetchUsers();
   }, []);
 
+  const customLoad = () =>{
+    setCustom(!custom);
+    console.log(custom);
+  }
 
   const handleQuantity = type => {
     if (type === 'dec') {
@@ -206,6 +211,7 @@ export const Product = () => {
 
   return product.colors === undefined ? null : (
     <Container>
+       {custom&&<Custom></Custom>}
       <Wrapper>
         <ImgContainer>
           <Image src={product.image} />
@@ -223,8 +229,9 @@ export const Product = () => {
                 height: '22px',
                 padding: '2px'
               }}
-            >
+              onClick={()=>customLoad()}>
               커스텀
+             
             </StyledButton>
           </InfoControl>
           <FilterContainer>

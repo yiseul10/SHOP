@@ -3,6 +3,8 @@ import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import axios from "axios";
 import CircularProgress from '@mui/material/CircularProgress';
+import StyledButton from '../components/Button/Button';
+
 
 export function Custom() {
   const [sendImageBlob, setSendImageBlob] = useState("");
@@ -16,6 +18,7 @@ export function Custom() {
   const [customImage, setCustomImage] = useState(null);
   const [addImage, setAddImage] = useState("");
   const [board, setBoard] = useState(null);
+  const [uploadImage ,setUploadImage] = useState(null);
 
   setTimeout(() => {
     setIframeElement(document.getElementById("browserboard"));
@@ -32,6 +35,7 @@ export function Custom() {
   const saveImage = (event) => {
     setImage(event.target.files[0]);
   }
+
 
   const sendImage = async (message) => { //데이터를 비동기로 보내는 함수
     const formdata = new FormData();
@@ -66,6 +70,7 @@ export function Custom() {
           break;
         case "send":
           setResult(send.data);
+          setUploadImage(send.data.url);
           break;
         default:
           break;
@@ -75,6 +80,10 @@ export function Custom() {
     catch (e) {
     }
   }
+
+  useEffect(() => {
+    sendImage("insert");
+  }, [image]);
 
   useEffect(() => {
     const insertImageEffect = async () => {
@@ -127,62 +136,138 @@ export function Custom() {
   });
   useEffect(() => {
     const imageLoad = async () => {
-      try {    
+      try {
         const response = await axios({
-            method:'GET',
-            url:`http://3.37.117.153:8080/shopApp/customs-user`,
-            headers: {
-              authorization: auth.authorization
-            }
+          method: 'GET',
+          url: `http://3.37.117.153:8080/shopApp/customs-user`,
+          headers: {
+            authorization: auth.authorization
+          }
         });
-        console.log(response.data); 
+        console.log(response.data);
         setCustomImage(response.data);
       } catch (error) {
       }
     };
     imageLoad();
-  }, [insertImage,result]);
+  }, [insertImage, result]);
 
   useEffect(() => {
     const boardLoad = async () => {
-      try {    
+      try {
         const response = await axios({
-            method:'GET',
-            url:`http://3.37.117.153:8080/shopApp/user-board`,
-            headers: {
-              authorization: auth.authorization
-            }
+          method: 'GET',
+          url: `http://3.37.117.153:8080/shopApp/user-board`,
+          headers: {
+            authorization: auth.authorization
+          }
         });
-        console.log(response.data); 
+        console.log(response.data);
         setBoard(response.data.url);
       } catch (error) {
       }
     };
     boardLoad();
   }, []);
-  if(!board) return <><br/><br/><br/><br/><br/><CircularProgress/>그림판 불러오는중...</>
+  if (!board) return <><br /><br /><br /><br /><br /><CircularProgress />그림판 불러오는중...</>
   return (<>
-  <br/><br/><br/><br/><br/>
-    <Cover id="browserboard" src={board}>
-    </Cover>
-    <Cover2>{customImage&&customImage.customs.map(img => (
-      <>
-        <img src={img.images.image} style={{ height: '30px', width: '100px' }} type='button' onClick={()=>setAddImage(img.images.image)}/>
-      </>
-    ))}</Cover2>
+    <Div>
+      <Cover id="browserboard" src={board} sandbox="allow-pointer-lock allow-same-origin allow-scripts allow-forms" >
+        
+      </Cover>
 
-    <button onClick={() => sendBrowserboardMessage()}>이미지 등록</button>
-    <input type="file" onChange={saveImage} />
-    <button onClick={() => sendImage("insert")}>이미지 추가하기</button>
+      <Cover2 src="https://shoppingmal.s3.ap-northeast-2.amazonaws.com/review/04b82323-b83a-4adc-af1f-6739616aedf7" >
+
+      </Cover2>
+      <Test src={uploadImage}/>
+
+    </Div>
+    <Div>
+      <BtnCover><StyledButton onClick={() => sendBrowserboardMessage()}>이미지 등록</StyledButton></BtnCover>
+      <InputCover>파일 추가하기<InputFile type="file" onChange={saveImage} /></InputCover>
+    </Div>
+    {customImage && customImage.customs.map(img => (
+      <>
+        <ImgList src={img.images.image} type='button' onClick={() => setAddImage(img.images.image)} />
+      </>
+    ))}
+
+
   </>
   )
 }
 
-const Cover = styled.iframe`
-  width: 50%;
-  height: 500px
+const Div = styled.div`
+  display: flex;
+  padding: 0px 0px 0px 25px;
 `;
-const Cover2 = styled.div`
-  width: 20%
-  height: 500px
+const Test = styled.img`
+  padding: 5px 10px;
+  text-align: center;
+  position: absolute;
+  top: 60%;
+  left: 74%;
+  transform: translate( -50%, -50% );
+  width: 20%;
+  height: 40%;
+`
+const InputFile = styled.input`
+  display: none;
+`;
+const InputCover = styled.div`
+  position: relative;
+  overflow: hidden;
+  width: 220px;
+  height: 60px;
+  font-size: 0.8rem;
+  text-align: center;
+  background-color: var(--main-color);
+  color: var(--back-color);
+  border-radius: 1.6rem;
+  margin: 0;
+  border: none;
+  cursor: pointer;
+  height: 2.8rem;
+  padding: 5px;
+  &:hover {
+    opacity: 85%;
+    transition: all 0.2ms ease;
+  }
+  input[type=file] {
+    position: absolute;
+    top: 0;
+        right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
+`
+
+const BtnCover = styled.div`
+  width: 220px;
+  height: 60px;
+`
+
+const Cover = styled.iframe`
+  flex:1;
+  width: 50%;
+  padding: 100px 20px 5px 0px;
+`;
+const Cover2 = styled.img`
+  flex:1;
+  width: 50%;
+  padding: 100px 20px 20px 20px;
+  height: 10%;
+`;
+const ImgList = styled.img`
+  width: 120px;
+  height: 90px;
+  margin: 0 auto;
+  padding: 10px 20px 20px 20px;
 `;
