@@ -18,11 +18,14 @@ const cartSlice = createSlice({
       const itemColor = state.products.findIndex(
         item => item.color === action.payload.color
       );
+      const itemCustomNumber = state.products.findIndex(
+        item => item.customNumber === action.payload.customNumber
+      )
       const itemSize = state.products.findIndex(
         item => item.size === action.payload.size
       );
-      if (itemColor >= 0 && itemSize >= 0) {
-        state.products[(itemColor, itemSize)].quantity += 1;
+      if (itemColor >= 0 && itemSize >= 0 && itemCustomNumber>=0) {
+        state.products[(itemCustomNumber,itemColor, itemSize)].quantity += 1;
       } else {
         const tempProduct = { ...action.payload, pseudoId };
         state.products.push(tempProduct);

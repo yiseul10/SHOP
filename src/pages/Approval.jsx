@@ -4,7 +4,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import styled, {keyframes} from "styled-components";
 import CircularProgress from '@mui/material/CircularProgress';
-
+import { useSelector } from "react-redux";
 
 
 export function Approval() {
@@ -14,6 +14,7 @@ export function Approval() {
   const [pgToken, setPgToken] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const auth = useSelector((state) => state.authorization);
   // const history = useHistory();
   setTimeout(() => {
     setOrderNumber(new URL(window.location.href).searchParams.get('orderNumber'));
@@ -32,8 +33,11 @@ export function Approval() {
         setLoading(true);
         const response = await axios({
             method:'POST',
-            url:`http://ec2-3-37-117-153.ap-northeast-2.compute.amazonaws.com:8080/shoppingmall/orders/approve`,
+            url:`http://ec2-3-37-117-153.ap-northeast-2.compute.amazonaws.com:8080/shopApp/orders/approve`,
             data:formdata,
+            headers: {
+              authorization: auth.authorization,
+            },
         });
         console.log(response.data.result); 
         if(response.data.result=="Success")

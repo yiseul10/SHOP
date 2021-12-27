@@ -24,7 +24,7 @@ export function EmailCerified() {
           setLoading(true);
           const response = await axios({
               method:'GET',
-              url:`http://ec2-3-37-117-153.ap-northeast-2.compute.amazonaws.com:8080/shoppingmall/user-join-email?id=${id}&key=${key}`,
+              url:`http://ec2-3-37-117-153.ap-northeast-2.compute.amazonaws.com:8080/shopApp/user-join-email?id=${id}&key=${key}`,
           });
           console.log(response.data.result); 
           if(response.data.result=="success")

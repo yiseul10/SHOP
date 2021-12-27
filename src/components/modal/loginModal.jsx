@@ -1,18 +1,34 @@
 import styled from "styled-components";
 import Modal from "react-modal";
-import React from "react";
+import React, { useEffect } from "react";
 import { IoIosClose } from "react-icons/io";
 
-export function LoginModal({ isVisible, isModalClose, components }) {
+export function LoginModal({
+  isVisible,
+  isModalClose,
+  components,
+  setIsModalVisible,
+}) {
   //  치환 개념
+
+  // useEffect(() => {
+  //   const close = (e) => {
+  //     console.log("suu");
+  //     if (e.keyCode === "Escape") {
+  //       if (typeof setIsModalVisible === "function") {
+  //         setIsModalVisible(false);
+  //       }
+  //     }
+  //   };
+  //   window.addEventListener("keydown", close);
+  //   return () => window.removeEventListener("keydown", close);
+  // }, []);
 
   return (
     <StyleModal isOpen={isVisible}>
       <Container>
         <div>
-          <button onClick={isModalClose}>
-            <IoIosClose />
-          </button>
+          <CloseIcon onClick={isModalClose} />
         </div>
         {components}
       </Container>
@@ -28,6 +44,11 @@ const StyleModal = styled(Modal)`
   overflow-x: hidden;
   overflow-y: auto;
   z-index: 1031;
+`;
+
+const CloseIcon = styled(IoIosClose)`
+  font-size: 38px;
+  cursor: pointer;
 `;
 
 const Container = styled.div`

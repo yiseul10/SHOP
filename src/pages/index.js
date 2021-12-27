@@ -19,6 +19,7 @@ export { CheckOut } from "./CheckOut";
 export { Search } from "./Search";
 export { WishList } from "./WishList";
 export { EmailCerified } from "./EmailCertified";
+export { Custom } from "./Custom";
 export { Customer } from "./Customer";
 export { Question }  from "./Question";
 

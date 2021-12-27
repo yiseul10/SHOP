@@ -2,16 +2,18 @@ import styled from 'styled-components';
 import { media } from '../responsive';
 import { Add, Remove } from '@material-ui/icons';
 import StyledButton from '../components/Button/Button';
-
 import Axios from 'axios';
-
 import { useParams, Link } from 'react-router-dom';
 import { useState, useEffect, useContext } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addToCart } from '../store/cart-slice';
 import MessageContext from '../components/MessageContext';
+import { Custom } from './Custom';
 
 import AppTabs from '../components/Products/AppTabs';
+
+
+
 
 const ReviewWrapper = styled.div`
   padding: auto;
@@ -20,14 +22,17 @@ const ReviewWrapper = styled.div`
 `;
 
 const Container = styled.div``;
+
 const Wrapper = styled.div`
   padding: 150px;
   display: flex;
   ${media({ padding: '60px 0px', flexDirection: 'column' })}
 `;
+
 const ImgContainer = styled.div`
   flex: 1;
 `;
+
 const Image = styled.img`
   height: 100vh;
   object-fit: cover;
@@ -146,6 +151,9 @@ const InfoControl = styled.div`
   justify-content: space-between;
 `;
 
+
+
+
 export const Product = () => {
   const { id } = useParams();
 
@@ -153,12 +161,13 @@ export const Product = () => {
   const [quantity, setQuantity] = useState(1);
   const [color, setColor] = useState('');
   const [size, setSize] = useState('');
-
+  const [custom, setCustom] = useState(false);
   const [type, setType] = useState(0);
   const [page, setPage] = useState(1);
   const [users, setUsers] = useState(null); // axios를 통해 json에서 데이터를 끄집어 내기 위한 곳
   const dispatch = useDispatch();
   const addFlashMessage = useContext(MessageContext);
+  const customNumber = useSelector(state => state.custom.uploadImage);
 
 
   useEffect(() => {
@@ -183,13 +192,17 @@ export const Product = () => {
         );
         setUsers(response.data); // 데이터는 response.data 안에 들어있습니다.
       } catch (e) {
-        console.error(e);
+        // console.err(e);
       }
     };
 
     fetchUsers();
   }, []);
 
+  const customLoad = () =>{
+    setCustom(!custom);
+    console.log(custom);
+  }
 
   const handleQuantity = type => {
     if (type === 'dec') {
@@ -199,13 +212,24 @@ export const Product = () => {
     }
   };
 
+
+  const imagestyle = {
+    height: "22vh",  
+      width: "13vw",
+      };
+
+
+      
+
   const handleAddToCart = () => {
     addFlashMessage('장바구니에 담겼습니다!');
-    dispatch(addToCart({ quantity, color, size, ...product }));
+    console.log(customNumber);
+    dispatch(addToCart({customNumber ,quantity, color, size, ...product }));
   };
 
   return product.colors === undefined ? null : (
     <Container>
+       {custom&&<Custom></Custom>}
       <Wrapper>
         <ImgContainer>
           <Image src={product.image} />
@@ -223,8 +247,9 @@ export const Product = () => {
                 height: '22px',
                 padding: '2px'
               }}
-            >
+              onClick={()=>customLoad()}>
               커스텀
+             
             </StyledButton>
           </InfoControl>
           <FilterContainer>
@@ -300,12 +325,14 @@ export const Product = () => {
                     <td> <p> 리뷰 번호 : {user.reviewsNumber}  &nbsp;	&nbsp; &nbsp;	&nbsp; </p> </td>
                    
                       <img
-
-                        style={{ height: '25%', width: '25%' }}
+                        style = {imagestyle}
+                        
                         src={user.images.image} />
-
+                           &nbsp; &nbsp; &nbsp; 
+                           &nbsp; &nbsp; &nbsp; 
                     </span>
                   </td>
+                       
                   <td>
                     <h2><span> {user.title} </span></h2>
 

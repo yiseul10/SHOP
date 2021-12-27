@@ -5,28 +5,19 @@ import { LoginInput } from "components/input";
 import { PrimaryBtn } from "components/Button";
 import { LoginBtn } from "components/Button/loginBtn";
 import axios from "axios";
-import { createStore } from "redux";
+import { useDispatch, useSelector } from "react-redux";
+import { addToAuth } from "../../store/auth-slice";
 
-function auth(state = [], action) {
-  switch (action.type) {
-    case 'token':
-      return state.concat([action.text])
-    default:
-      return state;
-  }
-}
-const store = createStore(auth,['User Redux'])
-
-store.dispatch({
-  type: 'token',
-  text: 'null'
-})
-console.log(store.getState());
-
-export function LoginPage({ signup, pwSearch, onPwSearchBtn }) {
+export function LoginPage({ signup, pwSearch, onPwSearchBtn, authorization }) {
+  const auth = useSelector((state) => state.authorization);
   const [id, setId] = useState("");
   const [password, setPassword] = useState("");
   const history = useHistory();
+
+  const dispatch = useDispatch();
+  const handleAddToAuth = (authorization) => {
+    dispatch(addToAuth(authorization));
+  };
 
   // 아이디의 상태관리 함수
   function onIdChange(event) {
@@ -51,7 +42,7 @@ export function LoginPage({ signup, pwSearch, onPwSearchBtn }) {
   // }
   const socialLogin = () => {
     window.location.href =
-      "https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=8c2835e5881d60b38a8561176852e4e2&redirect_uri=http://localhost:3000/loading";
+      "https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=8c2835e5881d60b38a8561176852e4e2&redirect_uri=http://customshoppingmall.kro.kr/loading";
   };
 
   const userData = async () => {
@@ -65,22 +56,26 @@ export function LoginPage({ signup, pwSearch, onPwSearchBtn }) {
       //비동기 통신 POST
       const send = await axios({
         method: "POST",
-        url: `http://ec2-3-37-117-153.ap-northeast-2.compute.amazonaws.com:8080/shoppingmall/user-login	`,
+        url: `http://ec2-3-37-117-153.ap-northeast-2.compute.amazonaws.com:8080/shopApp/user-login	`,
         data: formdata,
       });
       console.log(send.data);
       console.log(send.headers);
-
+      if (send.headers.authorization != null) {
+        authorization = send.headers.authorization;
+        console.log(send.headers.authorization);
+        handleAddToAuth(authorization);
+      }
+      console.log(auth);
       history.push("/");
+      history.go(0);
     }
   };
 
   return (
     <Cover>
       <div className="text">
-        <h3>로그인</h3>
-        <br />
-        <br />
+        <p className="mainText">SHOP</p>
       </div>
       <div className="loginInput">
         <LoginInput id="id" onChange={onIdChange} placeholder="Email" />
@@ -115,7 +110,12 @@ export function LoginPage({ signup, pwSearch, onPwSearchBtn }) {
 const Cover = styled.div`
   margin-top: 15%;
   width: 80%;
-  text-align: center;
+  .mainText {
+    font-size: 32px;
+    font-weight: bold;
+    margin: 0 0 32px;
+  }
+
   .loginInput {
   }
   .text {

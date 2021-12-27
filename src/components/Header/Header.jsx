@@ -1,23 +1,17 @@
-import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
-import { Link } from 'react-router-dom';
-import { media } from '../../responsive';
-import {
-  LoginModal,
-  LoginPage,
-  SignUpPage,
-  pwSearchModal
-} from 'components/modal';
-import Modal from 'react-modal';
-import { useHistory } from 'react-router-dom';
-import { ShoppingCartOutlined } from '@material-ui/icons';
-import { Badge } from '@material-ui/core';
+import React, { useState, useEffect } from "react";
+import styled from "styled-components";
+import { Link } from "react-router-dom";
+import { media } from "../../responsive";
+import { LoginModal, LoginPage, SignUpPage } from "components/modal";
+import { useHistory } from "react-router-dom";
+import { ShoppingCartOutlined } from "@material-ui/icons";
+import { Badge } from "@material-ui/core";
 
-import { getTotals } from '../../store/cart-slice';
-import { useSelector, useDispatch } from 'react-redux';
-import { useContext } from 'react';
-import { useMediaQuery } from 'react-responsive';
-import SlideNav from '../Nav/SlideNav';
+import { getTotals } from "../../store/cart-slice";
+import { useSelector, useDispatch } from "react-redux";
+import { useMediaQuery } from "react-responsive";
+import SlideNav from "../Nav/SlideNav";
+import { useAxios } from "./useAxios";
 
 const Container = styled.div`
   display: flex;
@@ -39,7 +33,7 @@ const Wrapper = styled.div`
   justify-content: space-between;
   align-items: center;
   flex: 1 1 1;
-  ${media({ padding: '10px 30px' })};
+  ${media({ padding: "10px 30px" })};
 `;
 
 const Left = styled.ul`
@@ -52,11 +46,11 @@ const Left = styled.ul`
 const Center = styled.div`
   text-align: center;
   margin-bottom: 0.6rem;
-  ${media({ margin: '0' })}
+  ${media({ margin: "0" })}
 `;
 const Logo = styled(Link)`
   font-weight: bold;
-  font-family: 'Unna', serif;
+  font-family: "Unna", serif;
   font-size: 33px;
   z-index: 10;
   &:hover {
@@ -68,7 +62,7 @@ const Right = styled.ul`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  ${media({ justifyContent: 'flex-end' })}
+  ${media({ justifyContent: "flex-end" })}
   cursor: pointer;
   .login {
     &:hover {
@@ -79,16 +73,16 @@ const Right = styled.ul`
 const LeftMenu = styled(Link)`
   cursor: pointer;
   padding: 28px 0px;
-  ${media({ display: 'none' })}
+  ${media({ display: "none" })}
 `;
 
 const MenuItem = styled(Link)`
   cursor: pointer;
-  ${media({ zIndex: '0' })}
+  ${media({ zIndex: "0" })}
 `;
 const MenuHandle = styled(Link)`
   cursor: pointer;
-  ${media({ display: 'none' })}
+  ${media({ display: "none" })}
 `;
 
 const Search = styled.div`
@@ -96,32 +90,49 @@ const Search = styled.div`
   &:hover {
     text-decoration: underline;
   }
-  ${media({ display: 'none' })}
+  ${media({ display: "none" })}
 `;
+
+const UserInfo = styled.div`
+  display: flex;
+  gap: 15px;
+  padding-top: 15px;
+`;
+
 function Header() {
+  const axiosCustom = useAxios();
   const [click, setClick] = useState(false);
 
   const dispatch = useDispatch();
   const history = useHistory();
-  const cart = useSelector(state => state.cart);
+  const cart = useSelector((state) => state.cart);
   // const { quantity } = useSelector(state => state.cart);
 
   const isMobile = useMediaQuery({ maxWidth: 768 });
+  const [userName, setUserName] = useState("");
 
   useEffect(() => {
     dispatch(getTotals());
+    if (localStorage.getItem("authorization")) {
+      (async () => {
+        const res = await axiosCustom.get("/user"); // todo: getUser 현재 로그인 중인 유저 정보 api
+        setUserName(res.data.nickName);
+        console.log(res);
+      })();
+    }
+    // setUserName("박일규"); //todo: api통신되면 지울 것
   }, [cart, dispatch]);
 
   const handleClick = () => {
     setClick(!click);
-    history.push('/search');
+    history.push("/search");
   };
 
   const handleScroll = () => {
     window.scroll(0, 0);
   };
 
-  const quantity = useSelector(state => state.cart.quantity);
+  const quantity = useSelector((state) => state.cart.quantity);
 
   const [isModalUp, setIsmodalUp] = useState(false);
   const [isSwitch, setIsSwitch] = useState(false);
@@ -146,7 +157,16 @@ function Header() {
 
   function onPwSearchClick() {
     setIsmodalUp(false);
-    history.push('passwordsearch');
+    history.push("/passwordsearch");
+  }
+
+  function onLogoutBtn() {
+    localStorage.removeItem("authorization");
+    history.go(0);
+  }
+
+  function test() {
+    setIsmodalUp(false);
   }
 
   return (
@@ -155,17 +175,19 @@ function Header() {
         <Left>
           {isMobile && <SlideNav />}
           <LeftMenu to={`/products/product`}>COLLECTION</LeftMenu>
-          <MenuHandle to='/wish'>위시리스트</MenuHandle>
+          <MenuHandle to="/wish">위시리스트</MenuHandle>
           <Search onClick={handleClick}>검색</Search>
         </Left>
         <Center>
-          <Logo to='/' onClick={handleScroll}>
+          <Logo to="/" onClick={handleScroll}>
             SHOP
           </Logo>
         </Center>
         <LoginModal
           isVisible={isModalUp}
+          onRequestClose={test}
           isModalClose={isModalDown}
+          setIsModalVisible={setIsmodalUp}
           components={
             isSwitch ? (
               <SignUpPage />
@@ -176,13 +198,20 @@ function Header() {
         />
 
         <Right>
-          <MenuHandle className='login' onClick={isModalOpen}>
-            로그인
-          </MenuHandle>
-          <MenuHandle to='/Customer/cs'>고객센터</MenuHandle>
+          {userName ? (
+            <UserInfo>
+              <p onClick={() => history.push("/mypage/my")}>{userName} 님</p>
+              <p onClick={onLogoutBtn}>logout</p>
+            </UserInfo>
+          ) : (
+            <div className="login" onClick={isModalOpen}>
+              로그인
+            </div>
+          )}
+          <MenuHandle to="/Customer/cs">고객센터</MenuHandle>
 
-          <MenuItem to='/cart'>
-            <Badge badgeContent={quantity} color='error'>
+          <MenuItem to="/cart">
+            <Badge badgeContent={quantity} color="error">
               <ShoppingCartOutlined />
             </Badge>
           </MenuItem>

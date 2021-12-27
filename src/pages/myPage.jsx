@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import Modal from "react-modal";
@@ -11,6 +11,7 @@ import { AddressSearch } from "components/modal/addressSearch";
 import { BiSearchAlt2 } from "react-icons/bi";
 import { IoIosClose } from "react-icons/io";
 import { LoginBtn } from "components/Button/loginBtn";
+import { useSelector } from "react-redux";
 
 export function MyPage() {
   const [userName, setUserName] = useState(""); //  이름
@@ -22,6 +23,34 @@ export function MyPage() {
   const [password, setPassword] = useState(""); //  비밀번호
   const [isAddressBtn, setIsAddressBtn] = useState(false);
   const history = useHistory();
+  const auth = useSelector((state) => state.authorization);
+
+  useEffect(() => {
+    console.log(typeof auth + " : " + auth.authorization);
+    const userdataload = async () => {
+      try {
+        const response = await axios({
+          method: "GET",
+          url: `http://ec2-3-37-117-153.ap-northeast-2.compute.amazonaws.com:8080/shopApp/user-privacy`,
+          headers: {
+            authorization: auth.authorization,
+          },
+        });
+        console.log(response.data);
+        setId(response.data.id);
+        setNickName(response.data.nickName);
+        setPhoneNum(response.data.phone);
+        setAddress(response.data.address);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    userdataload();
+  }, []);
+
+  const postCode = useSelector((state) => state.address.postCode);
+  const roadName = useSelector((state) => state.address.roadName);
+  const detailName = useSelector((state) => state.address.detailName);
 
   function isAddressModalClose() {
     setIsAddressBtn(false);
@@ -33,13 +62,14 @@ export function MyPage() {
   }
   //  아이디의 상태관리 함수
   function onIdChange(event) {
+    console.log(auth);
     setId(event.target.value);
   }
   //  닉네임의 상태관리 함수
   function onNickNameChange(event) {
     setNickName(event.target.value);
   }
-  //  이메일의 상태관리 함수
+  //이메일의 상태관리 함수
   function onEmailChange(event) {
     setEamil(event.target.value);
   }
@@ -47,6 +77,11 @@ export function MyPage() {
   function onAddressChange(event) {
     setAddress(event.target.value);
   }
+  useEffect(() => {
+    if (postCode) {
+      setAddress(postCode + " " + roadName + " " + detailName);
+    }
+  }, [postCode]);
   //  주소 검색 버튼 함수
   function onAddressBtn() {
     setIsAddressBtn(true);
@@ -66,7 +101,7 @@ export function MyPage() {
     if (
       id.length === 0 ||
       nickName.length === 0 ||
-      email.length === 0 ||
+      // email.length === 0 ||
       address.length === 0 ||
       phoneNum.length === 0 ||
       password.length === 0
@@ -80,37 +115,39 @@ export function MyPage() {
 
   const userData = async () => {
     const formdata = new FormData();
-    formdata.append("name", userName); //  이름
-    formdata.append("id", id); //  아이디
-    formdata.append("userNumber", "1"); //  회원번호
-    formdata.append("nickName", nickName); //  닉네임
-    formdata.append("id", email); //  이메일
-    formdata.append("address", address); //  주소
+    formdata.append("id", email); //  이름
+    // formdata.append("id", id); //  아이디
+    formdata.append("name", nickName); //  닉네임
+    // formdata.append("id", email); //  이메일
+    formdata.append("address1", address); //  주소
     formdata.append("phone", phoneNum); //  핸드폰
-    formdata.append("password", password); //  비밀번호
+    // formdata.append("password", password); //  비밀번호
     try {
       //비동기 통신 POST
       const send = await axios({
         method: "POST",
-        url: `http://ec2-3-37-117-153.ap-northeast-2.compute.amazonaws.com:8080/shoppingmall/mypage/my	`,
+        url: `http://ec2-3-37-117-153.ap-northeast-2.compute.amazonaws.com:8080/shopApp/user-privacy	`,
         data: formdata,
+        headers: {
+          authorization: auth.authorization,
+        },
       });
       console.log(send.data);
       console.log(send.headers);
     } catch (e) {}
   };
 
+  const [test, setTest] = useState("");
+  console.log(test);
   return (
     <>
       <AddressOpenModal isOpen={isAddressBtn}>
         <ModalContainer>
           <div className="btnclose">
-            <button onClick={isAddressModalClose}>
-              <IoIosClose />
-            </button>
+            <CloseIcon onClick={isAddressModalClose} />
           </div>
 
-          <AddressSearch />
+          <AddressSearch setModalVisible={setIsAddressBtn} />
         </ModalContainer>
       </AddressOpenModal>
 
@@ -139,45 +176,50 @@ export function MyPage() {
         </div>
 
         <form onSubmit={handleSubmit}>
-          <MyPageInput
+          {/* <MyPageInput
             id="userName"
             label="이름"
             onChange={onUserNameChange}
             placeholder="이름"
-          />
-          <MyPageInput
-            id="id"
-            label="아이디"
-            onChange={onIdChange}
-            placeholder="아이디(5~12자)"
-          />
-          <MyPageInput
-            id="nickname"
-            label="닉네임"
-            onChange={onNickNameChange}
-            placeholder="닉네임"
-          />
-          <MyPageInput
+          /> */}
+          <div className="inputContainer">
+            <MyPageInput
+              id="id"
+              label="아이디"
+              onChange={onIdChange}
+              value={id}
+              placeholder="Email"
+            />
+            <MyPageInput
+              id="nickname"
+              label="닉네임"
+              value={nickName}
+              onChange={onNickNameChange}
+              placeholder="닉네임"
+            />
+            {/* <MyPageInput
             id="email"
             label="이메일"
+            value={email}
             onChange={onEmailChange}
             placeholder="이메일 형식에 맞게 작성해주세요"
-          />
-          <div className="address">
-            <p>주소</p>
-            <div>
-              <Input
-                className="addressInput"
-                id="address"
-                onChange={onAddressChange}
-                placeholder="주소"
-              />
-              <button type="button" onClick={onAddressBtn}>
-                <BiSearchAlt2 />
-              </button>
+          /> */}
+            <div className="address">
+              <p>주소</p>
+              <div>
+                <Input
+                  className="addressInput"
+                  id="address"
+                  value={address}
+                  onChange={onAddressChange}
+                  placeholder="주소"
+                />
+                <button type="button" onClick={onAddressBtn}>
+                  <BiSearchAlt2 />
+                </button>
+              </div>
             </div>
-          </div>
-          {/* <div className="address2">
+            {/* <div className="address2">
             <p></p>
             <div>
               <Input
@@ -188,21 +230,23 @@ export function MyPage() {
               />
             </div>
           </div> */}
-          <MyPageInput
-            id="phoneNum"
-            label="핸드폰"
-            onChange={onPhoneNumChange}
-            placeholder="전화번호 형식에 맞게 작성해주세요"
-          />
-          <MyPageInput
-            id="passowrd"
-            label="비밀번호"
-            type="password"
-            onChange={onPasswordChange}
-            placeholder="비밀번호(숫자, 영문을 포함한 8자리 이상)"
-          />
-          <div className="modifyBtn">
-            <LoginBtn label="수정하기" onClick={userData} type="submit" />
+            <MyPageInput
+              id="phoneNum"
+              label="핸드폰"
+              onChange={onPhoneNumChange}
+              value={phoneNum}
+              placeholder="전화번호 형식에 맞게 작성해주세요"
+            />
+            <MyPageInput
+              id="passowrd"
+              label="비밀번호"
+              type="password"
+              onChange={onPasswordChange}
+              placeholder="비밀번호(숫자, 영문을 포함한 8자리 이상)"
+            />
+            <div className="modifyBtn">
+              <LoginBtn label="수정하기" onClick={userData} type="submit" />
+            </div>
           </div>
         </form>
       </Cover>
@@ -228,7 +272,7 @@ const Cover = styled.div`
   }
   .address {
     display: flex;
-    width: 40%;
+    width: 100%;
     height: 46px;
     margin: 0 auto;
     justify-content: space-between;
@@ -246,7 +290,7 @@ const Cover = styled.div`
         width: 15%;
         border: none;
         border-radius: 0 10px 10px 0;
-        background-color: #2cb5e8;
+        background-color: #222;
         svg {
           color: #fff;
         }
@@ -274,6 +318,16 @@ const Cover = styled.div`
     width: 50%;
     margin: auto;
   }
+  .inputContainer {
+    width: 40%;
+    min-width: 457px;
+    margin: 0 auto;
+  }
+`;
+
+const CloseIcon = styled(IoIosClose)`
+  font-size: 38px;
+  cursor: pointer;
 `;
 
 const AddressOpenModal = styled(Modal)`

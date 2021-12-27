@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <iframe id="browserboard" allow=fullscreen width="100%" height=500px  sandbox="allow-pointer-lock allow-same-origin allow-scripts allow-forms"
+    src="https://browserboard.com/whiteboard/D2HHJxZa6ArQQzFXMRtogW?key=cmFq79E84Gkmt4whsrvvgz">
+  </iframe>
+  <input type="button" id="btn" value="load" data="load" />
+  <!-- <input type="button" id="btn" value="insert" data="insert" />  -->
+  <input type="button" id="target" value="insert" />
+  <img id="ak" src="" />
+  <script>
+
+    var t = document.getElementById('target');
+    t.addEventListener('click', (e) => {
+      console.log(e.target.value);
+
+      alert('Hello world, ' + e.target.value);
+    });
+
+    const iframeElement = document.getElementById("browserboard");
+    function sendBrowserboardMessage(message) {
+      iframeElement.contentWindow.postMessage(message, "https://browserboard.com");
+    }
+    var tt = document.getElementById("btn");
+    tt.addEventListener("click", (e) => {
+      console.log(e.target.value);
+      switch (e.target.value) {
+        case "load":
+          var a = sendBrowserboardMessage({ "action": "downloadImage" })
+          console.log(a);
+          break;
+        case "insert":
+          sendBrowserboardMessage({
+            action: "insertImage",
+            url: "https://img.etnews.com/photonews/2104/1407012_20210425163926_362_0001.jpg",
+          })
+          break;
+        /* handle the action */
+        /* the rest of this file will explain what actions exist and how to handle them. */
+      }
+    });
+
+    window.addEventListener("message", (e) => {
+      switch (e.data.action) {
+        case "updateDownloadImageProgress":
+          document.getElementById('ak').src = e.data.url
+          console.log(e.data);
+          break; /* handle the action */
+        case "downloadImageComplete":
+          console.log(e.data);
+          break; /* handle the action */
+        /* the rest of this file will explain what actions exist and how to handle them. */
+      }
+    });
+  </script>
+
+</html>
