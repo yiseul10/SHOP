@@ -110,7 +110,7 @@ const SlideNav = props => {
           </Link>
           <LineDiv />
           <NavBottom>
-            <Link to={`/login`}>로그인</Link>
+            {/* <Link to={`/`}>로그인</Link> */}
             <Link to={`/wish`}>위시리스트</Link>
             <div>ABOUT US</div>
           </NavBottom>

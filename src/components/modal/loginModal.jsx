@@ -1,13 +1,14 @@
-import styled from "styled-components";
-import Modal from "react-modal";
-import React, { useEffect } from "react";
-import { IoIosClose } from "react-icons/io";
+import styled from 'styled-components';
+import Modal from 'react-modal';
+import React, { useEffect } from 'react';
+import { IoIosClose } from 'react-icons/io';
+import { media } from '../../responsive';
 
 export function LoginModal({
   isVisible,
   isModalClose,
   components,
-  setIsModalVisible,
+  setIsModalVisible
 }) {
   //  치환 개념
 
@@ -49,6 +50,7 @@ const StyleModal = styled(Modal)`
 const CloseIcon = styled(IoIosClose)`
   font-size: 38px;
   cursor: pointer;
+  ${media({ padding: '3px' })};
 `;
 
 const Container = styled.div`
@@ -67,4 +69,5 @@ const Container = styled.div`
   div {
     text-align: right;
   }
+  ${media({ border: 'none', width: '80%', height: '60%', padding: '0' })};
 `;

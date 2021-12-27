@@ -12,11 +12,8 @@ import { Custom } from './Custom';
 
 import AppTabs from '../components/Products/AppTabs';
 
-
-
-
 const ReviewWrapper = styled.div`
-  padding: auto;
+  padding: 30px;
   background-color: whitesmoke;
   text-align: center;
 `;
@@ -31,12 +28,13 @@ const Wrapper = styled.div`
 
 const ImgContainer = styled.div`
   flex: 1;
+  ${media({ padding: '30px 0px' })}
 `;
 
 const Image = styled.img`
   height: 100vh;
   object-fit: cover;
-  ${media({ width: '100%' })}
+  ${media({ width: '100%', height: 'auto' })}
 `;
 
 const InfoContainer = styled.div`
@@ -151,9 +149,6 @@ const InfoControl = styled.div`
   justify-content: space-between;
 `;
 
-
-
-
 export const Product = () => {
   const { id } = useParams();
 
@@ -168,7 +163,6 @@ export const Product = () => {
   const dispatch = useDispatch();
   const addFlashMessage = useContext(MessageContext);
   const customNumber = useSelector(state => state.custom.uploadImage);
-
 
   useEffect(() => {
     const getProduct = async () => {
@@ -199,10 +193,10 @@ export const Product = () => {
     fetchUsers();
   }, []);
 
-  const customLoad = () =>{
+  const customLoad = () => {
     setCustom(!custom);
     console.log(custom);
-  }
+  };
 
   const handleQuantity = type => {
     if (type === 'dec') {
@@ -212,24 +206,20 @@ export const Product = () => {
     }
   };
 
-
   const imagestyle = {
-    height: "22vh",  
-      width: "13vw",
-      };
-
-
-      
+    height: '22vh',
+    width: '13vw'
+  };
 
   const handleAddToCart = () => {
     addFlashMessage('장바구니에 담겼습니다!');
     console.log(customNumber);
-    dispatch(addToCart({customNumber ,quantity, color, size, ...product }));
+    dispatch(addToCart({ customNumber, quantity, color, size, ...product }));
   };
 
   return product.colors === undefined ? null : (
     <Container>
-       {custom&&<Custom></Custom>}
+      {custom && <Custom></Custom>}
       <Wrapper>
         <ImgContainer>
           <Image src={product.image} />
@@ -247,9 +237,9 @@ export const Product = () => {
                 height: '22px',
                 padding: '2px'
               }}
-              onClick={()=>customLoad()}>
+              onClick={() => customLoad()}
+            >
               커스텀
-             
             </StyledButton>
           </InfoControl>
           <FilterContainer>
@@ -301,53 +291,62 @@ export const Product = () => {
           </ButtonHandle>
         </InfoContainer>
       </Wrapper>
-      
-      {users!=null&&<ReviewWrapper>
-        <div>
-          <th>   <h1>  상품평 </h1>  </th>      
-              
-               <span>   
-                
-               <Link to={`/reviewinsert/${id}`}>
-                    <StyledButton>  상품평 등록</StyledButton>
-                  
-                  </Link> 
-                   </span>
-          <hr />
-        
-          {
-            users
-              .reviews
-              .map(user => (
-                <>
-                  <td colspan="1">
-                    <span>
-                    <td> <p> 리뷰 번호 : {user.reviewsNumber}  &nbsp;	&nbsp; &nbsp;	&nbsp; </p> </td>
-                   
-                      <img
-                        style = {imagestyle}
-                        
-                        src={user.images.image} />
-                           &nbsp; &nbsp; &nbsp; 
-                           &nbsp; &nbsp; &nbsp; 
-                    </span>
-                  </td>
-                       
-                  <td>
-                    <h2><span> {user.title} </span></h2>
 
-                    <span>
-                      <h5><p> {user.content} </p></h5>
-                 
-                    </span>
-                  </td>
-                
-                  <hr /><br />
-                </>
-              ))
-          }
-        </div>
-      </ReviewWrapper>}
+      {users != null && (
+        <ReviewWrapper>
+          <div>
+            <th>
+              <p style={{ fontSize: '1rem', margin: '0', fontWeight: '400' }}>
+                {' '}
+                상품평{' '}
+              </p>
+            </th>
+            <hr />
+
+            <span>
+              <Link to={`/reviewinsert/${id}`}>
+                <StyledButton style={{ width: '30%' }}>
+                  상품평 등록
+                </StyledButton>
+              </Link>
+            </span>
+
+            {users.reviews.map(user => (
+              <>
+                <td colspan='1'>
+                  <span>
+                    <td>
+                      {' '}
+                      <p>
+                        {' '}
+                        리뷰 번호 : {user.reviewsNumber} &nbsp; &nbsp; &nbsp;
+                        &nbsp;{' '}
+                      </p>{' '}
+                    </td>
+                    <img style={imagestyle} src={user.images.image} />
+                    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                  </span>
+                </td>
+
+                <td>
+                  <h2>
+                    <span> {user.title} </span>
+                  </h2>
+
+                  <span>
+                    <h5>
+                      <p> {user.content} </p>
+                    </h5>
+                  </span>
+                </td>
+
+                <hr />
+                <br />
+              </>
+            ))}
+          </div>
+        </ReviewWrapper>
+      )}
     </Container>
   );
 };

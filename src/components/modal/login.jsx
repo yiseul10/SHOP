@@ -1,21 +1,22 @@
-import styled from "styled-components";
-import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
-import { LoginInput } from "components/input";
-import { PrimaryBtn } from "components/Button";
-import { LoginBtn } from "components/Button/loginBtn";
-import axios from "axios";
-import { useDispatch, useSelector } from "react-redux";
-import { addToAuth } from "../../store/auth-slice";
+import styled from 'styled-components';
+import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import { LoginInput } from 'components/input';
+import { PrimaryBtn } from 'components/Button';
+import { LoginBtn } from 'components/Button/loginBtn';
+import axios from 'axios';
+import { useDispatch, useSelector } from 'react-redux';
+import { addToAuth } from '../../store/auth-slice';
+import { media } from '../../responsive';
 
 export function LoginPage({ signup, pwSearch, onPwSearchBtn, authorization }) {
-  const auth = useSelector((state) => state.authorization);
-  const [id, setId] = useState("");
-  const [password, setPassword] = useState("");
+  const auth = useSelector(state => state.authorization);
+  const [id, setId] = useState('');
+  const [password, setPassword] = useState('');
   const history = useHistory();
 
   const dispatch = useDispatch();
-  const handleAddToAuth = (authorization) => {
+  const handleAddToAuth = authorization => {
     dispatch(addToAuth(authorization));
   };
 
@@ -42,22 +43,22 @@ export function LoginPage({ signup, pwSearch, onPwSearchBtn, authorization }) {
   // }
   const socialLogin = () => {
     window.location.href =
-      "https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=8c2835e5881d60b38a8561176852e4e2&redirect_uri=http://customshoppingmall.kro.kr/loading";
+      'https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=8c2835e5881d60b38a8561176852e4e2&redirect_uri=http://customshoppingmall.kro.kr/loading';
   };
 
   const userData = async () => {
     if (id.length === 0 || password.length === 0) {
-      window.alert("아이디 혹은 비밀번호를 입력해 주세요");
+      window.alert('아이디 혹은 비밀번호를 입력해 주세요');
     } else {
       const formdata = new FormData();
-      formdata.append("id", id);
-      formdata.append("password", password);
+      formdata.append('id', id);
+      formdata.append('password', password);
 
       //비동기 통신 POST
       const send = await axios({
-        method: "POST",
+        method: 'POST',
         url: `http://ec2-3-37-117-153.ap-northeast-2.compute.amazonaws.com:8080/shopApp/user-login	`,
-        data: formdata,
+        data: formdata
       });
       console.log(send.data);
       console.log(send.headers);
@@ -67,41 +68,41 @@ export function LoginPage({ signup, pwSearch, onPwSearchBtn, authorization }) {
         handleAddToAuth(authorization);
       }
       console.log(auth);
-      history.push("/");
+      history.push('/');
       history.go(0);
     }
   };
 
   return (
     <Cover>
-      <div className="text">
-        <p className="mainText">SHOP</p>
+      <div className='text'>
+        <p className='mainText'>SHOP</p>
+        <div className='loginInput'>
+          <LoginInput id='id' onChange={onIdChange} placeholder='Email' />
+          <LoginInput
+            id='passowrd'
+            type='password'
+            onChange={onPasswordChange}
+            placeholder='PassWord'
+          />
+        </div>
       </div>
-      <div className="loginInput">
-        <LoginInput id="id" onChange={onIdChange} placeholder="Email" />
-        <LoginInput
-          id="passowrd"
-          type="password"
-          onChange={onPasswordChange}
-          placeholder="PassWord"
-        />
-      </div>
-      <div className="loginBtn">
-        <LoginBtn label="로그인" onClick={userData} />
-        <LoginBtn label="회원가입" onClick={signup} type="button" />
+      <div className='loginBtn'>
+        <LoginBtn label='로그인' onClick={userData} />
+        <LoginBtn label='회원가입' onClick={signup} type='button' />
       </div>
       {/* <div className="signupBtn"> */}
 
       {/* </div> */}
-      <div className="passwordSearchBtn">
+      <div className='passwordSearchBtn'>
         <PrimaryBtn
-          label="비밀번호찾기"
+          label='비밀번호찾기'
           onClick={onPwSearchBtn}
-          type="button"
+          type='button'
         />
       </div>
-      <div className="kakaologin">
-        <PrimaryBtn label="카카오 로그인" onClick={socialLogin} type="button" />
+      <div className='kakaologin'>
+        <PrimaryBtn label='카카오 로그인' onClick={socialLogin} type='button' />
       </div>
     </Cover>
   );
@@ -110,15 +111,26 @@ export function LoginPage({ signup, pwSearch, onPwSearchBtn, authorization }) {
 const Cover = styled.div`
   margin-top: 15%;
   width: 80%;
+  ${media({ marginTop: '0', width: '80%' })};
+
   .mainText {
     font-size: 32px;
     font-weight: bold;
     margin: 0 0 32px;
+    ${media({
+      fontSize: '1rem',
+      textAlign: 'center',
+      transform: 'translateX(55%)',
+      display: 'flex',
+      margin: '0',
+      padding: '10px 0px'
+    })};
   }
 
   .loginInput {
   }
   .text {
     margin-right: 100px;
+    ${media({ textAlign: 'center', width: '100%' })};
   }
 `;

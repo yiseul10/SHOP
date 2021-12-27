@@ -107,7 +107,7 @@ export const CheckOut = () => {
 
   // const dispatch = useDispatch();
   const cart = useSelector(state => state.cart);
-  const auth = useSelector((state) => state.authorization);
+  const auth = useSelector(state => state.authorization);
 
   const [selectedValue, setSelectedValue] = useState('a');
 
@@ -126,8 +126,7 @@ export const CheckOut = () => {
         let customNumber = '';
         let color = '';
         let size = '';
-        if(cart.products.length==1)
-        {
+        if (cart.products.length == 1) {
           cart.products.map(
             pr => (
               (product += pr.product),
@@ -141,17 +140,16 @@ export const CheckOut = () => {
           );
         }
 
-        if(cart.products.length>1)
-        {
+        if (cart.products.length > 1) {
           cart.products.map(
             pr => (
               (product += pr.product + ','),
               (quantity += pr.quantity + ','),
               (id += pr.id + ','),
               (price += pr.quantity * pr.price + ','),
-              (customNumber += pr.customNumber+','),
-              (color += pr.color+','),
-              (size += pr.size+',')
+              (customNumber += pr.customNumber + ','),
+              (color += pr.color + ','),
+              (size += pr.size + ',')
             )
           );
         }
@@ -195,13 +193,13 @@ export const CheckOut = () => {
     <Container>
       <Wrapper>
         <Left>
-          <Title>배송주소</Title>
+          {/* <Title>배송주소</Title>
           <Hr />
           <Info>
             <form>
               <input></input>
             </form>
-          </Info>
+          </Info> */}
           <Title>배송정보</Title>
           <Hr />
           <label>

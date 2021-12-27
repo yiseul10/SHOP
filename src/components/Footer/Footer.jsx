@@ -12,7 +12,7 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  border-top: 0.5px solid var(--main-grey-color);
+  border-top: 0.5px solid var(--main-line-color);
 `;
 const InfoSet = styled.span``;
 const Info = styled.span`
