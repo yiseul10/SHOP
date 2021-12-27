@@ -48,9 +48,13 @@ const Desc = styled.p`
 `;
 
 const CategoryItem = ({ item }) => {
+  const handleScrollUp = () => {
+    window.scroll(0, 0);
+  };
+
   return (
     <Container>
-      <Link to={`/products/${item.cat}`}>
+      <Link to={`/products/${item.cat}`} onClick={handleScrollUp}>
         <Image src={item.img} />
       </Link>
       <Info>
