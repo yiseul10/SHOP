@@ -115,20 +115,22 @@ export function MyPage() {
 
   const userData = async () => {
     const formdata = new FormData();
-    formdata.append("name", userName); //  이름
-    formdata.append("id", id); //  아이디
-    formdata.append("userNumber", "1"); //  회원번호
-    formdata.append("nickName", nickName); //  닉네임
-    formdata.append("id", email); //  이메일
-    formdata.append("address", address); //  주소
+    formdata.append("id", email); //  이름
+    // formdata.append("id", id); //  아이디
+    formdata.append("name", nickName); //  닉네임
+    // formdata.append("id", email); //  이메일
+    formdata.append("address1", address); //  주소
     formdata.append("phone", phoneNum); //  핸드폰
-    formdata.append("password", password); //  비밀번호
+    // formdata.append("password", password); //  비밀번호
     try {
       //비동기 통신 POST
       const send = await axios({
         method: "POST",
-        url: `http://ec2-3-37-117-153.ap-northeast-2.compute.amazonaws.com:8080/shoppingmall/mypage/my	`,
+        url: `http://ec2-3-37-117-153.ap-northeast-2.compute.amazonaws.com:8080/shopApp/user-privacy	`,
         data: formdata,
+        headers: {
+          authorization: auth.authorization,
+        },
       });
       console.log(send.data);
       console.log(send.headers);
