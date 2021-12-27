@@ -2,9 +2,7 @@ import styled from 'styled-components';
 import { media } from '../responsive';
 import { Add, Remove } from '@material-ui/icons';
 import StyledButton from '../components/Button/Button';
-
 import Axios from 'axios';
-
 import { useParams, Link } from 'react-router-dom';
 import { useState, useEffect, useContext } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -14,6 +12,9 @@ import { Custom } from './Custom';
 
 import AppTabs from '../components/Products/AppTabs';
 
+
+
+
 const ReviewWrapper = styled.div`
   padding: auto;
   background-color: whitesmoke;
@@ -21,14 +22,17 @@ const ReviewWrapper = styled.div`
 `;
 
 const Container = styled.div``;
+
 const Wrapper = styled.div`
   padding: 150px;
   display: flex;
   ${media({ padding: '60px 0px', flexDirection: 'column' })}
 `;
+
 const ImgContainer = styled.div`
   flex: 1;
 `;
+
 const Image = styled.img`
   height: 100vh;
   object-fit: cover;
@@ -147,6 +151,9 @@ const InfoControl = styled.div`
   justify-content: space-between;
 `;
 
+
+
+
 export const Product = () => {
   const { id } = useParams();
 
@@ -204,6 +211,15 @@ export const Product = () => {
       setQuantity(quantity + 1);
     }
   };
+
+
+  const imagestyle = {
+    height: "22vh",  
+      width: "13vw",
+      };
+
+
+      
 
   const handleAddToCart = () => {
     addFlashMessage('장바구니에 담겼습니다!');
@@ -309,12 +325,14 @@ export const Product = () => {
                     <td> <p> 리뷰 번호 : {user.reviewsNumber}  &nbsp;	&nbsp; &nbsp;	&nbsp; </p> </td>
                    
                       <img
-
-                        style={{ height: '25%', width: '25%' }}
+                        style = {imagestyle}
+                        
                         src={user.images.image} />
-
+                           &nbsp; &nbsp; &nbsp; 
+                           &nbsp; &nbsp; &nbsp; 
                     </span>
                   </td>
+                       
                   <td>
                     <h2><span> {user.title} </span></h2>
 

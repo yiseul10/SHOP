@@ -12,7 +12,7 @@ export function LoginBtn({ label, onClick, type = "button" }) {
 const Cover = styled.button`
   border: none;
   border-radius: 10px;
-  background-color: #2cb5e8;
+  background-color: #222;
   font: bold;
   color: #fff;
   width: 38%;

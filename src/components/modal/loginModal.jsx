@@ -28,9 +28,7 @@ export function LoginModal({
     <StyleModal isOpen={isVisible}>
       <Container>
         <div>
-          <button onClick={isModalClose}>
-            <IoIosClose />
-          </button>
+          <CloseIcon onClick={isModalClose} />
         </div>
         {components}
       </Container>
@@ -46,6 +44,11 @@ const StyleModal = styled(Modal)`
   overflow-x: hidden;
   overflow-y: auto;
   z-index: 1031;
+`;
+
+const CloseIcon = styled(IoIosClose)`
+  font-size: 38px;
+  cursor: pointer;
 `;
 
 const Container = styled.div`

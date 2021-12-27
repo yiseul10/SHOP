@@ -142,7 +142,7 @@ const AddressCover = styled.div`
     width: 15%;
     border: none;
     border-radius: 0 10px 10px 0;
-    background-color: #2cb5e8;
+    background-color: #222;
     svg {
       color: #fff;
     }
