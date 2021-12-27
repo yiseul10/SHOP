@@ -229,12 +229,12 @@ const StyledButton = styled.button`
                     <StyledButton type="submit">
                     상품평 등록하기
                     </StyledButton>
-                
+                    <br/><br/>
 
                 </form>
 
 
-                <StyledButton onClick={this.handleGoBack}>뒤로 가기 </StyledButton> 
+              
              
             </Review>
             )
