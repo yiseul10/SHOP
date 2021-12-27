@@ -1,12 +1,13 @@
 import styled from "styled-components";
 import React, { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useSelector,useDispatch } from "react-redux";
 import axios from "axios";
 import CircularProgress from '@mui/material/CircularProgress';
 import StyledButton from '../components/Button/Button';
-
+import { addCustom } from '../store/customNumber-slice';
 
 export function Custom() {
+  const dispatch = useDispatch();
   const [sendImageBlob, setSendImageBlob] = useState("");
   const [result, setResult] = useState("");
   const [load, setLoad] = useState("");
@@ -14,11 +15,12 @@ export function Custom() {
   const [insertImage, setInsertImage] = useState("");
   const [sendImageA, setSendImageA] = useState("");
   const auth = useSelector((state) => state.authorization);
+  const cus = useSelector((state) => state);
   const [iframeElement, setIframeElement] = useState("");
   const [customImage, setCustomImage] = useState(null);
   const [addImage, setAddImage] = useState("");
   const [board, setBoard] = useState(null);
-  const [uploadImage ,setUploadImage] = useState(null);
+  const [uploadImage, setUploadImage] = useState(null);
 
   setTimeout(() => {
     setIframeElement(document.getElementById("browserboard"));
@@ -34,7 +36,7 @@ export function Custom() {
   const saveImage = (event) => {
     setImage(event.target.files[0]);
   }
-  
+
   const sendImage = async (message) => { //데이터를 비동기로 보내는 함수
     const formdata = new FormData();
     switch (message) {
@@ -68,13 +70,27 @@ export function Custom() {
           break;
         case "send":
           setResult(send.data);
-          setUploadImage(send.data.url);
+          setUploadImage(send.data);
           break;
         default:
           break;
       }
     }
     catch (e) {
+    }
+  }
+  const deleteImage = async (event) => {
+    try {
+      const send = await axios({
+        method: 'DELETE',
+        url: `http://3.37.117.153:8080/shopApp/customs/${event.target.value}`,
+        headers: {
+          authorization: auth.authorization
+        }
+      });
+      console.log(send);
+      setResult(send);
+    } catch (e) {
     }
   }
 
@@ -147,6 +163,7 @@ export function Custom() {
       }
     };
     imageLoad();
+    
   }, [insertImage, result]);
 
   useEffect(() => {
@@ -166,6 +183,13 @@ export function Custom() {
     };
     boardLoad();
   }, []);
+
+  const setAAAA = () =>{
+    console.log(uploadImage.customNumber);
+    dispatch(addCustom(uploadImage.customNumber));
+    console.log(cus);
+  }
+
   if (!board) return <><br /><br /><br /><br /><br /><CircularProgress />그림판 불러오는중...</>
   return (<>
     <Div>
@@ -173,15 +197,21 @@ export function Custom() {
       </Cover>
       <Cover2 src="https://shoppingmal.s3.ap-northeast-2.amazonaws.com/review/04b82323-b83a-4adc-af1f-6739616aedf7" >
       </Cover2>
-      <Test src={uploadImage}/>
+      <Test src={uploadImage.url} />
     </Div>
     <Div>
       <BtnCover><StyledButton onClick={() => sendBrowserboardMessage()}>이미지 등록</StyledButton></BtnCover>
       <InputCover>파일 추가하기<InputFile type="file" onChange={saveImage} /></InputCover>
+      <StyledButton onClick={()=>setAAAA()}>확정하기</StyledButton>  
     </Div>
     {customImage && customImage.customs.map(img => (
       <>
         <ImgList src={img.images.image} type='button' onClick={() => setAddImage(img.images.image)} />
+        <StyledButton value={img.customNumber} onClick={deleteImage} style={{
+                width: '60px',
+                height: '22px',
+                padding: '2px'
+              }} >X</StyledButton>
       </>
     ))}
   </>

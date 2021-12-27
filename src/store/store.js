@@ -4,6 +4,8 @@ import wishReducer from "./wish-slice";
 import dataReducer from "./api-call";
 import addressReducer from "./addressReduce";
 import authReducer from "./auth-slice";
+import customReducer from "./customNumber-slice";
+
 
 export default configureStore({
   reducer: {
@@ -12,5 +14,6 @@ export default configureStore({
     products: dataReducer,
     address: addressReducer,
     authorization: authReducer,
+    custom: customReducer,
   },
 });

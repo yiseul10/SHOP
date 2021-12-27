@@ -107,6 +107,7 @@ export const CheckOut = () => {
 
   // const dispatch = useDispatch();
   const cart = useSelector(state => state.cart);
+  const auth = useSelector((state) => state.authorization);
 
   const [selectedValue, setSelectedValue] = useState('a');
 
@@ -122,23 +123,47 @@ export const CheckOut = () => {
         let quantity = '';
         let id = '';
         let price = '';
+        let customNumber = '';
+        let color = '';
+        let size = '';
+        if(cart.products.length==1)
+        {
+          cart.products.map(
+            pr => (
+              (product += pr.product),
+              (quantity += pr.quantity),
+              (id += pr.id),
+              (price += pr.quantity * pr.price),
+              (customNumber += pr.customNumber),
+              (color += pr.color),
+              (size += pr.size)
+            )
+          );
+        }
 
-        formdata.append('usersNumber', '1');
-        cart.products.map(
-          pr => (
-            (product += pr.product + ','),
-            (quantity += pr.quantity + ','),
-            (id += pr.id + ','),
-            (price += pr.quantity * pr.price + ',')
-          )
-        );
+        if(cart.products.length>1)
+        {
+          cart.products.map(
+            pr => (
+              (product += pr.product + ','),
+              (quantity += pr.quantity + ','),
+              (id += pr.id + ','),
+              (price += pr.quantity * pr.price + ','),
+              (customNumber += pr.customNumber+','),
+              (color += pr.color+','),
+              (size += pr.size+',')
+            )
+          );
+        }
 
         formdata.append('price', price);
         formdata.append('product', product);
         formdata.append('quantity', quantity);
+        formdata.append('size', size);
+        formdata.append('color', color);
         formdata.append('productsNumber', id);
-        formdata.append('productCustomNumber', '29,29');
-        formdata.append('productCount', '2');
+        formdata.append('productCustomNumber', customNumber);
+        formdata.append('productCount', cart.products.length);
 
         console.log(cart.products[0].id);
         console.log(formdata.get('product'));
@@ -146,8 +171,11 @@ export const CheckOut = () => {
         setLoading(true);
         const response = await axios({
           method: 'POST',
-          url: `http://ec2-3-37-117-153.ap-northeast-2.compute.amazonaws.com:8080/shoppingmall/orders`,
-          data: formdata
+          url: `http://ec2-3-37-117-153.ap-northeast-2.compute.amazonaws.com:8080/shopApp/orders`,
+          data: formdata,
+          headers: {
+            authorization: auth.authorization
+          }
         });
         console.log(response.data);
         if (response.data.result == 'PaymentDone');

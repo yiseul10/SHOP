@@ -7,7 +7,7 @@ import Axios from 'axios';
 
 import { useParams, Link } from 'react-router-dom';
 import { useState, useEffect, useContext } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addToCart } from '../store/cart-slice';
 import MessageContext from '../components/MessageContext';
 import { Custom } from './Custom';
@@ -160,6 +160,7 @@ export const Product = () => {
   const [users, setUsers] = useState(null); // axios를 통해 json에서 데이터를 끄집어 내기 위한 곳
   const dispatch = useDispatch();
   const addFlashMessage = useContext(MessageContext);
+  const customNumber = useSelector(state => state.custom.uploadImage);
 
 
   useEffect(() => {
@@ -206,7 +207,8 @@ export const Product = () => {
 
   const handleAddToCart = () => {
     addFlashMessage('장바구니에 담겼습니다!');
-    dispatch(addToCart({ quantity, color, size, ...product }));
+    console.log(customNumber);
+    dispatch(addToCart({customNumber ,quantity, color, size, ...product }));
   };
 
   return product.colors === undefined ? null : (
