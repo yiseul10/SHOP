@@ -3,20 +3,20 @@ import { createSlice } from '@reduxjs/toolkit';
 const wishSlice = createSlice({
   name: 'wish',
   initialState: {
-    products: [],
+    wishList: [],
     quantity: 0
   },
   reducers: {
     addWish: (state, action) => {
+      state.wishList.push(action.payload);
       state.quantity += 1;
-      state.products.push(action.payload);
     },
     removeWish: (state, action) => {
+      state.wishList.pop(action.payload);
       state.quantity -= 1;
-      state.products.pop(action.payload);
     },
-    clearWish(state, action) {
-      state.products = [];
+    clearWish: (state, action) => {
+      state.wishList = [];
     }
   }
 });

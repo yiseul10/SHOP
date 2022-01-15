@@ -92,7 +92,7 @@ export const WishList = () => {
 
   return (
     <Container>
-      {wish.products.length === 0 ? (
+      {wish.wishList.length === 0 ? (
         <Message>위시리스트가 없습니다.</Message>
       ) : (
         <Wrapper>
@@ -101,7 +101,7 @@ export const WishList = () => {
               <Title>위시리스트({wish.quantity})</Title>
               <DeleteAll onClick={handleClear}>모두삭제</DeleteAll>
             </LeftSection>
-            {wish.products.map(product => (
+            {wish.wishList.map(product => (
               <div key={product.index} id={product.id}>
                 <Product>
                   <ProductDetail>
