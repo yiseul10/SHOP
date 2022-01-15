@@ -40,7 +40,9 @@ a:hover {
 html {
   box-sizing: border-box;
 }
-textarea:focus,
+textarea:focus {
+  outline: none;
+}
 input:focus {
   outline: none;
 }

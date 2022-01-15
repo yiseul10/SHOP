@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { removeWish } from '../store/wish-slice';
+import { removeWish, clearWish } from '../store/wish-slice';
 import { media } from '../responsive';
 
 const Container = styled.div`
@@ -82,10 +82,12 @@ const ProductTitle = styled(Link)`
 export const WishList = () => {
   const dispatch = useDispatch();
   const wish = useSelector(state => state.wish);
-  console.log(wish);
 
   const handleDelete = () => {
     dispatch(removeWish(wish));
+  };
+  const handleClear = () => {
+    dispatch(clearWish(wish));
   };
 
   return (
@@ -97,7 +99,7 @@ export const WishList = () => {
           <Left>
             <LeftSection>
               <Title>위시리스트({wish.quantity})</Title>
-              <DeleteAll onClick={handleDelete}>모두삭제</DeleteAll>
+              <DeleteAll onClick={handleClear}>모두삭제</DeleteAll>
             </LeftSection>
             {wish.products.map(product => (
               <div key={product.index} id={product.id}>

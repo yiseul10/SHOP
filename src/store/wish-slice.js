@@ -14,9 +14,12 @@ const wishSlice = createSlice({
     removeWish: (state, action) => {
       state.quantity -= 1;
       state.products.pop(action.payload);
+    },
+    clearWish(state, action) {
+      state.products = [];
     }
   }
 });
 
-export const { addWish, removeWish } = wishSlice.actions;
+export const { addWish, removeWish, clearWish } = wishSlice.actions;
 export default wishSlice.reducer;

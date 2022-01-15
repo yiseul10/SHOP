@@ -51,6 +51,9 @@ const Select = styled.select`
   margin: 10px 0;
   border: none;
   font-size: 11px;
+  &:focus {
+    outline: none;
+  }
   ${media({ display: 'flex', margin: '10px 0px 0px 0px' })}
 `;
 const Option = styled.option``;

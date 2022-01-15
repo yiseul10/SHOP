@@ -105,6 +105,9 @@ const FilterSize = styled.select`
   padding: 8px;
   font-size: 11px;
   border: 0.5px solid var(--light-grey-color);
+  &:focus {
+    outline: none;
+  }
 `;
 
 const FilterSizeOption = styled.option``;
@@ -212,8 +215,8 @@ export const Product = () => {
   };
 
   const handleAddToCart = () => {
+    window.scroll(0, 0);
     addFlashMessage('장바구니에 담겼습니다!');
-    console.log(customNumber);
     dispatch(addToCart({ customNumber, quantity, color, size, ...product }));
   };
 
