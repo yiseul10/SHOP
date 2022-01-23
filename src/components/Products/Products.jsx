@@ -89,7 +89,6 @@ const Products = ({ cat, filters, sort, keyword }) => {
       {cat
         ? filteredProducts.map(product => (
             <Product
-              product={product}
               id={product.productNumber}
               kind={product.kind}
               image={product.image}
@@ -100,7 +99,6 @@ const Products = ({ cat, filters, sort, keyword }) => {
           ))
         : products.map(product => (
             <Product
-              product={product}
               id={product.productNumber}
               kind={product.kind}
               image={product.image}

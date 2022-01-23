@@ -160,8 +160,7 @@ export const Product = () => {
   const [color, setColor] = useState('');
   const [size, setSize] = useState('');
   const [custom, setCustom] = useState(false);
-  const [type, setType] = useState(0);
-  const [page, setPage] = useState(1);
+
   const [users, setUsers] = useState(null); // axios를 통해 json에서 데이터를 끄집어 내기 위한 곳
   const dispatch = useDispatch();
   const addFlashMessage = useContext(MessageContext);

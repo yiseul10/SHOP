@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import { Favorite, FavoriteBorderOutlined } from '@material-ui/icons';
 import styled from 'styled-components';
 import { media } from '../../responsive';
@@ -94,7 +94,7 @@ const Currency = styled.span`
   padding: 0.1rem;
 `;
 
-const Product = ({ id, ...product }) => {
+const Product = ({ ...product }) => {
   const addFlashMessage = useContext(MessageContext);
   const [click, setClick] = useState(false);
 
@@ -103,21 +103,21 @@ const Product = ({ id, ...product }) => {
   const handleAddToWish = product => {
     setClick(!click);
     if (!click) {
-      dispatch(addWish({ id, ...product }));
+      dispatch(addWish({ ...product, quantity: 1 }));
       addFlashMessage('위시리스트에 담겼습니다!');
     } else {
-      dispatch(removeWish({ id, ...product }));
+      dispatch(removeWish({ ...product }));
     }
   };
 
   return (
     <Container>
-      <Link to={`/${id}`}>
+      <Link to={`/${product.id}`}>
         <ImgView>
           <Image src={product.image} alt={product.product} />
         </ImgView>
       </Link>
-      <Icon onClick={() => handleAddToWish({ id, ...product })}>
+      <Icon onClick={() => handleAddToWish({ ...product })}>
         {click ? <Favorite /> : <FavoriteBorderOutlined />}
       </Icon>
       <Detail>

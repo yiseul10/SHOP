@@ -80,14 +80,14 @@ const ProductTitle = styled(Link)`
 `;
 
 export const WishList = () => {
-  const dispatch = useDispatch();
   const wish = useSelector(state => state.wish);
+  const dispatch = useDispatch();
 
-  const handleDelete = () => {
-    dispatch(removeWish(wish));
+  const handleDelete = product => {
+    dispatch(removeWish(product));
   };
   const handleClear = () => {
-    dispatch(clearWish(wish));
+    dispatch(clearWish());
   };
 
   return (
@@ -115,7 +115,7 @@ export const WishList = () => {
                   </ProductDetail>
                   <PriceDetail>
                     <p>{product.price}원</p>
-                    <Delete onClick={handleDelete}>삭제</Delete>
+                    <Delete onClick={() => handleDelete(product)}>삭제</Delete>
                   </PriceDetail>
                 </Product>
                 <Hr />

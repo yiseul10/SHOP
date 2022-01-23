@@ -47,7 +47,7 @@ const Message = styled.div`
   align-items: center;
   padding: 0.2rem;
   transform: translateX(-50%);
-  animation: ${Ani} ease-in 5s forwards;
+  animation: ${Ani} ease-in-out 2s forwards;
   &:last-of-type {
     display: block;
   }
