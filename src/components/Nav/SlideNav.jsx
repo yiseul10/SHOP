@@ -65,10 +65,8 @@ const NavBottom = styled.li`
   }
 `;
 
-const SlideNav = props => {
+const SlideNav = () => {
   const [isOpen, setOpen] = useState(false);
-
-  const [wide, setWide] = useState(false);
 
   return (
     <Overlay>
@@ -76,7 +74,7 @@ const SlideNav = props => {
         <MenuToggle isOpen={isOpen} toggle={() => setOpen(!isOpen)} />
       </Toggle>
       {isOpen && (
-        <Content onClick={() => setOpen(!isOpen)} clicked={wide}>
+        <Content onClick={() => setOpen(!isOpen)}>
           <Menu>
             <li>
               <Link to={`/products/product`}>전체상품</Link>
@@ -110,7 +108,6 @@ const SlideNav = props => {
           </Link>
           <LineDiv />
           <NavBottom>
-            {/* <Link to={`/`}>로그인</Link> */}
             <Link to={`/wish`}>위시리스트</Link>
             <div>ABOUT US</div>
           </NavBottom>
