@@ -47,11 +47,7 @@ const Slide = styled.div`
   display: flex;
   align-items: center;
 `;
-// const ImgContainer = styled.div`
-//   height: 100%;
-//   flex: 1;
-// `;
-// const Image = styled.img``;
+
 const Title = styled.div`
   font-size: 5rem;
   font-weight: 300;

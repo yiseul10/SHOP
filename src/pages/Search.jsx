@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import styled from 'styled-components';
 
 import Axios from 'axios';
@@ -66,19 +66,22 @@ export const Search = () => {
   const [page, setPage] = useState(1);
   const [numberOfPages, setNumberOfPages] = useState();
 
-  const fetchSearch = async e => {
-    try {
-      const response = await Axios.get(`?page=${page}&product=${keyword}`);
-      console.log('데이터', response.data);
-      setProduct(response.data.products);
-      setNumberOfPages(response.data.endPage);
-    } catch (err) {}
-  };
+  const fetchSearch = useCallback(
+    async e => {
+      try {
+        const response = await Axios.get(`?page=${page}&product=${keyword}`);
+        console.log('데이터', response.data);
+        setProduct(response.data.products);
+        setNumberOfPages(response.data.endPage);
+      } catch (err) {}
+    },
+    [keyword, page]
+  );
 
   useEffect(() => {
     window.scroll(0, 0);
     fetchSearch();
-  }, [keyword, page]);
+  }, [fetchSearch]);
 
   return (
     <Container>

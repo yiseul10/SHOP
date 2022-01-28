@@ -152,25 +152,29 @@ const InfoControl = styled.div`
   justify-content: space-between;
 `;
 
-export const Product = () => {
-  const { id } = useParams();
+const imagestyle = {
+  height: '22vh',
+  width: '13vw'
+};
 
+export const Product = () => {
+  const dispatch = useDispatch();
+  const addFlashMessage = useContext(MessageContext);
+  const { id } = useParams();
   const [product, setProduct] = useState({});
   const [quantity, setQuantity] = useState(1);
   const [color, setColor] = useState('');
   const [size, setSize] = useState('');
-  const [custom, setCustom] = useState(false);
 
   const [users, setUsers] = useState(null); // axios를 통해 json에서 데이터를 끄집어 내기 위한 곳
-  const dispatch = useDispatch();
-  const addFlashMessage = useContext(MessageContext);
+  const [custom, setCustom] = useState(false);
   const customNumber = useSelector(state => state.custom.uploadImage);
 
   useEffect(() => {
     const getProduct = async () => {
       try {
         const response = await Axios.get(`/${id}`);
-        // console.log('데이터', response.data);
+        console.log('데이터', response.data);
         setProduct(response.data);
       } catch (error) {
         console.error(error);
@@ -179,6 +183,21 @@ export const Product = () => {
     getProduct();
   }, [id]);
 
+  const handleQuantity = type => {
+    if (type === 'dec') {
+      quantity > 1 && setQuantity(quantity - 1);
+    } else {
+      setQuantity(quantity + 1);
+    }
+  };
+
+  const handleAddToCart = () => {
+    window.scroll(0, 0);
+    addFlashMessage('장바구니에 담겼습니다!');
+    dispatch(addToCart({ customNumber, quantity, color, size, ...product }));
+  };
+
+  // 리뷰
   useEffect(() => {
     const fetchUsers = async () => {
       try {
@@ -198,25 +217,6 @@ export const Product = () => {
   const customLoad = () => {
     setCustom(!custom);
     console.log(custom);
-  };
-
-  const handleQuantity = type => {
-    if (type === 'dec') {
-      quantity > 1 && setQuantity(quantity - 1);
-    } else {
-      setQuantity(quantity + 1);
-    }
-  };
-
-  const imagestyle = {
-    height: '22vh',
-    width: '13vw'
-  };
-
-  const handleAddToCart = () => {
-    window.scroll(0, 0);
-    addFlashMessage('장바구니에 담겼습니다!');
-    dispatch(addToCart({ customNumber, quantity, color, size, ...product }));
   };
 
   return product.colors === undefined ? null : (

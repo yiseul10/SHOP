@@ -3,8 +3,7 @@ import Axios from 'axios';
 import { useState, useEffect } from 'react';
 
 import styled from 'styled-components';
-import { media } from '../../responsive';
-import { mobile } from '../../responsive';
+import { media, mobile } from '../../responsive';
 
 import Product from './Product';
 import AppPagination from './AppPagination';
@@ -15,7 +14,6 @@ const Container = styled.div`
   position: relative;
   display: flex;
   justify-content: center;
-  /* flex: 1 1 auto; */
   ${media({
     padding: '20px 15px 80px 15px'
   })}
@@ -33,8 +31,6 @@ const Page = styled.div`
 `;
 
 const Products = ({ cat, filters, sort, keyword }) => {
-  // console.log(cat, filters, sort);
-  // TODO
   const [products, setProduct] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
 
@@ -51,11 +47,8 @@ const Products = ({ cat, filters, sort, keyword }) => {
             ? `?page=1&product=${keyword}`
             : `?page=${page}&count=20&kind=${cat}`
         );
-        console.log('데이터', response.data);
         setProduct(response.data.products);
-        const num = response.data.endPage;
         setNumberOfPages(response.data.endPage);
-        console.log(num);
       } catch (err) {}
     };
     fetchUsers();
@@ -70,13 +63,11 @@ const Products = ({ cat, filters, sort, keyword }) => {
           )
         )
       );
-  }, [products, cat, filters]);
+  }, [cat, filters, products]);
 
   useEffect(() => {
     if (sort === 'featured') {
-      setFilteredProducts(prev =>
-        [...prev].sort((a, b) => a.createdAt - b.createdAt)
-      );
+      setFilteredProducts(prev => [...prev].sort((a, b) => a - b));
     } else if (sort === 'asc') {
       setFilteredProducts(prev => [...prev].sort((a, b) => a.price - b.price));
     } else {

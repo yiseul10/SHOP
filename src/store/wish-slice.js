@@ -12,16 +12,23 @@ const wishSlice = createSlice({
   initialState,
   reducers: {
     addWish: (state, action) => {
-      state.wishList.push(action.payload);
-      state.quantity += 1;
+      const wishItem = state.wishList.filter(
+        item => item.id === action.payload.id
+      );
+
+      if (wishItem) {
+        state.wishList.push(action.payload);
+        state.quantity += 1;
+      }
+
       localStorage.setItem('wishList', JSON.stringify(state.wishList));
     },
     removeWish: (state, action) => {
-      const nextProducts = state.wishList.filter(
+      const wishItem = state.wishList.filter(
         item => item.id !== action.payload.id
       );
-      state.wishList = nextProducts;
-      if (nextProducts.quantity > 0) state.quantity -= 1;
+      state.wishList = wishItem;
+      if (wishItem.quantity > 0) state.quantity -= 1;
       localStorage.setItem('wishList', JSON.stringify(state.wishList));
       return state;
     },

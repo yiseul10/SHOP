@@ -103,18 +103,17 @@ const Login = styled.div`
 
 function Header() {
   const axiosCustom = useAxios();
+  const history = useHistory();
   const [click, setClick] = useState(false);
+  const [userName, setUserName] = useState('');
+  const cart = useSelector(state => state.cart);
 
   const dispatch = useDispatch();
-  const history = useHistory();
-  const cart = useSelector(state => state.cart);
-  // const { quantity } = useSelector(state => state.cart);
-
   const isMobile = useMediaQuery({ maxWidth: 768 });
-  const [userName, setUserName] = useState('');
 
   useEffect(() => {
     dispatch(getTotals());
+
     if (localStorage.getItem('authorization')) {
       (async () => {
         const res = await axiosCustom.get('/user'); // todo: getUser 현재 로그인 중인 유저 정보 api
@@ -124,17 +123,6 @@ function Header() {
     }
     // setUserName("박일규"); //todo: api통신되면 지울 것
   }, [cart, dispatch]);
-
-  const handleClick = () => {
-    setClick(!click);
-    history.push('/search');
-  };
-
-  const handleScroll = () => {
-    window.scroll(0, 0);
-  };
-
-  const quantity = useSelector(state => state.cart.quantity);
 
   const [isModalUp, setIsmodalUp] = useState(false);
   const [isSwitch, setIsSwitch] = useState(false);
@@ -170,6 +158,15 @@ function Header() {
   function test() {
     setIsmodalUp(false);
   }
+
+  const handleClick = () => {
+    setClick(!click);
+    history.push('/search');
+  };
+
+  const handleScroll = () => {
+    window.scroll(0, 0);
+  };
 
   return (
     <Container>
@@ -213,7 +210,7 @@ function Header() {
           <MenuHandle to='/Customer/cs'>고객센터</MenuHandle>
 
           <MenuItem to='/cart'>
-            <Badge badgeContent={quantity} color='error'>
+            <Badge badgeContent={cart.quantity} color='error'>
               <ShoppingCartOutlined />
             </Badge>
           </MenuItem>

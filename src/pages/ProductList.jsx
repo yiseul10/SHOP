@@ -120,15 +120,6 @@ export const ProductList = () => {
               <Option>XL</Option>
               <Option>FREE</Option>
             </Select>
-            {/* <Select name='color' onChange={handleFilters} disabled>
-              <Option>Color</Option>
-              <Option>White</Option>
-              <Option>Black</Option>
-              <Option>Red</Option>
-              <Option>Blue</Option>
-              <Option>Yellow</Option>
-              <Option>Green</Option>
-            </Select> */}
           </Filter>
         </FilterContainer>
         <MobileCat>{cat}</MobileCat>
