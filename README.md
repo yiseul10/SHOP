@@ -10,7 +10,8 @@
 모든 서버와의 통신은 Rest API형식으로 주고받는 형식으로 구현되었습니다.
 
 저는 프론트엔드 담당으로
-`메인페이지, 제품리스트와 제품 상세페이지, 장바구니 및 위시리스트`를 작성하고 사이트 전반의 톤 앤 매너를 구성했습니다.
+`메인페이지, 제품리스트와 제품 상세페이지, 장바구니 및 위시리스트`를 작성하고  
+사이트 전반의 톤 앤 매너를 구성했습니다.
 
 
 <br />
@@ -36,28 +37,31 @@
 
 ## Tech
 
-- [React] - 화면의 요소들을 컴포넌트 단위로 나누어 관리할 수 있고 재사용이 용이한 자바스크립트 라이브러리 React를 사용하였습니다.
-- [styled-components] - 컴포넌트 기반으로 스타일링을 할 수 있는 styled-components를 사용하였습니다.
-- [Redux] - 단방향의 데이터 흐름(FLUX)으로 데이터의 전역 상태를 생성하고 관리하기 위해 라이브러리 Redux를 사용하였습니다. (redux-tool-kit)
-- [Material UI] - paginate와 제품설명 탭 ui, 사이트 전반에 아이콘을 사용했습니다. 클래스를 오버라이딩 하는 방식으로 커스터마이징해서 사용하였습니다.
-- [Framer Motion] - 웹 애니메이션, 제스쳐를 쉽게 다룰 수 있게 하는 리액트 라이브러리 Framer Motion을 햄버거 아이콘에 적용했습니다.
+- [React] - 컴포넌트 단위로 나누어 관리할 수 있고 재사용이 용이한 자바스크립트 라이브러리 React를 사용하였습니다.
+
+- [styled-components] - 컴포넌트 기반 스타일링을 할 수 있는 styled-components를 사용하였습니다.
+
+- [Redux] - 데이터의 전역 상태를 생성하고 관리하기 위해 라이브러리 Redux를 사용하였습니다. (redux-tool-kit)
+
+- [Material UI] - paginate와 제품설명 탭 ui, 사이트 전반에 아이콘을 사용했습니다. 
+
+- [Framer Motion] - 웹 애니메이션, 제스쳐를 쉽게 다룰 수 있게 하는 리액트 라이브러리 Framer Motion을 적용했습니다.
+
 
 <br />
 <br />
 
----
+
 
 <!-- ![shop-screen](https://user-images.githubusercontent.com/60907634/153445813-8e2b1131-9e40-4df4-a580-13edb76b82b7.png) -->
 <img src="https://user-images.githubusercontent.com/60907634/153445813-8e2b1131-9e40-4df4-a580-13edb76b82b7.png"  width="480" height="auto">
 
 
-
-
-
 <br />
 
-[react]: (https://ko.reactjs.org/)
-[styled-components]: (https://styled-components.com/)
-[redux]: (https://ko.redux.js.org/)
-[material icon]: (https://mui.com/components/material-icons/)
-[framer motion]: (https://www.framer.com/motion/)
+
+[React]: https://ko.reactjs.org/
+[styled-components]: https://styled-components.com/
+[Redux]: https://ko.redux.js.org/
+[Material UI]: https://mui.com/components/material-icons/
+[Framer Motion]: https://www.framer.com/motion/
