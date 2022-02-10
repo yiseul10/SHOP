@@ -13,7 +13,10 @@
 
 - 리액트를 학습하며 팀 프로젝트를 경험합니다.
 - 사용자는 커스텀을 하거나 커스텀이 되지 않은 일반 상품을 구매할 수 있습니다.
+- 사용자는 가격과 사이즈, 검색기능으로 원하는 제품을 찾을 수 있습니다.
+- 사용자는 하트아이콘을 눌러 제품을 북마크 할 수 있습니다.
 - 사용자는 개인 아이디 혹은 sns아이디로 로그인하고 구매할 수 있습니다.
+- 결제단계에서 사용자는 해당 상품의 큐알코드를 통해 간편하게 결제합니다.
 
 <br />
 
@@ -22,7 +25,7 @@
 
 <br />
 
-### [✨<u> 작업이야기</u>](https://my-portpolio.vercel.app/blog/my-firtst-blog)
+### [✨<u> 자세히보기</u>](https://my-portpolio.vercel.app/blog/my-firtst-blog)
 
 ### <a href='https://github.com/pvpvpvpvp/ShoppingMall' target='\_blank' rel='noreferrer'>🗒 API 명세서 </a>
 
@@ -44,13 +47,7 @@
 
 ---
 
-**WEB**
-
-<video src='/md/main_shop.mp4' width='auto' height='auto' controls></video>
-
-**Mobile**
-
-<video src='/md/mobile_me.mp4' width='430px' height='auto' controls></video>
+<img></img>
 
 ---
 
