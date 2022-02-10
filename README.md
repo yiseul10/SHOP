@@ -1,5 +1,8 @@
 <br />
+
 # SHOP
+
+<br />
 
 커스텀 페이지를 제공하고 직접 커스텀한 제품을 구매할 수 있는 쇼핑몰입니다. <br />
 사용자가 많고 안정적인 생태계를 구축한 프레임워크인 리액트를 활용하여 제작하게 되었습니다.
@@ -8,22 +11,20 @@
 
 <br />
 
-- 리액트를 이용해서 팀 프로젝트를 경험합니다.
-- 사용자는 커스텀을 하거나 일반 상품을 구매할 수 있습니다.
-- 담당: 메인 페이지, 제품 리스트, 제품 상세페이지, 장바구니 및 위시리스트, 반응형 UI
+- 리액트를 학습하며 팀 프로젝트를 경험합니다.
+- 사용자는 커스텀을 하거나 커스텀이 되지 않은 일반 상품을 구매할 수 있습니다.
+- 사용자는 개인 아이디 혹은 sns아이디로 로그인하고 구매할 수 있습니다.
 
 <br />
 
-### [✨ <u>작업이야기</u>](https://my-portpolio.vercel.app/blog/my-firtst-blog)
+저는 프론트엔드 담당으로
+`메인페이지, 제품리스트와 제품 상세페이지, 장바구니 및 위시리스트`를 작성하고 사이트 전반의 톤 앤 매너를 구성했습니다.
 
-### <a
+<br />
 
-href='https://github.com/pvpvpvpvp/ShoppingMall'
-target='\_blank'
-rel='noreferrer'
+### [✨<u> 작업이야기</u>](https://my-portpolio.vercel.app/blog/my-firtst-blog)
 
-> API 명세서
-> </a>
+### <a href='https://github.com/pvpvpvpvp/ShoppingMall' target='\_blank' rel='noreferrer'>🗒 API 명세서 </a>
 
 <br />
 <br />
@@ -45,11 +46,11 @@ rel='noreferrer'
 
 **WEB**
 
-<video src='https://my-portpolio-chnlpsdsy-yiseul10.vercel.app/main_shop.mp4' width='auto' height='auto' controls></video>
+<video src='/md/main_shop.mp4' width='auto' height='auto' controls></video>
 
 **Mobile**
 
-<video src='https://my-portpolio-chnlpsdsy-yiseul10.vercel.app/mobile_me.mp4' width='430px' height='auto' controls></video>
+<video src='/md/mobile_me.mp4' width='430px' height='auto' controls></video>
 
 ---
 
