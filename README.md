@@ -27,7 +27,7 @@
 <br />
 
 
-### [✨<u> 자세히보기</u>](https://my-portpolio.vercel.app/blog/my-firtst-blog)
+### [✨<u> 자세히보기</u>](https://my-portpolio.vercel.app/blog/shoppingApp)
 
 ### <a href='https://github.com/pvpvpvpvp/ShoppingMall' target='\_blank' rel='noreferrer'>🗒 API 명세서 </a>
 
